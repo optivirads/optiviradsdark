@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaqItem } from '@/lib/wordpress';
 
 interface FaqSectionProps {
@@ -29,7 +30,7 @@ export default function FaqSection({
     <>
       Answered directly. If yours is not here, just{" "}
       <a 
-        href="https://wa.me/919446469696" 
+        href="https://wa.me/919995037109" 
         target="_blank" 
         rel="noopener noreferrer" 
         className="text-emerald-400 hover:text-emerald-300 underline font-medium transition-colors"
@@ -41,7 +42,7 @@ export default function FaqSection({
   );
 
   return (
-    <section className="py-24 relative border-t border-neutral-900/50 bg-[#030712] overflow-hidden">
+    <section className="pt-36 pb-24 relative border-t border-neutral-900/50 bg-[#030712] overflow-hidden">
       {/* Background Dot pattern overlay */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none" 
@@ -64,17 +65,17 @@ export default function FaqSection({
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-8">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             
             return (
               <div 
                 key={index} 
-                className={`border rounded-xl transition-all duration-300 overflow-hidden ${
+                className={`border border-solid rounded-xl transition-all duration-300 overflow-hidden ${
                   isOpen 
-                    ? 'bg-neutral-950/80 border-emerald-500/20 shadow-[0_4px_30px_rgba(16,185,129,0.03)]' 
-                    : 'bg-neutral-900/10 border-neutral-800/80 hover:bg-neutral-900/20 hover:border-neutral-700/80'
+                    ? 'bg-[#09100c] border-emerald-500/50 shadow-[0_20px_50px_-20px_rgba(16,185,129,0.1)]' 
+                    : 'bg-[#0c0c0f] border-neutral-700 hover:bg-[#111115] hover:border-neutral-500 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]'
                 }`}
               >
                 <button
@@ -94,17 +95,25 @@ export default function FaqSection({
                   </span>
                 </button>
                 
-                <div 
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? 'grid-rows-[1fr] opacity-100 pb-6 px-6' : 'grid-rows-[0fr] opacity-0 pb-0 px-6 pointer-events-none'
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="border-t border-neutral-900/60 pt-4 text-neutral-400 text-sm md:text-base leading-relaxed font-light pl-9">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { opacity: 1, height: 'auto' },
+                        collapsed: { opacity: 0, height: 0 }
+                      }}
+                      transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      className="overflow-hidden px-6"
+                    >
+                      <div className="border-t border-neutral-900/60 pt-4 pb-6 text-neutral-400 text-sm md:text-base leading-relaxed font-light pl-9">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

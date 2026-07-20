@@ -19,6 +19,44 @@ import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import FaqAccordion from '@/components/faq/FaqAccordion';
+import { FAQItemData } from '@/types/faq';
+
+const servicesFaqs: FAQItemData[] = [
+  {
+    question: "What is the most effective digital marketing service for a small business in Kerala?",
+    answer: "For most Kerala small businesses, a combined Local SEO and Google Ads approach delivers the fastest measurable ROI. Local SEO builds long-term Map Pack visibility while Google Search Ads immediately capture active buyers. Together, they cover both immediate acquisition (paid) and compounding long-term growth (organic) — maximizing customer acquisition at efficient cost-per-lead rates."
+  },
+  {
+    question: "How much should a Kerala business budget for digital marketing per month?",
+    answer: "Local service businesses in Kannur or Kochi typically invest ₹20,000 to ₹60,000/month in ad spend plus management fees. Growth-stage brands targeting state-wide Kerala markets invest ₹75,000 to ₹2,00,000/month. National and GCC-focused campaigns range from ₹2,00,000 to ₹10,00,000+/month. We build custom budget models during our free audit session based on your industry, competition, and target geography."
+  },
+  {
+    question: "Can OptiVir Ads manage multiple digital marketing channels simultaneously for our business?",
+    answer: "Yes. We manage fully integrated multi-channel digital marketing strategies, coordinating Google Ads, Meta Ads, SEO, Social Media Management, Content Marketing, and Analytics simultaneously. Campaigns are never siloed — Google Ads and Meta Ads share audience data, SEO keyword research informs paid bidding strategy, and social content reinforces ad messaging for consistent brand experiences across every customer touchpoint."
+  },
+  {
+    question: "Do you offer performance-based digital marketing pricing for Kerala businesses?",
+    answer: "Yes. For qualified campaigns with sufficient historical data, we offer performance-tied engagement models where a portion of our fees is linked to agreed KPIs — such as cost-per-lead targets, ROAS benchmarks, or organic traffic growth milestones. This aligns our incentives directly with your business success. WhatsApp us at +91 9995037109 to discuss if your account qualifies for performance-based pricing."
+  },
+  {
+    question: "How does OptiVir Ads report campaign performance across all digital marketing services?",
+    answer: "All clients receive custom Looker Studio dashboards aggregating performance data from Google Ads, Meta Ads, GA4, Google Search Console, and social media platforms in a single unified view. We deliver weekly summary emails with key metric highlights and monthly in-depth strategy reviews where we present performance analysis, optimization actions taken, and the upcoming 30-day plan. Full transparency — no black-box reporting, no hidden metrics."
+  }
+];
+
+const servicesFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": servicesFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 
 const servicesData = [
   {
@@ -439,7 +477,16 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqSchema) }}
+      />
+
+      {/* FAQ Section */}
+      <FaqAccordion faqs={servicesFaqs} />
+
     </div>
   );
 }
-

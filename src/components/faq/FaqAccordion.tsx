@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { animate, stagger } from 'animejs';
+import { motion } from 'framer-motion';
 import FaqItem from './FaqItem';
 import { FAQItemData } from '@/types/faq';
-
 
 interface FaqAccordionProps {
   faqs: FAQItemData[];
@@ -13,12 +12,21 @@ interface FaqAccordionProps {
   className?: string;
 }
 
-// Helper to convert questions into clean URL slugs
-const getQuestionSlug = (question: string) => {
-  return question
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+// Container + item variants for staggered reveal
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  },
 };
 
 export default function FaqAccordion({
@@ -28,133 +36,121 @@ export default function FaqAccordion({
   className = '',
 }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimatedRef = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const displayTitle = title || (
-    <>
-      Questions We <span className="text-emerald-400 font-bold">Actually Get Asked.</span>
-    </>
-  );
-
-  const displaySubtitle = subtitle || (
-    <>
-      Answered directly. If yours is not here, just{" "}
-      <a
-        href="https://wa.me/919446469696"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-emerald-400 hover:text-emerald-300 underline font-medium transition-colors"
-      >
-        WhatsApp us
-      </a>{" "}
-      and we will answer in plain English.
-    </>
-  );
-
-  // 1. Staggered Entrance Animation using anime.js
+  // Trigger stagger animation once the section enters the viewport
   useEffect(() => {
-    if (hasAnimatedRef.current || !containerRef.current) return;
-
+    if (!sectionRef.current) return;
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            hasAnimatedRef.current = true;
-
-            // Stagger reveal cards
-            animate('.faq-item-card', {
-              opacity: [0, 1],
-              translateY: [24, 0],
-              duration: 800,
-              delay: stagger(80, { start: 100 }),
-              easing: 'easeOutQuart',
-            });
-
-            observer.disconnect();
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
       },
-      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -60px 0px' }
     );
-
-    observer.observe(containerRef.current);
+    observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // 2. Handle Item Toggle Action
   const handleToggle = (index: number, question: string) => {
     const isOpening = openIndex !== index;
     setOpenIndex(isOpening ? index : null);
 
-    // Fire GA4 Event tracking if expanding
+    // GA4 event tracking for engagement analytics
     if (isOpening) {
       const anyWindow = window as any;
       if (typeof anyWindow.gtag === 'function') {
         anyWindow.gtag('event', 'faq_open', {
           event_category: 'Engagement',
           event_label: question,
-          page_path: window.location.pathname
+          page_path: window.location.pathname,
         });
       }
     }
   };
 
-  return (
+  const displayTitle = title ?? (
     <>
-      <section
-        ref={containerRef}
-        className={`py-32 relative border-t border-neutral-900/60 bg-[#030712] overflow-hidden ${className}`}
-      >
-        {/* Background Dot pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.02] pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-
-        {/* Ambient background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
-
-        <div className="container mx-auto px-6 max-w-[900px] relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-xs uppercase tracking-[0.25em] text-emerald-400 font-semibold mb-4 block">
-              Transparency
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 font-serif text-white leading-tight">
-              {displayTitle}
-            </h2>
-            <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-              {displaySubtitle}
-            </p>
-          </div>
-
-          <div className="space-y-8 min-h-[100px]">
-            {faqs.length > 0 ? (
-              faqs.map((faq, originalIndex) => {
-                return (
-                  <FaqItem
-                    key={originalIndex}
-                    id={`faq-card-${originalIndex}`}
-                    index={originalIndex}
-                    question={faq.question}
-                    answer={faq.answer}
-                    link={faq.link}
-                    isOpen={openIndex === originalIndex}
-                    onToggle={() => handleToggle(originalIndex, faq.question)}
-                  />
-                );
-              })
-            ) : (
-              <div className="text-center py-12 border border-dashed border-neutral-800 rounded-xl">
-                <p className="text-neutral-500 text-base">No questions available.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      Questions We{' '}
+      <span className="faq-title-accent">Actually Get Asked.</span>
     </>
+  );
+
+  const displaySubtitle = subtitle ?? (
+    <>
+      Answered directly. If yours isn&rsquo;t here, just{' '}
+      <a
+        href="https://wa.me/919995037109"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="faq-subtitle-link"
+      >
+        WhatsApp us
+      </a>{' '}
+      and we&rsquo;ll answer in plain English.
+    </>
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`faq-section ${className}`}
+      aria-labelledby="faq-section-title"
+    >
+      {/* Ambient emerald glow — purely decorative */}
+      <div className="faq-glow" aria-hidden="true" />
+
+      <div className="faq-container">
+        {/* ── Section header ── */}
+        <motion.div
+          className="faq-header"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="faq-eyebrow" aria-hidden="true">FAQ</span>
+          <h2 id="faq-section-title" className="faq-title">
+            {displayTitle}
+          </h2>
+          <p className="faq-subtitle">{displaySubtitle}</p>
+        </motion.div>
+
+        {/* ── Accordion list ── */}
+        {faqs.length > 0 ? (
+          <motion.div
+            className="faq-list"
+            role="list"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isVisible ? 'visible' : 'hidden'}
+          >
+            {faqs.map((faq, idx) => (
+              <motion.div
+                key={idx}
+                role="listitem"
+                variants={itemVariants}
+              >
+                <FaqItem
+                  id={`faq-card-${idx}`}
+                  index={idx}
+                  question={faq.question}
+                  answer={faq.answer}
+                  link={faq.link}
+                  isOpen={openIndex === idx}
+                  onToggle={() => handleToggle(idx, faq.question)}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <div className="faq-empty">
+            <p>No questions available yet.</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
