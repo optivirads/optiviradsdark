@@ -114,7 +114,7 @@ ${message}
     }
 
     return NextResponse.json({ status: 'success' }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Contact API error:', error);
     // General error message returned to public request to prevent disclosure of internal routes/stack information
     return NextResponse.json(

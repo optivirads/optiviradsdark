@@ -28,8 +28,6 @@ export default function AntigravityParticles() {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -38,8 +36,8 @@ export default function AntigravityParticles() {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    const maxParticles = 80;
-    const connectionDistance = 120;
+    const maxParticles = isMobile ? 30 : 80;
+    const connectionDistance = isMobile ? 80 : 120;
     const mouseRadius = 150;
 
     const resizeCanvas = () => {
@@ -84,8 +82,8 @@ export default function AntigravityParticles() {
         if (p.x < -10) p.x = canvas.width + 10;
         if (p.x > canvas.width + 10) p.x = -10;
 
-        // Mouse interaction (repulsion field)
-        if (mouse.active) {
+        // Mouse interaction (repulsion field) - only active if not mobile
+        if (!isMobile && mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -158,21 +156,23 @@ export default function AntigravityParticles() {
       mouseRef.current.active = false;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseleave', handleMouseLeave);
+    }
 
     resizeCanvas();
     updateFrame();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (!isMobile) {
+        window.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseleave', handleMouseLeave);
+      }
       cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
-
-  if (isMobile) return null;
 
   return (
     <canvas 

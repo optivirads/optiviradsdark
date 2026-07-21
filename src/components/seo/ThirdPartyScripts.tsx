@@ -7,6 +7,7 @@ export default function ThirdPartyScripts() {
     let loaded = false;
 
     const loadScripts = () => {
+      /* eslint-disable @typescript-eslint/no-explicit-any, prefer-rest-params, prefer-spread, @typescript-eslint/no-unused-expressions */
       if (loaded) return;
       loaded = true;
 

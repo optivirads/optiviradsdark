@@ -212,13 +212,13 @@ const servicesData = [
 ];
 
 export default function Services() {
-  // ROI Calculator States (in Indian Rupees ₹)
-  const [serviceFocus, setServiceFocus] = useState<'smm' | 'meta' | 'google' | 'other-ads' | 'seo' | 'content' | 'web-dev' | 'email' | 'analytics'>('google');
+  type ServiceFocus = 'smm' | 'meta' | 'google' | 'other-ads' | 'seo' | 'content' | 'web-dev' | 'email' | 'analytics';
+  const [serviceFocus, setServiceFocus] = useState<ServiceFocus>('google');
   const [adSpend, setAdSpend] = useState(50000);
   const [conversionRate, setConversionRate] = useState(2.5); // %
   const [leadValue, setLeadValue] = useState(2000); // ₹ average sale value
 
-  const handleServiceFocusChange = (focus: any) => {
+  const handleServiceFocusChange = (focus: ServiceFocus) => {
     setServiceFocus(focus);
     if (focus === 'google') {
       setAdSpend(50000);
@@ -368,7 +368,7 @@ export default function Services() {
                   <select 
                     id="service-focus-select"
                     value={serviceFocus}
-                    onChange={(e) => handleServiceFocusChange(e.target.value as any)}
+                    onChange={(e) => handleServiceFocusChange(e.target.value as ServiceFocus)}
                     className="calc-select"
                   >
                     <option value="google">Google Ads (Search & Display)</option>

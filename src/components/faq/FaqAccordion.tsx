@@ -61,7 +61,7 @@ export default function FaqAccordion({
 
     // GA4 event tracking for engagement analytics
     if (isOpening) {
-      const anyWindow = window as any;
+      const anyWindow = window as unknown as { gtag?: (command: string, action: string, params: Record<string, unknown>) => void };
       if (typeof anyWindow.gtag === 'function') {
         anyWindow.gtag('event', 'faq_open', {
           event_category: 'Engagement',

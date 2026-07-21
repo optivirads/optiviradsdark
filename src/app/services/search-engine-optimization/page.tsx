@@ -86,7 +86,7 @@ export default function SearchEngineOptimizationPage() {
             <div className="info-main-content">
               <h2 className="section-h2">Topical Authority: The Key to Organic Domination</h2>
               <p className="body-text">
-                Traditional keyword-stuffing methods no longer work. Google's Hummingbird and BERT algorithms crawl websites for conceptual intent. We map your domain structure to establish complete semantic clusters—siloing content logically to signal topical trust.
+                Traditional keyword-stuffing methods no longer work. Google&apos;s Hummingbird and BERT algorithms crawl websites for conceptual intent. We map your domain structure to establish complete semantic clusters—siloing content logically to signal topical trust.
               </p>
               <p className="body-text">
                 By cleaning up crawl bottlenecks, injecting specific structured data schemas, and writing content clusters that resolve the exact query intents of target buyers, we build a compound asset that continuously drives leads without ad cost leaks.

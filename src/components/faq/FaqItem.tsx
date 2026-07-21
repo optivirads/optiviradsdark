@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useId, useState } from 'react';
+import React, { useState, useId } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowUpRight } from 'lucide-react';
 import { FAQItemData } from '@/types/faq';
@@ -28,9 +28,9 @@ export default function FaqItem({
 
   // Lazy-render panel content only after it has been opened once
   const [hasOpened, setHasOpened] = useState(isOpen);
-  useEffect(() => {
-    if (isOpen) setHasOpened(true);
-  }, [isOpen]);
+  if (isOpen && !hasOpened) {
+    setHasOpened(true);
+  }
 
   // Full keyboard support (Enter / Space)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {

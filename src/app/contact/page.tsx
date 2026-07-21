@@ -70,9 +70,9 @@ export default function Contact() {
           }, 50);
         }
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setErrorMsg(err.message || 'Something went wrong. Please try again.');
+      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
       setIsSubmitting(false);
       
       // Briefly animate error text in
@@ -117,7 +117,7 @@ export default function Contact() {
           {/* Info Side */}
           <ScrollReveal direction="left" delay={150}>
             <div className="contact-info-panel">
-              <h2 className="info-title">Let's Discuss Your Pipeline</h2>
+              <h2 className="info-title">Let&apos;s Discuss Your Pipeline</h2>
               <p className="info-desc">
                 Speak with us about your business goals, marketing challenges, and growth plan. Working with businesses across Kannur, Kerala, India, UAE, Qatar, and the GCC.
               </p>

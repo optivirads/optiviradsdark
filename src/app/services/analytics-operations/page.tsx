@@ -86,7 +86,7 @@ export default function AnalyticsOperationsPage() {
             <div className="info-main-content">
               <h2 className="section-h2">Attribution Accuracy: The Foundation of Scale</h2>
               <p className="body-text">
-                If your tracking setups are misreporting, Google and Meta's smart bidding algorithms will optimize campaigns for the wrong user actions. Browser ad-blockers and privacy regulations systematically erase conversion matches.
+                If your tracking setups are misreporting, Google and Meta&apos;s smart bidding algorithms will optimize campaigns for the wrong user actions. Browser ad-blockers and privacy regulations systematically erase conversion matches.
               </p>
               <p className="body-text">
                 We implement clean server-side containers using Google Tag Manager and Cloud platforms. By sending secure, hashed customer details directly to Meta and Google, we restore data integrity, stabilize bidding algorithms, and lower client cost-per-acquisition metrics.

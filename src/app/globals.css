@@ -1331,77 +1331,75 @@ button {
 .card-stack-title { font-size: 1.125rem; font-weight: 600; color: #ffffff; }
 .card-stack-desc { font-size: 0.875rem; line-height: 1.5; color: var(--text-secondary); }
 
-/* Above-the-fold high performance CSS animations (desktop only to preserve instant mobile LCP) */
-@media (min-width: 768px) {
-  @keyframes heroFadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(15px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes heroScaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes heroSlideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  .hero-description {
+/* Above-the-fold high performance CSS animations (now enabled on all devices) */
+@keyframes heroFadeInUp {
+  from {
     opacity: 0;
+    transform: translateY(15px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  .hero-cta-btn {
+@keyframes heroScaleIn {
+  from {
     opacity: 0;
+    transform: scale(0.95);
   }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
-  .hero-card-item {
+@keyframes heroSlideInRight {
+  from {
     opacity: 0;
+    transform: translateX(30px);
   }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
-  .animate-hero-desc {
-    animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 350ms;
-  }
+.hero-description {
+  opacity: 0;
+}
 
-  .animate-hero-cta {
-    animation: heroScaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 450ms;
-  }
+.hero-cta-btn {
+  opacity: 0;
+}
 
-  .animate-hero-card-0 {
-    animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 550ms;
-  }
+.hero-card-item {
+  opacity: 0;
+}
 
-  .animate-hero-card-1 {
-    animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 650ms;
-  }
+.animate-hero-desc {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 350ms;
+}
 
-  .animate-hero-card-2 {
-    animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 750ms;
-  }
+.animate-hero-cta {
+  animation: heroScaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 450ms;
+}
+
+.animate-hero-card-0 {
+  animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 550ms;
+}
+
+.animate-hero-card-1 {
+  animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 650ms;
+}
+
+.animate-hero-card-2 {
+  animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 750ms;
 }
 
 .capabilities-section,

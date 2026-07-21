@@ -20,6 +20,7 @@ export default function TextReveal({
   duration = 1000,
   mode = 'words',
 }: TextRevealProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const containerRef = useRef<any>(null);
   const Tag = tag;
 

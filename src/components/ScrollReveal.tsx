@@ -37,8 +37,8 @@ export default function ScrollReveal({
               ? Array.from(element.children) 
               : element;
 
-            let translateX: any = 0;
-            let translateY: any = 0;
+            let translateX: number | number[] = 0;
+            let translateY: number | number[] = 0;
 
             if (direction === 'up') translateY = [distance, 0];
             if (direction === 'down') translateY = [-distance, 0];

@@ -293,7 +293,7 @@ export default async function LocationPage({ params }: Props) {
                   Ready to dominate {location.city}?
                 </h2>
                 <p className="loc-body-text" style={{ maxWidth: 560, margin: '0 auto 2.5rem', textAlign: 'center' }}>
-                  Let's engineer a predictable, data-driven revenue engine for your business. Book a free account audit with our dedicated growth team.
+                  Let&apos;s engineer a predictable, data-driven revenue engine for your business. Book a free account audit with our dedicated growth team.
                 </p>
 
                 <div className="loc-contact-strip">

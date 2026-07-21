@@ -89,7 +89,7 @@ export default function NichePlatformAdvertisingPage() {
                 While Google and Meta are industry standard, B2B software systems and high-ticket service companies require highly refined profile matches. Broad demographic targeting on mainstream platforms often leaks budget. 
               </p>
               <p className="body-text">
-                We design specific platform strategies: using LinkedIn firmographics to filter by company size, department seniority, and job function; utilizing Snapchat's interactive lenses to connect with mobile-first consumers; and placing real-time topic ads on Twitter/X to target tech-centric and finance communities.
+                We design specific platform strategies: using LinkedIn firmographics to filter by company size, department seniority, and job function; utilizing Snapchat&apos;s interactive lenses to connect with mobile-first consumers; and placing real-time topic ads on Twitter/X to target tech-centric and finance communities.
               </p>
               
               <h3 className="section-h3">Channel Core Capabilities:</h3>

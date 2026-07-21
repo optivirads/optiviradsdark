@@ -46,7 +46,7 @@ export default function ServiceSchema({ services }: { services?: ServiceItemProp
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Digital Acquisition Catalog",
-      "itemListElement": serviceList.map((srv, idx) => ({
+      "itemListElement": serviceList.map((srv) => ({
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",

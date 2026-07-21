@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight, Zap } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { animate, stagger } from 'animejs';
 
 import Image from 'next/image';

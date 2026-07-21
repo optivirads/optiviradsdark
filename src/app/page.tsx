@@ -111,7 +111,7 @@ export default async function Home() {
                 </div>
                 <h3 className="capability-card-title">Dominating Local Markets</h3>
                 <p className="capability-card-desc">
-                  We build localized search supremacy, ensuring your business captures the lion's share of regional intent and drives footfall or local inquiries via organic search authority.
+                  We build localized search supremacy, ensuring your business captures the lion&apos;s share of regional intent and drives footfall or local inquiries via organic search authority.
                 </p>
               </div>
 
@@ -149,7 +149,7 @@ export default async function Home() {
                 <span className="text-gradient-green">Human-Centric Results.</span>
               </h2>
               <p className="precision-desc">
-                We don't just run ads, we engineer growth engines. By combining deep analytical rigor with creative intuition, we build marketing systems that scale predictably and sustainably for your small business.
+                We don&apos;t just run ads, we engineer growth engines. By combining deep analytical rigor with creative intuition, we build marketing systems that scale predictably and sustainably for your small business.
               </p>
               
               <ul className="precision-list">

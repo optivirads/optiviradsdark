@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 export interface BlogPost {
   id: number;
   title: string;
@@ -219,7 +220,7 @@ const MOCK_FAQS: Record<string, FaqItem[]> = {
     },
     {
       question: "Do you integrate WhatsApp, CRM, and lead management systems into web applications?",
-      answer: "Yes. We build secure server-side API integrations connecting your website directly with: WhatsApp Business API for instant lead notification; CRM platforms (HubSpot, Zoho, Pipedrive) for automatic contact creation; email automation tools (Mailchimp, Klaviyo) for lead nurture sequences; and Google Sheets or Airtable for simple, real-time lead databases. All integrations are deployed server-side to protect API keys and prevent client-side data exposure, giving your team instant, organized access to every inbound lead."
+      answer: "Yes. We build secure server-side API integrations connecting your website directly with: WhatsApp Business API for instant lead notification; CRM platforms (HubSpot, Zoho, Pipedrive) for email automation tools (Mailchimp, Klaviyo) for lead nurture sequences; and Google Sheets or Airtable for simple, real-time lead databases. All integrations are deployed server-side to protect API keys and prevent client-side data exposure, giving your team instant, organized access to every inbound lead."
     }
   ],
   "content-marketing": [

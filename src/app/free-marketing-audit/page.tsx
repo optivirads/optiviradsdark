@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Globe, Target, DollarSign, User, CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { animate, stagger } from 'animejs';
@@ -168,7 +168,7 @@ export default function FreeMarketingAudit() {
             duration={1000}
           />
           <p className="onboarding-subtitle">
-            Provide details about your business goals. We'll crawl your marketing profiles and build an acquisition analysis.
+            Provide details about your business goals. We&apos;ll crawl your marketing profiles and build an acquisition analysis.
           </p>
         </div>
       </section>
@@ -361,7 +361,7 @@ export default function FreeMarketingAudit() {
               </div>
               <h2 className="success-title success-banner-item" style={{ opacity: 0 }}>Audit Initiated</h2>
               <p className="success-desc success-banner-item" style={{ margin: '0 auto 2rem', opacity: 0 }}>
-                Thank you, <strong>{formData.name}</strong>. We've initiated crawling on <strong>{formData.website}</strong>. 
+                Thank you, <strong>{formData.name}</strong>. We&apos;ve initiated crawling on <strong>{formData.website}</strong>. 
                 Our marketing engineers will draft your ROI audit and email it to <strong>{formData.email}</strong> shortly.
               </p>
               <div className="success-banner-item" style={{ opacity: 0 }}>
