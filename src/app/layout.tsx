@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -84,6 +85,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
