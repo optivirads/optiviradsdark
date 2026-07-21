@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface Particle {
   x: number;
@@ -15,17 +15,6 @@ interface Particle {
 export default function AntigravityParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000, active: false });
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check mobile width on mount and resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -36,24 +25,22 @@ export default function AntigravityParticles() {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    const maxParticles = isMobile ? 30 : 80;
-    const connectionDistance = isMobile ? 80 : 120;
-    const mouseRadius = 150;
+    let lastWidth = 0;
+    let lastHeight = 0;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    };
+    const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
 
-    const initParticles = () => {
+    const initParticles = (width: number, height: number) => {
+      const isMobile = checkIsMobile();
+      // Rich particle density on mobile (60 particles vs 80 on desktop) so full mesh effect is active
+      const maxParticles = isMobile ? 60 : 80;
       particles = [];
       for (let i = 0; i < maxParticles; i++) {
         const radius = Math.random() * 1.5 + 1;
         const baseAlpha = Math.random() * 0.4 + 0.15;
         particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
+          x: Math.random() * width,
+          y: Math.random() * height,
           vx: (Math.random() - 0.5) * 0.4,
           vy: -Math.random() * 0.5 - 0.15, // Floating upwards defying gravity
           radius,
@@ -63,10 +50,39 @@ export default function AntigravityParticles() {
       }
     };
 
+    const resizeCanvas = (force = false) => {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+
+      // On mobile browsers, scrolling toggles toolbars, firing resize with small height diffs.
+      // Ignore small height changes to prevent resetting canvas bitmap during scroll.
+      const widthChanged = Math.abs(newWidth - lastWidth) > 5;
+      const heightChanged = Math.abs(newHeight - lastHeight) > 120; // Orientation change or large resize
+
+      if (force || lastWidth === 0 || widthChanged || heightChanged) {
+        lastWidth = newWidth;
+        lastHeight = newHeight;
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+
+        // Only recreate particles if initial load or significant resize/orientation change
+        if (particles.length === 0 || widthChanged || heightChanged) {
+          initParticles(newWidth, newHeight);
+        }
+      }
+    };
+
     const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+      const width = canvas.width;
+      const height = canvas.height;
+      if (!width || !height) return;
+
+      ctx.clearRect(0, 0, width, height);
+
       const mouse = mouseRef.current;
+      const isMobile = checkIsMobile();
+      const connectionDistance = isMobile ? 110 : 120;
+      const mouseRadius = isMobile ? 140 : 150;
 
       // Update and draw particles
       particles.forEach((p) => {
@@ -76,27 +92,25 @@ export default function AntigravityParticles() {
 
         // Reset if floated off top
         if (p.y < -10) {
-          p.y = canvas.height + 10;
-          p.x = Math.random() * canvas.width;
+          p.y = height + 10;
+          p.x = Math.random() * width;
         }
-        if (p.x < -10) p.x = canvas.width + 10;
-        if (p.x > canvas.width + 10) p.x = -10;
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
 
-        // Mouse interaction (repulsion field) - only active if not mobile
-        if (!isMobile && mouse.active) {
+        // Mouse/Touch interaction (repulsion field & glow effect)
+        if (mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (dist < mouseRadius) {
             const force = (mouseRadius - dist) / mouseRadius;
             const angle = Math.atan2(dy, dx);
-            // Push particle away
             p.x += Math.cos(angle) * force * 1.5;
             p.y += Math.sin(angle) * force * 1.5;
-            p.alpha = Math.min(p.baseAlpha * 2, 0.8);
+            p.alpha = Math.min(p.baseAlpha * 2.2, 0.85);
           } else {
-            // Smoothly return to base alpha
             p.alpha += (p.baseAlpha - p.alpha) * 0.05;
           }
         } else {
@@ -106,7 +120,7 @@ export default function AntigravityParticles() {
         // Draw particle node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 242, 254, ${p.alpha})`; // Cyan neon glows
+        ctx.fillStyle = `rgba(0, 242, 254, ${p.alpha})`; // Cyan neon glow
         ctx.fill();
       });
 
@@ -124,12 +138,11 @@ export default function AntigravityParticles() {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            
-            // Draw a subtle dual-color gradient connector
+
             const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
             gradient.addColorStop(0, `rgba(0, 242, 254, ${opacity})`); // Cyan
             gradient.addColorStop(1, `rgba(0, 255, 135, ${opacity})`); // Green
-            
+
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 0.5;
             ctx.stroke();
@@ -143,9 +156,6 @@ export default function AntigravityParticles() {
       animationFrameId = requestAnimationFrame(updateFrame);
     };
 
-    // Listeners
-    window.addEventListener('resize', resizeCanvas);
-    
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current.x = e.clientX;
       mouseRef.current.y = e.clientY;
@@ -156,40 +166,67 @@ export default function AntigravityParticles() {
       mouseRef.current.active = false;
     };
 
-    if (!isMobile) {
-      window.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseleave', handleMouseLeave);
-    }
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseRef.current.x = e.touches[0].clientX;
+        mouseRef.current.y = e.touches[0].clientY;
+        mouseRef.current.active = true;
+      }
+    };
 
-    resizeCanvas();
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseRef.current.x = e.touches[0].clientX;
+        mouseRef.current.y = e.touches[0].clientY;
+        mouseRef.current.active = true;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouseRef.current.active = false;
+    };
+
+    const handleResize = () => resizeCanvas(false);
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd);
+
+    resizeCanvas(true);
     updateFrame();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      if (!isMobile) {
-        window.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseleave', handleMouseLeave);
-      }
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isMobile]);
+  }, []);
 
   return (
-    <canvas 
-      ref={canvasRef} 
+    <canvas
+      ref={canvasRef}
       className="antigravity-canvas"
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         zIndex: 0,
         pointerEvents: 'none',
-        mixBlendMode: 'screen',
-        opacity: 0.65,
+        opacity: 0.7,
+        willChange: 'transform',
+        transform: 'translateZ(0)',
       }}
     />
   );
 }
+
 
