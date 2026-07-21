@@ -9,8 +9,8 @@ interface ClientsTickerProps {
 }
 
 export default function ClientsTicker({ clients }: ClientsTickerProps) {
-  // Create a duplicated list for seamless marquee scrolling
-  const marqueeClients = Array.from({ length: 16 }).flatMap(() => clients);
+  // Create a duplicated list for seamless marquee scrolling - using 8 replicates to keep DOM size performant
+  const marqueeClients = Array.from({ length: 8 }).flatMap(() => clients);
 
   return (
     <section className="clients-ticker-section">

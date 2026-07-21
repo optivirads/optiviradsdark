@@ -78,16 +78,14 @@ export default function ThirdPartyScripts() {
       }
     };
 
-    // Trigger loading on interaction or after 3.5s delay
+    // Trigger loading on interaction
     const triggerEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-    const timerId = setTimeout(loadScripts, 3500);
 
     const eventHandler = () => {
       loadScripts();
       triggerEvents.forEach((event) => {
         window.removeEventListener(event, eventHandler);
       });
-      clearTimeout(timerId);
     };
 
     triggerEvents.forEach((event) => {
@@ -98,7 +96,6 @@ export default function ThirdPartyScripts() {
       triggerEvents.forEach((event) => {
         window.removeEventListener(event, eventHandler);
       });
-      clearTimeout(timerId);
     };
   }, []);
 
