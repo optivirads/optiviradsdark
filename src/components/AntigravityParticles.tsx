@@ -217,13 +217,12 @@ export default function AntigravityParticles() {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
+        width: '100vw',
+        height: '100vh',
         zIndex: 0,
         pointerEvents: 'none',
         opacity: 0.7,
-        willChange: 'transform',
-        transform: 'translateZ(0)',
+        display: 'block',
       }}
     />
   );
