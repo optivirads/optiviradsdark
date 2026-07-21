@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { animate } from 'animejs';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,21 +15,9 @@ export default function ScrollToTop() {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      animate('.scroll-to-top-btn', {
-        opacity: [0, 1],
-        scale: [0.8, 1],
-        translateY: [20, 0],
-        duration: 300,
-        easing: 'easeOutBack',
-      });
-    }
-  }, [isVisible]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -39,12 +26,10 @@ export default function ScrollToTop() {
     });
   };
 
-  if (!isVisible) return null;
-
   return (
     <button
       onClick={scrollToTop}
-      className="scroll-to-top-btn"
+      className={`scroll-to-top-btn ${isVisible ? 'visible' : ''}`}
       aria-label="Scroll to top"
     >
       <ArrowUp size={20} />

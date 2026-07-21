@@ -1331,6 +1331,77 @@ button {
 .card-stack-title { font-size: 1.125rem; font-weight: 600; color: #ffffff; }
 .card-stack-desc { font-size: 0.875rem; line-height: 1.5; color: var(--text-secondary); }
 
+/* Above-the-fold high performance CSS animations */
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-description {
+  opacity: 0;
+}
+
+.hero-cta-btn {
+  opacity: 0;
+}
+
+.hero-card-item {
+  opacity: 0;
+}
+
+.animate-hero-desc {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 350ms;
+}
+
+.animate-hero-cta {
+  animation: heroScaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 450ms;
+}
+
+.animate-hero-card-0 {
+  animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 550ms;
+}
+
+.animate-hero-card-1 {
+  animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 650ms;
+}
+
+.animate-hero-card-2 {
+  animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 750ms;
+}
+
 .capabilities-section,
 .precision-section,
 .advantage-section {
@@ -2007,10 +2078,19 @@ a.channel-value:hover { color: var(--accent-cyan); }
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
-  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
 }
 
-.scroll-to-top-btn:hover {
+.scroll-to-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-to-top-btn.visible:hover {
   background: rgba(0, 242, 254, 0.1);
   border-color: rgba(0, 242, 254, 0.4);
   transform: translateY(-4px);

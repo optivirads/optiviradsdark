@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Particle {
   x: number;
@@ -15,8 +15,21 @@ interface Particle {
 export default function AntigravityParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000, active: false });
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check mobile width on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -25,7 +38,7 @@ export default function AntigravityParticles() {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    const maxParticles = typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80;
+    const maxParticles = 80;
     const connectionDistance = 120;
     const mouseRadius = 150;
 
@@ -157,7 +170,9 @@ export default function AntigravityParticles() {
       document.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <canvas 
@@ -177,3 +192,4 @@ export default function AntigravityParticles() {
     />
   );
 }
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { 
   Eye, 
   Shield, 
@@ -8,14 +9,17 @@ import {
   GitBranch, 
   Handshake, 
   Zap, 
-  BarChart3
+  BarChart3,
+  Search,
+  Crosshair,
+  Rocket,
+  ArrowRight
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getClientLogos, getPageFaqs } from '@/lib/wordpress';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import FaqAccordion from '@/components/faq/FaqAccordion';
-import HeroAnimations from '@/components/home/HeroAnimations';
 import ClientsTicker from '@/components/home/ClientsTicker';
 
 export default async function Home() {
@@ -42,7 +46,52 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container hero-container-grid">
-          <HeroAnimations />
+          <div className="hero-text-content">
+            <h1 className="hero-headline">
+              Scale Your Business with Precision-Engineered Digital Marketing.
+            </h1>
+            <p className="hero-description animate-hero-desc">
+              Specializing in Social Media Management, Meta & Google Ads, high-intent SEO, conversion copywriting, and premium custom Web Development.
+            </p>
+            <div className="hero-actions">
+              <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
+                Free Audit & Strategy Session <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column Stack */}
+          <div className="hero-cards-stack">
+            <div className="glow-card-left-border green hero-card-item animate-hero-card-0">
+              <div className="card-stack-icon green">
+                <Search size={18} />
+              </div>
+              <div className="card-stack-info">
+                <h3 className="card-stack-title">Strategic SEO & Content</h3>
+                <p className="card-stack-desc">Commanding search authority and high-value content to capture intent organic traffic.</p>
+              </div>
+            </div>
+
+            <div className="glow-card-left-border purple hero-card-item animate-hero-card-1">
+              <div className="card-stack-icon purple">
+                <Crosshair size={18} />
+              </div>
+              <div className="card-stack-info">
+                <h3 className="card-stack-title">Omnichannel Paid Ads</h3>
+                <p className="card-stack-desc">Hyper-targeted Meta, Google, and niche platform ad campaigns optimized for ROAS.</p>
+              </div>
+            </div>
+
+            <div className="glow-card-left-border cyan hero-card-item animate-hero-card-2">
+              <div className="card-stack-icon cyan">
+                <Rocket size={18} />
+              </div>
+              <div className="card-stack-info">
+                <h3 className="card-stack-title">Web Dev & SMM</h3>
+                <p className="card-stack-desc">Custom conversion-rate engineered sites coupled with active social community management.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -128,7 +177,6 @@ export default async function Home() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="precision-image"
-                priority
               />
               <div className="image-overlay-border" />
             </div>
