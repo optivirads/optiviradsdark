@@ -15,66 +15,45 @@ interface ScrollRevealProps {
 export default function ScrollReveal({
   children,
   delay = 0,
-  duration = 800,
+  duration = 600,
   direction = 'up',
-  distance = 30,
+  distance = 20,
   stagger = 0,
 }: ScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hasRevealed, setHasRevealed] = useState(false);
+  const [hasRevealed, setHasRevealed] = useState(true);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasRevealed) {
-            setHasRevealed(true);
-            
-            const element = containerRef.current;
-            if (!element) return;
+    // Graceful subtle entrance animation after paint
+    const element = containerRef.current;
+    if (!element) return;
 
-            const targets = stagger > 0 
-              ? Array.from(element.children) 
-              : element;
+    const targets = stagger > 0 
+      ? Array.from(element.children) 
+      : element;
 
-            let translateX: number | number[] = 0;
-            let translateY: number | number[] = 0;
+    let translateX: number | number[] = 0;
+    let translateY: number | number[] = 0;
 
-            if (direction === 'up') translateY = [distance, 0];
-            if (direction === 'down') translateY = [-distance, 0];
-            if (direction === 'left') translateX = [distance, 0];
-            if (direction === 'right') translateX = [-distance, 0];
+    if (direction === 'up') translateY = [distance, 0];
+    if (direction === 'down') translateY = [-distance, 0];
+    if (direction === 'left') translateX = [distance, 0];
+    if (direction === 'right') translateX = [-distance, 0];
 
-            animate(targets, {
-              opacity: [0, 1],
-              translateX: translateX,
-              translateY: translateY,
-              duration: duration,
-              delay: stagger > 0 ? animeStagger(stagger, { start: delay }) : delay,
-              easing: 'easeOutQuart',
-            });
-
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [direction, distance, delay, duration, stagger, hasRevealed]);
+    animate(targets, {
+      translateX: translateX,
+      translateY: translateY,
+      duration: duration,
+      delay: stagger > 0 ? animeStagger(stagger, { start: delay }) : delay,
+      easing: 'easeOutQuart',
+    });
+  }, [direction, distance, delay, duration, stagger]);
 
   return (
     <div
       ref={containerRef}
       style={{
-        opacity: hasRevealed ? 1 : 0,
+        opacity: 1,
         width: '100%',
         height: '100%',
       }}
@@ -83,3 +62,4 @@ export default function ScrollReveal({
     </div>
   );
 }
+

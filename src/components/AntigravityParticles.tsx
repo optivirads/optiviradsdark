@@ -32,8 +32,8 @@ export default function AntigravityParticles() {
 
     const initParticles = (width: number, height: number) => {
       const isMobile = checkIsMobile();
-      // Rich particle density on mobile (60 particles vs 80 on desktop) so full mesh effect is active
-      const maxParticles = isMobile ? 60 : 80;
+      // Optimized particle density (25 mobile / 45 desktop) for 60fps & sub-50ms main-thread cost
+      const maxParticles = isMobile ? 25 : 45;
       particles = [];
       for (let i = 0; i < maxParticles; i++) {
         const radius = Math.random() * 1.5 + 1;
@@ -49,6 +49,7 @@ export default function AntigravityParticles() {
         });
       }
     };
+
 
     const resizeCanvas = (force = false) => {
       const newWidth = window.innerWidth;
@@ -195,10 +196,20 @@ export default function AntigravityParticles() {
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('touchend', handleTouchEnd);
 
-    resizeCanvas(true);
-    updateFrame();
+    let startTimeout: NodeJS.Timeout;
+    const startParticleEngine = () => {
+      resizeCanvas(true);
+      updateFrame();
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(startParticleEngine, { timeout: 800 });
+    } else {
+      startTimeout = setTimeout(startParticleEngine, 300);
+    }
 
     return () => {
+      if (startTimeout) clearTimeout(startTimeout);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
@@ -208,6 +219,7 @@ export default function AntigravityParticles() {
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
+
 
   return (
     <canvas

@@ -8,6 +8,7 @@ import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
 import { getPageMetadata } from '@/lib/wordpress';
 import './globals.css';
 
+
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
@@ -23,8 +24,8 @@ const jakarta = Plus_Jakarta_Sans({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
 };
+
 
 // Dynamic metadata fetched from WordPress API for root fallback
 export async function generateMetadata(): Promise<Metadata> {

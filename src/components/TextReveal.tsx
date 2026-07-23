@@ -50,8 +50,7 @@ export default function TextReveal({
           style={{
             display: 'inline-block',
             whiteSpace: 'pre',
-            opacity: 0,
-            transform: 'translateY(20px)',
+            opacity: 1,
             marginRight: mode === 'words' ? '0.22em' : '0',
           }}
         >
@@ -61,3 +60,4 @@ export default function TextReveal({
     </Tag>
   );
 }
+
