@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('web-development');
@@ -43,11 +44,19 @@ export default function WebDevelopmentPage() {
     "description": "Custom Next.js and React website development optimized for Core Web Vitals, speed, and conversion flow velocity."
   };
 
-  
   return (
     <div className="service-detail-page theme-cyan">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Web Development & CRO', url: '/services/web-development' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,34 @@ export default function WebDevelopmentPage() {
               <p className="step-desc">Deploying page files, configuring hosting setups, and verifying Google console indexing.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Web Dev Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Premier Custom Next.js Web Development Agency in Kerala
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  As a specialist <strong>custom web development agency in Kerala</strong>, OptiVir Ads engineers lightning-fast, high-converting digital web applications using modern Next.js and React technology stacks. Unlike bloated WordPress page builders or slow template sites, our custom <strong>Next.js development company services</strong> deliver sub-1.2 second load times and perfect 100/100 Core Web Vitals scores that directly improve Google organic rankings.
+                </p>
+                <p>
+                  Our <strong>landing page design and conversion rate optimization (CRO)</strong> engineering ensures every visitor experiences frictionless navigation, mobile responsiveness, and intuitive Call-To-Action flows designed to convert paid ad traffic into qualified customer leads.
+                </p>
+                <div style={{ padding: '1.25rem', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)', borderRadius: '10px', marginTop: '0.5rem' }}>
+                  <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1rem' }}>Next.js vs. WordPress Performance Benchmark</h4>
+                  <p style={{ fontSize: '0.875rem', marginBottom: '0.75rem' }}>See why custom React web applications outperform legacy CMS builders in speed, security, and conversion rate.</p>
+                  <Link href="/blog/nextjs-vs-wordpress-performance" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
+                    Read the Next.js vs. WordPress Performance Breakdown →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

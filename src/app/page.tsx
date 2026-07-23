@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  Eye, 
-  Shield, 
-  CheckCircle2, 
-  TrendingUp, 
-  GitBranch, 
-  Handshake, 
-  Zap, 
+import {
+  Eye,
+  Shield,
+  CheckCircle2,
+  TrendingUp,
+  GitBranch,
+  Handshake,
+  Zap,
   BarChart3,
   Search,
   Crosshair,
@@ -19,13 +19,18 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { getClientLogos, getPageFaqs } from '@/lib/wordpress';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
+import WebSiteSchema from '@/components/seo/WebSiteSchema';
+import ReviewSchema from '@/components/seo/ReviewSchema';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import ClientsTicker from '@/components/home/ClientsTicker';
+import { getReviews } from '@/lib/reviews';
 
 export default async function Home() {
-  const [clients, faqs] = await Promise.all([
+  const [clients, faqs, reviews] = await Promise.all([
     getClientLogos(),
-    getPageFaqs('home')
+    getPageFaqs('home'),
+    getReviews()
   ]);
 
   // Convert FaqItem to FAQItemData structure for the Accordion
@@ -39,6 +44,8 @@ export default async function Home() {
       {/* Dynamic SEO JSON-LD Schemas */}
       <OrganizationSchema />
       <LocalBusinessSchema />
+      <WebSiteSchema />
+      <ReviewSchema reviews={reviews} />
 
       {/* Background Grid Pattern */}
       <div className="grid-overlay" />
@@ -151,7 +158,7 @@ export default async function Home() {
               <p className="precision-desc">
                 We don&apos;t just run ads, we engineer growth engines. By combining deep analytical rigor with creative intuition, we build marketing systems that scale predictably and sustainably for your small business.
               </p>
-              
+
               <ul className="precision-list">
                 <li className="precision-list-item">
                   <CheckCircle2 className="list-checkmark" size={18} />
@@ -171,9 +178,9 @@ export default async function Home() {
 
           <ScrollReveal direction="right" delay={200}>
             <div className="precision-image-wrapper">
-              <Image 
-                src="/images/office_space.png" 
-                alt="OptiVir Ads Modern Corridor Office Space" 
+              <Image
+                src="/images/office_space.png"
+                alt="OptiVir Ads Modern Corridor Office Space"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="precision-image"
@@ -270,6 +277,44 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* SEO Agency Authority Overview & Regional Footprint */}
+      <section className="home-seo-authority-section" style={{ padding: '5rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Leading Digital Marketing Agency in Kerala & Performance Engineering Partner
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  OptiVir Ads is a premier <strong>digital marketing agency in Kerala</strong> engineering predictable growth pipelines for ambitious regional, national, and international businesses. As the <strong>best SEO company in Kannur</strong> and a trusted <strong>Google Ads management partner in Kochi</strong>, we combine data-driven search architecture with server-side analytics to turn digital traffic into verified revenue.
+                </p>
+                <p>
+                  Whether you require hyper-localized <strong>Map Pack SEO in Kannur and Kochi</strong>, high-converting <strong>Meta advertising campaigns across India</strong>, or custom <strong>Next.js web development agency services</strong> engineered for sub-1.2 second load times, our specialist teams execute with surgical precision. We eliminate ad budget leaks through server-side Tag Manager containers, advanced Meta CAPI setups, and value-based Google Smart Bidding.
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginTop: '1rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <div>
+                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Local Search Authority</h4>
+                    <p style={{ fontSize: '0.85rem' }}>Nested LocalBusiness schema, Google Business Profile management, and citation consistency for page one organic dominance.</p>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Performance PPC Ads</h4>
+                    <p style={{ fontSize: '0.85rem' }}>Google Search, Shopping, and Display campaigns optimized for Target CPA and maximum Return on Ad Spend (ROAS).</p>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Custom Web Development</h4>
+                    <p style={{ fontSize: '0.85rem' }}>Next.js & React custom web applications delivering 100/100 Core Web Vitals and high landing page conversion velocity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Verified Google Business Reviews */}
+      <ReviewsSection reviews={reviews} />
 
       <FaqAccordion faqs={accordionFaqs} />
     </div>

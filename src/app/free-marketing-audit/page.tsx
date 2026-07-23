@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { Globe, Target, DollarSign, User, CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { animate, stagger } from 'animejs';
 import TextReveal from '@/components/TextReveal';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import ReviewSchema from '@/components/seo/ReviewSchema';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
+import { CURATED_REVIEWS } from '@/lib/reviews';
 
 export default function FreeMarketingAudit() {
   const [step, setStep] = useState(1);
@@ -155,6 +159,7 @@ export default function FreeMarketingAudit() {
 
   return (
     <div className="get-started-page">
+      <BreadcrumbSchema items={[{ name: 'Free Audit', url: '/free-marketing-audit' }]} />
       <div className="grid-overlay" />
 
       {/* Page Title */}
@@ -373,6 +378,9 @@ export default function FreeMarketingAudit() {
           )}
         </div>
       </section>
+
+      <ReviewSchema reviews={CURATED_REVIEWS} />
+      <ReviewsSection reviews={CURATED_REVIEWS} title="What Our Clients Say About Our Strategy Audits" />
     </div>
   );
 }

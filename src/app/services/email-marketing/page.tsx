@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('email-marketing');
@@ -43,11 +44,19 @@ export default function EmailMarketingPage() {
     "description": "Automated email newsletters, cart abandonment setups, and CRM list segmentation filters to maximize customer retention."
   };
 
-  
   return (
     <div className="service-detail-page theme-purple">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Email Marketing & Automation', url: '/services/email-marketing' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,27 @@ export default function EmailMarketingPage() {
               <p className="step-desc">Deploying newsletters targeted specifically to VIP buyer segments to prevent list fatigue.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Email Marketing Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Email Marketing Automation Agency & Klaviyo CRM Integration
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  As an <strong>email marketing automation agency in India</strong>, OptiVir Ads builds automated retention flows that generate compounding backend revenue. Our certified email specialists deliver custom <strong>Klaviyo setup services in India and the GCC</strong>, designing high-converting <strong>cart abandonment email flows</strong>, automated welcome sequences, and post-purchase customer win-back campaigns.
+                </p>
+                <p>
+                  We implement full SPF, DKIM, and DMARC authentication protocols to ensure high inbox deliverability rates and build precise CRM list segmentation filters that prevent subscriber fatigue.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -19,8 +19,11 @@ import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import ReviewSchema from '@/components/seo/ReviewSchema';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import { FAQItemData } from '@/types/faq';
+import { CURATED_REVIEWS } from '@/lib/reviews';
 
 const servicesFaqs: FAQItemData[] = [
   {
@@ -483,6 +486,10 @@ export default function Services() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqSchema) }}
       />
+      <ReviewSchema reviews={CURATED_REVIEWS} />
+
+      {/* Verified Google Business Reviews */}
+      <ReviewsSection reviews={CURATED_REVIEWS} />
 
       {/* FAQ Section */}
       <FaqAccordion faqs={servicesFaqs} />

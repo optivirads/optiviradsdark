@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getBlogPosts } from '@/lib/wordpress';
+import { LOCATIONS } from '@/lib/locations';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
@@ -12,7 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/services',
     '/blog',
     '/free-marketing-audit',
+    '/free-tools/roas-calculator',
     '/services/analytics-operations',
+    '/services/branding',
     '/services/content-marketing',
     '/services/email-marketing',
     '/services/google-advertising',
@@ -23,11 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/services/web-development',
   ];
 
-  const staticSitemap = staticRoutes.map((route) => ({
+  const locationRoutes = Object.keys(LOCATIONS).map((city) => `/locations/${city}`);
+  const allStaticRoutes = [...staticRoutes, ...locationRoutes];
+
+  const staticSitemap = allStaticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : 0.8,
+    priority: route === '' ? 1.0 : route.startsWith('/locations') ? 0.7 : 0.8,
   }));
 
   // Dynamic routes from WordPress Blog database

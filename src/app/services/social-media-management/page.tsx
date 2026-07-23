@@ -15,6 +15,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('social-media-management');
@@ -42,11 +43,19 @@ export default function SocialMediaManagementPage() {
     "description": "Transform your social profiles into high-engagement brand equity. Custom calendars, reply playbooks, and community cultivation."
   };
 
-  
   return (
     <div className="service-detail-page theme-cyan">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Social Media Management', url: '/services/social-media-management' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -149,6 +158,27 @@ export default function SocialMediaManagementPage() {
               <p className="step-desc">Publishing content and deploying daily reply pipelines to maximize reach and conversion loops.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Social Media Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Full-Service Social Media Management Agency in Kerala
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  OptiVir Ads is a high-engagement <strong>social media management agency in Kerala</strong> transforming social profiles into active brand equity. As an established <strong>Instagram growth agency in Kannur and Kochi</strong>, we craft custom social content calendars, carousel designs, reel scriptwriting, and community management playbooks.
+                </p>
+                <p>
+                  We manage end-to-end profile aesthetics, daily comment response pipelines, and strategic brand outreach across Instagram, Facebook, LinkedIn, and YouTube, ensuring your social presence drives consistent brand trust and direct inquiry traffic.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

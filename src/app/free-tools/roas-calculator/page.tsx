@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import RoasCalculator from '@/components/RoasCalculator';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
+import WebApplicationSchema from '@/components/seo/WebApplicationSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { BarChart3, TrendingUp, ShieldCheck, Zap, Target, Users, ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -41,6 +43,13 @@ export default function RoasCalculatorPage() {
   return (
     <main className="roas-page">
       <OrganizationSchema />
+      <WebApplicationSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'ROAS Calculator', url: '/free-tools/roas-calculator' },
+        ]}
+      />
 
       {/* Background grid overlay */}
       <div className="grid-overlay" aria-hidden="true" />

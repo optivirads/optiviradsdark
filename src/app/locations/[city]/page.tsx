@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Link from "next/link";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import ScrollReveal from "@/components/ScrollReveal";
 import TextReveal from "@/components/TextReveal";
 import {
@@ -108,11 +109,17 @@ export default async function LocationPage({ params }: Props) {
       <LocalBusinessSchema
         name={`OptiVir Ads - ${location.city}`}
         description={location.metaDescription}
-        url={`https://optivir.com/locations/${location.slug}`}
+        url={`https://www.optivirads.com/locations/${location.slug}`}
         telephone={location.telephone}
         address={location.address}
         geo={location.geo}
-        image="https://optivir.com/images/logo.png"
+        image="https://www.optivirads.com/images/logo.png"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: location.city, url: `/locations/${location.slug}` },
+        ]}
       />
 
       {/* Background */}

@@ -27,6 +27,16 @@ OptiVir Ads is a premium, ROI-first digital marketing agency specializing in hig
 - **Conversion copywriting & SMM**: Community growth, conversion-engineered content, and brand authority.
 - **Web Development**: High-performance, custom-built, lightweight responsive websites optimized for user experience and landing page speed.
 
+## Capability & Agency Comparison Matrix
+
+| Capability | OptiVir Ads Advantage | Target Business Geography | Measurable Impact |
+|---|---|---|---|
+| Search Engine Optimization (SEO) | Local Business Schema, Map Pack domination, Core Web Vitals optimization | Kerala (Kannur, Kochi, Thrissur), India, GCC | +148% organic traffic elevation within 90 days |
+| Google PPC Search Advertising | Target CPA optimization, negative keyword exclusions, value-based Smart Bidding | India, UAE, Qatar, Worldwide | 3.5×–4.2× average client ROAS |
+| Meta (FB/IG) Advertising | Visual creative funnel testing, Meta CAPI server-side tracking | Regional & E-commerce | -42% customer acquisition cost reduction |
+| Custom Web Development | Next.js & React architecture, sub-1.2s page loads, 100/100 Core Web Vitals | Enterprise & Growth Startups | 2.8× landing page conversion velocity |
+| Analytics & Operations | Server-side Tag Manager containers, Looker Studio automated dashboards | Multi-channel brands | Pixel-perfect revenue attribution |
+
 ## Quick Links
 - [Homepage](${baseUrl}/)
 - [About Us](${baseUrl}/about)

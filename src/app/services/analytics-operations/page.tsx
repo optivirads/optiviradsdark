@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('analytics-operations');
@@ -43,11 +44,19 @@ export default function AnalyticsOperationsPage() {
     "description": "Server-side tag manager tracking, iOS 14 attribution mapping, and Looker Studio data consolidation."
   };
 
-  
   return (
     <div className="service-detail-page theme-green">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Analytics & Operations', url: '/services/analytics-operations' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,27 @@ export default function AnalyticsOperationsPage() {
               <p className="step-desc">Consolidating cross-channel ad accounts spend datasets into a live Looker Studio interface.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Analytics Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Server-Side GTM & GA4 Analytics Setup Agency in India
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  OptiVir Ads is a specialist <strong>GA4 setup agency in India</strong> building robust, server-side data infrastructure for multi-channel brands. Our analytics engineers implement <strong>server-side Google Tag Manager (sGTM) containers</strong> on Google Cloud Platform, bypassing browser ad-blockers, ITP cookie expirations, and signal loss to recover 100% of conversion event data.
+                </p>
+                <p>
+                  We unify ad spend datasets from Google Ads, Meta Ads, and organic search into custom <strong>Looker Studio automated dashboards</strong> with multi-touch revenue attribution modeling, providing business owners with real-time ROAS visibility.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

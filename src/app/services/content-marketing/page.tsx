@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('content-marketing');
@@ -43,11 +44,19 @@ export default function ContentMarketingPage() {
     "description": "Establish brand trust and capture conversions. High-performing copy templates, search authority blog clusters, and scriptwriting."
   };
 
-  
   return (
     <div className="service-detail-page theme-purple">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Content Marketing & Copywriting', url: '/services/content-marketing' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,27 @@ export default function ContentMarketingPage() {
               <p className="step-desc">Configuring email and CRM sequence builders to automate communication channels.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Content Marketing Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Authority Content Marketing Agency in Kerala & SEO Copywriting
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  OptiVir Ads is a high-impact <strong>content marketing agency in Kerala</strong> engineering topic clusters and conversion copywriting that turn casual readers into qualified customer inquiries. Our <strong>SEO copywriting services in India</strong> combine semantic keyword research with persuasive sales psychology to command organic search authority.
+                </p>
+                <p>
+                  We build comprehensive <strong>topic cluster strategies</strong> consisting of authoritative pillar pages and supporting blog blueprints that capture top-of-funnel search intent while building domain-level search engine trust.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

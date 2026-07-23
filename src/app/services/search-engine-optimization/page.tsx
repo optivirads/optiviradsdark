@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('search-engine-optimization');
@@ -43,11 +44,19 @@ export default function SearchEngineOptimizationPage() {
     "description": "Organic search domination. Schema mapping, core web vitals speed adjustments, and competitor intent conquest."
   };
 
-  
   return (
     <div className="service-detail-page theme-green">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Search Engine Optimization', url: '/services/search-engine-optimization' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,34 @@ export default function SearchEngineOptimizationPage() {
               <p className="step-desc">Configuring rich metadata schemas to trigger Google search card snippets.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded SEO Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Proven Local SEO Company in Kannur & Comprehensive Organic Search Growth
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  As an industry-leading <strong>SEO company in Kannur and Kochi</strong>, OptiVir Ads delivers tailored organic acquisition campaigns for Kerala service businesses, regional e-commerce stores, and national brands. Our search engineers go far beyond standard keyword insertion — we conduct comprehensive <strong>technical SEO audits</strong>, resolve crawl budget bottlenecks, build semantic topic clusters, and engineer nested JSON-LD structured data that forces Google to acknowledge your domain authority.
+                </p>
+                <p>
+                  For businesses targeting localized buyer intent, appearing in the top 3 spots of Google’s Local Map Pack is critical. Our <strong>Google Map Pack ranking agency strategies</strong> integrate geo-coordinate LocalBusiness schema, NAP-consistent local directory citations, and review velocity optimization to place your business in front of customers exactly when commercial intent is highest.
+                </p>
+                <div style={{ padding: '1.25rem', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)', borderRadius: '10px', marginTop: '0.5rem' }}>
+                  <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1rem' }}>Read Our Organic Search Strategy Blueprint</h4>
+                  <p style={{ fontSize: '0.875rem', marginBottom: '0.75rem' }}>Discover our complete framework for capturing regional search volume and outranking local competitors.</p>
+                  <Link href="/blog/local-seo-kerala-blueprint" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
+                    Explore the Local SEO Kerala Growth Blueprint →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

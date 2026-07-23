@@ -6,6 +6,7 @@ export default function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     "name": "OptiVir Ads",
     "url": baseUrl,
     "logo": `${baseUrl}/images/logo.png`,

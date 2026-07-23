@@ -827,28 +827,7 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
     return MOCK_CLIENTS;
   }
 
-  // 1. Try 'brands' custom post type
-  try {
-    const wpBrands = await wpFetch<any[]>("wp/v2/brands?_embed", []);
-    if (wpBrands && wpBrands.length > 0) {
-      return wpBrands.map((brand) => {
-        let logoUrl = "";
-        const embeddedMedia = brand._embedded?.["wp:featuredmedia"];
-        if (embeddedMedia && embeddedMedia.length > 0) {
-          logoUrl = embeddedMedia[0].source_url;
-        }
-        return {
-          id: brand.id,
-          name: brand.title?.rendered || "Brand",
-          logoUrl
-        };
-      });
-    }
-  } catch (err) {
-    console.warn("Failed to fetch custom 'brands' post type from WordPress:", err);
-  }
-
-  // 2. Try 'clients' custom post type
+  // 1. Try 'clients' custom post type (Primary)
   try {
     const wpClients = await wpFetch<any[]>("wp/v2/clients?_embed", []);
     if (wpClients && wpClients.length > 0) {
@@ -867,6 +846,27 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
     }
   } catch (err) {
     console.warn("Failed to fetch custom 'clients' post type from WordPress:", err);
+  }
+
+  // 2. Try 'brands' custom post type
+  try {
+    const wpBrands = await wpFetch<any[]>("wp/v2/brands?_embed", []);
+    if (wpBrands && wpBrands.length > 0) {
+      return wpBrands.map((brand) => {
+        let logoUrl = "";
+        const embeddedMedia = brand._embedded?.["wp:featuredmedia"];
+        if (embeddedMedia && embeddedMedia.length > 0) {
+          logoUrl = embeddedMedia[0].source_url;
+        }
+        return {
+          id: brand.id,
+          name: brand.title?.rendered || "Brand",
+          logoUrl
+        };
+      });
+    }
+  } catch (err) {
+    console.warn("Failed to fetch custom 'brands' post type from WordPress:", err);
   }
 
   // 3. Try standard posts under category 'brands'

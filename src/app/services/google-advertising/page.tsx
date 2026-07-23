@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('google-advertising');
@@ -43,11 +44,19 @@ export default function GoogleAdvertisingPage() {
     "description": "Target bottom-of-funnel buyers. High-intent keyword architectures, value-based Smart Bidding, and ad waste reduction loops."
   };
 
-  
   return (
     <div className="service-detail-page theme-green">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Google Advertising', url: '/services/google-advertising' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,34 @@ export default function GoogleAdvertisingPage() {
               <p className="step-desc">Transitioning to value-based bidding filters once baseline lead generation patterns stabilize.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded PPC Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                High-Intent Google Ads Agency in Kerala & Precision PPC Management
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  As a performance-led <strong>Google Ads agency in Kerala</strong>, OptiVir Ads engineers paid search campaigns designed for maximum profitability and customer acquisition velocity. Our <strong>PPC management services in Kochi</strong> and across India eliminate wasteful ad spend by constructing granular, high-intent Single Keyword Ad Groups (SKAGs), continuous negative keyword exclusions, and automated Target CPA optimization models.
+                </p>
+                <p>
+                  Whether running high-value B2B lead generation campaigns or e-commerce Google Shopping ads across India and the GCC, our certified search specialists continuously optimize ad copy quality scores, landing page alignment, and bidding strategy to yield a compounding 3.5×+ Return on Ad Spend (ROAS).
+                </p>
+                <div style={{ padding: '1.25rem', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)', borderRadius: '10px', marginTop: '0.5rem' }}>
+                  <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1rem' }}>Read Our PPC Scaling Blueprint</h4>
+                  <p style={{ fontSize: '0.875rem', marginBottom: '0.75rem' }}>Learn how we structure Google Search & Smart Bidding campaigns to lower customer acquisition costs.</p>
+                  <Link href="/blog/google-ads-scaling-blueprint" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
+                    Explore the Google Ads Profitability Guide →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

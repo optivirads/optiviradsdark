@@ -5,8 +5,11 @@ import { Cpu, RefreshCw, Eye } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import ReviewSchema from '@/components/seo/ReviewSchema';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import { FAQItemData } from '@/types/faq';
+import { CURATED_REVIEWS } from '@/lib/reviews';
 
 const aboutFaqs: FAQItemData[] = [
   {
@@ -168,6 +171,10 @@ export default function About() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutFaqSchema) }}
       />
+      <ReviewSchema reviews={CURATED_REVIEWS} />
+
+      {/* Verified Google Business Reviews */}
+      <ReviewsSection reviews={CURATED_REVIEWS} />
 
       {/* FAQ Section */}
       <FaqAccordion faqs={aboutFaqs} />

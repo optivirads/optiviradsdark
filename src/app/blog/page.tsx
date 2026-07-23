@@ -7,6 +7,7 @@ import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
 import { animate, stagger } from 'animejs';
 import { getBlogPosts, BlogPost } from '@/lib/wordpress';
 import TextReveal from '@/components/TextReveal';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -41,6 +42,7 @@ export default function Blog() {
 
   return (
     <div className="blog-page">
+      <BreadcrumbSchema items={[{ name: 'Insights', url: '/blog' }]} />
       <div className="grid-overlay" />
 
       {/* Hero Header */}

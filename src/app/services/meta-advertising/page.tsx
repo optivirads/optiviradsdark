@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('meta-advertising');
@@ -43,11 +44,19 @@ export default function MetaAdvertisingPage() {
     "description": "Disrupt scroll behavior with visual ad creative testing and programmatic value-based bidding filters across Facebook and Instagram channels."
   };
 
-  
   return (
     <div className="service-detail-page theme-purple">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Meta Advertising', url: '/services/meta-advertising' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,27 @@ export default function MetaAdvertisingPage() {
               <p className="step-desc">Applying budget optimization filters at scale without triggering algorithm learning resets.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Meta Ads Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                Performance Meta Ads Agency in Kerala & Social Lead Generation
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  As an elite <strong>Meta Ads agency in Kerala</strong>, OptiVir Ads crafts visual conversion funnels that disrupt social scroll behavior across Facebook and Instagram. Our <strong>Facebook advertising company team in Kochi</strong> combines rapid creative A/B testing with server-side <strong>Meta Conversions API (CAPI) setup in India</strong> to overcome iOS tracking limitations and capture pixel-perfect conversion attribution.
+                </p>
+                <p>
+                  Our <strong>Instagram lead generation agency strategies</strong> deploy dynamic retargeting, custom lookalike audience models, and interactive reel ad formats designed to lower customer acquisition costs (CAC) for e-commerce brands, real estate developers, healthcare providers, and local service providers across India and the GCC.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

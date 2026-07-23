@@ -16,6 +16,7 @@ import TextReveal from '@/components/TextReveal';
 
 import { getPageMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('niche-platform-advertising');
@@ -43,11 +44,19 @@ export default function NichePlatformAdvertisingPage() {
     "description": "Custom campaigns on LinkedIn, Snapchat, and Twitter/X utilizing B2B firmographics and native vertical layouts."
   };
 
-  
   return (
     <div className="service-detail-page theme-cyan">
       {/* Schema Injection */}
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Services', url: '/services' },
+          { name: 'Niche Platform Advertising', url: '/services/niche-platform-advertising' },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Hero */}
@@ -150,6 +159,27 @@ export default function NichePlatformAdvertisingPage() {
               <p className="step-desc">Configuring custom platform conversion pixels to track cross-channel pipeline value.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Expanded Niche Platform Content & Knowledge Deep Dive */}
+      <section className="service-deep-dive-section" style={{ padding: '4rem 0', position: 'relative' }}>
+        <div className="container">
+          <ScrollReveal direction="up" delay={150}>
+            <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
+              <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
+                B2B LinkedIn Ads & Niche Platform Advertising Agency
+              </h2>
+              <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p>
+                  As a leading <strong>LinkedIn B2B ads agency in India</strong>, OptiVir Ads connects enterprise brands with decision-makers using precise firmographic targeting, job title filters, and Matched Audience lists. Our <strong>niche platform advertising strategies</strong> expand beyond standard ad networks to capture high-value buyer attention across LinkedIn, Pinterest, Twitter/X, and Reddit.
+                </p>
+                <p>
+                  For brands targeting Middle East consumer markets, our <strong>Snapchat ads agency services for the GCC region</strong> deploy vertical full-screen video ads and AR lens experiences engineered for viral engagement and low cost-per-swipe rates.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

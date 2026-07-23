@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import { Calendar, User, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/wordpress';
 import ScrollReveal from '@/components/ScrollReveal';
+import BlogPostingSchema from '@/components/seo/BlogPostingSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 type Params = Promise<{ slug: string }>;
 
@@ -22,6 +24,18 @@ export async function generateMetadata({ params }: { params: Params }) {
   return {
     title: post.metaTitle || `${post.title} | OptiVir Ads`,
     description: post.metaDescription || post.excerpt,
+    alternates: {
+      canonical: `https://www.optivirads.com/blog/${slug}`,
+    },
+    openGraph: {
+      title: post.metaTitle || post.title,
+      description: post.metaDescription || post.excerpt,
+      url: `/blog/${slug}`,
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author || 'OptiVir Editorial Team'],
+      images: post.featuredImage ? [{ url: post.featuredImage }] : [],
+    },
   };
 }
 
@@ -40,6 +54,20 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   return (
     <article className="blog-post-page">
+      <BlogPostingSchema
+        title={post.title}
+        description={post.excerpt}
+        slug={slug}
+        datePublished={post.date}
+        authorName={post.author}
+        imageUrl={post.featuredImage}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Insights', url: '/blog' },
+          { name: post.title, url: `/blog/${slug}` },
+        ]}
+      />
       <div className="grid-overlay" />
 
       {/* Header Panel */}

@@ -29,10 +29,37 @@ export const viewport: Viewport = {
 // Dynamic metadata fetched from WordPress API for root fallback
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getPageMetadata('home');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   return {
-    metadataBase: new URL('https://www.optivirads.com'),
-    title: meta.title,
-    description: meta.description,
+    metadataBase: new URL(baseUrl),
+    title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
+    description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+    alternates: {
+      canonical: './',
+    },
+    openGraph: {
+      title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
+      description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+      url: baseUrl,
+      siteName: 'OptiVir Ads',
+      locale: 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/images/logo.png`,
+          width: 1200,
+          height: 630,
+          alt: 'OptiVir Ads Digital Marketing',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title || 'OptiVir Ads',
+      description: meta.description,
+      images: [`${baseUrl}/images/logo.png`],
+    },
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
     },

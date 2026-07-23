@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'cms.optivirads.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
 };
