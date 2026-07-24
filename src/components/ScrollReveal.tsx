@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { animate, stagger as animeStagger } from 'animejs';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -21,39 +20,46 @@ export default function ScrollReveal({
   stagger = 0,
 }: ScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hasRevealed, setHasRevealed] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Graceful subtle entrance animation after paint
     const element = containerRef.current;
     if (!element) return;
 
-    const targets = stagger > 0 
-      ? Array.from(element.children) 
-      : element;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+    );
 
-    let translateX: number | number[] = 0;
-    let translateY: number | number[] = 0;
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
-    if (direction === 'up') translateY = [distance, 0];
-    if (direction === 'down') translateY = [-distance, 0];
-    if (direction === 'left') translateX = [distance, 0];
-    if (direction === 'right') translateX = [-distance, 0];
-
-    animate(targets, {
-      translateX: translateX,
-      translateY: translateY,
-      duration: duration,
-      delay: stagger > 0 ? animeStagger(stagger, { start: delay }) : delay,
-      easing: 'easeOutQuart',
-    });
-  }, [direction, distance, delay, duration, stagger]);
+  // Calculate CSS transform based on direction
+  const getTransform = (revealed: boolean) => {
+    if (revealed) return 'translate3d(0, 0, 0)';
+    switch (direction) {
+      case 'up': return `translate3d(0, ${distance}px, 0)`;
+      case 'down': return `translate3d(0, -${distance}px, 0)`;
+      case 'left': return `translate3d(${distance}px, 0, 0)`;
+      case 'right': return `translate3d(-${distance}px, 0, 0)`;
+      default: return 'translate3d(0, 0, 0)';
+    }
+  };
 
   return (
     <div
       ref={containerRef}
       style={{
-        opacity: 1,
+        opacity: isVisible ? 1 : 0,
+        transform: getTransform(isVisible),
+        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: isVisible ? 'auto' : 'opacity, transform',
         width: '100%',
         height: '100%',
       }}
@@ -62,4 +68,3 @@ export default function ScrollReveal({
     </div>
   );
 }
-

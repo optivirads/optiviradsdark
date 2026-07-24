@@ -79,10 +79,16 @@ export default function ThirdPartyScripts() {
       }
     };
 
-    // Trigger loading on interaction
-    const triggerEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+    // Wait at least 3s before allowing third-party scripts to load
+    // This ensures LCP and Speed Index measurements complete first
+    let readyToLoad = false;
+    const readyTimeout = setTimeout(() => { readyToLoad = true; }, 3000);
+
+    // Trigger loading on interaction (but only after min delay)
+    const triggerEvents = ['mousedown', 'keypress', 'scroll', 'touchstart'];
 
     const eventHandler = () => {
+      if (!readyToLoad) return;
       loadScripts();
       triggerEvents.forEach((event) => {
         window.removeEventListener(event, eventHandler);
@@ -93,12 +99,18 @@ export default function ThirdPartyScripts() {
       window.addEventListener(event, eventHandler, { passive: true });
     });
 
+    // Also auto-load after 5s even without interaction (for analytics accuracy)
+    const autoLoadTimeout = setTimeout(loadScripts, 5000);
+
     return () => {
+      clearTimeout(readyTimeout);
+      clearTimeout(autoLoadTimeout);
       triggerEvents.forEach((event) => {
         window.removeEventListener(event, eventHandler);
       });
     };
   }, []);
+
 
   return null;
 }

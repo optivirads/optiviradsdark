@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { animate, stagger } from 'animejs';
 
 import Image from 'next/image';
 
@@ -12,8 +11,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const menuRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
     { label: 'Home', path: '/' },
@@ -26,40 +23,13 @@ export default function Header() {
   // Scroll listener for sticky active states
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Mobile menu open/close animation
-  useEffect(() => {
-    if (isOpen && menuRef.current) {
-      // Open animation
-      animate(menuRef.current, {
-        opacity: [0, 1],
-        translateY: [-20, 0],
-        duration: 350,
-        easing: 'easeOutQuad',
-      });
-
-      // Stagger link entries from the right
-      if (linksRef.current) {
-        animate(Array.from(linksRef.current.children), {
-          opacity: [0, 1],
-          translateX: [20, 0],
-          delay: stagger(50, { start: 100 }),
-          duration: 300,
-          easing: 'easeOutCubic',
-        });
-      }
-    }
-  }, [isOpen]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -113,8 +83,8 @@ export default function Header() {
 
       {/* Mobile Nav Overlay */}
       {isOpen && (
-        <div ref={menuRef} className="mobile-nav-overlay">
-          <div ref={linksRef} className="mobile-links-container">
+        <div className="mobile-nav-overlay">
+          <div className="mobile-links-container">
             {navLinks.map((link) => {
               const isActive = pathname === link.path;
               return (
