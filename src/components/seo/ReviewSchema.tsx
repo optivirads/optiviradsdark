@@ -1,13 +1,14 @@
 import React from 'react';
-import { ReviewItem, getAggregateRating } from '@/lib/reviews';
+import { ReviewItem, getAggregateRating, CURATED_REVIEWS } from '@/lib/reviews';
 
 interface ReviewSchemaProps {
-  reviews: ReviewItem[];
+  reviews?: ReviewItem[];
 }
 
 export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
-  const metrics = getAggregateRating(reviews);
+  const reviewList = reviews && reviews.length > 0 ? reviews : CURATED_REVIEWS;
+  const metrics = getAggregateRating(reviewList);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -15,6 +16,17 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
     '@id': `${baseUrl}/#organization`,
     'name': 'OptiVir Ads',
     'url': baseUrl,
+    'image': `${baseUrl}/images/logo.png`,
+    'telephone': '+919995037109',
+    'priceRange': '$$',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': 'OptiVir Headquarters, South Bazar',
+      'addressLocality': 'Kannur',
+      'addressRegion': 'Kerala',
+      'postalCode': '670002',
+      'addressCountry': 'IN'
+    },
     'aggregateRating': {
       '@type': 'AggregateRating',
       'ratingValue': metrics.ratingValue,
@@ -22,7 +34,7 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
       'bestRating': metrics.bestRating,
       'worstRating': metrics.worstRating
     },
-    'review': reviews.map((r) => ({
+    'review': reviewList.map((r) => ({
       '@type': 'Review',
       'author': {
         '@type': 'Person',
@@ -38,7 +50,7 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
       },
       'publisher': {
         '@type': 'Organization',
-        'name': 'Google Business Profile'
+        'name': r.source || 'Google Business Profile'
       }
     }))
   };
@@ -50,3 +62,4 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
     />
   );
 }
+

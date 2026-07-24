@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReviewItem, getAggregateRating, CURATED_REVIEWS } from '@/lib/reviews';
 
 export interface LocalBusinessSchemaProps {
   name?: string;
@@ -17,6 +18,7 @@ export interface LocalBusinessSchemaProps {
     latitude: number;
     longitude: number;
   };
+  reviews?: ReviewItem[];
 }
 
 export default function LocalBusinessSchema({
@@ -27,14 +29,18 @@ export default function LocalBusinessSchema({
   image,
   address,
   geo,
+  reviews,
 }: LocalBusinessSchemaProps) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
-  const schema = {
+  const reviewList = reviews && reviews.length > 0 ? reviews : CURATED_REVIEWS;
+  const metrics = getAggregateRating(reviewList);
+
+  const schema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": name || "OptiVir Ads",
-    "description": description,
+    "description": description || "Leading digital marketing, Google Ads, Meta Ads, and SEO agency in Kerala & GCC.",
     "image": image || `${baseUrl}/images/logo.png`,
     "@id": `${baseUrl}/#organization`,
     "url": url || baseUrl,
@@ -42,12 +48,11 @@ export default function LocalBusinessSchema({
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      ...(address || {
-        "addressLocality": "Kannur",
-        "addressRegion": "Kerala",
-        "postalCode": "670001",
-        "addressCountry": "IN"
-      })
+      "streetAddress": address?.streetAddress || "OptiVir Headquarters, South Bazar",
+      "addressLocality": address?.addressLocality || "Kannur",
+      "addressRegion": address?.addressRegion || "Kerala",
+      "postalCode": address?.postalCode || "670002",
+      "addressCountry": address?.addressCountry || "IN"
     },
     "geo": geo ? {
       "@type": "GeoCoordinates",
@@ -76,7 +81,33 @@ export default function LocalBusinessSchema({
       "opens": "09:00",
       "closes": "18:00"
     },
-    "serviceArea": ["Kannur", "Kerala", "UAE", "Qatar", "GCC", "Worldwide"]
+    "serviceArea": ["Kannur", "Kerala", "UAE", "Qatar", "GCC", "Worldwide"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": metrics.ratingValue,
+      "reviewCount": metrics.reviewCount,
+      "bestRating": metrics.bestRating,
+      "worstRating": metrics.worstRating
+    },
+    "review": reviewList.map((r) => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": r.authorName
+      },
+      "datePublished": r.date,
+      "reviewBody": r.reviewText,
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": r.rating,
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": r.source || "Google Business Profile"
+      }
+    }))
   };
 
   return (
@@ -86,3 +117,4 @@ export default function LocalBusinessSchema({
     />
   );
 }
+

@@ -71,7 +71,15 @@ export default function ServiceSchema({ services }: { services?: ServiceItemProp
       "@type": "LocalBusiness",
       "@id": `${baseUrl}/#organization`,
       "name": "OptiVir Ads",
-      "url": baseUrl
+      "url": baseUrl,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "OptiVir Headquarters, South Bazar",
+        "addressLocality": "Kannur",
+        "addressRegion": "Kerala",
+        "postalCode": "670002",
+        "addressCountry": "IN"
+      }
     },
     "serviceType": "Digital Marketing Services",
     "sameAs": [

@@ -76,9 +76,9 @@ export default function RootLayout({
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
   return (
-    <html lang="en" className={`${outfit.variable} ${jakarta.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${jakarta.variable}`} suppressHydrationWarning>
       <head />
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
+      <body suppressHydrationWarning style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
         {/* Google Tag Manager (noscript fallback) */}
         {gtmId && (
           <noscript>
