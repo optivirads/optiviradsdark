@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import AntigravityParticles from '@/components/AntigravityParticles';
 import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
+import MetaPixel from '@/components/seo/MetaPixel';
 import { getPageMetadata } from '@/lib/wordpress';
 import './globals.css';
 
@@ -105,6 +106,7 @@ export default function RootLayout({
         )}
 
         <ThirdPartyScripts />
+        <MetaPixel />
         <AntigravityParticles />
         <Header />
         <main style={{ flex: 1, paddingTop: '80px', position: 'relative', zIndex: 1 }}>
