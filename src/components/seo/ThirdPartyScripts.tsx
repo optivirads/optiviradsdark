@@ -13,7 +13,6 @@ export default function ThirdPartyScripts() {
 
       const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
       const gaId = process.env.NEXT_PUBLIC_GA4_ID;
-      const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
       // 1. Google Tag Manager
       if (gtmId) {
@@ -49,33 +48,6 @@ export default function ThirdPartyScripts() {
           anyWindow.gtag('js', new Date());
           anyWindow.gtag('config', gaId);
         };
-      }
-
-      // 3. Meta Pixel
-      if (pixelId) {
-        const anyWindow = window as any;
-        (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
-          if (f.fbq) return;
-          n = f.fbq = function() {
-            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-          };
-          if (!f._fbq) f._fbq = n;
-          n.push = n;
-          n.loaded = true;
-          n.version = '2.0';
-          n.queue = [];
-          t = b.createElement(e);
-          t.async = true;
-          t.src = v;
-          s = b.getElementsByTagName(e)[0];
-          if (s && s.parentNode) {
-            s.parentNode.insertBefore(t, s);
-          } else {
-            b.head.appendChild(t);
-          }
-        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-        anyWindow.fbq('init', pixelId);
-        anyWindow.fbq('track', 'PageView');
       }
     };
 
