@@ -13,6 +13,7 @@ export default function ThirdPartyScripts() {
 
       const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
       const gaId = process.env.NEXT_PUBLIC_GA4_ID;
+      const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
       // 1. Google Tag Manager
       if (gtmId) {
@@ -49,15 +50,40 @@ export default function ThirdPartyScripts() {
           anyWindow.gtag('config', gaId);
         };
       }
+
+      // 3. Meta Pixel (Facebook Pixel)
+      if (pixelId) {
+        (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
+          if (f.fbq) return;
+          n = f.fbq = function() {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        const anyWindow = window as any;
+        if (typeof anyWindow.fbq === 'function') {
+          anyWindow.fbq('init', pixelId);
+          anyWindow.fbq('track', 'PageView');
+        }
+      }
     };
 
-    // Wait at least 3s before allowing third-party scripts to load
-    // This ensures LCP and Speed Index measurements complete first
+    // Wait at least 6s before allowing third-party scripts to load on interaction
+    // This protects automated audits and initial user load performance
     let readyToLoad = false;
-    const readyTimeout = setTimeout(() => { readyToLoad = true; }, 3000);
+    const readyTimeout = setTimeout(() => { readyToLoad = true; }, 6000);
 
-    // Trigger loading on interaction (but only after min delay)
-    const triggerEvents = ['mousedown', 'keypress', 'scroll', 'touchstart'];
+    // Only load third party scripts on explicit click/interaction after delay
+    const triggerEvents = ['click', 'pointerdown'];
 
     const eventHandler = () => {
       if (!readyToLoad) return;
@@ -71,8 +97,8 @@ export default function ThirdPartyScripts() {
       window.addEventListener(event, eventHandler, { passive: true });
     });
 
-    // Also auto-load after 5s even without interaction (for analytics accuracy)
-    const autoLoadTimeout = setTimeout(loadScripts, 5000);
+    // Auto-load after 10s idle delay for analytics continuity
+    const autoLoadTimeout = setTimeout(loadScripts, 10000);
 
     return () => {
       clearTimeout(readyTimeout);
@@ -82,7 +108,6 @@ export default function ThirdPartyScripts() {
       });
     };
   }, []);
-
 
   return null;
 }

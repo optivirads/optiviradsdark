@@ -33,7 +33,7 @@ export default function ScrollReveal({
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.05, rootMargin: '100px 0px 50px 0px' }
     );
 
     observer.observe(element);
@@ -59,7 +59,6 @@ export default function ScrollReveal({
         opacity: isVisible ? 1 : 0,
         transform: getTransform(isVisible),
         transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-        willChange: isVisible ? 'auto' : 'opacity, transform',
         width: '100%',
         height: '100%',
       }}

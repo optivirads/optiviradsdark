@@ -82,92 +82,91 @@ export default function ReviewsSection({
 
         {/* Reviews Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
-          {safeReviews.map((rev, index) => (
-            <ScrollReveal key={rev.id} direction="up" delay={100 + index * 50}>
-              <div
-                className="glass-card"
-                style={{
-                  padding: '2rem',
-                  borderRadius: '16px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  height: '100%',
-                  position: 'relative'
-                }}
-              >
-                <div>
-                  {/* Top Rating & Source */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <div style={{ display: 'flex', gap: '0.25rem' }}>
-                      {[...Array(rev.rating)].map((_, i) => (
-                        <Star key={i} size={16} fill="#FFB800" color="#FFB800" />
-                      ))}
-                    </div>
-                    <span
-                      style={{
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        padding: '0.2rem 0.6rem',
-                        borderRadius: '20px',
-                        background: 'rgba(0, 242, 254, 0.1)',
-                        color: 'var(--accent-cyan)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.35rem'
-                      }}
-                    >
-                      <CheckCircle2 size={12} /> {rev.source}
-                    </span>
+          {safeReviews.map((rev) => (
+            <div
+              key={rev.id}
+              className="glass-card"
+              style={{
+                padding: '2rem',
+                borderRadius: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                height: '100%',
+                position: 'relative'
+              }}
+            >
+              <div>
+                {/* Top Rating & Source */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', gap: '0.25rem' }}>
+                    {[...Array(rev.rating)].map((_, i) => (
+                      <Star key={i} size={16} fill="#FFB800" color="#FFB800" />
+                    ))}
                   </div>
+                  <span
+                    style={{
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      padding: '0.2rem 0.6rem',
+                      borderRadius: '20px',
+                      background: 'rgba(0, 242, 254, 0.1)',
+                      color: 'var(--accent-cyan)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}
+                  >
+                    <CheckCircle2 size={12} /> {rev.source}
+                  </span>
+                </div>
 
-                  {/* Review Text */}
-                  <p style={{ color: '#e0e0e0', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
-                    &ldquo;{rev.reviewText}&rdquo;
+                {/* Review Text */}
+                <p style={{ color: '#e0e0e0', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+                  &ldquo;{rev.reviewText}&rdquo;
+                </p>
+              </div>
+
+              {/* Author Info */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                {rev.authorPhoto ? (
+                  // Using standard img element to ensure arbitrary external URLs never throw Next.js hostname errors
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={rev.authorPhoto}
+                    alt={rev.authorName}
+                    width={44}
+                    height={44}
+                    style={{ borderRadius: '50%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '50%',
+                      background: 'var(--accent-cyan)',
+                      color: '#000',
+                      fontWeight: 'bold',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '1.1rem'
+                    }}
+                  >
+                    {rev.authorName.charAt(0)}
+                  </div>
+                )}
+                <div>
+                  <h4 style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, margin: 0 }}>
+                    {rev.authorName}
+                  </h4>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', margin: 0 }}>
+                    {rev.location ? rev.location : 'Verified Client'} • {rev.date}
                   </p>
                 </div>
-
-                {/* Author Info */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                  {rev.authorPhoto ? (
-                    // Using standard img element to ensure arbitrary external URLs never throw Next.js hostname errors
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={rev.authorPhoto}
-                      alt={rev.authorName}
-                      width={44}
-                      height={44}
-                      style={{ borderRadius: '50%', objectFit: 'cover' }}
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '50%',
-                        background: 'var(--accent-cyan)',
-                        color: '#000',
-                        fontWeight: 'bold',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '1.1rem'
-                      }}
-                    >
-                      {rev.authorName.charAt(0)}
-                    </div>
-                  )}
-                  <div>
-                    <h4 style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, margin: 0 }}>
-                      {rev.authorName}
-                    </h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', margin: 0 }}>
-                      {rev.location ? rev.location : 'Verified Client'} • {rev.date}
-                    </p>
-                  </div>
-                </div>
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </div>

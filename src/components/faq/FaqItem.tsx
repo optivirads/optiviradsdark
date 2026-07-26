@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useId } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useId } from 'react';
 import { ChevronDown, ArrowUpRight } from 'lucide-react';
 import { FAQItemData } from '@/types/faq';
 import { renderSanitizedHtml } from '@/lib/safeHtml';
@@ -25,12 +24,6 @@ export default function FaqItem({
   const uid = useId();
   const buttonId = `faq-btn-${index}-${uid.replace(/:/g, '')}`;
   const panelId  = `faq-panel-${index}-${uid.replace(/:/g, '')}`;
-
-  // Lazy-render panel content only after it has been opened once
-  const [hasOpened, setHasOpened] = useState(isOpen);
-  if (isOpen && !hasOpened) {
-    setHasOpened(true);
-  }
 
   // Full keyboard support (Enter / Space)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -60,58 +53,51 @@ export default function FaqItem({
         </span>
 
         {/* Chevron icon — rotates 180° when panel is open */}
-        <motion.span
+        <span
           aria-hidden="true"
           className={`faq-chevron-wrap ${isOpen ? 'faq-chevron-open' : ''}`}
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            display: 'inline-flex'
+          }}
         >
           <ChevronDown size={16} strokeWidth={1.75} className="faq-chevron-icon" />
-        </motion.span>
+        </span>
       </button>
 
-      {/* Animated answer panel: height 0 → auto with opacity fade */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={panelId}
-            role="region"
-            aria-labelledby={buttonId}
-            key="faq-panel"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{
-              height:  { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
-              opacity: { duration: 0.22, ease: 'easeOut' },
-            }}
-            style={{ overflow: 'hidden' }}
-          >
-            {/* Inner wrapper keeps padding outside animated height so CLS is zero */}
-            <div className="faq-answer-inner">
-              {hasOpened && (
-                <>
-                  <div className="faq-answer-text">
-                    {renderSanitizedHtml(answer)}
-                  </div>
-
-                  {link && (
-                    <a
-                      href={link.url}
-                      className="faq-answer-link"
-                      target={link.url.startsWith('http') ? '_blank' : undefined}
-                      rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    >
-                      {link.text}
-                      <ArrowUpRight size={13} strokeWidth={2} aria-hidden="true" />
-                    </a>
-                  )}
-                </>
-              )}
+      {/* Answer panel with pure CSS grid accordion transition */}
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        style={{
+          display: 'grid',
+          gridTemplateRows: isOpen ? '1fr' : '0fr',
+          transition: 'grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          overflow: 'hidden'
+        }}
+      >
+        <div style={{ minHeight: 0 }}>
+          <div className="faq-answer-inner" style={{ opacity: isOpen ? 1 : 0, transition: 'opacity 0.25s ease-out' }}>
+            <div className="faq-answer-text">
+              {renderSanitizedHtml(answer)}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {link && (
+              <a
+                href={link.url}
+                className="faq-answer-link"
+                target={link.url.startsWith('http') ? '_blank' : undefined}
+                rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {link.text}
+                <ArrowUpRight size={13} strokeWidth={2} aria-hidden="true" />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

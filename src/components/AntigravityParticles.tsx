@@ -32,8 +32,11 @@ export default function AntigravityParticles() {
 
     const initParticles = (width: number, height: number) => {
       const isMobile = checkIsMobile();
-      // Optimized particle density (25 mobile / 45 desktop) for 60fps & sub-50ms main-thread cost
-      const maxParticles = isMobile ? 25 : 45;
+      if (isMobile) {
+        particles = [];
+        return;
+      }
+      const maxParticles = 45;
       particles = [];
       for (let i = 0; i < maxParticles; i++) {
         const radius = Math.random() * 1.5 + 1;
@@ -153,6 +156,7 @@ export default function AntigravityParticles() {
     };
 
     const updateFrame = () => {
+      if (checkIsMobile()) return;
       drawParticles();
       animationFrameId = requestAnimationFrame(updateFrame);
     };
