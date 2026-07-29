@@ -708,6 +708,28 @@ button {
   display: flex;
 }
 
+@media (max-width: 768px) {
+  .ov-client-track {
+    animation-duration: 55s;
+  }
+  .ov-client-logo {
+    width: 120px;
+    height: 55px;
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ov-client-track {
+    animation-duration: 60s;
+  }
+  .ov-client-logo {
+    width: 105px;
+    height: 45px;
+    margin: 0 16px;
+  }
+}
+
 .ov-client-marquee:hover .ov-client-track {
   animation-play-state: paused;
 }

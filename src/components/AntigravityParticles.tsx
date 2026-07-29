@@ -32,27 +32,22 @@ export default function AntigravityParticles() {
 
     const initParticles = (width: number, height: number) => {
       const isMobile = checkIsMobile();
-      if (isMobile) {
-        particles = [];
-        return;
-      }
-      const maxParticles = 45;
+      const maxParticles = isMobile ? 18 : 45;
       particles = [];
       for (let i = 0; i < maxParticles; i++) {
-        const radius = Math.random() * 1.5 + 1;
-        const baseAlpha = Math.random() * 0.4 + 0.15;
+        const radius = Math.random() * (isMobile ? 1.2 : 1.5) + 1;
+        const baseAlpha = Math.random() * (isMobile ? 0.35 : 0.4) + 0.15;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: -Math.random() * 0.5 - 0.15, // Floating upwards defying gravity
+          vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.4),
+          vy: -Math.random() * (isMobile ? 0.35 : 0.5) - 0.15, // Floating upwards defying gravity
           radius,
           alpha: baseAlpha,
           baseAlpha,
         });
       }
     };
-
 
     const resizeCanvas = (force = false) => {
       const newWidth = window.innerWidth;
@@ -85,8 +80,8 @@ export default function AntigravityParticles() {
 
       const mouse = mouseRef.current;
       const isMobile = checkIsMobile();
-      const connectionDistance = isMobile ? 110 : 120;
-      const mouseRadius = isMobile ? 140 : 150;
+      const connectionDistance = isMobile ? 90 : 120;
+      const mouseRadius = isMobile ? 110 : 150;
 
       // Update and draw particles
       particles.forEach((p) => {
@@ -155,10 +150,19 @@ export default function AntigravityParticles() {
       }
     };
 
+    let isPageVisible = true;
     const updateFrame = () => {
-      if (checkIsMobile()) return;
+      if (!isPageVisible) return;
       drawParticles();
       animationFrameId = requestAnimationFrame(updateFrame);
+    };
+
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(updateFrame);
+      }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -196,6 +200,7 @@ export default function AntigravityParticles() {
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('touchend', handleTouchEnd);
@@ -217,6 +222,7 @@ export default function AntigravityParticles() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);

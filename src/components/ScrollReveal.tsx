@@ -21,6 +21,15 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [effectiveDelay, setEffectiveDelay] = useState(delay);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setEffectiveDelay(Math.min(delay, 120));
+    } else {
+      setEffectiveDelay(delay);
+    }
+  }, [delay]);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -58,7 +67,7 @@ export default function ScrollReveal({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: getTransform(isVisible),
-        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${effectiveDelay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${effectiveDelay}ms`,
         width: '100%',
         height: '100%',
       }}
