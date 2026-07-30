@@ -74,7 +74,7 @@ export default function ServiceSchema({ services }: { services?: ServiceItemProp
       "url": baseUrl,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "OptiVir Headquarters, South Bazar",
+        "streetAddress": "Green Building, Talap",
         "addressLocality": "Kannur",
         "addressRegion": "Kerala",
         "postalCode": "670002",

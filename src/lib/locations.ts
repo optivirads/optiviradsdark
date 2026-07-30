@@ -34,7 +34,7 @@ export const LOCATIONS: Record<string, LocationData> = {
     metaTitle: "Best Digital Marketing & SEO Agency in Kannur | OptiVir Ads",
     metaDescription: "OptiVir Ads is the top-rated digital marketing agency in Kannur, Kerala. We specialize in local SEO, Google Ads, and Meta advertising for high-growth businesses.",
     address: {
-      streetAddress: "OptiVir Headquarters, South Bazar",
+      streetAddress: "Green Building, Talap",
       addressLocality: "Kannur",
       addressRegion: "Kerala",
       postalCode: "670002",
@@ -44,7 +44,7 @@ export const LOCATIONS: Record<string, LocationData> = {
       latitude: 11.8745,
       longitude: 75.3704
     },
-    telephone: "+91-99999-99999", // Placeholder
+    telephone: "+91 9995037109",
     primaryServiceFocus: "Local SEO & Performance Marketing",
     serviceDescription: "For businesses in Kannur and across Kerala, local search visibility is critical. Our Kannur-based growth teams engineer localized SEO strategies that push your brand to the top of the Google Map Pack, combined with highly-targeted Meta campaigns that engage your specific regional demographics."
   },
@@ -68,7 +68,7 @@ export const LOCATIONS: Record<string, LocationData> = {
       latitude: 25.1856,
       longitude: 55.2764
     },
-    telephone: "+971-50-000-0000", // Placeholder
+    telephone: "+91 9995037109",
     primaryServiceFocus: "Enterprise Google Ads & Lead Generation",
     serviceDescription: "The GCC market requires aggressive, high-converting strategies. Our Dubai-focused campaigns prioritize aggressive Google Search intent capture and hyper-targeted Meta advertising designed to yield maximum Return on Ad Spend (ROAS) in a highly competitive regional market."
   }

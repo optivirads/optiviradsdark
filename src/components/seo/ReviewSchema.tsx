@@ -21,7 +21,7 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
     'priceRange': '$$',
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': 'OptiVir Headquarters, South Bazar',
+      'streetAddress': 'Green Building, Talap',
       'addressLocality': 'Kannur',
       'addressRegion': 'Kerala',
       'postalCode': '670002',

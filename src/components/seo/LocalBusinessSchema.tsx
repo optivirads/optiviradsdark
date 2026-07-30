@@ -48,7 +48,7 @@ export default function LocalBusinessSchema({
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": address?.streetAddress || "OptiVir Headquarters, South Bazar",
+      "streetAddress": address?.streetAddress || "Green Building, Talap",
       "addressLocality": address?.addressLocality || "Kannur",
       "addressRegion": address?.addressRegion || "Kerala",
       "postalCode": address?.postalCode || "670002",
