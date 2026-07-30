@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     alternates: {
-      canonical: 'https://optivirads.com/services/social-media-management',
+      canonical: 'https://www.optivirads.com/services/social-media-management',
     },
   };
 }

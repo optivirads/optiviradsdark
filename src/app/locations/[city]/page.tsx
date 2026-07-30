@@ -31,6 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: location.metaTitle,
     description: location.metaDescription,
+    alternates: {
+      canonical: `https://www.optivirads.com/locations/${location.slug}`,
+    },
     openGraph: {
       title: location.metaTitle,
       description: location.metaDescription,

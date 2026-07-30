@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     alternates: {
-      canonical: 'https://optivirads.com/services/email-marketing',
+      canonical: 'https://www.optivirads.com/services/email-marketing',
     },
   };
 }

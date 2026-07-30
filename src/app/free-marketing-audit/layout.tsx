@@ -6,6 +6,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: meta.title,
     description: meta.description,
+    alternates: {
+      canonical: 'https://www.optivirads.com/free-marketing-audit',
+    },
   };
 }
 

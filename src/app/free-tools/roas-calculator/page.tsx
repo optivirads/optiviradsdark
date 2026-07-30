@@ -9,6 +9,9 @@ import { BarChart3, TrendingUp, ShieldCheck, Zap, Target, Users, ChevronRight } 
 export const metadata: Metadata = {
   title: 'Free ROAS & ROI Calculator for Ad Campaigns | OptiVir Ads',
   description: 'Calculate your Return on Ad Spend (ROAS) instantly. A free marketing tool by OptiVir Ads to forecast campaign profitability, leads, and revenue.',
+  alternates: {
+    canonical: 'https://www.optivirads.com/free-tools/roas-calculator',
+  },
   openGraph: {
     title: 'Free ROAS & ROI Calculator',
     description: 'Calculate your Return on Ad Spend (ROAS) instantly. Forecast campaign profitability, leads, and revenue.',

@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
     description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
     alternates: {
-      canonical: './',
+      canonical: '/',
     },
     openGraph: {
       title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
