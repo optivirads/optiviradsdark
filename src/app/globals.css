@@ -780,9 +780,15 @@ button {
 }
 
 .post-header-section {
-  padding: 5rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .post-header-section {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .back-to-blog-link {
@@ -979,9 +985,15 @@ button {
 }
 
 .service-hero {
-  padding: 6rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .service-hero {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .back-link {
@@ -1319,8 +1331,20 @@ button {
 /* ── Homepage ──────────────────────────────────────────────── */
 .hero-section {
   position: relative;
-  padding: 8rem 0 5rem;
+  padding: 4.5rem 0 5rem;
   z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 2.5rem 0 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1.25rem 0 2.5rem;
+  }
 }
 
 .hero-container-grid {
@@ -1359,7 +1383,15 @@ button {
 
 @media (max-width: 768px) {
   .hero-headline {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 1.95rem;
+    line-height: 1.22;
   }
 }
 
@@ -1777,9 +1809,15 @@ button {
 
 /* ── About page ────────────────────────────────────────────── */
 .about-hero {
-  padding: 6rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .about-title {
@@ -1939,9 +1977,15 @@ button {
 
 /* ── Blog listing page ─────────────────────────────────────── */
 .blog-hero {
-  padding: 6rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .blog-hero {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .blog-title {
@@ -2116,9 +2160,15 @@ button {
 
 /* ── Contact page ──────────────────────────────────────────── */
 .contact-hero {
-  padding: 6rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .contact-title {
@@ -2271,9 +2321,15 @@ a.channel-value:hover {
 
 /* ── Free Marketing Audit / Onboarding page ────────────────── */
 .onboarding-hero {
-  padding: 6rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .onboarding-hero {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .onboarding-title {
@@ -2495,9 +2551,15 @@ a.channel-value:hover {
 
 /* ── Services listing page ─────────────────────────────────── */
 .services-hero {
-  padding: 6rem 0 3rem;
+  padding: 4rem 0 3rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    padding: 1.5rem 0 2rem;
+  }
 }
 
 .services-title {
