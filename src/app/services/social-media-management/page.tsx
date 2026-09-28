@@ -13,19 +13,12 @@ import {
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 
-import { getPageMetadata } from '@/lib/wordpress';
+import { getServiceMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta = await getPageMetadata('social-media-management');
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: 'https://www.optivirads.com/services/social-media-management',
-    },
-  };
+  return getServiceMetadata('social-media-management');
 }
 
 export default function SocialMediaManagementPage() {

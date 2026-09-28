@@ -11,13 +11,33 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 type Params = Promise<{ slug: string }>;
 
+export const dynamicParams = true;
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  try {
+    const posts = await getBlogPosts();
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error('Error generating static params for blog posts:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
   
   if (!post) {
     return {
       title: "Post Not Found | OptiVir Ads",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -25,16 +45,28 @@ export async function generateMetadata({ params }: { params: Params }) {
     title: post.metaTitle || `${post.title} | OptiVir Ads`,
     description: post.metaDescription || post.excerpt,
     alternates: {
-      canonical: `https://www.optivirads.com/blog/${slug}`,
+      canonical: `${baseUrl}/blog/${slug}`,
     },
     openGraph: {
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      url: `/blog/${slug}`,
+      url: `${baseUrl}/blog/${slug}`,
+      siteName: 'OptiVir Ads',
+      locale: 'en_US',
       type: 'article',
       publishedTime: post.date,
       authors: [post.author || 'OptiVir Editorial Team'],
       images: post.featuredImage ? [{ url: post.featuredImage }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.metaTitle || post.title,
+      description: post.metaDescription || post.excerpt,
+      images: post.featuredImage ? [post.featuredImage] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }

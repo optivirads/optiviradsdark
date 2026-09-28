@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+import type { Metadata } from 'next';
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -561,7 +563,46 @@ const MOCK_POSTS: BlogPost[] = [
   }
 ];
 
-const WP_API_URL = process.env.WORDPRESS_API_URL || process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+const WP_API_URL = process.env.WORDPRESS_API_URL || process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'https://cms.optivirads.com';
+
+export function cleanMetaTitle(rawTitle: string | undefined, defaultTitle: string): string {
+  if (!rawTitle) return defaultTitle;
+  let cleaned = rawTitle
+    .replace(/[-|–—:]\s*cms\.optivirads\.com/gi, '')
+    .replace(/[-|–—:]\s*optivirads\.com/gi, '')
+    .replace(/cms\.optivirads\.com/gi, 'OptiVir Ads')
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—')
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!cleaned) return defaultTitle;
+  if (!cleaned.toLowerCase().includes('optivir')) {
+    cleaned = `${cleaned} | OptiVir Ads`;
+  }
+  return cleaned;
+}
+
+export function cleanMetaDescription(rawDesc: string | undefined, defaultDesc: string): string {
+  if (!rawDesc) return defaultDesc;
+  const cleaned = rawDesc
+    .replace(/<[^>]*>/g, '')
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—')
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned.length > 20 ? cleaned : defaultDesc;
+}
 
 // Helper to fetch from WordPress REST API or fallback to mock data
 async function wpFetch<T>(endpoint: string, fallback: T): Promise<T> {
@@ -617,13 +658,11 @@ export async function getPageMetadata(pageKey: string): Promise<PageMetadata> {
     if (pages && pages.length > 0) {
       const page = pages[0];
       
-      // Attempt to extract title/desc from Yoast SEO fields, RankMath, or default fields
-      const title = page.yoast_head_json?.title || 
-                    page.title?.rendered || 
-                    fallback.title;
-      const description = page.yoast_head_json?.description || 
-                          page.excerpt?.rendered?.replace(/<[^>]*>/g, "") || 
-                          fallback.description;
+      const rawTitle = page.yoast_head_json?.title || page.title?.rendered;
+      const rawDesc = page.yoast_head_json?.description || page.excerpt?.rendered;
+      
+      const title = cleanMetaTitle(rawTitle, fallback.title);
+      const description = cleanMetaDescription(rawDesc, fallback.description);
       
       return { title, description };
     }
@@ -632,6 +671,40 @@ export async function getPageMetadata(pageKey: string): Promise<PageMetadata> {
   }
 
   return fallback;
+}
+
+/**
+ * Helper to build complete, optimized Metadata for service subpages
+ */
+export async function getServiceMetadata(slug: string): Promise<Metadata> {
+  const meta = await getPageMetadata(slug);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+  const url = `${baseUrl}/services/${slug}`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url,
+      siteName: 'OptiVir Ads',
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
 }
 
 const LOCAL_IMAGES = [
@@ -721,8 +794,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         }),
         author,
         featuredImage,
-        metaTitle: post.yoast_head_json?.title || post.title?.rendered,
-        metaDescription: post.yoast_head_json?.description || post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim(),
+        metaTitle: cleanMetaTitle(post.yoast_head_json?.title || post.title?.rendered, `${post.title?.rendered || "Article"} | OptiVir Ads`),
+        metaDescription: cleanMetaDescription(post.yoast_head_json?.description || post.excerpt?.rendered, post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim() || ""),
       };
     }));
 
@@ -791,8 +864,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       }),
       author,
       featuredImage,
-      metaTitle: post.yoast_head_json?.title || post.title?.rendered,
-      metaDescription: post.yoast_head_json?.description || post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim(),
+      metaTitle: cleanMetaTitle(post.yoast_head_json?.title || post.title?.rendered, `${post.title?.rendered || "Article"} | OptiVir Ads`),
+      metaDescription: cleanMetaDescription(post.yoast_head_json?.description || post.excerpt?.rendered, post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim() || ""),
     };
   } catch (error) {
     console.error(`Error resolving blog post by slug: ${slug}. Using mock fallback.`, error);

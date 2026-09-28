@@ -14,19 +14,12 @@ import {
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 
-import { getPageMetadata } from '@/lib/wordpress';
+import { getServiceMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta = await getPageMetadata('branding');
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: 'https://www.optivirads.com/services/branding',
-    },
-  };
+  return getServiceMetadata('branding');
 }
 
 export default function BrandingPage() {

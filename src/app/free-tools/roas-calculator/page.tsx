@@ -13,10 +13,22 @@ export const metadata: Metadata = {
     canonical: 'https://www.optivirads.com/free-tools/roas-calculator',
   },
   openGraph: {
-    title: 'Free ROAS & ROI Calculator',
+    title: 'Free ROAS & ROI Calculator | OptiVir Ads',
     description: 'Calculate your Return on Ad Spend (ROAS) instantly. Forecast campaign profitability, leads, and revenue.',
-    url: '/free-tools/roas-calculator',
-  }
+    url: 'https://www.optivirads.com/free-tools/roas-calculator',
+    siteName: 'OptiVir Ads',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free ROAS & ROI Calculator | OptiVir Ads',
+    description: 'Calculate your Return on Ad Spend (ROAS) instantly. Forecast campaign profitability, leads, and revenue.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const BENCHMARKS = [

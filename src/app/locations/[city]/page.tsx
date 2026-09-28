@@ -17,14 +17,25 @@ interface Props {
   params: Promise<{ city: string }>;
 }
 
+export async function generateStaticParams() {
+  return Object.keys(LOCATIONS).map((city) => ({
+    city,
+  }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
   const location = LOCATIONS[city.toLowerCase()];
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
   if (!location) {
     return {
       title: "Location Not Found | OptiVir Ads",
       description: "The requested location could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -32,16 +43,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: location.metaTitle,
     description: location.metaDescription,
     alternates: {
-      canonical: `https://www.optivirads.com/locations/${location.slug}`,
+      canonical: `${baseUrl}/locations/${location.slug}`,
     },
     openGraph: {
       title: location.metaTitle,
       description: location.metaDescription,
-      url: `/locations/${location.slug}`,
+      url: `${baseUrl}/locations/${location.slug}`,
       siteName: "OptiVir Ads",
-      images: [{ url: "/images/office_space.png", width: 1200, height: 630, alt: `OptiVir Ads in ${location.city}` }],
+      images: [{ url: `${baseUrl}/images/office_space.png`, width: 1200, height: 630, alt: `OptiVir Ads in ${location.city}` }],
       locale: "en_US",
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: location.metaTitle,
+      description: location.metaDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }

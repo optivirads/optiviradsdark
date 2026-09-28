@@ -39,12 +39,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic routes from WordPress Blog database
   try {
     const posts = await getBlogPosts();
-    const blogSitemap = posts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    }));
+    const blogSitemap = posts.map((post) => {
+      const parsedDate = post.date ? new Date(post.date) : new Date();
+      const lastModified = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+      return {
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      };
+    });
     return [...staticSitemap, ...blogSitemap];
   } catch (error) {
     console.error('Error generating dynamic XML sitemap:', error);
