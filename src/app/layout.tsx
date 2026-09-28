@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import AntigravityParticles from '@/components/AntigravityParticles';
 import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
-import MetaPixel from '@/components/seo/MetaPixel';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { getPageMetadata } from '@/lib/wordpress';
 import './globals.css';
 
@@ -62,9 +62,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: meta.description,
       images: [`${baseUrl}/images/logo.png`],
     },
-    verification: {
-      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-    },
     robots: {
       index: true,
       follow: true,
@@ -89,6 +86,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${outfit.variable} ${jakarta.variable}`} suppressHydrationWarning>
+      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <head />
       <body suppressHydrationWarning style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
         {/* Google Tag Manager (noscript fallback) */}
@@ -117,7 +115,6 @@ export default function RootLayout({
         )}
 
         <ThirdPartyScripts />
-        <MetaPixel />
         <AntigravityParticles />
         <Header />
         <main style={{ flex: 1, paddingTop: '80px', position: 'relative', zIndex: 1 }}>
