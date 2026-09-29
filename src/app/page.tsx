@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -22,7 +23,7 @@ import {
   LineChart
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
-import { getClientLogos, getPageFaqs } from '@/lib/wordpress';
+import { getClientLogos, getPageFaqs, getPageMetadata } from '@/lib/wordpress';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import WebSiteSchema from '@/components/seo/WebSiteSchema';
@@ -31,6 +32,41 @@ import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import ClientsTicker from '@/components/home/ClientsTicker';
 import { getReviews } from '@/lib/reviews';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await getPageMetadata('home');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
+  return {
+    title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
+    description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+    alternates: {
+      canonical: baseUrl,
+    },
+    openGraph: {
+      title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
+      description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+      url: baseUrl,
+      siteName: 'OptiVir Ads',
+      locale: 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/images/logo.png`,
+          width: 1200,
+          height: 630,
+          alt: 'OptiVir Ads Digital Marketing',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title || 'OptiVir Ads',
+      description: meta.description,
+      images: [`${baseUrl}/images/logo.png`],
+    },
+  };
+}
 
 export default async function Home() {
   const [clients, faqs, reviews] = await Promise.all([

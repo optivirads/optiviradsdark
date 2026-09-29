@@ -46,23 +46,31 @@ export default function TextReveal({
   const staggerMs = mode === 'chars' ? 25 : 60;
 
   return (
-    <Tag ref={containerRef} className={className} style={{ display: 'inline-flex', flexWrap: 'wrap', overflow: 'hidden' }}>
-      {items.map((item, idx) => (
-        <span
-          key={idx}
-          className="reveal-item"
-          style={{
-            display: 'inline-block',
-            whiteSpace: 'pre',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(12px)',
-            transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay + idx * staggerMs}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay + idx * staggerMs}ms`,
-            marginRight: mode === 'words' ? '0.22em' : '0',
-          }}
-        >
-          {item}
-        </span>
-      ))}
+    <Tag
+      ref={containerRef}
+      className={className}
+      aria-label={text}
+      style={{ display: 'inline-flex', flexWrap: 'wrap', overflow: 'hidden' }}
+    >
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true" style={{ display: 'inline-flex', flexWrap: 'wrap' }}>
+        {items.map((item, idx) => (
+          <span
+            key={idx}
+            className="reveal-item"
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'pre',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(12px)',
+              transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay + idx * staggerMs}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay + idx * staggerMs}ms`,
+              marginRight: mode === 'words' ? '0.22em' : '0',
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </span>
     </Tag>
   );
 }

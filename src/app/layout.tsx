@@ -37,9 +37,6 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(baseUrl),
     title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
     description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
-    alternates: {
-      canonical: '/',
-    },
     openGraph: {
       title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
       description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
@@ -61,6 +58,16 @@ export async function generateMetadata(): Promise<Metadata> {
       title: meta.title || 'OptiVir Ads',
       description: meta.description,
       images: [`${baseUrl}/images/logo.png`],
+    },
+    icons: {
+      icon: [
+        { url: '/icon.png', type: 'image/png' },
+        { url: '/favicon.ico' },
+      ],
+      apple: [
+        { url: '/apple-icon.png', type: 'image/png' },
+      ],
+      shortcut: '/icon.png',
     },
     robots: {
       index: true,

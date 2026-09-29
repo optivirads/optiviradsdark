@@ -62,11 +62,19 @@ const MOCK_METADATA: Record<string, PageMetadata> = {
     title: "Google Search PPC Advertising & Lead Generation Services | OptiVir Ads",
     description: "Capture high-intent search queries with precision Google Search and Shopping campaigns optimized for Target Cost-Per-Acquisition.",
   },
+  "google-ads": {
+    title: "Google Search PPC Advertising & Lead Generation Services | OptiVir Ads",
+    description: "Capture high-intent search queries with precision Google Search and Shopping campaigns optimized for Target Cost-Per-Acquisition.",
+  },
   "niche-platform-advertising": {
     title: "B2B LinkedIn, Pinterest, & Reddit Paid Advertising | OptiVir Ads",
     description: "Expand your acquisition reach using targeted native campaigns on LinkedIn, Pinterest, and Reddit tailored to your niche audiences.",
   },
   "search-engine-optimization": {
+    title: "High-Intent SEO Services & Local Search Domination | OptiVir Ads",
+    description: "Build search engine authority with local search optimization, semantic content strategies, technical site speed tuning, and high-value backlink structures.",
+  },
+  "seo": {
     title: "High-Intent SEO Services & Local Search Domination | OptiVir Ads",
     description: "Build search engine authority with local search optimization, semantic content strategies, technical site speed tuning, and high-value backlink structures.",
   },
