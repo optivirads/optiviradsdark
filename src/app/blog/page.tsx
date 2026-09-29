@@ -37,8 +37,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Blog() {
-  const posts = await getBlogPosts();
+interface BlogPageProps {
+  searchParams?: Promise<{ q?: string }>;
+}
+
+export default async function Blog({ searchParams }: BlogPageProps) {
+  const [posts, params] = await Promise.all([
+    getBlogPosts(),
+    searchParams,
+  ]);
+  const initialQuery = params?.q || '';
 
   return (
     <div className="blog-page">
@@ -64,7 +72,7 @@ export default async function Blog() {
       {/* Grid: Posts (SSR rendered with interactive client hydration) */}
       <section className="blog-feed-section">
         <div className="container">
-          <BlogFeedClient posts={posts} />
+          <BlogFeedClient posts={posts} initialQuery={initialQuery} />
         </div>
       </section>
     </div>

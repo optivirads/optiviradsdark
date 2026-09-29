@@ -59,8 +59,11 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4 className="footer-title">Locations</h4>
           <ul className="footer-links-list">
-            <li><Link href="/locations/kannur" className="footer-link">SEO in Kannur</Link></li>
-            <li><Link href="/locations/dubai" className="footer-link">Marketing in Dubai</Link></li>
+            <li><Link href="/locations/kannur" className="footer-link">Kannur (HQ)</Link></li>
+            <li><Link href="/locations/calicut" className="footer-link">Calicut</Link></li>
+            <li><Link href="/locations/dubai" className="footer-link">Dubai</Link></li>
+            <li><Link href="/locations/ras-al-khaimah" className="footer-link">Ras Al Khaimah</Link></li>
+            <li><Link href="/locations/qatar" className="footer-link">Qatar</Link></li>
           </ul>
         </div>
 

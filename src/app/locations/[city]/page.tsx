@@ -72,9 +72,9 @@ export default async function LocationPage({ params }: Props) {
 
   if (!location) notFound();
 
-  const isDubai = location.slug === 'dubai';
+  const isGcc = location.country === 'United Arab Emirates' || location.country === 'Qatar';
 
-  const metrics = isDubai ? [
+  const metrics = isGcc ? [
     { val: "5.4×", label: "Avg. ROI Achieved", desc: "ROAS benchmark across search & social platforms" },
     { val: "−42%", label: "CPC Reduction", desc: "Average savings through intent negative exclusions" },
     { val: "+165%", label: "Market Growth", desc: "Year-over-year pipeline traffic amplification" },

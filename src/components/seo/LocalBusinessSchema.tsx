@@ -81,7 +81,17 @@ export default function LocalBusinessSchema({
       "opens": "09:00",
       "closes": "18:00"
     },
-    "serviceArea": ["Kannur", "Kerala", "UAE", "Qatar", "GCC", "Worldwide"],
+    "hasMap": "https://maps.google.com/?q=OptiVir+Ads+Kannur+Kerala",
+    "areaServed": [
+      { "@type": "City", "name": "Kannur" },
+      { "@type": "City", "name": "Calicut" },
+      { "@type": "AdministrativeArea", "name": "Kerala" },
+      { "@type": "City", "name": "Dubai" },
+      { "@type": "City", "name": "Ras Al Khaimah" },
+      { "@type": "Country", "name": "United Arab Emirates" },
+      { "@type": "City", "name": "Doha" },
+      { "@type": "Country", "name": "Qatar" }
+    ],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": metrics.ratingValue,
