@@ -212,8 +212,6 @@ export default function GrowthHeroVisual() {
               className="glass-tab-3d-img"
               draggable={false}
             />
-            {/* Specular flare sweep */}
-            <div className="tab-glass-flare-sweep" />
           </div>
         </div>
 
@@ -226,8 +224,6 @@ export default function GrowthHeroVisual() {
               className="glass-tab-3d-img"
               draggable={false}
             />
-            {/* Specular flare sweep */}
-            <div className="tab-glass-flare-sweep sweep-delayed" />
           </div>
         </div>
 
