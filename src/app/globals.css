@@ -17,8 +17,8 @@
   --border-color: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(0, 242, 254, 0.15);
 
-  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-serif: 'Plus Jakarta Sans', var(--font-sans);
+  --font-sans: var(--font-outfit), 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-serif: var(--font-jakarta), 'Plus Jakarta Sans', var(--font-sans);
 
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1331,8 +1331,339 @@ button {
 /* ── Homepage ──────────────────────────────────────────────── */
 .hero-section {
   position: relative;
-  padding: 4.5rem 0 5rem;
+  min-height: calc(100vh - 75px);
+  display: flex;
+  align-items: center;
+  padding: 4rem 0 5rem;
   z-index: 2;
+  overflow: hidden;
+}
+
+/* ── GrowthHeroVisual: Standalone Right-Side Visual Component ── */
+.hero-visual-column {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 540px;
+  z-index: 3;
+}
+
+.growth-visual-root {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  aspect-ratio: 600 / 460;
+  border-radius: 24px;
+  background: radial-gradient(circle at 65% 55%, rgba(10, 18, 30, 0.75) 0%, rgba(6, 12, 20, 0.4) 70%, transparent 100%);
+  user-select: none;
+  overflow: visible;
+}
+
+/* 3 Depth Layers */
+.growth-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.background-layer { z-index: 1; }
+.midground-layer  { z-index: 2; }
+.foreground-layer { z-index: 3; }
+
+/* ── LAYER 1: BACKGROUND (Grid, Ambient Glows, Particles) ──── */
+.growth-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 135, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 135, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 60% 50%, black 35%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 60% 50%, black 35%, transparent 75%);
+  pointer-events: none;
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(65px);
+  opacity: 0.65;
+}
+
+.glow-emerald {
+  top: 8%;
+  right: 12%;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(0, 255, 135, 0.28) 0%, transparent 70%);
+}
+
+.glow-cyan {
+  bottom: 12%;
+  left: 30%;
+  width: 260px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.18) 0%, transparent 70%);
+}
+
+.glow-purple {
+  top: 24%;
+  right: 2%;
+  width: 210px;
+  height: 210px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, transparent 70%);
+}
+
+.growth-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff;
+  pointer-events: none;
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+.growth-particle.p-1 { width: 3px; height: 3px; top: 22%; left: 35%; box-shadow: 0 0 8px #00ff87; animation-delay: 0s; }
+.growth-particle.p-2 { width: 4px; height: 4px; top: 60%; left: 20%; box-shadow: 0 0 10px #00f2fe; animation-delay: 1.5s; }
+.growth-particle.p-3 { width: 3px; height: 3px; bottom: 25%; right: 28%; box-shadow: 0 0 8px #00ff87; animation-delay: 3s; }
+.growth-particle.p-4 { width: 4px; height: 4px; top: 15%; right: 40%; box-shadow: 0 0 10px #8b5cf6; animation-delay: 4.2s; }
+.growth-particle.p-5 { width: 3px; height: 3px; bottom: 45%; right: 12%; box-shadow: 0 0 8px #00f2fe; animation-delay: 2.2s; }
+
+@keyframes particleFloat {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0.2; }
+  50%  { transform: translate3d(-10px, -20px, 0); opacity: 0.85; }
+  100% { transform: translate3d(0, 0, 0); opacity: 0.2; }
+}
+
+/* ── LAYER 2: MIDGROUND (Google Ads & Meta Ads 3D Glass Tabs) ── */
+.growth-3d-glass-tab {
+  position: absolute;
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.tab-google-3d {
+  top: 3%;
+  left: 2%;
+  width: 255px;
+  animation: floatGoogle3D 6.8s ease-in-out infinite alternate;
+}
+
+.tab-meta-3d {
+  top: 33%;
+  right: 1%;
+  width: 215px;
+  animation: floatMeta3D 7.6s ease-in-out infinite alternate;
+}
+
+.glass-icon-wrapper {
+  position: relative;
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+  overflow: visible;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease;
+}
+
+.tab-google-3d .glass-icon-wrapper {
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 25px rgba(0, 255, 135, 0.3));
+}
+
+.tab-meta-3d .glass-icon-wrapper {
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 25px rgba(139, 92, 246, 0.35)) drop-shadow(0 0 16px rgba(0, 242, 254, 0.2));
+}
+
+.growth-3d-glass-tab:hover .glass-icon-wrapper {
+  transform: translateY(-8px) scale(1.04);
+}
+
+.tab-google-3d:hover .glass-icon-wrapper {
+  filter: drop-shadow(0 22px 45px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 38px rgba(0, 255, 135, 0.55));
+}
+
+.tab-meta-3d:hover .glass-icon-wrapper {
+  filter: drop-shadow(0 22px 45px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 38px rgba(139, 92, 246, 0.6));
+}
+
+/* Crisp 3D Glass Tab Image */
+.glass-tab-3d-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  filter: contrast(1.08) brightness(1.04);
+}
+
+
+
+
+/* Glass Specular Flare Sweep */
+.tab-glass-flare-sweep {
+  position: absolute;
+  inset: -30%;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.4) 50%, transparent 65%);
+  pointer-events: none;
+  border-radius: 20px;
+  z-index: 2;
+  opacity: 0;
+  animation: glassFlareSweep 5.5s ease-in-out infinite;
+}
+
+.sweep-delayed {
+  animation-delay: 2.75s;
+}
+
+@keyframes glassFlareSweep {
+  0% { transform: translate3d(-100%, -40%, 0) rotate(22deg); opacity: 0; }
+  12% { opacity: 0.85; }
+  25% { transform: translate3d(100%, 40%, 0) rotate(22deg); opacity: 0; }
+  100% { transform: translate3d(100%, 40%, 0) rotate(22deg); opacity: 0; }
+}
+
+@keyframes floatGoogle3D {
+  0%   { transform: translate3d(0, 0, 0); }
+  33%  { transform: translate3d(-6px, -14px, 0) rotate(1.2deg); }
+  66%  { transform: translate3d(3px, -7px, 0) rotate(-0.6deg); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes floatMeta3D {
+  0%   { transform: translate3d(0, 0, 0); }
+  33%  { transform: translate3d(6px, -16px, 0) rotate(-1.5deg); }
+  66%  { transform: translate3d(-4px, -8px, 0) rotate(0.8deg); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Translucent Geometric Prisms */
+.growth-prism {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.prism-top {
+  top: 6%;
+  left: 44%;
+  animation: floatPrismA 8s ease-in-out infinite alternate;
+}
+
+.prism-left {
+  bottom: 22%;
+  left: 6%;
+  animation: floatPrismB 7.5s ease-in-out infinite alternate;
+}
+
+.prism-right {
+  bottom: 12%;
+  right: 14%;
+  animation: floatPrismC 9s ease-in-out infinite alternate;
+}
+
+@keyframes floatPrismA {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.55; }
+  100% { transform: translate3d(-6px, -12px, 0) rotate(15deg); opacity: 0.9; }
+}
+
+@keyframes floatPrismB {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.45; }
+  100% { transform: translate3d(8px, -10px, 0) rotate(-18deg); opacity: 0.8; }
+}
+
+@keyframes floatPrismC {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.5; }
+  100% { transform: translate3d(-5px, 9px, 0) rotate(12deg); opacity: 0.85; }
+}
+
+/* ── LAYER 3: FOREGROUND (Unified SVG Growth Chart) ───────── */
+.growth-svg-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.growth-bars-group {
+  will-change: transform, opacity;
+}
+
+.target-settled-pulse .target-sonar-ring.r-outer {
+  animation: targetSonarPulse 2.8s cubic-bezier(0.1, 0.8, 0.2, 1) infinite;
+}
+
+.target-settled-pulse .target-sonar-ring.r-mid {
+  animation: targetSonarPulse 2.8s cubic-bezier(0.1, 0.8, 0.2, 1) 0.6s infinite;
+}
+
+@keyframes targetSonarPulse {
+  0% {
+    r: 18;
+    opacity: 0.85;
+  }
+  100% {
+    r: 44;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-visual-column {
+    min-height: 380px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .tab-google-3d {
+    width: 215px;
+    top: 2%;
+    left: 1%;
+  }
+  .tab-meta-3d {
+    width: 180px;
+    top: 33%;
+    right: 1%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-visual-column {
+    min-height: 280px;
+    max-width: 420px;
+  }
+  .tab-google-3d {
+    width: 170px;
+    top: 1%;
+    left: 0%;
+  }
+  .tab-meta-3d {
+    width: 140px;
+    top: 31%;
+    right: 0%;
+  }
+  .growth-prism {
+    display: none;
+  }
+  .growth-particle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .growth-visual-root *,
+  .growth-floating-card,
+  .growth-prism,
+  .growth-particle {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 @media (max-width: 992px) {
@@ -1349,9 +1680,22 @@ button {
 
 .hero-container-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1.08fr;
   align-items: center;
-  gap: 5rem;
+  gap: 3.5rem;
+  max-width: 1360px;
+  width: 100%;
+}
+
+@media (min-width: 1400px) {
+  .hero-container-grid {
+    grid-template-columns: 1fr 1.12fr;
+    max-width: 1420px;
+    gap: 4rem;
+  }
+  .growth-visual-root {
+    max-width: 720px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -1367,31 +1711,66 @@ button {
 }
 
 .hero-text-content {
+  position: relative;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
 }
 
+.hero-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(0, 255, 135, 0.08);
+  border: 1px solid rgba(0, 255, 135, 0.28);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #00ff87;
+  text-transform: uppercase;
+  width: fit-content;
+  box-shadow: 0 0 15px rgba(0, 255, 135, 0.15);
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff87;
+  box-shadow: 0 0 8px #00ff87;
+}
+
 .hero-headline {
   font-family: var(--font-serif);
   font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 1.15;
+  font-weight: 800;
+  line-height: 1.14;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #ffffff !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 @media (max-width: 768px) {
   .hero-headline {
-    font-size: 2.25rem;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    line-height: 1.18;
   }
 }
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: 1.95rem;
-    line-height: 1.22;
+    font-size: 2.35rem;
+    line-height: 1.2;
   }
 }
 

@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import AntigravityParticles from '@/components/AntigravityParticles';
 import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
-import { GoogleTagManager } from '@next/third-parties/google';
 import { getPageMetadata } from '@/lib/wordpress';
 import './globals.css';
 
@@ -92,7 +91,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${outfit.variable} ${jakarta.variable}`} suppressHydrationWarning>
-      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <head />
       <body suppressHydrationWarning style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
         {/* Google Tag Manager (noscript fallback) */}

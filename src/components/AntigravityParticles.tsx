@@ -17,6 +17,10 @@ export default function AntigravityParticles() {
   const mouseRef = useRef({ x: -1000, y: -1000, active: false });
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -152,7 +156,7 @@ export default function AntigravityParticles() {
 
     let isPageVisible = true;
     const updateFrame = () => {
-      if (!isPageVisible) return;
+      if (!isPageVisible || checkIsMobile()) return;
       drawParticles();
       animationFrameId = requestAnimationFrame(updateFrame);
     };
@@ -212,9 +216,10 @@ export default function AntigravityParticles() {
     };
 
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(startParticleEngine, { timeout: 800 });
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+      (window as any).requestIdleCallback(startParticleEngine, { timeout: 3500 });
     } else {
-      startTimeout = setTimeout(startParticleEngine, 300);
+      startTimeout = setTimeout(startParticleEngine, 2500);
     }
 
     return () => {

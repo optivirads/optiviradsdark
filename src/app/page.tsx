@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Eye,
-  Shield,
   CheckCircle2,
   TrendingUp,
   GitBranch,
@@ -32,6 +30,7 @@ import ReviewSchema from '@/components/seo/ReviewSchema';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import ClientsTicker from '@/components/home/ClientsTicker';
+import GrowthHeroVisual from '@/components/hero/GrowthHeroVisual';
 import { getReviews } from '@/lib/reviews';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -97,8 +96,11 @@ export default async function Home() {
       <section className="hero-section">
         <div className="container hero-container-grid">
           <div className="hero-text-content">
+            <div className="hero-eyebrow-pill">
+              <span className="eyebrow-dot" /> GROWTH MARKETING AGENCY
+            </div>
             <h1 className="hero-headline">
-              Growth Marketing Agency for Kerala &amp; GCC Businesses
+              Growth Marketing Agency for <span className="text-gradient-green">Kerala &amp; GCC Businesses</span>
             </h1>
             <p className="hero-description animate-hero-desc">
               We help businesses acquire more customers through paid advertising (Google Ads &amp; Meta Ads), local SEO, social media, and conversion-focused digital experiences. From attracting the right audience to turning visits into enquiries and measuring what drives revenue, we build and optimize the systems behind sustainable customer growth across Kerala and the GCC.
@@ -111,39 +113,29 @@ export default async function Home() {
                 View Our Work
               </Link>
             </div>
+            <div className="hero-outcomes-grid">
+              <div className="outcome-item">
+                <TrendingUp size={16} className="outcome-icon" />
+                <span>More Traffic</span>
+              </div>
+              <div className="outcome-item">
+                <Target size={16} className="outcome-icon" />
+                <span>Quality Leads</span>
+              </div>
+              <div className="outcome-item">
+                <Zap size={16} className="outcome-icon" />
+                <span>Higher Conversions</span>
+              </div>
+              <div className="outcome-item">
+                <BarChart3 size={16} className="outcome-icon" />
+                <span>Revenue Growth</span>
+              </div>
+            </div>
           </div>
 
-          {/* Right Column Stack */}
-          <div className="hero-cards-stack">
-            <div className="glow-card-left-border green hero-card-item animate-hero-card-0">
-              <div className="card-stack-icon green">
-                <Search size={18} />
-              </div>
-              <div className="card-stack-info">
-                <h3 className="card-stack-title">Local SEO &amp; Organic Authority</h3>
-                <p className="card-stack-desc">Dominate Google Maps 3-Pack and high-intent local search in Kannur, Calicut, and GCC markets to capture qualified inbound demand.</p>
-              </div>
-            </div>
-
-            <div className="glow-card-left-border purple hero-card-item animate-hero-card-1">
-              <div className="card-stack-icon purple">
-                <Crosshair size={18} />
-              </div>
-              <div className="card-stack-info">
-                <h3 className="card-stack-title">High-ROAS Paid Acquisition</h3>
-                <p className="card-stack-desc">Scale customer volume profitably across Google Search, Shopping, and hyper-targeted Meta advertising campaigns.</p>
-              </div>
-            </div>
-
-            <div className="glow-card-left-border cyan hero-card-item animate-hero-card-2">
-              <div className="card-stack-icon cyan">
-                <Rocket size={18} />
-              </div>
-              <div className="card-stack-info">
-                <h3 className="card-stack-title">Conversion Pages &amp; Retention Systems</h3>
-                <p className="card-stack-desc">Ultra-fast Next.js web applications, high-converting landing pages, and automated customer retention workflows.</p>
-              </div>
-            </div>
+          {/* Right Column: Independent SVG/React Growth Marketing Visual */}
+          <div className="hero-visual-column">
+            <GrowthHeroVisual />
           </div>
         </div>
       </section>

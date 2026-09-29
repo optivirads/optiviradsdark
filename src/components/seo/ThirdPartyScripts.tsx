@@ -11,11 +11,30 @@ export default function ThirdPartyScripts() {
       if (loaded) return;
       loaded = true;
 
+      const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
       const gaId = process.env.NEXT_PUBLIC_GA4_ID;
       const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
-      // 2. Google Analytics 4
-      if (gaId) {
+      // 1. Google Tag Manager (Deferred to protect initial paint & TBT)
+      if (gtmId) {
+        (function(w: any, d: any, s: any, l: any, i: any) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          const f = d.getElementsByTagName(s)[0];
+          const j = d.createElement(s);
+          const dl = l !== 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          if (f && f.parentNode) {
+            f.parentNode.insertBefore(j, f);
+          } else {
+            d.head.appendChild(j);
+          }
+        })(window, document, 'script', 'dataLayer', gtmId);
+      }
+
+      // 2. Google Analytics 4 (only if GTM is not active, preventing double tracking)
+      if (gaId && !gtmId) {
         const gaScript = document.createElement('script');
         gaScript.async = true;
         gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
@@ -32,8 +51,8 @@ export default function ThirdPartyScripts() {
         };
       }
 
-      // 3. Meta Pixel (Facebook Pixel)
-      if (pixelId) {
+      // 3. Meta Pixel (Facebook Pixel - only if GTM is not active, preventing double tracking)
+      if (pixelId && !gtmId) {
         (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
           if (f.fbq) return;
           n = f.fbq = function() {
@@ -48,7 +67,11 @@ export default function ThirdPartyScripts() {
           t.async = !0;
           t.src = v;
           s = b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t, s);
+          if (s && s.parentNode) {
+            s.parentNode.insertBefore(t, s);
+          } else {
+            b.head.appendChild(t);
+          }
         })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
         const anyWindow = window as any;
         if (typeof anyWindow.fbq === 'function') {
@@ -63,7 +86,7 @@ export default function ThirdPartyScripts() {
     let readyToLoad = false;
     const readyTimeout = setTimeout(() => { readyToLoad = true; }, 6000);
 
-    // Only load third party scripts on explicit click/interaction after delay
+    // Only load third party scripts on explicit interaction after delay
     const triggerEvents = ['click', 'pointerdown'];
 
     const eventHandler = () => {
