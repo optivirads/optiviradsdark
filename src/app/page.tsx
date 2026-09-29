@@ -20,7 +20,8 @@ import {
   Cpu,
   Award,
   Globe,
-  LineChart
+  LineChart,
+  Repeat
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getClientLogos, getPageFaqs, getPageMetadata } from '@/lib/wordpress';
@@ -38,14 +39,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
   return {
-    title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
-    description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+    title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC Businesses',
+    description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
     alternates: {
       canonical: baseUrl,
     },
     openGraph: {
-      title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
-      description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+      title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC Businesses',
+      description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
       url: baseUrl,
       siteName: 'OptiVir Ads',
       locale: 'en_US',
@@ -55,14 +56,14 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${baseUrl}/images/logo.png`,
           width: 1200,
           height: 630,
-          alt: 'OptiVir Ads Digital Marketing',
+          alt: 'OptiVir Ads Growth Marketing Agency',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: meta.title || 'OptiVir Ads',
-      description: meta.description,
+      title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC',
+      description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
       images: [`${baseUrl}/images/logo.png`],
     },
   };
@@ -97,14 +98,17 @@ export default async function Home() {
         <div className="container hero-container-grid">
           <div className="hero-text-content">
             <h1 className="hero-headline">
-              Performance Digital Marketing Agency for Scalable Business Growth
+              Growth Marketing Agency for Kerala &amp; GCC Businesses
             </h1>
             <p className="hero-description animate-hero-desc">
-              OptiVir Ads is a premier data-driven performance digital marketing agency engineered for high-growth brands, e-commerce enterprises, and local service providers. We specialize in ROI-focused Google Ads management, hyper-targeted Meta advertising campaigns (Facebook & Instagram Ads), high-intent Search Engine Optimization (SEO), conversion-engineered web development, and strategic social media management.
+              We help businesses acquire more customers through paid advertising (Google Ads &amp; Meta Ads), local SEO, social media, and conversion-focused digital experiences. From attracting the right audience to turning visits into enquiries and measuring what drives revenue, we build and optimize the systems behind sustainable customer growth across Kerala and the GCC.
             </p>
             <div className="hero-actions">
               <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
-                Free Audit & Strategy Session <ArrowRight size={16} />
+                Get Your Free Growth Audit <ArrowRight size={16} />
+              </Link>
+              <Link href="#what-we-do" className="btn-secondary hero-cta-btn animate-hero-cta">
+                View Our Work
               </Link>
             </div>
           </div>
@@ -116,8 +120,8 @@ export default async function Home() {
                 <Search size={18} />
               </div>
               <div className="card-stack-info">
-                <h3 className="card-stack-title">High-Intent SEO & Content Strategy</h3>
-                <p className="card-stack-desc">Command top organic Google rankings and capture qualified purchase intent through semantic search optimization and authority engineering.</p>
+                <h3 className="card-stack-title">Local SEO &amp; Organic Authority</h3>
+                <p className="card-stack-desc">Dominate Google Maps 3-Pack and high-intent local search in Kannur, Calicut, and GCC markets to capture qualified inbound demand.</p>
               </div>
             </div>
 
@@ -126,8 +130,8 @@ export default async function Home() {
                 <Crosshair size={18} />
               </div>
               <div className="card-stack-info">
-                <h3 className="card-stack-title">Omnichannel Paid Ads Engineering</h3>
-                <p className="card-stack-desc">Maximizing Return on Ad Spend (ROAS) across Google Search, Shopping, Meta Ads, and specialized digital customer acquisition channels.</p>
+                <h3 className="card-stack-title">High-ROAS Paid Acquisition</h3>
+                <p className="card-stack-desc">Scale customer volume profitably across Google Search, Shopping, and hyper-targeted Meta advertising campaigns.</p>
               </div>
             </div>
 
@@ -136,53 +140,198 @@ export default async function Home() {
                 <Rocket size={18} />
               </div>
               <div className="card-stack-info">
-                <h3 className="card-stack-title">Custom Web Development & SMM</h3>
-                <p className="card-stack-desc">High-speed React and Next.js custom websites paired with active social media management and brand equity positioning.</p>
+                <h3 className="card-stack-title">Conversion Pages &amp; Retention Systems</h3>
+                <p className="card-stack-desc">Ultra-fast Next.js web applications, high-converting landing pages, and automated customer retention workflows.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Premium Capabilities Section */}
-      <section className="capabilities-section">
+      {/* What We Do - 4-Pillar Growth System */}
+      <section className="what-we-do-section" id="what-we-do">
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">Full-Service Digital Marketing & Performance Engineering Capabilities</h2>
-            <p className="section-subtitle">Comprehensive, data-backed marketing solutions engineered for predictable revenue expansion, client retention, and lower customer acquisition costs.</p>
+            <span className="pillar-step-badge green" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+              The 4-Pillar Revenue Engine
+            </span>
+            <h2 className="section-title">What We Do</h2>
+            <p className="section-subtitle">
+              Most agencies sell disconnected tactics. We engineer an interconnected 4-pillar growth architecture where each channel feeds and amplifies the next—turning cold visitors into high-value, repeat clients.
+            </p>
           </div>
 
-          <ScrollReveal stagger={150} delay={100} direction="up">
-            <div className="capabilities-grid">
-              <div className="glass-card capability-card">
-                <div className="icon-badge cyan">
-                  <Eye size={22} />
+          {/* Growth Pipeline Connection Bar */}
+          <div className="growth-pipeline-bar">
+            <div className="pipeline-step">
+              <span className="pipeline-step-num">01</span>
+              <span>Paid Acquisition</span>
+            </div>
+            <span className="pipeline-arrow">→</span>
+            <div className="pipeline-step">
+              <span className="pipeline-step-num">02</span>
+              <span>Organic Growth</span>
+            </div>
+            <span className="pipeline-arrow">→</span>
+            <div className="pipeline-step">
+              <span className="pipeline-step-num">03</span>
+              <span>Conversion</span>
+            </div>
+            <span className="pipeline-arrow">→</span>
+            <div className="pipeline-step">
+              <span className="pipeline-step-num">04</span>
+              <span>Retention</span>
+            </div>
+          </div>
+
+          {/* 4 Pillars Grid */}
+          <ScrollReveal stagger={120} delay={100} direction="up">
+            <div className="growth-pillars-grid">
+              
+              {/* Pillar 1: Paid Acquisition */}
+              <div className="glass-card pillar-card cyan">
+                <div className="pillar-header">
+                  <div>
+                    <span className="pillar-step-badge">Pillar 01 · Acquire</span>
+                    <h3 className="pillar-title">Paid Acquisition</h3>
+                  </div>
+                  <div className="card-stack-icon cyan">
+                    <Crosshair size={20} />
+                  </div>
                 </div>
-                <h3 className="capability-card-title">Local & Regional Search Engine Optimization (SEO)</h3>
-                <p className="capability-card-desc">
-                  We engineer dominant localized search authority through structured schema markup, Google Business Profile optimization, local citation building, and regional keyword targeted landing pages that capture foot traffic, phone calls, and high-value lead inquiries for your business.
+                <p className="pillar-summary">
+                  Capture immediate, scalable customer demand with mathematically tested ad campaigns that generate positive cash-flow return.
                 </p>
+                <div className="pillar-services-list">
+                  <Link href="/services/google-advertising" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Google Ads</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Search, Shopping &amp; Performance Max ads targeting buyers with commercial intent.
+                    </p>
+                  </Link>
+                  <Link href="/services/meta-advertising" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Meta Ads</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Hyper-targeted Facebook &amp; Instagram creative campaigns engineered for low CPA.
+                    </p>
+                  </Link>
+                </div>
               </div>
 
-              <div className="glass-card capability-card">
-                <div className="icon-badge green">
-                  <Zap size={22} />
+              {/* Pillar 2: Organic Growth */}
+              <div className="glass-card pillar-card green">
+                <div className="pillar-header">
+                  <div>
+                    <span className="pillar-step-badge green">Pillar 02 · Compound</span>
+                    <h3 className="pillar-title">Organic Growth</h3>
+                  </div>
+                  <div className="card-stack-icon green">
+                    <Search size={20} />
+                  </div>
                 </div>
-                <h3 className="capability-card-title">High-Conversion PPC & Meta Advertising Campaigns</h3>
-                <p className="capability-card-desc">
-                  Our paid media specialists deploy relentless, profit-driven ad structures on Google Search, Meta Facebook & Instagram Ads, YouTube, and LinkedIn. We utilize first-party data tracking, conversion API setups, and continuous A/B ad creative testing to lower your Cost Per Acquisition (CPA).
+                <p className="pillar-summary">
+                  Build enduring search authority and top Google rankings so qualified clients discover your business without paying per click.
                 </p>
+                <div className="pillar-services-list">
+                  <Link href="/services/search-engine-optimization" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Local SEO</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Google Maps 3-Pack domination &amp; citation building across Kannur, Calicut &amp; GCC.
+                    </p>
+                  </Link>
+                  <Link href="/services/content-marketing" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Content Strategy</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Authoritative content clusters that capture high-intent organic search volume.
+                    </p>
+                  </Link>
+                </div>
               </div>
 
-              <div className="glass-card capability-card">
-                <div className="icon-badge purple">
-                  <Shield size={22} />
+              {/* Pillar 3: Conversion */}
+              <div className="glass-card pillar-card purple">
+                <div className="pillar-header">
+                  <div>
+                    <span className="pillar-step-badge purple">Pillar 03 · Convert</span>
+                    <h3 className="pillar-title">Conversion</h3>
+                  </div>
+                  <div className="card-stack-icon purple">
+                    <Layers size={20} />
+                  </div>
                 </div>
-                <h3 className="capability-card-title">Conversion Architecture & Authority Building</h3>
-                <p className="capability-card-desc">
-                  A high traffic website is worthless without conversions. We craft authoritative content assets, landing page user experiences, and persuasive copywriting that establish your brand as an industry leader while driving maximum lead completion rates and online sales volume.
+                <p className="pillar-summary">
+                  Traffic without conversions is wasted ad budget. We optimize the entire user journey to turn casual clicks into booked calls and sales.
                 </p>
+                <div className="pillar-services-list">
+                  <Link href="/free-marketing-audit" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Landing Pages</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Persuasion-architected, friction-free landing page experiences tested for maximum conversion.
+                    </p>
+                  </Link>
+                  <Link href="/services/web-development" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Web Development</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Sub-second custom Next.js web applications built for 100/100 Core Web Vitals.
+                    </p>
+                  </Link>
+                </div>
               </div>
+
+              {/* Pillar 4: Retention */}
+              <div className="glass-card pillar-card emerald">
+                <div className="pillar-header">
+                  <div>
+                    <span className="pillar-step-badge emerald">Pillar 04 · Retain</span>
+                    <h3 className="pillar-title">Retention</h3>
+                  </div>
+                  <div className="card-stack-icon" style={{ background: 'rgba(52, 211, 153, 0.1)', color: '#34d399' }}>
+                    <Repeat size={20} />
+                  </div>
+                </div>
+                <p className="pillar-summary">
+                  Acquiring a client is only the starting point. We engineer automated retention loops that maximize customer lifetime value (LTV).
+                </p>
+                <div className="pillar-services-list">
+                  <Link href="/services/social-media-management" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Social Media</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Brand positioning, community building &amp; social proof across Instagram and LinkedIn.
+                    </p>
+                  </Link>
+                  <Link href="/services/email-marketing" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Email Retention</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Automated onboarding funnels, reactivation workflows &amp; lifecycle newsletters.
+                    </p>
+                  </Link>
+                </div>
+              </div>
+
             </div>
           </ScrollReveal>
         </div>
@@ -427,14 +576,14 @@ export default async function Home() {
           <ScrollReveal direction="up" delay={150}>
             <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
               <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '1.25rem', color: '#ffffff' }}>
-                Leading Digital Marketing Agency in Kerala & High-Intent Search Partner
+                Leading Growth Marketing Agency for Kerala &amp; GCC Businesses
               </h2>
               <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <p>
-                  OptiVir Ads is a premier <strong>digital marketing agency in Kerala</strong> engineering predictable revenue growth pipelines for ambitious local, national, and international brands. Recognized as a top <strong>SEO company in Kannur</strong> and a trusted <strong>Google Ads management partner in Kochi</strong>, we combine data-driven search architecture with server-side analytics to turn digital web traffic into verified corporate profit.
+                  OptiVir Ads is a premier <strong>growth marketing agency in Kerala</strong> engineering predictable revenue growth pipelines for ambitious local and international brands. Recognized as a top <strong>SEO and digital marketing company in Kannur and Calicut</strong> and a trusted <strong>performance advertising partner for GCC enterprises across Dubai, Ras Al Khaimah, and Qatar</strong>, we combine data-driven search architecture with server-side analytics to turn digital web traffic into verified corporate profit.
                 </p>
                 <p>
-                  Whether you require hyper-targeted <strong>Google Maps Local Pack SEO in Kannur and Kochi</strong>, high-ROI <strong>Meta advertising campaigns across India</strong>, or custom <strong>Next.js web development agency services</strong> engineered for sub-1.0 second mobile page loading speed, our specialist team executes with surgical precision. We eliminate ad budget wastage through server-side Tag Manager containers, advanced Meta CAPI implementations, and value-focused Google Smart Bidding strategies.
+                  Whether you require hyper-targeted <strong>Google Maps Local Pack SEO in Kannur and Calicut</strong>, high-ROI <strong>Meta &amp; Google advertising campaigns across Kerala and the GCC</strong>, or custom <strong>Next.js web development agency services</strong> engineered for sub-1.0 second mobile page loading speed, our specialist team executes with surgical precision. We eliminate ad budget wastage through server-side Tag Manager containers, advanced Meta CAPI implementations, and value-focused Google Smart Bidding strategies.
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginTop: '1rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <div>
