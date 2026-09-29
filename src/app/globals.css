@@ -1331,10 +1331,10 @@ button {
 /* ── Homepage ──────────────────────────────────────────────── */
 .hero-section {
   position: relative;
-  min-height: calc(100vh - 75px);
+  min-height: auto;
   display: flex;
   align-items: center;
-  padding: 4rem 0 5rem;
+  padding: 3rem 0 1.5rem;
   z-index: 2;
   overflow: hidden;
 }
@@ -1346,7 +1346,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 540px;
+  min-height: auto;
   z-index: 3;
 }
 
@@ -1647,13 +1647,13 @@ button {
 
 @media (max-width: 992px) {
   .hero-section {
-    padding: 2.5rem 0 4rem;
+    padding: 2rem 0 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 1.25rem 0 2.5rem;
+    padding: 1.25rem 0 1rem;
   }
 }
 
@@ -2028,7 +2028,7 @@ button {
 
 /* ── What We Do & 4-Pillar Growth System ───────────────────── */
 .what-we-do-section {
-  padding: 5.5rem 0 6.5rem;
+  padding: 2rem 0 5rem;
   position: relative;
   z-index: 2;
 }

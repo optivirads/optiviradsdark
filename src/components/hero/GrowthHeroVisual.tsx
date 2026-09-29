@@ -209,6 +209,10 @@ export default function GrowthHeroVisual() {
             <img
               src="/images/google-ads-glass-3d.webp"
               alt="Google Ads"
+              width={460}
+              height={346}
+              loading="eager"
+              decoding="async"
               className="glass-tab-3d-img"
               draggable={false}
             />
@@ -221,6 +225,10 @@ export default function GrowthHeroVisual() {
             <img
               src="/images/meta-ads-glass-3d.webp"
               alt="Meta Ads"
+              width={446}
+              height={397}
+              loading="eager"
+              decoding="async"
               className="glass-tab-3d-img"
               draggable={false}
             />
