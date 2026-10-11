@@ -239,8 +239,8 @@ export default function RoasCalculator() {
 
         .roas-calc-card:hover {
           transform: perspective(1400px) translate3d(0, -8px, 12px) rotateX(2.5deg);
-          border-color: rgba(0, 255, 135, 0.3);
-          box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 135, 0.15);
+          border-color: rgba(176, 31, 58, 0.5);
+          box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 10px 25px rgba(176, 31, 58, 0.3);
         }
 
         @media (hover: none) {

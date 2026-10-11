@@ -125,9 +125,9 @@ button {
   height: 2px;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgba(255, 255, 255, 0.12) 20%, 
-    rgba(176, 31, 58, 0.8) 50%, 
-    rgba(0, 242, 254, 0.8) 80%, 
+    rgba(248, 246, 243, 0.1) 20%, 
+    rgba(176, 31, 58, 0.9) 50%, 
+    rgba(248, 246, 243, 0.25) 80%, 
     transparent 100%
   );
   opacity: 0.55;
@@ -136,14 +136,13 @@ button {
   z-index: 2;
 }
 
-/* 3D Flip and Rise Hover State */
+/* 3D Flip and Rise Hover State - Brand Colors Only */
 .glass-card:hover {
-  transform: perspective(1200px) translate3d(0, -10px, 14px) rotateX(4.5deg) scale3d(1.015, 1.015, 1.015);
-  border-color: rgba(176, 31, 58, 0.45);
+  transform: perspective(1000px) translate3d(0, -8px, 10px) rotateX(5deg) scale3d(1.015, 1.015, 1.015);
+  border-color: rgba(176, 31, 58, 0.5);
   box-shadow: 
-    0 24px 50px -12px rgba(0, 0, 0, 0.8),
-    0 12px 28px -6px rgba(176, 31, 58, 0.28),
-    0 0 24px -2px rgba(176, 31, 58, 0.15);
+    0 22px 45px -12px rgba(0, 0, 0, 0.85),
+    0 10px 22px -6px rgba(176, 31, 58, 0.35);
   z-index: 5;
 }
 
@@ -162,11 +161,11 @@ button {
 @keyframes cardFlipRise {
   0% {
     opacity: 0;
-    transform: perspective(1200px) rotateX(12deg) translate3d(0, 36px, 0) scale3d(0.97, 0.97, 0.97);
+    transform: perspective(1000px) rotateX(26deg) translate3d(0, 48px, 0) scale3d(0.95, 0.95, 0.95);
   }
   100% {
     opacity: 1;
-    transform: perspective(1200px) rotateX(0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: perspective(1000px) rotateX(0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
   }
 }
 
@@ -2371,35 +2370,22 @@ button {
 }
 
 .pillar-card:hover {
-  transform: perspective(1200px) translate3d(0, -12px, 16px) rotateX(4.5deg) scale3d(1.02, 1.02, 1.02);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 28px 55px -12px rgba(0, 0, 0, 0.85);
+  transform: perspective(1000px) translate3d(0, -10px, 12px) rotateX(5deg) scale3d(1.015, 1.015, 1.015);
+  border-color: rgba(176, 31, 58, 0.55);
+  box-shadow: 
+    0 24px 48px -12px rgba(0, 0, 0, 0.85),
+    0 12px 24px -6px rgba(176, 31, 58, 0.35);
   z-index: 5;
 }
 
-.pillar-card.cyan:hover {
-  border-color: rgba(0, 242, 254, 0.55);
-  box-shadow: 
-    0 28px 55px -12px rgba(0, 0, 0, 0.85),
-    0 14px 30px -6px rgba(0, 242, 254, 0.35),
-    0 0 28px -2px rgba(0, 242, 254, 0.2);
-}
-
+.pillar-card.cyan:hover,
 .pillar-card.green:hover,
-.pillar-card.emerald:hover {
-  border-color: rgba(0, 255, 135, 0.55);
-  box-shadow: 
-    0 28px 55px -12px rgba(0, 0, 0, 0.85),
-    0 14px 30px -6px rgba(0, 255, 135, 0.35),
-    0 0 28px -2px rgba(0, 255, 135, 0.2);
-}
-
+.pillar-card.emerald:hover,
 .pillar-card.purple:hover {
-  border-color: rgba(147, 51, 234, 0.55);
+  border-color: rgba(176, 31, 58, 0.55);
   box-shadow: 
-    0 28px 55px -12px rgba(0, 0, 0, 0.85),
-    0 14px 30px -6px rgba(147, 51, 234, 0.35),
-    0 0 28px -2px rgba(147, 51, 234, 0.2);
+    0 24px 48px -12px rgba(0, 0, 0, 0.85),
+    0 12px 24px -6px rgba(176, 31, 58, 0.35);
 }
 
 @media (hover: none) {

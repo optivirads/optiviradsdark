@@ -33,18 +33,18 @@ export default function AntigravityParticles() {
 
     const initParticles = (width: number, height: number) => {
       const isMobile = checkIsMobile();
-      const maxParticles = isMobile ? 24 : 50;
+      const maxParticles = isMobile ? 24 : 45;
       const colorPalette = [
-        '0, 242, 254',    // Cyan glow
-        '0, 255, 135',    // Neon green glow
-        '225, 45, 75',    // Crimson glow
-        '248, 246, 243',  // Ivory pearl
+        '176, 31, 58',    // Brand Crimson (#B01F3A)
+        '248, 246, 243',  // Brand Ivory (#F8F6F3)
+        '176, 31, 58',    // Brand Crimson (#B01F3A)
+        '166, 176, 195',  // Brand Muted Silver (#A6B0C3)
       ];
       particles = [];
       for (let i = 0; i < maxParticles; i++) {
-        // Grains sized ~2.4px to 5.0px radius (5px to 10px diameter) so they are clearly visible
-        const radius = Math.random() * (isMobile ? 1.8 : 2.4) + 2.4;
-        const baseAlpha = Math.random() * 0.3 + 0.45;
+        // Refined animated grains (radius ~1.0px to 1.8px)
+        const radius = Math.random() * (isMobile ? 0.5 : 0.8) + 1.0;
+        const baseAlpha = Math.random() * 0.35 + 0.35;
         const colorRgb = colorPalette[i % colorPalette.length];
         particles.push({
           x: Math.random() * width,
@@ -123,20 +123,10 @@ export default function AntigravityParticles() {
           p.alpha += (p.baseAlpha - p.alpha) * 0.05;
         }
 
-        // Draw soft luminescent halo for visible grain presence
-        const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2.2);
-        halo.addColorStop(0, `rgba(${p.colorRgb}, ${p.alpha * 0.7})`);
-        halo.addColorStop(0.5, `rgba(${p.colorRgb}, ${p.alpha * 0.25})`);
-        halo.addColorStop(1, `rgba(${p.colorRgb}, 0)`);
-        ctx.fillStyle = halo;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius * 2.2, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Draw solid grain core
+        // Draw crisp refined grain core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.colorRgb}, ${Math.min(p.alpha * 1.3, 0.95)})`;
+        ctx.fillStyle = `rgba(${p.colorRgb}, ${p.alpha})`;
         ctx.fill();
       });
 
