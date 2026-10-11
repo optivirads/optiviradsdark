@@ -209,10 +209,10 @@ export default async function Home() {
           </ScrollReveal>
 
           {/* 4 Pillars Grid */}
-          <ScrollReveal stagger={120} delay={100} direction="up">
-            <div className="growth-pillars-grid">
-              
-              {/* Card 1: Reach New Customers */}
+          <div className="growth-pillars-grid">
+            
+            {/* Card 1: Reach New Customers */}
+            <ScrollReveal delay={100} direction="up">
               <div className="glass-card pillar-card cyan" id="step-reach-customers">
                 <div className="pillar-header">
                   <div>
@@ -246,8 +246,10 @@ export default async function Home() {
                   </Link>
                 </div>
               </div>
+            </ScrollReveal>
 
-              {/* Card 2: Get Found on Google */}
+            {/* Card 2: Get Found on Google */}
+            <ScrollReveal delay={200} direction="up">
               <div className="glass-card pillar-card green" id="step-get-found">
                 <div className="pillar-header">
                   <div>
@@ -281,8 +283,10 @@ export default async function Home() {
                   </Link>
                 </div>
               </div>
+            </ScrollReveal>
 
-              {/* Card 3: Turn Enquiries into Bookings */}
+            {/* Card 3: Turn Enquiries into Bookings */}
+            <ScrollReveal delay={300} direction="up">
               <div className="glass-card pillar-card purple" id="step-turn-enquiries">
                 <div className="pillar-header">
                   <div>
@@ -316,8 +320,10 @@ export default async function Home() {
                   </Link>
                 </div>
               </div>
+            </ScrollReveal>
 
-              {/* Card 4: Bring Customers Back */}
+            {/* Card 4: Bring Customers Back */}
+            <ScrollReveal delay={400} direction="up">
               <div className="glass-card pillar-card emerald" id="step-bring-back">
                 <div className="pillar-header">
                   <div>
@@ -351,9 +357,9 @@ export default async function Home() {
                   </Link>
                 </div>
               </div>
+            </ScrollReveal>
 
-            </div>
-          </ScrollReveal>
+          </div>
 
           {/* Action Button Below Cards */}
           <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
@@ -424,49 +430,55 @@ export default async function Home() {
             <p className="section-subtitle">Four systematic pillars that transform casual website visitors into loyal, paying clients for your business.</p>
           </div>
 
-          <ScrollReveal direction="up" delay={100}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
-              <div className="glass-card" style={{ padding: '2rem' }}>
-                <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
-                  <Target size={20} />
+              <ScrollReveal direction="up" delay={80}>
+                <div className="glass-card" style={{ padding: '2rem' }}>
+                  <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
+                    <Target size={20} />
+                  </div>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>1. Market Audit & Intent Mapping</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                    We analyze search queries, target audience purchase behavior, competitor ad strategies, and funnel friction points to build a tailored digital marketing growth blueprint.
+                  </p>
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>1. Market Audit & Intent Mapping</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                  We analyze search queries, target audience purchase behavior, competitor ad strategies, and funnel friction points to build a tailored digital marketing growth blueprint.
-                </p>
-              </div>
+              </ScrollReveal>
 
-              <div className="glass-card" style={{ padding: '2rem' }}>
-                <div className="icon-badge cyan" style={{ marginBottom: '1rem' }}>
-                  <Cpu size={20} />
+              <ScrollReveal direction="up" delay={160}>
+                <div className="glass-card" style={{ padding: '2rem' }}>
+                  <div className="icon-badge cyan" style={{ marginBottom: '1rem' }}>
+                    <Cpu size={20} />
+                  </div>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>2. High-Speed Conversion Web Build</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                    Developing fast, mobile-responsive Next.js custom web applications and landing pages optimized for speed, performance, and high conversion velocity.
+                  </p>
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>2. High-Speed Conversion Web Build</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                  Developing fast, mobile-responsive Next.js custom web applications and landing pages optimized for speed, performance, and high conversion velocity.
-                </p>
-              </div>
+              </ScrollReveal>
 
-              <div className="glass-card" style={{ padding: '2rem' }}>
-                <div className="icon-badge purple" style={{ marginBottom: '1rem' }}>
-                  <Layers size={20} />
+              <ScrollReveal direction="up" delay={240}>
+                <div className="glass-card" style={{ padding: '2rem' }}>
+                  <div className="icon-badge purple" style={{ marginBottom: '1rem' }}>
+                    <Layers size={20} />
+                  </div>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>3. Multi-Channel Campaign Scaling</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                    Executing synchronized Google Search & Shopping ads, Meta retargeting campaigns, authoritative SEO content creation, and active social media management.
+                  </p>
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>3. Multi-Channel Campaign Scaling</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                  Executing synchronized Google Search & Shopping ads, Meta retargeting campaigns, authoritative SEO content creation, and active social media management.
-                </p>
-              </div>
+              </ScrollReveal>
 
-              <div className="glass-card" style={{ padding: '2rem' }}>
-                <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
-                  <BarChart3 size={20} />
+              <ScrollReveal direction="up" delay={320}>
+                <div className="glass-card" style={{ padding: '2rem' }}>
+                  <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
+                    <BarChart3 size={20} />
+                  </div>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>4. First-Party Analytics Optimization</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                    Continuous A/B ad copy testing, server-side conversion tracking, smart bidding adjustments, and customer lifetime value (LTV) expansion strategies.
+                  </p>
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>4. First-Party Analytics Optimization</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                  Continuous A/B ad copy testing, server-side conversion tracking, smart bidding adjustments, and customer lifetime value (LTV) expansion strategies.
-                </p>
-              </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -478,8 +490,8 @@ export default async function Home() {
             <p className="section-subtitle">Delivering measurable competitive advantages through technical innovation and performance transparency.</p>
           </div>
 
-          <ScrollReveal direction="up" delay={150}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
+            <ScrollReveal direction="up" delay={100}>
               <div className="glass-card" style={{ padding: '2rem' }}>
                 <div className="icon-badge cyan" style={{ marginBottom: '1rem' }}>
                   <Award size={22} />
@@ -489,7 +501,9 @@ export default async function Home() {
                   Our performance marketing strategies focus entirely on profit margins and return on ad spend. By optimizing your Google Ads and Meta Ads campaigns for conversion quality, we reduce overall customer acquisition costs while scaling lead volume.
                 </p>
               </div>
+            </ScrollReveal>
 
+            <ScrollReveal direction="up" delay={200}>
               <div className="glass-card" style={{ padding: '2rem' }}>
                 <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
                   <Globe size={22} />
@@ -499,7 +513,9 @@ export default async function Home() {
                   From advanced schema structured data and Next.js full-stack web development to server-side Google Tag Manager containers, we deploy cutting-edge engineering techniques that give your site a distinct competitive edge in Google search rankings.
                 </p>
               </div>
+            </ScrollReveal>
 
+            <ScrollReveal direction="up" delay={300}>
               <div className="glass-card" style={{ padding: '2rem' }}>
                 <div className="icon-badge purple" style={{ marginBottom: '1rem' }}>
                   <LineChart size={22} />
@@ -509,8 +525,8 @@ export default async function Home() {
                   No complex marketing jargon or inflated vanity metrics. We provide clear, transparent reporting that details exact spend, impression share, conversion volume, cost per acquisition, and net profit contribution across all marketing channels.
                 </p>
               </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

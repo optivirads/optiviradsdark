@@ -87,17 +87,25 @@ button {
   }
 }
 
-/* Glassmorphism Styles */
+/* Glassmorphism Styles & 3D Flip & Rise Card Architecture */
 .glass-card {
   background: rgba(8, 15, 37, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   padding: 2.5rem;
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
   position: relative;
   overflow: hidden;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow, border-color;
+  transform: perspective(1200px) translate3d(0, 0, 0) rotateX(0deg) scale3d(1, 1, 1);
+  transition: 
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.35s ease,
+    background 0.35s ease;
 }
 
 @media (max-width: 768px) {
@@ -112,17 +120,58 @@ button {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
-  opacity: 0.6;
+  left: -100%;
+  width: 300%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.12) 20%, 
+    rgba(176, 31, 58, 0.8) 50%, 
+    rgba(0, 242, 254, 0.8) 80%, 
+    transparent 100%
+  );
+  opacity: 0.55;
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
 }
 
+/* 3D Flip and Rise Hover State */
 .glass-card:hover {
-  border-color: rgba(176, 31, 58, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(176, 31, 58, 0.25);
-  transform: translateY(-4px);
+  transform: perspective(1200px) translate3d(0, -10px, 14px) rotateX(4.5deg) scale3d(1.015, 1.015, 1.015);
+  border-color: rgba(176, 31, 58, 0.45);
+  box-shadow: 
+    0 24px 50px -12px rgba(0, 0, 0, 0.8),
+    0 12px 28px -6px rgba(176, 31, 58, 0.28),
+    0 0 24px -2px rgba(176, 31, 58, 0.15);
+  z-index: 5;
+}
+
+.glass-card:hover::before {
+  transform: translateX(33.33%);
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .glass-card:hover {
+    transform: none;
+  }
+}
+
+/* Pure CSS Keyframes for cardFlipRise */
+@keyframes cardFlipRise {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(12deg) translate3d(0, 36px, 0) scale3d(0.97, 0.97, 0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0deg) translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+.card-flip-rise {
+  animation: cardFlipRise 0.65s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 /* Hero Cards Stack styles */
@@ -2310,14 +2359,53 @@ button {
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow, border-color;
+  transform: perspective(1200px) translate3d(0, 0, 0) rotateX(0deg) scale3d(1, 1, 1);
+  transition: 
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), 
+    border-color 0.35s ease, 
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   scroll-margin-top: 100px;
 }
 
 .pillar-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6);
+  transform: perspective(1200px) translate3d(0, -12px, 16px) rotateX(4.5deg) scale3d(1.02, 1.02, 1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 28px 55px -12px rgba(0, 0, 0, 0.85);
+  z-index: 5;
+}
+
+.pillar-card.cyan:hover {
+  border-color: rgba(0, 242, 254, 0.55);
+  box-shadow: 
+    0 28px 55px -12px rgba(0, 0, 0, 0.85),
+    0 14px 30px -6px rgba(0, 242, 254, 0.35),
+    0 0 28px -2px rgba(0, 242, 254, 0.2);
+}
+
+.pillar-card.green:hover,
+.pillar-card.emerald:hover {
+  border-color: rgba(0, 255, 135, 0.55);
+  box-shadow: 
+    0 28px 55px -12px rgba(0, 0, 0, 0.85),
+    0 14px 30px -6px rgba(0, 255, 135, 0.35),
+    0 0 28px -2px rgba(0, 255, 135, 0.2);
+}
+
+.pillar-card.purple:hover {
+  border-color: rgba(147, 51, 234, 0.55);
+  box-shadow: 
+    0 28px 55px -12px rgba(0, 0, 0, 0.85),
+    0 14px 30px -6px rgba(147, 51, 234, 0.35),
+    0 0 28px -2px rgba(147, 51, 234, 0.2);
+}
+
+@media (hover: none) {
+  .pillar-card:hover {
+    transform: none;
+  }
 }
 
 .pillar-card:target {
@@ -2565,8 +2653,28 @@ button {
   background: rgba(8, 15, 37, 0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow, border-color;
+  transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0deg);
+  transition: 
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), 
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), 
+    border-color 0.35s ease;
+}
+
+.advantage-sub-card:hover {
+  transform: perspective(1000px) translate3d(0, -6px, 10px) rotateX(3.5deg);
+  border-color: rgba(176, 31, 58, 0.4);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), 0 0 18px rgba(176, 31, 58, 0.2);
+}
+
+@media (hover: none) {
+  .advantage-sub-card:hover {
+    transform: none;
+  }
 }
 
 .sub-card-left {

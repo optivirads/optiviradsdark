@@ -230,6 +230,23 @@ export default function RoasCalculator() {
           border-radius: 20px;
           padding: 3rem 3.5rem;
           overflow: hidden;
+          perspective: 1400px;
+          transform-style: preserve-3d;
+          will-change: transform, box-shadow, border-color;
+          transform: perspective(1400px) translate3d(0, 0, 0) rotateX(0deg);
+          transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
+        }
+
+        .roas-calc-card:hover {
+          transform: perspective(1400px) translate3d(0, -8px, 12px) rotateX(2.5deg);
+          border-color: rgba(0, 255, 135, 0.3);
+          box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 135, 0.15);
+        }
+
+        @media (hover: none) {
+          .roas-calc-card:hover {
+            transform: none;
+          }
         }
 
         /* dot-pattern overlays */
