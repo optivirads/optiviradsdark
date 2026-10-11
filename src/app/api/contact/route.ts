@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
       const mailOptions = {
         from: `"OptiVir Ads Form" <${smtpUser}>`,
-        to: process.env.CONTACT_TO || 'optivirads@gmail.com',
+        to: process.env.CONTACT_TO || 'services@optivirads.com',
         subject: `New Contact Submission from ${safeName}`,
         text: `
 Name: ${name}

@@ -115,8 +115,13 @@ export default function Footer() {
 
       <div className="container footer-bottom">
         <p className="copyright-text">
-          &copy; 2025 OptiVir Ads. All Rights Reserved.
+          &copy; {new Date().getFullYear()} OptiVir Ads. All Rights Reserved.
         </p>
+        <div className="footer-legal-links">
+          <Link href="/privacy-policy" className="footer-legal-link">Privacy Policy</Link>
+          <span className="footer-legal-sep">·</span>
+          <Link href="/terms-of-service" className="footer-legal-link">Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );

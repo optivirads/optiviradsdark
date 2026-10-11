@@ -26,6 +26,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/services/search-engine-optimization',
     '/services/social-media-management',
     '/services/web-development',
+    '/privacy-policy',
+    '/terms-of-service',
   ];
 
   const locationRoutes = Object.keys(LOCATIONS).map((city) => `/locations/${city}`);

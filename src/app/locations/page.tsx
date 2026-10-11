@@ -19,14 +19,14 @@ import {
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
 export const metadata: Metadata = {
-  title: 'Our Service Locations | OptiVir Ads Growth Marketing Agency',
-  description: 'Explore OptiVir Ads regional offices and service locations across Kerala (Kannur, Calicut) and the GCC (Dubai, Ras Al Khaimah, Qatar). Local SEO & High-ROAS PPC.',
+  title: 'Service Coverage & Locations | OptiVir Ads Growth Marketing Agency',
+  description: 'Explore OptiVir Ads service coverage areas across Kerala (Kannur HQ, Calicut) and the GCC (Dubai, Ras Al Khaimah, Qatar). Physical office in Kannur; serving clients regionally.',
   alternates: {
     canonical: `${baseUrl}/locations`,
   },
   openGraph: {
-    title: 'Our Service Locations | OptiVir Ads',
-    description: 'Explore OptiVir Ads regional offices and service locations across Kerala and the GCC.',
+    title: 'Service Coverage & Locations | OptiVir Ads',
+    description: 'Explore OptiVir Ads service coverage areas across Kerala and the GCC. Physical headquarters in Kannur, Kerala.',
     url: `${baseUrl}/locations`,
     siteName: 'OptiVir Ads',
     locale: 'en_US',
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Service Locations | OptiVir Ads',
-    description: 'Explore OptiVir Ads regional offices and service locations across Kerala and the GCC.',
+    title: 'Service Coverage & Locations | OptiVir Ads',
+    description: 'Explore OptiVir Ads service coverage areas across Kerala and the GCC. Physical headquarters in Kannur, Kerala.',
   },
   robots: {
     index: true,

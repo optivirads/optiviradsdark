@@ -142,7 +142,7 @@ export default async function LocationPage({ params }: Props) {
         telephone={location.telephone}
         address={location.address}
         geo={location.geo}
-        image="https://www.optivirads.com/images/logo.png"
+        image="https://www.optivirads.com/images/optivir-brand-logo.png"
       />
       <BreadcrumbSchema
         items={[
