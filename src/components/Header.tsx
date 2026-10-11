@@ -42,13 +42,13 @@ export default function Header() {
   return (
     <header className={`header-nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-container">
-        <Link href="/" className="logo-container" onClick={closeMenu}>
+        <Link href="/" className="logo-container logo-pill" onClick={closeMenu}>
           <Image 
-            src="/images/logo.png" 
-            alt="OptiVir Ads Logo" 
+            src="/images/optivir-brand-logo.png" 
+            alt="OptiVir Ads" 
             width={160} 
             height={48} 
-            style={{ objectFit: 'contain', height: '38px', width: 'auto' }}
+            style={{ objectFit: 'contain', height: '34px', width: 'auto' }}
             priority 
           />
         </Link>
@@ -85,6 +85,15 @@ export default function Header() {
       {isOpen && (
         <div className="mobile-nav-overlay">
           <div className="mobile-links-container">
+            <Link href="/" className="logo-pill" onClick={closeMenu} style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>
+              <Image 
+                src="/images/optivir-brand-logo.png" 
+                alt="OptiVir Ads" 
+                width={160} 
+                height={48} 
+                style={{ objectFit: 'contain', height: '32px', width: 'auto' }}
+              />
+            </Link>
             {navLinks.map((link) => {
               const isActive = pathname === link.path;
               return (

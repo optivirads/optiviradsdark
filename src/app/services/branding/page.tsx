@@ -3,13 +3,10 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { 
   Palette, 
-  CheckCircle2, 
   ArrowRight, 
   ArrowLeft,
-  Sparkles,
   Award,
-  Layers,
-  Crown
+  Layers
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
@@ -31,9 +28,9 @@ export default function BrandingPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "OptiVir Ads",
-      "url": "https://optivirads.com"
+      "url": "https://www.optivirads.com"
     },
-    "areaServed": "IN",
+    "areaServed": ["IN", "AE", "QA"],
     "description": "Establish a cohesive, memorable corporate brand. Custom logos, typographic layouts, brand guidelines books, and message frameworks that command trust."
   };
 

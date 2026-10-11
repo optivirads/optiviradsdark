@@ -74,6 +74,10 @@ const MOCK_METADATA: Record<string, PageMetadata> = {
     title: "High-Intent SEO Services & Local Search Domination | OptiVir Ads",
     description: "Build search engine authority with local search optimization, semantic content strategies, technical site speed tuning, and high-value backlink structures.",
   },
+  "google-maps-marketing": {
+    title: "Google Maps Marketing & Business Profile Optimization | OptiVir Ads",
+    description: "Dominate Google Map Pack rankings across Kannur, Kerala, and the GCC. Profile setup, geo-citations, review generation, and monthly local call reporting.",
+  },
   "seo": {
     title: "High-Intent SEO Services & Local Search Domination | OptiVir Ads",
     description: "Build search engine authority with local search optimization, semantic content strategies, technical site speed tuning, and high-value backlink structures.",
@@ -143,6 +147,28 @@ const MOCK_FAQS: Record<string, FaqItem[]> = {
     {
       question: "How does FAQ schema markup improve organic search rankings in Kerala?",
       answer: "By injecting FAQPage JSON-LD schema markup into service pages, Google's search crawlers can parse your questions and display them directly in 'People Also Ask' (PAA) boxes and rich result search snippets. This expands your organic search real estate without additional ad spend and significantly boosts click-through rates (CTR). For local businesses in Kerala competing for high-value queries, FAQ-rich snippets can be the difference between being invisible and owning multiple positions on page one of search results."
+    }
+  ],
+  "google-maps-marketing": [
+    {
+      question: "How does Google Maps marketing help my local business in Kerala or the GCC?",
+      answer: "Over 70% of mobile users looking for local services (like salons, gyms, clinics, and showrooms) click on the Google Map 3-Pack before visiting any website. Google Maps marketing optimizes your Google Business Profile, local categories, geo-tagged photos, and citations so your business appears at the top when nearby customers search 'near me' or city-specific queries."
+    },
+    {
+      question: "What is included in Google Business Profile (GBP) optimization in Kannur and Kerala?",
+      answer: "Our Google Business Profile optimization includes: complete category and sub-category mapping, keyword-optimized service lists, geo-tagged photo uploads, weekly profile updates/posts, NAP (Name, Address, Phone) citation consistency across directories, and LocalBusiness JSON-LD schema markup on your website."
+    },
+    {
+      question: "How do you help our business collect more positive Google reviews?",
+      answer: "We set up automated review collection workflows for your team, including custom QR code review stands for your front desk, automated WhatsApp review requests sent after customer visits, and templated professional responses that signal high engagement to Google's ranking algorithm."
+    },
+    {
+      question: "How quickly can a local business rank in the Google Map Pack?",
+      answer: "For low-to-medium competition local areas in Kannur, Calicut, or secondary GCC districts, noticeable rank improvements typically occur within 3 to 6 weeks. Highly competitive categories in major commercial zones take 2 to 3 months of sustained citation building, review velocity, and weekly geo-signals."
+    },
+    {
+      question: "How do you report Google Maps performance to clients?",
+      answer: "Every month, we deliver transparent reports showing exact customer actions: verified phone calls initiated from Google Maps, direction requests, website clicks, photo views, and local geo-grid ranking heatmaps showing where your business ranks across your city."
     }
   ],
   "google-advertising": [
@@ -717,6 +743,7 @@ export async function getServiceMetadata(slug: string): Promise<Metadata> {
 
 const LOCAL_IMAGES = [
   "/images/logo.png",
+  "/images/optivir-brand-logo.png",
   "/images/office_space.png",
   "/images/blog-google-ads.png",
   "/images/blog-local-seo.png",
@@ -894,13 +921,23 @@ export interface ClientLogo {
   logoUrl: string;
 }
 
+const isExcludedLogo = (name: string, url: string) => {
+  const n = (name || "").toLowerCase();
+  const u = (url || "").toLowerCase();
+  // Exclude the Gold OV logo
+  if (n.includes("gold") || u.includes("gold-logo") || u.includes("logo-transparent-gold")) {
+    return true;
+  }
+  // Exclude the square/tall logo version of Ameen Al Arab (keep the rectangular banner one)
+  if (u.includes("client-logo-1") || u.includes("logo--scaled") || n.includes("al noor")) {
+    return true;
+  }
+  return false;
+};
+
 export const MOCK_CLIENTS: ClientLogo[] = [
-  { id: 101, name: "Nexus", logoUrl: "" },
-  { id: 102, name: "Vertex", logoUrl: "" },
-  { id: 103, name: "Aero", logoUrl: "" },
-  { id: 104, name: "Pulse", logoUrl: "" },
-  { id: 105, name: "Zenith", logoUrl: "" },
-  { id: 106, name: "Apex", logoUrl: "" },
+  { id: 30, name: "Hijabi Ladies Beauty Salon", logoUrl: "/images/clients/hijabi-salon.jpeg" },
+  { id: 32, name: "Ameen Al Arab Cleaning", logoUrl: "/images/clients/ameen-al-arab.jpeg" },
 ];
 
 export async function getClientLogos(): Promise<ClientLogo[]> {
@@ -910,9 +947,9 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
 
   // 1. Try 'clients' custom post type (Primary)
   try {
-    const wpClients = await wpFetch<any[]>("wp/v2/clients?_embed", []);
+    const wpClients = await wpFetch<any[]>("wp/v2/clients?per_page=100&_embed", []);
     if (wpClients && wpClients.length > 0) {
-      return wpClients.map((client) => {
+      const items = wpClients.map((client) => {
         let logoUrl = "";
         const embeddedMedia = client._embedded?.["wp:featuredmedia"];
         if (embeddedMedia && embeddedMedia.length > 0) {
@@ -923,7 +960,8 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
           name: client.title?.rendered || "Client",
           logoUrl
         };
-      });
+      }).filter((c) => Boolean(c.logoUrl) && !isExcludedLogo(c.name, c.logoUrl));
+      if (items.length > 0) return items;
     }
   } catch (err) {
     console.warn("Failed to fetch custom 'clients' post type from WordPress:", err);
@@ -931,9 +969,9 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
 
   // 2. Try 'brands' custom post type
   try {
-    const wpBrands = await wpFetch<any[]>("wp/v2/brands?_embed", []);
+    const wpBrands = await wpFetch<any[]>("wp/v2/brands?per_page=100&_embed", []);
     if (wpBrands && wpBrands.length > 0) {
-      return wpBrands.map((brand) => {
+      const items = wpBrands.map((brand) => {
         let logoUrl = "";
         const embeddedMedia = brand._embedded?.["wp:featuredmedia"];
         if (embeddedMedia && embeddedMedia.length > 0) {
@@ -944,7 +982,8 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
           name: brand.title?.rendered || "Brand",
           logoUrl
         };
-      });
+      }).filter((c) => Boolean(c.logoUrl) && !isExcludedLogo(c.name, c.logoUrl));
+      if (items.length > 0) return items;
     }
   } catch (err) {
     console.warn("Failed to fetch custom 'brands' post type from WordPress:", err);
@@ -952,9 +991,9 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
 
   // 3. Try standard posts under category 'brands'
   try {
-    const wpPosts = await wpFetch<any[]>("wp/v2/posts?category_name=brands&_embed", []);
+    const wpPosts = await wpFetch<any[]>("wp/v2/posts?category_name=brands&per_page=100&_embed", []);
     if (wpPosts && wpPosts.length > 0) {
-      return wpPosts.map((post) => {
+      const items = wpPosts.map((post) => {
         let logoUrl = "";
         const embeddedMedia = post._embedded?.["wp:featuredmedia"];
         if (embeddedMedia && embeddedMedia.length > 0) {
@@ -965,7 +1004,8 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
           name: post.title?.rendered || "Brand",
           logoUrl
         };
-      });
+      }).filter((c) => Boolean(c.logoUrl) && !isExcludedLogo(c.name, c.logoUrl));
+      if (items.length > 0) return items;
     }
   } catch (err) {
     console.warn("Failed to fetch standard posts under 'brands' category from WordPress:", err);
@@ -973,9 +1013,9 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
 
   // 4. Try standard posts under category 'clients'
   try {
-    const wpPosts = await wpFetch<any[]>("wp/v2/posts?category_name=clients&_embed", []);
+    const wpPosts = await wpFetch<any[]>("wp/v2/posts?category_name=clients&per_page=100&_embed", []);
     if (wpPosts && wpPosts.length > 0) {
-      return wpPosts.map((post) => {
+      const items = wpPosts.map((post) => {
         let logoUrl = "";
         const embeddedMedia = post._embedded?.["wp:featuredmedia"];
         if (embeddedMedia && embeddedMedia.length > 0) {
@@ -986,7 +1026,8 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
           name: post.title?.rendered || "Client",
           logoUrl
         };
-      });
+      }).filter((c) => Boolean(c.logoUrl) && !isExcludedLogo(c.name, c.logoUrl));
+      if (items.length > 0) return items;
     }
   } catch (err) {
     console.warn("Failed to fetch standard posts under 'clients' category from WordPress:", err);

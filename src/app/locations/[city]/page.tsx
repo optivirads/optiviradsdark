@@ -86,10 +86,16 @@ export default async function LocationPage({ params }: Props) {
 
   const services = [
     {
+      title: "Google Maps & Local Profile Marketing",
+      desc: `Ranking in the Google Map 3-Pack across ${location.city} to turn nearby searches into direct phone calls and bookings.`,
+      icon: <MapPin size={20} />,
+      color: "green",
+    },
+    {
       title: "Search Engine Optimization (SEO)",
       desc: `Capturing local search intent and scaling organic positioning across ${location.region}.`,
       icon: <Search size={20} />,
-      color: "green",
+      color: "cyan",
     },
     {
       title: "Google Search Ads (PPC)",
@@ -156,7 +162,7 @@ export default async function LocationPage({ params }: Props) {
         <nav className="loc-breadcrumb" aria-label="Breadcrumb">
           <Link href="/">Home</Link>
           <ChevronRight size={12} />
-          <span>Locations</span>
+          <Link href="/locations">Locations</Link>
           <ChevronRight size={12} />
           <span className="active">{location.city}</span>
         </nav>
@@ -329,10 +335,19 @@ export default async function LocationPage({ params }: Props) {
                 <div className="loc-contact-strip">
                   <div className="loc-contact-item">
                     <div className="loc-contact-icon"><MapPin size={18} /></div>
-                    <h4 className="loc-contact-label">Office Location</h4>
+                    <h4 className="loc-contact-label">{location.isRemote ? "Service Delivery" : "Office Location (HQ)"}</h4>
                     <p className="loc-contact-val">
-                      {location.address.streetAddress}<br />
-                      {location.address.addressLocality}, {location.address.addressRegion}
+                      {location.isRemote ? (
+                        <>
+                          {location.servingModel}<br />
+                          <span style={{ fontSize: '0.8rem', opacity: 0.85 }}>Office: Green Building, Talap, Kannur</span>
+                        </>
+                      ) : (
+                        <>
+                          {location.address.streetAddress}<br />
+                          {location.address.addressLocality}, {location.address.addressRegion} {location.address.postalCode}
+                        </>
+                      )}
                     </p>
                   </div>
                   <div className="loc-contact-item">
@@ -347,15 +362,25 @@ export default async function LocationPage({ params }: Props) {
                     <div className="loc-contact-icon"><Mail size={18} /></div>
                     <h4 className="loc-contact-label">Email Inquiry</h4>
                     <p className="loc-contact-val">
-                      growth@optivir.com<br />
                       services@optivirads.com
                     </p>
                   </div>
                 </div>
 
-                <Link href="/free-marketing-audit" className="btn-primary">
-                  Request Free Account Audit <ArrowRight size={16} />
-                </Link>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <Link href="/free-marketing-audit" className="btn-primary">
+                    Request Free Account Audit <ArrowRight size={16} />
+                  </Link>
+                  <a
+                    href={`https://wa.me/919995037109?text=${encodeURIComponent(`Hi OptiVir Ads team, I would like to consult regarding digital marketing in ${location.city}.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                  >
+                    Quick WhatsApp Chat
+                  </a>
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -365,458 +390,6 @@ export default async function LocationPage({ params }: Props) {
 
       {/* FAQ */}
       <Faq pageKey={location.slug} />
-
-      <style>{`
-        /* ── Page shell ── */
-        .loc-page {
-          min-height: 100vh;
-          background: var(--bg-primary);
-          padding-top: 6rem;
-          padding-bottom: 0;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .loc-container {
-          position: relative;
-          z-index: 2;
-          padding-bottom: 6rem;
-        }
-
-        /* Ambient blobs */
-        .loc-blob {
-          position: absolute;
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 0;
-        }
-        .loc-blob-1 {
-          width: 600px; height: 600px;
-          top: -120px; right: -200px;
-          background: radial-gradient(circle, rgba(0,255,135,0.055) 0%, transparent 70%);
-        }
-        .loc-blob-2 {
-          width: 700px; height: 700px;
-          top: 40%; left: -250px;
-          background: radial-gradient(circle, rgba(139,92,246,0.045) 0%, transparent 70%);
-        }
-
-        /* Breadcrumb */
-        .loc-breadcrumb {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.8125rem;
-          color: var(--text-muted);
-          margin-bottom: 3rem;
-          letter-spacing: 0.03em;
-        }
-        .loc-breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
-        .loc-breadcrumb a:hover { color: var(--accent-cyan); }
-        .loc-breadcrumb .active { color: #ffffff; }
-
-        /* Badge */
-        .loc-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--accent-green);
-          background: rgba(0,255,135,0.07);
-          border: 1px solid rgba(0,255,135,0.2);
-          border-radius: 999px;
-          padding: 0.35rem 0.9rem;
-          margin-bottom: 1.5rem;
-        }
-        .loc-badge-dot {
-          width: 7px; height: 7px;
-          border-radius: 50%;
-          background: var(--accent-green);
-          animation: pulse-loc 2s ease-in-out infinite;
-        }
-        @keyframes pulse-loc {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(0.75); }
-        }
-
-        /* Hero */
-        .loc-hero {
-          margin-bottom: 6rem;
-          margin-top: 2rem;
-          max-width: 860px;
-        }
-        .loc-hero-title {
-          font-family: var(--font-serif);
-          font-size: 3.5rem;
-          font-weight: 700;
-          color: #ffffff;
-          letter-spacing: -0.025em;
-          line-height: 1.12;
-          margin-bottom: 1.5rem;
-        }
-        @media (max-width: 768px) {
-          .loc-hero-title { font-size: 2.25rem; }
-        }
-        .loc-hero-sub {
-          font-size: 1.125rem;
-          color: var(--text-secondary);
-          line-height: 1.65;
-          max-width: 700px;
-          margin-bottom: 2.5rem;
-          font-weight: 300;
-        }
-        .loc-hero-actions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-        }
-
-        /* Accent gradient text */
-        .loc-accent {
-          background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-cyan) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        /* Section spacing */
-        .loc-section { margin-bottom: 7rem; }
-        .loc-section-header { text-align: center; margin-bottom: 3.5rem; }
-        .loc-section-title {
-          font-family: var(--font-serif);
-          font-size: 2.25rem;
-          font-weight: 700;
-          color: #ffffff;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.02em;
-          line-height: 1.2;
-        }
-        @media (max-width: 768px) {
-          .loc-section-title { font-size: 1.75rem; }
-        }
-        .loc-section-sub {
-          font-size: 1rem;
-          color: var(--text-secondary);
-          max-width: 520px;
-          margin: 0 auto;
-          line-height: 1.6;
-        }
-        .loc-body-text {
-          font-size: 0.9375rem;
-          color: var(--text-secondary);
-          line-height: 1.7;
-        }
-        .text-center { text-align: center; }
-
-        /* Metrics */
-        .loc-metrics-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
-        }
-        @media (max-width: 768px) {
-          .loc-metrics-grid { grid-template-columns: 1fr; }
-        }
-        .loc-metric-card { padding: 2.25rem; }
-        .loc-metric-val {
-          font-family: var(--font-serif);
-          font-size: 3rem;
-          font-weight: 800;
-          color: #ffffff;
-          line-height: 1;
-          margin-bottom: 0.5rem;
-          transition: color 0.3s;
-        }
-        .loc-metric-card:hover .loc-metric-val { color: var(--accent-green); }
-        .loc-metric-label {
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--text-muted);
-          margin-bottom: 0.75rem;
-        }
-        .loc-metric-desc {
-          font-size: 0.8125rem;
-          color: var(--text-muted);
-          line-height: 1.5;
-        }
-
-        /* Two-col layout */
-        .loc-two-col {
-          display: grid;
-          grid-template-columns: 5fr 7fr;
-          gap: 5rem;
-          align-items: flex-start;
-        }
-        @media (max-width: 960px) {
-          .loc-two-col { grid-template-columns: 1fr; gap: 3rem; }
-        }
-
-        /* Services left */
-        .loc-services-left { display: flex; flex-direction: column; gap: 2rem; }
-        .loc-focus-card {
-          display: flex;
-          align-items: flex-start;
-          gap: 1.25rem;
-          padding: 1.5rem;
-        }
-        .loc-focus-icon {
-          width: 40px; height: 40px;
-          border-radius: 10px;
-          background: rgba(0,255,135,0.08);
-          color: var(--accent-green);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid rgba(0,255,135,0.15);
-          flex-shrink: 0;
-        }
-        .loc-focus-label {
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--text-muted);
-          margin-bottom: 0.35rem;
-        }
-        .loc-focus-val {
-          font-size: 0.9375rem;
-          font-weight: 600;
-          color: #ffffff;
-        }
-
-        /* Services list */
-        .loc-services-list { display: flex; flex-direction: column; gap: 1.25rem; }
-        .loc-svc-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 1.25rem;
-          padding: 1.5rem;
-          border-radius: 14px;
-          transition: background 0.2s;
-        }
-        .loc-svc-icon {
-          width: 40px; height: 40px;
-          border-radius: 10px;
-          background: rgba(8,15,37,0.8);
-          border: 1px solid rgba(255,255,255,0.07);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--text-secondary);
-          flex-shrink: 0;
-          transition: color 0.2s;
-        }
-        .loc-svc-item:hover .loc-svc-icon { color: #ffffff; }
-        .loc-svc-title {
-          font-size: 1.0625rem;
-          font-weight: 700;
-          color: #ffffff;
-          margin-bottom: 0.35rem;
-          transition: color 0.2s;
-        }
-        .loc-svc-item:hover .loc-svc-title { color: var(--accent-green); }
-        .loc-svc-desc {
-          font-size: 0.875rem;
-          color: var(--text-muted);
-          line-height: 1.55;
-        }
-
-        /* Blueprint */
-        .loc-blueprint-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-        }
-        @media (max-width: 1024px) {
-          .loc-blueprint-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 576px) {
-          .loc-blueprint-grid { grid-template-columns: 1fr; }
-        }
-        .loc-blueprint-card {
-          padding: 2rem;
-          min-height: 220px;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          gap: 0.75rem;
-          position: relative;
-        }
-        .loc-blueprint-num {
-          position: absolute;
-          top: 1.5rem;
-          right: 1.5rem;
-          font-family: var(--font-serif);
-          font-size: 3rem;
-          font-weight: 800;
-          color: rgba(0,255,135,0.1);
-          line-height: 1;
-          transition: color 0.3s;
-        }
-        .loc-blueprint-card:hover .loc-blueprint-num { color: rgba(0,255,135,0.22); }
-        .loc-blueprint-title {
-          font-size: 1rem;
-          font-weight: 700;
-          color: #ffffff;
-          transition: color 0.2s;
-        }
-        .loc-blueprint-card:hover .loc-blueprint-title { color: var(--accent-green); }
-        .loc-blueprint-desc {
-          font-size: 0.8125rem;
-          color: var(--text-muted);
-          line-height: 1.55;
-        }
-
-        /* Why us */
-        .loc-why-card { padding: 3.5rem; position: relative; }
-        .loc-why-blob {
-          position: absolute;
-          top: 0; right: 0;
-          width: 300px; height: 300px;
-          background: radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%);
-          border-radius: 50%;
-          pointer-events: none;
-        }
-        .loc-why-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 0.875rem;
-        }
-        .loc-why-li {
-          display: flex;
-          align-items: center;
-          gap: 0.875rem;
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-        }
-        .loc-why-check {
-          width: 24px; height: 24px;
-          border-radius: 50%;
-          background: rgba(0,255,135,0.08);
-          color: var(--accent-green);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-        .loc-proof-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.25rem;
-        }
-        .loc-proof-cell {
-          padding: 1.75rem;
-          background: rgba(8,15,37,0.6);
-          border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 12px;
-          text-align: center;
-        }
-        .loc-proof-val {
-          font-family: var(--font-serif);
-          font-size: 2rem;
-          font-weight: 800;
-          color: var(--accent-green);
-          line-height: 1;
-          margin-bottom: 0.5rem;
-        }
-        .loc-proof-label {
-          font-size: 0.7rem;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--text-muted);
-          font-weight: 600;
-        }
-
-        /* Capabilities */
-        .loc-caps-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
-        }
-        @media (max-width: 960px) {
-          .loc-caps-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 576px) {
-          .loc-caps-grid { grid-template-columns: 1fr; }
-        }
-        .loc-cap-card { padding: 2rem; display: flex; flex-direction: column; gap: 0.875rem; }
-        .loc-cap-icon {
-          width: 44px; height: 44px;
-          border-radius: 10px;
-          background: rgba(0,242,254,0.07);
-          color: var(--accent-cyan);
-          border: 1px solid rgba(0,242,254,0.12);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .loc-cap-title {
-          font-size: 1rem;
-          font-weight: 700;
-          color: #ffffff;
-        }
-        .loc-cap-desc {
-          font-size: 0.8125rem;
-          color: var(--text-muted);
-          line-height: 1.6;
-        }
-
-        /* Contact CTA */
-        .loc-cta-card { padding: 4rem; overflow: hidden; }
-        .loc-cta-inner {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          gap: 0;
-        }
-        .loc-cta-inner .loc-section-title { margin-bottom: 1rem; }
-        .loc-contact-strip {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          width: 100%;
-          max-width: 760px;
-          border-top: 1px solid rgba(255,255,255,0.05);
-          padding-top: 2.5rem;
-          margin-top: 1rem;
-          margin-bottom: 3rem;
-          text-align: center;
-        }
-        @media (max-width: 768px) {
-          .loc-cta-card { padding: 2.5rem 1.5rem; }
-          .loc-contact-strip { grid-template-columns: 1fr; }
-        }
-        .loc-contact-item { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
-        .loc-contact-icon {
-          width: 44px; height: 44px;
-          border-radius: 50%;
-          background: rgba(8,15,37,0.8);
-          border: 1px solid rgba(255,255,255,0.07);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--accent-cyan);
-        }
-        .loc-contact-label {
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--text-secondary);
-        }
-        .loc-contact-val {
-          font-size: 0.875rem;
-          color: var(--text-muted);
-          line-height: 1.6;
-        }
-      `}</style>
     </main>
   );
 }

@@ -11,7 +11,6 @@ import {
   BarChart3,
   Search,
   Crosshair,
-  Rocket,
   ArrowRight,
   Layers,
   Target,
@@ -19,7 +18,8 @@ import {
   Award,
   Globe,
   LineChart,
-  Repeat
+  Repeat,
+  MessageCircle
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getClientLogos, getPageFaqs, getPageMetadata } from '@/lib/wordpress';
@@ -100,18 +100,29 @@ export default async function Home() {
               <span className="eyebrow-dot" /> GROWTH MARKETING AGENCY
             </div>
             <h1 className="hero-headline">
-              Growth Marketing Agency for <span className="text-gradient-green">Kerala &amp; GCC Businesses</span>
+              More enquiries. More bookings. <span className="text-gradient-green">More reasons to choose your business.</span>
             </h1>
             <p className="hero-description animate-hero-desc">
-              We help businesses acquire more customers through paid advertising (Google Ads &amp; Meta Ads), local SEO, social media, and conversion-focused digital experiences. From attracting the right audience to turning visits into enquiries and measuring what drives revenue, we build and optimize the systems behind sustainable customer growth across Kerala and the GCC.
+              We help salons, gyms and small businesses across Kerala and the GCC attract customers through Google, Instagram and Facebook. Starting from zero or already advertising? We’ll help you identify your next step.
             </p>
-            <div className="hero-actions">
-              <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
-                Get Your Free Growth Audit <ArrowRight size={16} />
-              </Link>
-              <Link href="#what-we-do" className="btn-secondary hero-cta-btn animate-hero-cta">
-                View Our Work
-              </Link>
+            <div className="hero-actions" style={{ flexWrap: 'wrap', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: '380px' }}>
+                <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
+                  Get My Free Business Review <ArrowRight size={16} />
+                </Link>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.45' }}>
+                  Get three practical suggestions to help more customers find and contact you. No website needed.
+                </p>
+              </div>
+              <a
+                href={`https://wa.me/919995037109?text=${encodeURIComponent("Hi OptiVir Ads team, I'd like to get more enquiries and bookings for my business.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary hero-cta-btn animate-hero-cta"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', alignSelf: 'flex-start' }}
+              >
+                <MessageCircle size={16} style={{ color: 'var(--accent-green)' }} /> Chat on WhatsApp
+              </a>
             </div>
             <div className="hero-outcomes-grid">
               <div className="outcome-item">
@@ -140,59 +151,77 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* What We Do - 4-Pillar Growth System */}
+      {/* What We Do Section */}
       <section className="what-we-do-section" id="what-we-do">
         <div className="container">
           <div className="section-header text-center">
-            <span className="pillar-step-badge green" style={{ marginBottom: '1rem', display: 'inline-block' }}>
-              The 4-Pillar Revenue Engine
-            </span>
             <h2 className="section-title">What We Do</h2>
             <p className="section-subtitle">
-              Most agencies sell disconnected tactics. We engineer an interconnected 4-pillar growth architecture where each channel feeds and amplifies the next—turning cold visitors into high-value, repeat clients.
+              Help more people find your business, choose you and come back.
             </p>
           </div>
 
-          {/* Growth Pipeline Connection Bar */}
-          <div className="growth-pipeline-bar">
-            <div className="pipeline-step">
-              <span className="pipeline-step-num">01</span>
-              <span>Paid Acquisition</span>
+          {/* Growth Process Pipeline Strip */}
+          <ScrollReveal direction="up" delay={50}>
+            <div className="growth-pipeline-container">
+              <nav aria-label="Growth engine steps" className="growth-pipeline-bar">
+                <a href="#step-reach-customers" className="pipeline-step">
+                  <span className="pipeline-step-num">01</span>
+                  <div className="pipeline-step-text">
+                    <span className="pipeline-step-title">Reach New Customers</span>
+                    <span className="pipeline-step-sub">Paid Acquisition</span>
+                  </div>
+                </a>
+                <div className="pipeline-arrow-wrap" aria-hidden="true">
+                  <ArrowRight size={14} className="pipeline-arrow" />
+                </div>
+                <a href="#step-get-found" className="pipeline-step">
+                  <span className="pipeline-step-num">02</span>
+                  <div className="pipeline-step-text">
+                    <span className="pipeline-step-title">Get Found on Google</span>
+                    <span className="pipeline-step-sub">Organic Growth</span>
+                  </div>
+                </a>
+                <div className="pipeline-arrow-wrap" aria-hidden="true">
+                  <ArrowRight size={14} className="pipeline-arrow" />
+                </div>
+                <a href="#step-turn-enquiries" className="pipeline-step">
+                  <span className="pipeline-step-num">03</span>
+                  <div className="pipeline-step-text">
+                    <span className="pipeline-step-title">Turn Enquiries into Bookings</span>
+                    <span className="pipeline-step-sub">Conversion</span>
+                  </div>
+                </a>
+                <div className="pipeline-arrow-wrap" aria-hidden="true">
+                  <ArrowRight size={14} className="pipeline-arrow" />
+                </div>
+                <a href="#step-bring-back" className="pipeline-step">
+                  <span className="pipeline-step-num">04</span>
+                  <div className="pipeline-step-text">
+                    <span className="pipeline-step-title">Bring Customers Back</span>
+                    <span className="pipeline-step-sub">Retention</span>
+                  </div>
+                </a>
+              </nav>
             </div>
-            <span className="pipeline-arrow">→</span>
-            <div className="pipeline-step">
-              <span className="pipeline-step-num">02</span>
-              <span>Organic Growth</span>
-            </div>
-            <span className="pipeline-arrow">→</span>
-            <div className="pipeline-step">
-              <span className="pipeline-step-num">03</span>
-              <span>Conversion</span>
-            </div>
-            <span className="pipeline-arrow">→</span>
-            <div className="pipeline-step">
-              <span className="pipeline-step-num">04</span>
-              <span>Retention</span>
-            </div>
-          </div>
+          </ScrollReveal>
 
           {/* 4 Pillars Grid */}
           <ScrollReveal stagger={120} delay={100} direction="up">
             <div className="growth-pillars-grid">
               
-              {/* Pillar 1: Paid Acquisition */}
-              <div className="glass-card pillar-card cyan">
+              {/* Card 1: Reach New Customers */}
+              <div className="glass-card pillar-card cyan" id="step-reach-customers">
                 <div className="pillar-header">
                   <div>
-                    <span className="pillar-step-badge">Pillar 01 · Acquire</span>
-                    <h3 className="pillar-title">Paid Acquisition</h3>
+                    <h3 className="pillar-title">Reach New Customers</h3>
                   </div>
                   <div className="card-stack-icon cyan">
                     <Crosshair size={20} />
                   </div>
                 </div>
                 <p className="pillar-summary">
-                  Capture immediate, scalable customer demand with mathematically tested ad campaigns that generate positive cash-flow return.
+                  Reach potential customers through ads on Google, Instagram and Facebook.
                 </p>
                 <div className="pillar-services-list">
                   <Link href="/services/google-advertising" className="pillar-service-item">
@@ -201,106 +230,103 @@ export default async function Home() {
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Search, Shopping &amp; Performance Max ads targeting buyers with commercial intent.
+                      Target buyers actively searching for your services with search and map campaigns.
                     </p>
                   </Link>
                   <Link href="/services/meta-advertising" className="pillar-service-item">
                     <div className="pillar-service-top">
-                      <span className="pillar-service-name">Meta Ads</span>
+                      <span className="pillar-service-name">Instagram &amp; Facebook Ads</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Hyper-targeted Facebook &amp; Instagram creative campaigns engineered for low CPA.
+                      Targeted visual campaigns across Instagram and Facebook to attract local clients.
                     </p>
                   </Link>
                 </div>
               </div>
 
-              {/* Pillar 2: Organic Growth */}
-              <div className="glass-card pillar-card green">
+              {/* Card 2: Get Found on Google */}
+              <div className="glass-card pillar-card green" id="step-get-found">
                 <div className="pillar-header">
                   <div>
-                    <span className="pillar-step-badge green">Pillar 02 · Compound</span>
-                    <h3 className="pillar-title">Organic Growth</h3>
+                    <h3 className="pillar-title">Get Found on Google</h3>
                   </div>
                   <div className="card-stack-icon green">
                     <Search size={20} />
                   </div>
                 </div>
                 <p className="pillar-summary">
-                  Build enduring search authority and top Google rankings so qualified clients discover your business without paying per click.
+                  Help nearby customers find your business when they search for services like yours.
                 </p>
                 <div className="pillar-services-list">
                   <Link href="/services/search-engine-optimization" className="pillar-service-item">
                     <div className="pillar-service-top">
-                      <span className="pillar-service-name">Local SEO</span>
+                      <span className="pillar-service-name">Google Maps &amp; Search</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Google Maps 3-Pack domination &amp; citation building across Kannur, Calicut &amp; GCC.
+                      Optimize your Google Business Profile and local search visibility for nearby customers.
                     </p>
                   </Link>
                   <Link href="/services/content-marketing" className="pillar-service-item">
                     <div className="pillar-service-top">
-                      <span className="pillar-service-name">Content Strategy</span>
+                      <span className="pillar-service-name">Helpful Website Content</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Authoritative content clusters that capture high-intent organic search volume.
+                      Informative pages and guides that answer customer questions and build trust.
                     </p>
                   </Link>
                 </div>
               </div>
 
-              {/* Pillar 3: Conversion */}
-              <div className="glass-card pillar-card purple">
+              {/* Card 3: Turn Enquiries into Bookings */}
+              <div className="glass-card pillar-card purple" id="step-turn-enquiries">
                 <div className="pillar-header">
                   <div>
-                    <span className="pillar-step-badge purple">Pillar 03 · Convert</span>
-                    <h3 className="pillar-title">Conversion</h3>
+                    <h3 className="pillar-title">Turn Enquiries into Bookings</h3>
                   </div>
                   <div className="card-stack-icon purple">
                     <Layers size={20} />
                   </div>
                 </div>
                 <p className="pillar-summary">
-                  Traffic without conversions is wasted ad budget. We optimize the entire user journey to turn casual clicks into booked calls and sales.
+                  Make it easy for interested customers to call, message or book—and follow up with those who haven’t booked yet.
                 </p>
                 <div className="pillar-services-list">
-                  <Link href="/free-marketing-audit" className="pillar-service-item">
-                    <div className="pillar-service-top">
-                      <span className="pillar-service-name">Landing Pages</span>
-                      <ArrowRight size={15} className="pillar-service-arrow" />
-                    </div>
-                    <p className="pillar-service-desc">
-                      Persuasion-architected, friction-free landing page experiences tested for maximum conversion.
-                    </p>
-                  </Link>
                   <Link href="/services/web-development" className="pillar-service-item">
                     <div className="pillar-service-top">
-                      <span className="pillar-service-name">Web Development</span>
+                      <span className="pillar-service-name">Pages That Generate Enquiries</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Sub-second custom Next.js web applications built for 100/100 Core Web Vitals.
+                      Mobile-ready pages and business websites that make it simple for visitors to reach out.
+                    </p>
+                  </Link>
+                  <Link href="/contact" className="pillar-service-item">
+                    <div className="pillar-service-top">
+                      <span className="pillar-service-name">Enquiry Follow-Up</span>
+                      <ArrowRight size={15} className="pillar-service-arrow" />
+                    </div>
+                    <p className="pillar-service-desc">
+                      Quick follow-ups via WhatsApp, message or call so interested leads become booked clients.
                     </p>
                   </Link>
                 </div>
               </div>
 
-              {/* Pillar 4: Retention */}
-              <div className="glass-card pillar-card emerald">
+              {/* Card 4: Bring Customers Back */}
+              <div className="glass-card pillar-card emerald" id="step-bring-back">
                 <div className="pillar-header">
                   <div>
-                    <span className="pillar-step-badge emerald">Pillar 04 · Retain</span>
-                    <h3 className="pillar-title">Retention</h3>
+                    <h3 className="pillar-title">Bring Customers Back</h3>
                   </div>
                   <div className="card-stack-icon" style={{ background: 'rgba(52, 211, 153, 0.1)', color: '#34d399' }}>
                     <Repeat size={20} />
                   </div>
                 </div>
                 <p className="pillar-summary">
-                  Acquiring a client is only the starting point. We engineer automated retention loops that maximize customer lifetime value (LTV).
+                  Encourage repeat visits with timely reminders, useful updates and relevant offers.
                 </p>
                 <div className="pillar-services-list">
                   <Link href="/services/social-media-management" className="pillar-service-item">
@@ -309,16 +335,16 @@ export default async function Home() {
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Brand positioning, community building &amp; social proof across Instagram and LinkedIn.
+                      Consistent posts, reels and updates to keep your brand top-of-mind with customers.
                     </p>
                   </Link>
                   <Link href="/services/email-marketing" className="pillar-service-item">
                     <div className="pillar-service-top">
-                      <span className="pillar-service-name">Email Retention</span>
+                      <span className="pillar-service-name">Customer Emails &amp; Reminders</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
                     </div>
                     <p className="pillar-service-desc">
-                      Automated onboarding funnels, reactivation workflows &amp; lifecycle newsletters.
+                      Automated reminders, seasonal promotions and loyalty messages to drive repeat visits.
                     </p>
                   </Link>
                 </div>
@@ -326,6 +352,17 @@ export default async function Home() {
 
             </div>
           </ScrollReveal>
+
+          {/* Action Button Below Cards */}
+          <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
+            <Link
+              href="/free-marketing-audit"
+              className="btn-primary"
+              style={{ padding: '0.95rem 2.25rem', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.02em', textTransform: 'none' }}
+            >
+              Find Out What My Business Needs <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -403,7 +440,7 @@ export default async function Home() {
                 </div>
                 <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>2. High-Speed Conversion Web Build</h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                  Developing lightning-fast, mobile-responsive Next.js custom web applications and landing pages optimized for 100/100 Core Web Vitals and high conversion velocity.
+                  Developing fast, mobile-responsive Next.js custom web applications and landing pages optimized for speed, performance, and high conversion velocity.
                 </p>
               </div>
 
@@ -575,12 +612,12 @@ export default async function Home() {
                   OptiVir Ads is a premier <strong>growth marketing agency in Kerala</strong> engineering predictable revenue growth pipelines for ambitious local and international brands. Recognized as a top <strong>SEO and digital marketing company in Kannur and Calicut</strong> and a trusted <strong>performance advertising partner for GCC enterprises across Dubai, Ras Al Khaimah, and Qatar</strong>, we combine data-driven search architecture with server-side analytics to turn digital web traffic into verified corporate profit.
                 </p>
                 <p>
-                  Whether you require hyper-targeted <strong>Google Maps Local Pack SEO in Kannur and Calicut</strong>, high-ROI <strong>Meta &amp; Google advertising campaigns across Kerala and the GCC</strong>, or custom <strong>Next.js web development agency services</strong> engineered for sub-1.0 second mobile page loading speed, our specialist team executes with surgical precision. We eliminate ad budget wastage through server-side Tag Manager containers, advanced Meta CAPI implementations, and value-focused Google Smart Bidding strategies.
+                  Whether you require hyper-targeted <strong>Google Maps Local Pack SEO in Kannur and Calicut</strong>, high-ROI <strong>Meta &amp; Google advertising campaigns across Kerala and the GCC</strong>, or custom <strong>Next.js web development agency services</strong> engineered for exceptional mobile page speed and responsiveness, our specialist team executes with surgical precision. We eliminate ad budget wastage through server-side Tag Manager containers, advanced Meta CAPI implementations, and value-focused Google Smart Bidding strategies.
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginTop: '1rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <div>
                     <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Local Organic Search Authority</h4>
-                    <p style={{ fontSize: '0.85rem' }}>Structured LocalBusiness schema graphs, Google Business Profile management, and geographic citation building for top Google rankings.</p>
+                    <p style={{ fontSize: '0.85rem' }}>Structured LocalBusiness schema graphs, Google Business Profile management, and geographic citation building to maximize local search visibility and customer inquiries.</p>
                   </div>
                   <div>
                     <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>High-Performance Paid Advertising</h4>
@@ -588,7 +625,7 @@ export default async function Home() {
                   </div>
                   <div>
                     <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Custom Web Application Development</h4>
-                    <p style={{ fontSize: '0.85rem' }}>Next.js and React web applications engineered for 100/100 Core Web Vitals, maximum mobile speed, and conversion efficiency.</p>
+                    <p style={{ fontSize: '0.85rem' }}>Next.js and React web applications engineered for optimal Core Web Vitals, maximum mobile speed, and conversion efficiency.</p>
                   </div>
                 </div>
               </div>

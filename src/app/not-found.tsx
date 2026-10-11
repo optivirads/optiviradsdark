@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ArrowLeft, Home, Compass, BookOpen } from 'lucide-react';
+import { Home, Compass, BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found | OptiVir Ads',
@@ -25,6 +26,18 @@ export default function NotFound() {
       zIndex: 2,
     }}>
       <div className="container" style={{ maxWidth: '640px' }}>
+        <div style={{ marginBottom: '2rem' }}>
+          <Link href="/" className="logo-pill" style={{ display: 'inline-flex' }}>
+            <Image
+              src="/images/optivir-brand-logo.png"
+              alt="OptiVir Ads"
+              width={160}
+              height={48}
+              style={{ objectFit: 'contain', height: '36px', width: 'auto' }}
+            />
+          </Link>
+        </div>
+
         <div style={{
           display: 'inline-block',
           padding: '0.35rem 1rem',

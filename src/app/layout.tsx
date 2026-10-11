@@ -45,9 +45,9 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/images/logo.png`,
+          url: `${baseUrl}/images/optivir-brand-logo.png`,
           width: 1200,
-          height: 630,
+          height: 360,
           alt: 'OptiVir Ads Digital Marketing',
         },
       ],
@@ -56,17 +56,18 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: meta.title || 'OptiVir Ads',
       description: meta.description,
-      images: [`${baseUrl}/images/logo.png`],
+      images: [`${baseUrl}/images/optivir-brand-logo.png`],
     },
     icons: {
       icon: [
         { url: '/icon.png', type: 'image/png' },
       ],
       apple: [
-        { url: '/icon.png', type: 'image/png' },
+        { url: '/apple-icon.png', type: 'image/png' },
       ],
-      shortcut: '/icon.png',
+      shortcut: '/favicon.ico',
     },
+    manifest: '/manifest.webmanifest',
     robots: {
       index: true,
       follow: true,

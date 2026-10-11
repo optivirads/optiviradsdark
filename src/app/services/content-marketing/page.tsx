@@ -3,11 +3,8 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { 
   PenTool, 
-  CheckCircle2, 
   ArrowRight, 
   ArrowLeft,
-  Sparkles,
-  Zap,
   Edit,
   Mail
 } from 'lucide-react';
@@ -31,9 +28,9 @@ export default function ContentMarketingPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "OptiVir Ads",
-      "url": "https://optivirads.com"
+      "url": "https://www.optivirads.com"
     },
-    "areaServed": "IN",
+    "areaServed": ["IN", "AE", "QA"],
     "description": "Establish brand trust and capture conversions. High-performing copy templates, search authority blog clusters, and scriptwriting."
   };
 

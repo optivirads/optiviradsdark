@@ -16,7 +16,7 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
     '@id': `${baseUrl}/#organization`,
     'name': 'OptiVir Ads',
     'url': baseUrl,
-    'image': `${baseUrl}/images/logo.png`,
+    'image': `${baseUrl}/images/optivir-brand-logo.png`,
     'telephone': '+919995037109',
     'priceRange': '$$',
     'address': {

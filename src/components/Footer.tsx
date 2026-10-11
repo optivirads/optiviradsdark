@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Share2 } from 'lucide-react';
 
 export default function Footer() {
@@ -26,7 +27,15 @@ export default function Footer() {
       <div className="container footer-grid">
         {/* Column 1: Brand */}
         <div className="footer-brand">
-          <h3 className="footer-title brand-title">OptiVir Ads</h3>
+          <Link href="/" className="logo-pill" style={{ display: 'inline-flex' }}>
+            <Image
+              src="/images/optivir-brand-logo.png"
+              alt="OptiVir Ads"
+              width={160}
+              height={48}
+              style={{ objectFit: 'contain', height: '34px', width: 'auto' }}
+            />
+          </Link>
           <p className="footer-desc">
             Kerala-based digital marketing agency helping small businesses grow through SEO, Google Ads, Meta Ads, social media marketing, and practical digital strategy.
           </p>
@@ -36,11 +45,12 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4 className="footer-title">Services</h4>
           <ul className="footer-links-list">
+            <li><Link href="/services/google-maps-marketing" className="footer-link">Google Maps Marketing</Link></li>
             <li><Link href="/services/search-engine-optimization" className="footer-link">SEO Services</Link></li>
             <li><Link href="/services/google-advertising" className="footer-link">Google Ads</Link></li>
             <li><Link href="/services/meta-advertising" className="footer-link">Meta Ads</Link></li>
+            <li><Link href="/services/web-development" className="footer-link">Web Development</Link></li>
             <li><Link href="/services/social-media-management" className="footer-link">Social Media Marketing</Link></li>
-            <li><Link href="/services/branding" className="footer-link">Branding Identity</Link></li>
           </ul>
         </div>
 

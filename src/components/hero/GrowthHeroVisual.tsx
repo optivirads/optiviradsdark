@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useSyncExternalStore } from 'react';
 
 // Pre-defined bar metrics in the 600 x 460 SVG coordinate space
 const BARS_DATA = [
@@ -31,18 +31,18 @@ export default function GrowthHeroVisual() {
 
   // Mouse Parallax (desktop only)
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const isReducedMotion = useSyncExternalStore(
+    (callback) => {
+      if (typeof window === 'undefined') return () => {};
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      mq.addEventListener('change', callback);
+      return () => mq.removeEventListener('change', callback);
+    },
+    () => (typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false),
+    () => false
+  );
 
-  // Check prefers-reduced-motion
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setIsReducedMotion(mq.matches);
-    if (mq.matches) {
-      setProgress(1);
-      setHasStarted(true);
-      setChartFadeOpacity(1);
-    }
-  }, []);
+
 
   // Measure path length on mount
   useEffect(() => {
@@ -238,23 +238,23 @@ export default function GrowthHeroVisual() {
         {/* 3–4 Translucent Geometric Prisms */}
         <div className="growth-prism prism-top">
           <svg width="48" height="48" viewBox="0 0 50 50" fill="none">
-            <polygon points="25,4 46,25 25,46 4,25" stroke="rgba(139, 92, 246, 0.4)" strokeWidth="1.2" fill="rgba(139, 92, 246, 0.08)" />
-            <line x1="25" y1="4" x2="25" y2="46" stroke="rgba(0, 242, 254, 0.3)" strokeWidth="1" />
-            <line x1="4" y1="25" x2="46" y2="25" stroke="rgba(0, 255, 135, 0.3)" strokeWidth="1" />
+            <polygon points="25,4 46,25 25,46 4,25" stroke="rgba(176, 31, 58, 0.4)" strokeWidth="1.2" fill="rgba(176, 31, 58, 0.08)" />
+            <line x1="25" y1="4" x2="25" y2="46" stroke="rgba(248, 246, 243, 0.3)" strokeWidth="1" />
+            <line x1="4" y1="25" x2="46" y2="25" stroke="rgba(176, 31, 58, 0.3)" strokeWidth="1" />
           </svg>
         </div>
 
         <div className="growth-prism prism-left">
           <svg width="38" height="38" viewBox="0 0 40 40" fill="none">
-            <polygon points="20,3 37,35 3,35" stroke="rgba(0, 255, 135, 0.35)" strokeWidth="1" fill="rgba(0, 255, 135, 0.06)" />
-            <line x1="20" y1="3" x2="20" y2="35" stroke="rgba(0, 242, 254, 0.25)" strokeWidth="1" />
+            <polygon points="20,3 37,35 3,35" stroke="rgba(176, 31, 58, 0.35)" strokeWidth="1" fill="rgba(176, 31, 58, 0.06)" />
+            <line x1="20" y1="3" x2="20" y2="35" stroke="rgba(248, 246, 243, 0.25)" strokeWidth="1" />
           </svg>
         </div>
 
         <div className="growth-prism prism-right">
           <svg width="44" height="44" viewBox="0 0 46 46" fill="none">
-            <polygon points="23,3 43,15 43,37 23,43 3,37 3,15" stroke="rgba(0, 242, 254, 0.3)" strokeWidth="1" fill="rgba(0, 242, 254, 0.06)" />
-            <polygon points="23,10 37,20 37,34 23,38 9,34 9,20" stroke="rgba(139, 92, 246, 0.25)" strokeWidth="0.8" fill="none" />
+            <polygon points="23,3 43,15 43,37 23,43 3,37 3,15" stroke="rgba(176, 31, 58, 0.3)" strokeWidth="1" fill="rgba(176, 31, 58, 0.06)" />
+            <polygon points="23,10 37,20 37,34 23,38 9,34 9,20" stroke="rgba(58, 64, 82, 0.35)" strokeWidth="0.8" fill="none" />
           </svg>
         </div>
       </div>
@@ -268,25 +268,25 @@ export default function GrowthHeroVisual() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            {/* Emerald Growth Line Gradient */}
+            {/* Crimson Growth Line Gradient */}
             <linearGradient id="growthLineGrad" x1="45" y1="405" x2="520" y2="80" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#00ff87" />
-              <stop offset="0.65" stopColor="#00f2fe" />
-              <stop offset="1" stopColor="#00ff87" />
+              <stop stopColor="#B01F3A" />
+              <stop offset="0.65" stopColor="#E11D48" />
+              <stop offset="1" stopColor="#F43F5E" />
             </linearGradient>
 
             {/* Glass Bar Vertical Fill Gradient */}
             <linearGradient id="barGlassFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#00ff87" stopOpacity="0.32" />
-              <stop offset="60%" stopColor="#00f2fe" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#030712" stopOpacity="0.04" />
+              <stop offset="0%" stopColor="#B01F3A" stopOpacity="0.35" />
+              <stop offset="60%" stopColor="#14233F" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#0F1B32" stopOpacity="0.04" />
             </linearGradient>
 
             {/* Target Outer Ripple Gradient */}
             <radialGradient id="targetGlowRadial" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#00ff87" stopOpacity="0.9" />
-              <stop offset="35%" stopColor="#00f2fe" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#00ff87" stopOpacity="0" />
+              <stop offset="0%" stopColor="#B01F3A" stopOpacity="0.9" />
+              <stop offset="35%" stopColor="#E11D48" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#B01F3A" stopOpacity="0" />
             </radialGradient>
 
             {/* Filters */}
@@ -351,7 +351,7 @@ export default function GrowthHeroVisual() {
                       height={bar.height}
                       rx="5"
                       fill="url(#barGlassFill)"
-                      stroke="rgba(0, 255, 135, 0.4)"
+                      stroke="rgba(176, 31, 58, 0.4)"
                       strokeWidth="1"
                     />
                     {/* Neon Top-Cap Highlight */}
@@ -384,7 +384,7 @@ export default function GrowthHeroVisual() {
             {/* Faint Guide Trail */}
             <path
               d={SVG_PATH_D}
-              stroke="rgba(0, 255, 135, 0.12)"
+              stroke="rgba(176, 31, 58, 0.2)"
               strokeWidth="2"
               strokeDasharray="4 6"
               fill="none"
@@ -399,7 +399,7 @@ export default function GrowthHeroVisual() {
               fill="none"
             />
 
-            {/* Main Glowing Emerald Growth Line */}
+            {/* Main Glowing Crimson Growth Line */}
             <path
               d={SVG_PATH_D}
               stroke="url(#growthLineGrad)"
@@ -438,9 +438,9 @@ export default function GrowthHeroVisual() {
               }}
             >
               {/* Sonar Ripple Rings */}
-              <circle cx="0" cy="0" r="32" stroke="rgba(0, 255, 135, 0.35)" strokeWidth="1.2" fill="none" className="target-sonar-ring r-outer" />
-              <circle cx="0" cy="0" r="20" stroke="rgba(0, 255, 135, 0.65)" strokeWidth="1.4" fill="none" className="target-sonar-ring r-mid" />
-              <circle cx="0" cy="0" r="10" stroke="rgba(0, 242, 254, 0.85)" strokeWidth="1.5" fill="none" />
+              <circle cx="0" cy="0" r="32" stroke="rgba(176, 31, 58, 0.35)" strokeWidth="1.2" fill="none" className="target-sonar-ring r-outer" />
+              <circle cx="0" cy="0" r="20" stroke="rgba(176, 31, 58, 0.65)" strokeWidth="1.4" fill="none" className="target-sonar-ring r-mid" />
+              <circle cx="0" cy="0" r="10" stroke="rgba(248, 246, 243, 0.85)" strokeWidth="1.5" fill="none" />
 
               {/* Glowing Bullseye Center Orb */}
               <circle cx="0" cy="0" r="5.5" fill="#ffffff" filter="url(#orbPulseFilter)" />

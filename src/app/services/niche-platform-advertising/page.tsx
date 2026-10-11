@@ -3,13 +3,10 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { 
   Compass, 
-  CheckCircle2, 
   ArrowRight, 
   ArrowLeft,
-  Sparkles,
   Target,
-  Users,
-  TrendingUp
+  Users
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
@@ -31,9 +28,9 @@ export default function NichePlatformAdvertisingPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "OptiVir Ads",
-      "url": "https://optivirads.com"
+      "url": "https://www.optivirads.com"
     },
-    "areaServed": "IN",
+    "areaServed": ["IN", "AE", "QA"],
     "description": "Custom campaigns on LinkedIn, Snapchat, and Twitter/X utilizing B2B firmographics and native vertical layouts."
   };
 

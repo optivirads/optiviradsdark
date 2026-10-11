@@ -35,7 +35,7 @@ export const seoFaqs: FAQItemData[] = [
   {
     question: "How long does SEO take to show results for a Kerala business?",
     answer: "Sustainable <strong>organic SEO results for Kerala businesses</strong> typically begin to appear within <strong>3 to 4 months</strong> for lower-competition local keywords, with more competitive phrases taking 5 to 9 months. Our approach accelerates early results by simultaneously targeting <strong>low-competition long-tail keywords</strong> while building topical authority for broader terms. We also implement <strong>local citation building</strong> and GBP optimization that can produce Map Pack visibility gains within 4 to 6 weeks of campaign start.",
-    link: { text: "Read our Local SEO blueprint case study", url: "/blog/local-seo-domination-blueprint" }
+    link: { text: "Read our Local SEO guide for Kerala businesses", url: "/blog/the-ultimate-guide-to-local-seo-for-kerala-businesses-in-2026" }
   },
   {
     question: "What is Local SEO and how does OptiVir Ads dominate Google Map Pack results?",
@@ -43,11 +43,11 @@ export const seoFaqs: FAQItemData[] = [
   },
   {
     question: "Does OptiVir Ads guarantee first-page Google rankings?",
-    answer: "No ethical <strong>SEO agency in Kerala</strong> or globally can guarantee specific #1 Google rankings — Google's algorithm involves over 200 ranking factors and changes regularly. What we guarantee is a <strong>transparent, structured optimization methodology</strong> grounded in technical excellence and keyword research. Our track record shows consistent organic ranking improvements, <strong>+140% average traffic growth</strong>, and real increases in qualified lead volume. We provide monthly ranking reports so you can track every move we make."
+    answer: "No ethical <strong>SEO agency in Kerala</strong> or globally can guarantee specific #1 Google rankings — Google's algorithm involves over 200 ranking factors and changes regularly. What we guarantee is a <strong>transparent, structured optimization methodology</strong> grounded in technical excellence and keyword research. Our track record shows consistent organic ranking improvements and real increases in qualified lead volume. We provide monthly ranking reports so you can track every move we make."
   },
   {
-    question: "How does FAQ schema markup improve organic search rankings in Kerala?",
-    answer: "By injecting <strong>FAQPage JSON-LD schema markup</strong> into service pages, Google's search crawlers can parse your questions and display them directly in <strong>'People Also Ask' (PAA) boxes</strong> and <strong>rich result search snippets</strong>. This expands your organic search real estate without additional ad spend and significantly boosts <strong>click-through rates (CTR)</strong>. For local businesses in Kerala competing for high-value queries, FAQ-rich snippets can be the difference between being invisible and owning multiple positions on page one."
+    question: "How does structured FAQ content support search engine understanding?",
+    answer: "Structured FAQ content and Schema markup help search engines clearly parse your questions, answers, and subject authority. While Google no longer provides expanded FAQ rich snippet accordions for commercial websites and schema does not guarantee search placements, structured questions help search engines interpret page intent and provide direct answers for voice search and conversational queries."
   }
 ];
 

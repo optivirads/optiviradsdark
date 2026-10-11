@@ -13,7 +13,8 @@ import {
   ArrowRight,
   Mail,
   BarChart3,
-  Palette
+  Palette,
+  MapPin
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
@@ -136,6 +137,21 @@ const servicesData = [
     ],
     metric: 'Organic Traffic Growth',
     metricValue: '+140%'
+  },
+  {
+    id: 'google-maps',
+    title: 'Google Maps Marketing & GBP',
+    slug: 'google-maps-marketing',
+    icon: <MapPin size={24} />,
+    badgeClass: 'cyan',
+    desc: 'Dominate the Google Map 3-Pack in Kannur, Kerala, and the GCC. Complete Google Business Profile setup, local citations, review collection workflows, and monthly call tracking.',
+    bullets: [
+      'Map 3-Pack Optimization: Category mapping, geo-tagged photos, and service menus.',
+      'Review Velocity System: Front-desk QR code stands & automated WhatsApp review requests.',
+      'Local Geo-Citations: NAP directory consistency & LocalBusiness schema implementation.'
+    ],
+    metric: 'Local Call Discovery',
+    metricValue: '+180%'
   },
   {
     id: 'content',

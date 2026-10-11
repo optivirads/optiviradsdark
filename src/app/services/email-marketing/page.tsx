@@ -3,11 +3,8 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { 
   Mail, 
-  CheckCircle2, 
   ArrowRight, 
   ArrowLeft,
-  Sparkles,
-  Zap,
   TrendingUp,
   Inbox
 } from 'lucide-react';
@@ -31,9 +28,9 @@ export default function EmailMarketingPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "OptiVir Ads",
-      "url": "https://optivirads.com"
+      "url": "https://www.optivirads.com"
     },
-    "areaServed": "IN",
+    "areaServed": ["IN", "AE", "QA"],
     "description": "Automated email newsletters, cart abandonment setups, and CRM list segmentation filters to maximize customer retention."
   };
 

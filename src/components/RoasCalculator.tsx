@@ -75,15 +75,18 @@ function Slider({ label, value, min, max, step, format, onChange, minLabel, maxL
 export default function RoasCalculator() {
   const [strategyIdx, setStrategyIdx] = useState(0);
   const [budget, setBudget] = useState(50000);
-  const [convRate, setConvRate] = useState(2.5);
-  const [dealValue, setDealValue] = useState(2000);
+  const [enquiryRate, setEnquiryRate] = useState(3.0);
+  const [closeRate, setCloseRate] = useState(20);
+  const [dealValue, setDealValue] = useState(2500);
 
   const strategy = STRATEGIES[strategyIdx];
 
   /* Derived outputs */
-  const clicks = strategy.cpcBase > 0 ? Math.round(budget / strategy.cpcBase) : Math.round(budget / 20);
-  const leads = Math.round(clicks * (convRate / 100));
-  const revenue = Math.round(leads * dealValue);
+  const estCpc = strategy.cpcBase > 0 ? strategy.cpcBase : 25;
+  const clicks = Math.round(budget / estCpc);
+  const enquiries = Math.round(clicks * (enquiryRate / 100));
+  const customers = Math.max(1, Math.round(enquiries * (closeRate / 100)));
+  const revenue = Math.round(customers * dealValue);
   const roas = budget > 0 ? revenue / budget : 0;
 
   /* Animate revenue on change */
@@ -128,7 +131,7 @@ export default function RoasCalculator() {
 
           {/* Sliders */}
           <Slider
-            label="Monthly Budget Allocation"
+            label="Monthly Ad Spend"
             value={budget}
             min={10000}
             max={500000}
@@ -140,19 +143,31 @@ export default function RoasCalculator() {
           />
 
           <Slider
-            label="Conversion Rate"
-            value={convRate}
+            label="Website Enquiry Rate (% of clicks that enquire)"
+            value={enquiryRate}
             min={0.5}
             max={10}
             step={0.1}
             format={(v) => `${v.toFixed(1)}%`}
-            onChange={setConvRate}
+            onChange={setEnquiryRate}
             minLabel="0.5%"
             maxLabel="10.0%"
           />
 
           <Slider
-            label="Average Deal / Sale Value"
+            label="Sales Closing Rate (% of enquiries that become customers)"
+            value={closeRate}
+            min={5}
+            max={80}
+            step={1}
+            format={(v) => `${v}%`}
+            onChange={setCloseRate}
+            minLabel="5%"
+            maxLabel="80%"
+          />
+
+          <Slider
+            label="Average Sale / Customer Value"
             value={dealValue}
             min={500}
             max={50000}
@@ -175,22 +190,32 @@ export default function RoasCalculator() {
             {formatINR(revenue)}
           </div>
 
-          <div className="roas-out-row">
+          <div className="roas-out-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.65rem' }}>
             <div className="roas-out-cell">
-              <div className="roas-out-label">ESTIMATED LEADS / SALES</div>
-              <div className="roas-out-num">{leads.toLocaleString('en-IN')}</div>
+              <div className="roas-out-label">EST. ENQUIRIES</div>
+              <div className="roas-out-num">{enquiries.toLocaleString('en-IN')}</div>
             </div>
             <div className="roas-out-cell">
-              <div className="roas-out-label">PROJECTED PIPELINE ROAS</div>
+              <div className="roas-out-label">EST. CUSTOMERS</div>
+              <div className="roas-out-num">{customers.toLocaleString('en-IN')}</div>
+            </div>
+            <div className="roas-out-cell">
+              <div className="roas-out-label">EST. ROAS</div>
               <div className="roas-out-num">{roas.toFixed(1)}×</div>
             </div>
+          </div>
+
+          <div style={{ padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
+              <strong>Assumption note:</strong> Based on ~{clicks.toLocaleString('en-IN')} estimated clicks at ~₹{estCpc} average CPC. Output is an estimate. Advertising return (ROAS) compares revenue directly to ad spend, before factoring in cost of goods, rent, or staff.
+            </p>
           </div>
 
           <Link
             href="/free-marketing-audit"
             className="roas-cta-btn"
           >
-            UNLOCK THIS PIPELINE <ArrowRight size={16} />
+            DISCUSS THIS PROJECTION <ArrowRight size={16} />
           </Link>
         </div>
       </div>
@@ -334,8 +359,8 @@ export default function RoasCalculator() {
           width: 18px;
           height: 18px;
           border-radius: 50%;
-          background: var(--accent-green);
-          box-shadow: 0 0 12px rgba(0,255,135,0.55);
+          background: var(--accent-crimson);
+          box-shadow: 0 0 12px rgba(176,31,58,0.55);
           transform: translateX(-50%);
           top: 50%;
           margin-top: -9px;
@@ -392,7 +417,7 @@ export default function RoasCalculator() {
           font-family: var(--font-serif);
           font-size: 3.25rem;
           font-weight: 800;
-          color: var(--accent-green);
+          color: var(--accent-crimson);
           line-height: 1;
           letter-spacing: -0.02em;
         }
@@ -427,8 +452,8 @@ export default function RoasCalculator() {
           align-items: center;
           justify-content: center;
           gap: 0.6rem;
-          background: var(--accent-green);
-          color: #030712;
+          background: var(--accent-crimson);
+          color: #ffffff;
           font-size: 0.8125rem;
           font-weight: 800;
           letter-spacing: 0.08em;
@@ -440,9 +465,9 @@ export default function RoasCalculator() {
         }
 
         .roas-cta-btn:hover {
-          background: #00e07a;
+          background: #96172f;
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0,255,135,0.35);
+          box-shadow: 0 8px 24px rgba(176,31,58,0.45);
         }
       `}</style>
     </div>

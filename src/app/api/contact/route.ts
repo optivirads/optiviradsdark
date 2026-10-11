@@ -69,13 +69,13 @@ ${message}
         `,
         html: `
           <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-            <h2 style="color: #00f2fe; border-bottom: 2px solid #00f2fe; padding-bottom: 10px;">New Contact Submission</h2>
+            <h2 style="color: #B01F3A; border-bottom: 2px solid #B01F3A; padding-bottom: 10px;">New Contact Submission</h2>
             <p><strong>Name:</strong> ${safeName}</p>
             <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
             <p><strong>Company/URL:</strong> ${safeCompany}</p>
             <br />
-            <h3 style="color: #8b5cf6;">Message:</h3>
-            <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; border-left: 4px solid #8b5cf6; white-space: pre-wrap;">${safeMessage}</div>
+            <h3 style="color: #0F1B32;">Message:</h3>
+            <div style="background: #f8f6f3; padding: 15px; border-radius: 8px; border-left: 4px solid #B01F3A; white-space: pre-wrap;">${safeMessage}</div>
           </div>
         `,
       };

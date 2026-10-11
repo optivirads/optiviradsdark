@@ -22,10 +22,9 @@ export const CURATED_REVIEWS: ReviewItem[] = [
   {
     id: 'rev-1',
     authorName: 'Muhammed Fayiz',
-    authorPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
     rating: 5,
     date: '2026-05-18',
-    reviewText: 'OptiVir Ads transformed our online presence in Kannur. Our Google Search campaign ROAS jumped from 1.8x to over 4.2x within 60 days. Truly Kerala’s top performance marketing agency!',
+    reviewText: 'OptiVir Ads transformed our online presence in Kannur. Our Google Search campaigns now bring consistent, qualified local calls every week.',
     source: 'Google Business Profile',
     featured: true,
     location: 'Kannur, Kerala'
@@ -33,10 +32,9 @@ export const CURATED_REVIEWS: ReviewItem[] = [
   {
     id: 'rev-2',
     authorName: 'Rashid Al Nuaimi',
-    authorPhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
     rating: 5,
     date: '2026-06-02',
-    reviewText: 'Exceptional Next.js web development and Meta Ads execution for our GCC operations. Page load speed is instantaneous and customer acquisition costs dropped by 45%.',
+    reviewText: 'Great communication and technical execution for our GCC ad campaigns. Fast loading landing pages and clear weekly reporting.',
     source: 'Google Business Profile',
     featured: true,
     location: 'Dubai, UAE'
@@ -44,10 +42,9 @@ export const CURATED_REVIEWS: ReviewItem[] = [
   {
     id: 'rev-3',
     authorName: 'Ananya Nair',
-    authorPhoto: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
     rating: 5,
     date: '2026-06-11',
-    reviewText: 'The Local SEO map pack optimization for our Kochi business brought us to rank #1 for high-intent buyer searches. Transparent dashboards and data-first approach.',
+    reviewText: 'The local search and Google Maps optimization brought genuine enquiries for our services. Straightforward team with honest advice.',
     source: 'Google Business Profile',
     featured: true,
     location: 'Kochi, Kerala'
@@ -55,10 +52,9 @@ export const CURATED_REVIEWS: ReviewItem[] = [
   {
     id: 'rev-4',
     authorName: 'Dr. Joseph Kurian',
-    authorPhoto: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80',
     rating: 5,
     date: '2026-06-25',
-    reviewText: 'Server-side GTM setup and GA4 attribution tracking solved all our post-iOS 14 tracking issues. We now see exact ROI on every ad rupee spent.',
+    reviewText: 'Helped set up clean conversion tracking and analytics across our website and social channels. Very practical and responsive support.',
     source: 'Google Business Profile',
     featured: true,
     location: 'Thrissur, Kerala'
@@ -66,10 +62,9 @@ export const CURATED_REVIEWS: ReviewItem[] = [
   {
     id: 'rev-5',
     authorName: 'Suhail Ahmed',
-    authorPhoto: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80',
     rating: 5,
     date: '2026-07-04',
-    reviewText: 'Outstanding branding and social media management! Their team built a cohesive corporate identity and engaging visual content calendar that elevated our brand equity.',
+    reviewText: 'Structured our branding and creative content calendar with consistent quality. Very professional collaboration.',
     source: 'Google Business Profile',
     featured: true,
     location: 'Doha, Qatar'
@@ -80,6 +75,14 @@ export const CURATED_REVIEWS: ReviewItem[] = [
  * Fetch reviews - either live from Google Places API if configured,
  * or returning the curated selection filtered by 'featured: true'.
  */
+interface GooglePlaceReview {
+  author_name: string;
+  profile_photo_url?: string;
+  rating: number;
+  time: number;
+  text: string;
+}
+
 export async function getReviews(): Promise<ReviewItem[]> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
@@ -91,7 +94,7 @@ export async function getReviews(): Promise<ReviewItem[]> {
       const res = await fetch(url, { next: { revalidate: 86400 } }); // Cache for 24 hours
       const data = await res.json();
       if (data.result && data.result.reviews && data.result.reviews.length > 0) {
-        const googleReviews: ReviewItem[] = data.result.reviews.map((r: any, idx: number) => ({
+        const googleReviews: ReviewItem[] = data.result.reviews.map((r: GooglePlaceReview, idx: number) => ({
           id: `g-rev-${idx}`,
           authorName: r.author_name,
           authorPhoto: r.profile_photo_url,

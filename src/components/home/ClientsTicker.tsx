@@ -8,9 +8,48 @@ interface ClientsTickerProps {
   clients: ClientLogo[];
 }
 
+const DEFAULT_CLIENTS: ClientLogo[] = [
+  { id: 30, name: "Hijabi Ladies Beauty Salon", logoUrl: "/images/clients/hijabi-salon.jpeg" },
+  { id: 32, name: "Ameen Al Arab Cleaning", logoUrl: "/images/clients/ameen-al-arab.jpeg" },
+];
+
+const isExcludedLogo = (client: ClientLogo) => {
+  const name = (client.name || '').toLowerCase();
+  const url = (client.logoUrl || '').toLowerCase();
+  // Exclude the Gold OV logo
+  if (name.includes('gold') || url.includes('gold-logo') || url.includes('logo-transparent-gold')) {
+    return true;
+  }
+  // Exclude the square/tall logo version of Ameen Al Arab (keep the rectangular banner one)
+  if (url.includes('client-logo-1') || url.includes('logo--scaled') || name.includes('al noor')) {
+    return true;
+  }
+  return false;
+};
+
 export default function ClientsTicker({ clients }: ClientsTickerProps) {
-  // Create a duplicated list for seamless marquee scrolling - using 3 replicates to keep DOM size highly performant
-  const marqueeClients = Array.from({ length: 3 }).flatMap(() => clients);
+  // Filter out any excluded logos from WordPress props
+  const validPropClients = (clients && clients.length > 0)
+    ? clients.filter(c => Boolean(c.logoUrl) && !isExcludedLogo(c))
+    : [];
+
+  const combinedClients = [...validPropClients];
+  for (const def of DEFAULT_CLIENTS) {
+    if (!combinedClients.some(c => c.name.toLowerCase().trim() === def.name.toLowerCase().trim())) {
+      combinedClients.push(def);
+    }
+  }
+
+  const baseClients = combinedClients.length > 0 ? combinedClients : DEFAULT_CLIENTS;
+
+  // Build a single cycle wide enough to span and exceed wide screens (at least 20 items)
+  let singleCycle: ClientLogo[] = [];
+  while (singleCycle.length < 20) {
+    singleCycle = [...singleCycle, ...baseClients];
+  }
+
+  // Exactly 2 identical cycles so translating by -50% produces a seamless, continuous infinite loop with zero jump
+  const marqueeClients = [...singleCycle, ...singleCycle];
 
   return (
     <section className="clients-ticker-section">
@@ -20,89 +59,28 @@ export default function ClientsTicker({ clients }: ClientsTickerProps) {
       <div className="ov-client-marquee mt-10" aria-label="Client logos">
         <div className="ov-client-track">
           {marqueeClients.map((client, idx) => (
-            <ClientLogoItem key={`client-${client.id}-${idx}`} name={client.name} url={client.logoUrl} />
+            <div 
+              key={`client-${client.id}-${idx}`} 
+              className="ov-client-logo"
+              aria-hidden={idx >= singleCycle.length ? "true" : undefined}
+            >
+              {client.logoUrl ? (
+                <Image 
+                  src={client.logoUrl} 
+                  alt={`${client.name} logo`} 
+                  width={160} 
+                  height={56} 
+                  unoptimized
+                  draggable={false}
+                  style={{ objectFit: 'contain', width: 'auto', maxHeight: '48px' }}
+                />
+              ) : (
+                <span className="client-logo-text">{client.name}</span>
+              )}
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
-
-function ClientLogoItem({ name, url }: { name: string; url: string }) {
-  if (url) {
-    return (
-      <Image 
-        src={url} 
-        alt={`${name} logo`} 
-        width={150} 
-        height={70} 
-        className="ov-client-logo" 
-        style={{ objectFit: 'contain' }}
-      />
-    );
-  }
-
-  // Fallback inline SVGs for mock clients
-  switch (name.toLowerCase()) {
-    case 'nexus':
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <svg viewBox="0 0 120 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="client-logo-svg" style={{ width: '120px', height: '40px' }}>
-            <path d="M20 10L10 15l10 5 10-5-10-5zM10 25l10 5 10-5M10 20l10 5 10-5" />
-            <text x="45" y="25" fill="currentColor" fontSize="13" fontFamily="var(--font-jakarta)" fontWeight="700" letterSpacing="2" stroke="none">NEXUS</text>
-          </svg>
-        </div>
-      );
-    case 'vertex':
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <svg viewBox="0 0 120 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="client-logo-svg" style={{ width: '120px', height: '40px' }}>
-            <path d="M10 10l10 20L30 10M15 15l5 10 5-10" />
-            <text x="45" y="25" fill="currentColor" fontSize="13" fontFamily="var(--font-jakarta)" fontWeight="700" letterSpacing="2" stroke="none">VERTEX</text>
-          </svg>
-        </div>
-      );
-    case 'aero':
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <svg viewBox="0 0 120 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="client-logo-svg" style={{ width: '120px', height: '40px' }}>
-            <path d="M10 20c5-5 15-5 20 0M12 15c4-4 12-4 16 0M14 25c3-3 9-3 12 0" />
-            <text x="45" y="25" fill="currentColor" fontSize="13" fontFamily="var(--font-jakarta)" fontWeight="700" letterSpacing="2" stroke="none">AERO</text>
-          </svg>
-        </div>
-      );
-    case 'pulse':
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <svg viewBox="0 0 120 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="client-logo-svg" style={{ width: '120px', height: '40px' }}>
-            <path d="M10 20h6l3-8 4 16 3-8h6" />
-            <text x="45" y="25" fill="currentColor" fontSize="13" fontFamily="var(--font-jakarta)" fontWeight="700" letterSpacing="2" stroke="none">PULSE</text>
-          </svg>
-        </div>
-      );
-    case 'zenith':
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <svg viewBox="0 0 120 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="client-logo-svg" style={{ width: '120px', height: '40px' }}>
-            <polygon points="20,8 24,16 32,16 26,22 28,30 20,25 12,30 14,22 8,16 16,16" />
-            <text x="45" y="25" fill="currentColor" fontSize="13" fontFamily="var(--font-jakarta)" fontWeight="700" letterSpacing="2" stroke="none">ZENITH</text>
-          </svg>
-        </div>
-      );
-    case 'apex':
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <svg viewBox="0 0 120 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="client-logo-svg" style={{ width: '120px', height: '40px' }}>
-            <path d="M10 28l10-16 10 16M15 20h10" />
-            <text x="45" y="25" fill="currentColor" fontSize="13" fontFamily="var(--font-jakarta)" fontWeight="700" letterSpacing="2" stroke="none">APEX</text>
-          </svg>
-        </div>
-      );
-    default:
-      return (
-        <div className="ov-client-logo flex items-center justify-center">
-          <span className="client-logo-text">{name}</span>
-        </div>
-      );
-  }
 }

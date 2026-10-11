@@ -123,7 +123,7 @@ export default function AntigravityParticles() {
         // Draw particle node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 242, 254, ${p.alpha})`; // Cyan neon glow
+        ctx.fillStyle = `rgba(176, 31, 58, ${p.alpha})`; // Brand crimson glow
         ctx.fill();
       });
 
@@ -143,8 +143,8 @@ export default function AntigravityParticles() {
             ctx.lineTo(p2.x, p2.y);
 
             const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-            gradient.addColorStop(0, `rgba(0, 242, 254, ${opacity})`); // Cyan
-            gradient.addColorStop(1, `rgba(0, 255, 135, ${opacity})`); // Green
+            gradient.addColorStop(0, `rgba(176, 31, 58, ${opacity})`); // Crimson
+            gradient.addColorStop(1, `rgba(248, 246, 243, ${opacity * 0.7})`); // Warm ivory
 
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 0.5;

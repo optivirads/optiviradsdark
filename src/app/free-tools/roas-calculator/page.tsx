@@ -43,15 +43,15 @@ const BENCHMARKS = [
 const HOW_IT_WORKS = [
   { icon: <Target size={22} />, title: 'Pick Your Channel', desc: 'Select the marketing channel that matches your campaign focus — Google, Meta, SEO, Email, LinkedIn, or YouTube.' },
   { icon: <BarChart3 size={22} />, title: 'Set Your Parameters', desc: 'Adjust your monthly budget, expected conversion rate, and average deal or sale value using the interactive sliders.' },
-  { icon: <TrendingUp size={22} />, title: 'See Real Projections', desc: 'Instantly see your estimated monthly revenue, projected leads/sales, and pipeline ROAS based on industry benchmarks.' },
+  { icon: <TrendingUp size={22} />, title: 'See Estimated Projections', desc: 'Instantly view your estimated monthly revenue, projected enquiries, paying customers, and ROAS based on your parameters.' },
   { icon: <Zap size={22} />, title: 'Unlock Your Pipeline', desc: 'Book a free audit and let our growth engineers turn these projections into a live, optimised campaign.' },
 ];
 
 const TRUST_STATS = [
-  { val: '₹4.2Cr+', label: 'Ad Spend Managed' },
-  { val: '4.1×', label: 'Average Client ROAS' },
-  { val: '130+', label: 'Campaigns Launched' },
-  { val: '98%', label: 'Client Retention Rate' },
+  { val: '100%', label: 'Ad Account Ownership Kept by You' },
+  { val: 'Direct', label: 'Billing Straight to Google & Meta' },
+  { val: 'Weekly', label: 'Transparent Performance Reports' },
+  { val: 'Zero', label: 'Locked Long-Term Contracts' },
 ];
 
 export default function RoasCalculatorPage() {
@@ -172,8 +172,8 @@ export default function RoasCalculatorPage() {
                 What is a Good ROAS?
               </h2>
               <p>
-                Return on Ad Spend (ROAS) is the single metric that dictates whether your digital marketing engine is scalable or a money drain.
-                A ROAS of <strong>1×</strong> means you break even. For every ₹1 you spend, you generate ₹1 in revenue — zero profit.
+                Return on Ad Spend (ROAS) compares gross revenue directly against advertising spend.
+                A return of <strong>1×</strong> means your revenue equals your advertising spend, but other business costs (such as product cost, rent, and overhead) remain.
               </p>
               <p>
                 For service businesses in India, a target ROAS between <strong>3× to 5×</strong> is considered healthy and profitable.
@@ -189,7 +189,7 @@ export default function RoasCalculatorPage() {
                 {[
                   { title: 'Decrease CPC', body: 'Improve your ad Quality Score on Google or Relevance Score on Meta. Tighter audience targeting and better creative reduces wasted spend and brings CPC down by 20–40%.' },
                   { title: 'Increase Landing Page Conversion Rate', body: 'Traffic is worthless if the page doesn\'t convert. Optimise above-the-fold content, load speed (target <2.5s LCP), and add strong social proof to push CVR from 1% to 3%+.' },
-                  { title: 'Raise Average Deal / Order Value', body: 'Introduce bundled offers, upsells, or higher-tier service packages. A 20% increase in AOV can double your ROAS without spending a single extra rupee on ads.' },
+                  { title: 'Raise Average Deal / Order Value', body: 'Introduce bundled offers, upsells, or higher-tier service packages. With sales volume and spend unchanged, a 20% increase in order value increases advertising return by 20% without extra ad spend.' },
                 ].map((item, i) => (
                   <li key={i} className="roas-guide-li">
                     <span className="roas-guide-num">{i + 1}</span>

@@ -41,10 +41,10 @@ export default function BlogPostingSchema({
       "name": "OptiVir Ads",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/images/logo.png`
+        "url": `${baseUrl}/images/optivir-brand-logo.png`
       }
     },
-    "image": imageUrl || `${baseUrl}/images/logo.png`
+    "image": imageUrl || `${baseUrl}/images/optivir-brand-logo.png`
   };
 
   return (

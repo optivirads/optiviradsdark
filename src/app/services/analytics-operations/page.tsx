@@ -3,11 +3,8 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { 
   BarChart3, 
-  CheckCircle2, 
   ArrowRight, 
   ArrowLeft,
-  Sparkles,
-  Zap,
   Activity,
   ShieldAlert
 } from 'lucide-react';
@@ -31,9 +28,9 @@ export default function AnalyticsOperationsPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "OptiVir Ads",
-      "url": "https://optivirads.com"
+      "url": "https://www.optivirads.com"
     },
-    "areaServed": "IN",
+    "areaServed": ["IN", "AE", "QA"],
     "description": "Server-side tag manager tracking, iOS 14 attribution mapping, and Looker Studio data consolidation."
   };
 

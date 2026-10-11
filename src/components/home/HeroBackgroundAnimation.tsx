@@ -35,10 +35,10 @@ export default function HeroBackgroundAnimation() {
       >
         <defs>
           <linearGradient id="laserBeamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#00ff87" stopOpacity="0" />
-            <stop offset="35%" stopColor="#00ff87" stopOpacity="0.85" />
+            <stop offset="0%" stopColor="#B01F3A" stopOpacity="0" />
+            <stop offset="35%" stopColor="#B01F3A" stopOpacity="0.85" />
             <stop offset="70%" stopColor="#ffffff" stopOpacity="1" />
-            <stop offset="100%" stopColor="#00f2fe" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#E11D48" stopOpacity="0.2" />
           </linearGradient>
 
           <filter id="neonBeamGlow" x="-25%" y="-25%" width="150%" height="150%">

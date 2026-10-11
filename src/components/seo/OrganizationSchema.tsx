@@ -9,7 +9,7 @@ export default function OrganizationSchema() {
     "@id": `${baseUrl}/#organization`,
     "name": "OptiVir Ads",
     "url": baseUrl,
-    "logo": `${baseUrl}/images/logo.png`,
+    "logo": `${baseUrl}/images/optivir-brand-logo.png`,
     "sameAs": [
       "https://facebook.com/optivirads",
       "https://www.instagram.com/optivirads",

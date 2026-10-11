@@ -36,12 +36,12 @@ export default function LocalBusinessSchema({
   const reviewList = reviews && reviews.length > 0 ? reviews : CURATED_REVIEWS;
   const metrics = getAggregateRating(reviewList);
 
-  const schema: Record<string, any> = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": name || "OptiVir Ads",
     "description": description || "Leading digital marketing, Google Ads, Meta Ads, and SEO agency in Kerala & GCC.",
-    "image": image || `${baseUrl}/images/logo.png`,
+    "image": image || `${baseUrl}/images/optivir-brand-logo.png`,
     "@id": `${baseUrl}/#organization`,
     "url": url || baseUrl,
     "telephone": telephone || "+919995037109",
@@ -81,7 +81,7 @@ export default function LocalBusinessSchema({
       "opens": "09:00",
       "closes": "18:00"
     },
-    "hasMap": "https://maps.google.com/?q=OptiVir+Ads+Kannur+Kerala",
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=OptiVir+Ads+Talap+Kannur",
     "areaServed": [
       { "@type": "City", "name": "Kannur" },
       { "@type": "City", "name": "Calicut" },
