@@ -77,7 +77,7 @@ export default function RoasCalculator() {
   const [budget, setBudget] = useState(50000);
   const [enquiryRate, setEnquiryRate] = useState(3.0);
   const [closeRate, setCloseRate] = useState(20);
-  const [dealValue, setDealValue] = useState(2500);
+  const [dealValue, setDealValue] = useState(20000);
 
   const strategy = STRATEGIES[strategyIdx];
 

@@ -39,21 +39,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
   return {
-    title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC Businesses',
-    description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
+    title: meta.title || 'Digital Marketing Agency in Kannur, Kerala | OptiVir Ads',
+    description: meta.description || 'OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.',
     alternates: {
       canonical: baseUrl,
     },
     openGraph: {
-      title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC Businesses',
-      description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
+      title: meta.title || 'Digital Marketing Agency in Kannur, Kerala | OptiVir Ads',
+      description: meta.description || 'OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.',
       url: baseUrl,
       siteName: 'OptiVir Ads',
       locale: 'en_US',
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`,
+          url: `${baseUrl}/images/og-share-1200x630.png`,
           width: 1200,
           height: 630,
           alt: 'OptiVir Ads Growth Marketing Agency',
@@ -62,9 +62,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC',
-      description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
-      images: [`${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`],
+      title: meta.title || 'Digital Marketing Agency in Kannur, Kerala | OptiVir Ads',
+      description: meta.description || 'OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.',
+      images: [`${baseUrl}/images/og-share-1200x630.png`],
     },
   };
 }

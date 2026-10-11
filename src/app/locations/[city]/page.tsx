@@ -128,7 +128,7 @@ export default async function LocationPage({ params }: Props) {
   const proofStats = [
     { label: "Data Accuracy", val: "99.8%" },
     { label: "Client ROAS", val: "4.2×" },
-    { label: "PageSpeed", val: "100/100" },
+    { label: "PageSpeed", val: "98/100" },
     { label: "Cadence", val: "Weekly" },
   ];
 

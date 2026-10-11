@@ -34,29 +34,29 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(baseUrl),
-    title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
-    description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+    title: meta.title || 'Digital Marketing Agency in Kannur, Kerala | OptiVir Ads',
+    description: meta.description || 'OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.',
     openGraph: {
-      title: meta.title || 'OptiVir Ads | Performance Digital Marketing Agency',
-      description: meta.description || 'Data-driven performance digital marketing agency specializing in SEO, Google Ads, Meta Ads, and custom Web Development.',
+      title: meta.title || 'Digital Marketing Agency in Kannur, Kerala | OptiVir Ads',
+      description: meta.description || 'OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.',
       url: baseUrl,
       siteName: 'OptiVir Ads',
       locale: 'en_US',
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/images/optivir-brand-logo.png`,
+          url: `${baseUrl}/images/og-share-1200x630.png`,
           width: 1200,
-          height: 360,
-          alt: 'OptiVir Ads Digital Marketing',
+          height: 630,
+          alt: 'OptiVir Ads Growth Marketing Agency',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: meta.title || 'OptiVir Ads',
-      description: meta.description,
-      images: [`${baseUrl}/images/optivir-brand-logo.png`],
+      title: meta.title || 'Digital Marketing Agency in Kannur, Kerala | OptiVir Ads',
+      description: meta.description || 'OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.',
+      images: [`${baseUrl}/images/og-share-1200x630.png`],
     },
     keywords: [
       'Digital Marketing Agency Kerala',

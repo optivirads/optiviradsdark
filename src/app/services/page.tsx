@@ -374,7 +374,7 @@ export default function Services() {
         <div className="container">
           <div className="section-header text-center">
             <h2 className="section-title">Calculate Your Growth Potential</h2>
-            <p className="section-subtitle">Select a service vertical and adjust parameters to see standard projections of your sales pipeline growth.</p>
+            <p className="section-subtitle">Select a service vertical and adjust parameters to see standard projections of your sales pipeline growth (illustrative estimate).</p>
           </div>
 
           <div className="roi-calc-container glass-card">
@@ -470,7 +470,7 @@ export default function Services() {
             {/* Live Outputs */}
             <div className="roi-outputs-panel">
               <div className="output-box">
-                <span className="output-label">Estimated Monthly Revenue</span>
+                <span className="output-label">Estimated Monthly Revenue (Illustrative Estimate)</span>
                 <span className="output-number text-gradient-green">
                   ₹{Math.round(estimatedRevenue).toLocaleString('en-IN')}
                 </span>
@@ -486,6 +486,10 @@ export default function Services() {
                   <span className="output-subnumber">{roas}x</span>
                 </div>
               </div>
+
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: '0.25rem', marginBottom: '0.75rem', lineHeight: '1.4' }}>
+                *Illustrative estimate based on average conversion benchmarks. Actual results depend on ad creative, sales funnel, and target audience.
+              </p>
 
               <div className="calc-action-row">
                 <Link href="/free-marketing-audit" className="btn-primary w-full justify-center">

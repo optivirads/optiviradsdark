@@ -27,12 +27,12 @@ export interface FaqItem {
 // Predefined mock metadata matching the OptiVir Ads branding and sections
 const MOCK_METADATA: Record<string, PageMetadata> = {
   home: {
-    title: "Scale Your Business with Precision-Engineered Digital Marketing | OptiVir Ads",
-    description: "Specializing in SEO, high-intent Google Ads, and data-driven Meta campaigns for ambitious brands looking to dominate their market.",
+    title: "Digital Marketing Agency in Kannur, Kerala | OptiVir Ads",
+    description: "OptiVir Ads is a digital marketing agency in Kannur, Kerala specializing in Local SEO, Google Ads, Meta Ads, and data-driven client growth.",
   },
   services: {
-    title: "Premium Marketing Capabilities & ROI-First Campaigns | OptiVir Ads",
-    description: "Explore our engineered digital marketing capabilities including Dominating Local Markets, High-Conversion Acquisition, and Authority Engineering.",
+    title: "Digital Marketing Services in Kerala | OptiVir Ads",
+    description: "Explore performance digital marketing services by OptiVir Ads: SEO, Google Ads, Meta Ads, web design, and local Maps marketing in Kerala & GCC.",
   },
   about: {
     title: "About Us | OptiVir Ads: ROI-First Methodology & Transparency",
@@ -682,6 +682,11 @@ async function wpFetch<T>(endpoint: string, fallback: T): Promise<T> {
 export async function getPageMetadata(pageKey: string): Promise<PageMetadata> {
   const fallback = MOCK_METADATA[pageKey] || MOCK_METADATA.home;
   
+  // Specific landing pages must strictly use the exact vetted titles and descriptions:
+  if (pageKey === 'home' || pageKey === 'services' || pageKey === 'blog') {
+    return fallback;
+  }
+  
   if (!WP_API_URL) {
     return fallback;
   }
@@ -728,11 +733,20 @@ export async function getServiceMetadata(slug: string): Promise<Metadata> {
       siteName: 'OptiVir Ads',
       locale: 'en_US',
       type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/images/og-share-1200x630.png`,
+          width: 1200,
+          height: 630,
+          alt: meta.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
+      images: [`${baseUrl}/images/og-share-1200x630.png`],
     },
     robots: {
       index: true,

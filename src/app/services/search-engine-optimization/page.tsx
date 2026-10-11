@@ -17,7 +17,44 @@ import Faq from '@/components/faq/Faq';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getServiceMetadata('search-engine-optimization');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+  const url = `${baseUrl}/services/search-engine-optimization`;
+  const title = 'SEO Services in Kerala & GCC | Search Engine Optimization | OptiVir Ads';
+  const description = 'Dominate Google search results and Local Map Pack with technical SEO, schema architecture, Core Web Vitals tuning, and high-intent keyword ranking by OptiVir Ads.';
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'OptiVir Ads',
+      locale: 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/images/og-share-1200x630.png`,
+          width: 1200,
+          height: 630,
+          alt: 'OptiVir Ads Search Engine Optimization Services',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${baseUrl}/images/og-share-1200x630.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
 }
 
 export default function SearchEngineOptimizationPage() {
@@ -224,7 +261,7 @@ export default function SearchEngineOptimizationPage() {
           <ScrollReveal direction="up" delay={150}>
             <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
               <h2 className="section-h2" style={{ fontSize: '1.8rem', marginBottom: '1.25rem', color: '#ffffff' }}>
-                Best SEO Company in Kerala &amp; Strategic Organic Search Domination
+                Performance SEO Agency in Kerala &amp; Strategic Organic Search Domination
               </h2>
               <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <p>
