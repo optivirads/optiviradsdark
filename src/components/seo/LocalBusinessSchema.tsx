@@ -38,14 +38,27 @@ export default function LocalBusinessSchema({
 
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["ProfessionalService", "LocalBusiness"],
     "name": name || "OptiVir Ads",
-    "description": description || "Leading digital marketing, Google Ads, Meta Ads, and SEO agency in Kerala & GCC.",
-    "image": image || `${baseUrl}/images/optivir-brand-logo.png`,
+    "description": description || "Performance digital marketing, Google Ads, Meta Ads, and SEO agency in Kerala & GCC.",
+    "image": image || `${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`,
+    "logo": `${baseUrl}/images/brand/OptiVir-Ads-Original-Symbol-512.png`,
     "@id": `${baseUrl}/#organization`,
     "url": url || baseUrl,
     "telephone": telephone || "+919995037109",
+    "email": "services@optivirads.com",
     "priceRange": "$$",
+    "currenciesAccepted": "INR, AED, USD",
+    "paymentAccepted": "Credit Card, UPI, Bank Transfer",
+    "knowsAbout": [
+      "Search Engine Optimization (SEO)",
+      "Google Ads Management",
+      "Meta Advertising",
+      "Google Maps Marketing",
+      "Local SEO",
+      "Next.js Web Development",
+      "Conversion Rate Optimization"
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": address?.streetAddress || "Green Building, Talap",

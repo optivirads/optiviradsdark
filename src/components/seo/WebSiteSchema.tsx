@@ -6,8 +6,15 @@ export default function WebSiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
     "name": "OptiVir Ads",
+    "alternateName": "OptiVir",
     "url": baseUrl,
+    "description": "Performance digital marketing agency in Kerala & GCC specializing in SEO, Google Ads, Meta Ads, and Next.js Web Development.",
+    "publisher": {
+      "@id": `${baseUrl}/#organization`
+    },
+    "inLanguage": ["en-US", "ml-IN"],
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${baseUrl}/blog?q={search_term_string}`,

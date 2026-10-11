@@ -1,0 +1,39 @@
+# OptiVir Ads
+
+> Performance Digital Marketing Agency specializing in Search Engine Optimization (SEO), High-Intent Google Ads (PPC), Meta Ads (Facebook & Instagram), Google Maps Marketing, and Custom Web Development for ambitious businesses across Kerala and the GCC.
+
+## Core Capabilities
+- **Search Engine Optimization (SEO)**: Technical SEO audits, local keyword research, authority link-building, FAQ schema implementation, and Core Web Vitals optimization.
+- **Google Advertising (PPC)**: High-intent Google Search, Shopping, and Performance Max campaigns optimized for target Cost-Per-Acquisition (tCPA) and verified phone calls.
+- **Meta Advertising**: High-converting Facebook & Instagram campaigns, custom creatives, multi-angle copy, and funnel retargeting.
+- **Google Maps Marketing**: Google Business Profile (GBP) optimization, geo-citations, Map Pack 3-Pack ranking, review acceleration, and local call tracking.
+- **Social Media Management (SMM)**: High-retention content creation, brand positioning, and community management.
+- **Custom Web Development**: Ultra-fast React & Next.js websites and landing pages engineered for maximum conversion rates and sub-second load times.
+- **Analytics & Operations**: Server-side tagging, Google Tag Manager, GA4 conversion tracking, and offline CRM attribution.
+
+## Service Locations
+- **Kerala, India**: Kannur (Headquarters), Kochi, Calicut, Thrissur, Trivandrum, and statewide.
+- **GCC / Middle East**: Dubai, Abu Dhabi, Sharjah, Ras Al Khaimah (UAE), Doha (Qatar), Saudi Arabia.
+
+## Verification & Trust
+- **Methodology**: ROAS-first, transparent ad spend tracking, zero vanity metrics.
+- **Pricing & Engagement**: Free Marketing Audit & Strategy Session, performance-tied retainers, and transparent monthly packages.
+- **Contact & Consultations**:
+  - Website: https://www.optivirads.com
+  - Free Business Review: https://www.optivirads.com/free-marketing-audit
+  - Direct Phone / WhatsApp: +91 99950 37109
+  - Official Email: services@optivirads.com
+
+## Key Pages & Resources
+- [Home Page](https://www.optivirads.com)
+- [All Capabilities](https://www.optivirads.com/services)
+- [SEO Services](https://www.optivirads.com/services/search-engine-optimization)
+- [Google Ads Management](https://www.optivirads.com/services/google-advertising)
+- [Meta Ads Agency](https://www.optivirads.com/services/meta-advertising)
+- [Google Maps Marketing](https://www.optivirads.com/services/google-maps-marketing)
+- [Social Media Management](https://www.optivirads.com/services/social-media-management)
+- [Web Development](https://www.optivirads.com/services/web-development)
+- [Free ROAS Calculator](https://www.optivirads.com/free-tools/roas-calculator)
+- [Free Marketing Audit](https://www.optivirads.com/free-marketing-audit)
+- [Locations](https://www.optivirads.com/locations)
+- [Digital Marketing Blog](https://www.optivirads.com/blog)

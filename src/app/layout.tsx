@@ -58,14 +58,27 @@ export async function generateMetadata(): Promise<Metadata> {
       description: meta.description,
       images: [`${baseUrl}/images/optivir-brand-logo.png`],
     },
+    keywords: [
+      'Digital Marketing Agency Kerala',
+      'Digital Marketing Agency Kannur',
+      'SEO Services Kerala',
+      'Google Ads Agency Kerala',
+      'Meta Ads Agency Kerala',
+      'Local SEO Kerala',
+      'Google Maps Marketing Kannur',
+      'Performance Marketing GCC',
+      'Next.js Web Development Kerala'
+    ],
     icons: {
       icon: [
-        { url: '/icon.png', type: 'image/png' },
+        { url: '/images/brand/OptiVir-Ads-Original-Symbol-32.png?v=3', sizes: '32x32', type: 'image/png' },
+        { url: '/images/brand/OptiVir-Ads-Original-Symbol-192.png?v=3', sizes: '192x192', type: 'image/png' },
+        { url: '/icon.png?v=3', sizes: '512x512', type: 'image/png' },
       ],
       apple: [
-        { url: '/apple-icon.png', type: 'image/png' },
+        { url: '/images/brand/apple-touch-icon.png?v=3', sizes: '180x180', type: 'image/png' },
       ],
-      shortcut: '/favicon.ico',
+      shortcut: '/favicon.ico?v=3',
     },
     manifest: '/manifest.webmanifest',
     robots: {
@@ -92,7 +105,13 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${outfit.variable} ${jakarta.variable}`} suppressHydrationWarning>
-      <head />
+      <head>
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/brand/OptiVir-Ads-Original-Symbol-32.png?v=3" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/brand/OptiVir-Ads-Original-Symbol-192.png?v=3" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/brand/apple-touch-icon.png?v=3" />
+        <link rel="shortcut icon" href="/favicon.ico?v=3" />
+        <link rel="help" type="text/plain" href="/llms.txt" title="LLM Context for AI Search" />
+      </head>
       <body suppressHydrationWarning style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
         {/* Google Tag Manager (noscript fallback) */}
         {gtmId && (

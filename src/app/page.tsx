@@ -27,6 +27,7 @@ import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import WebSiteSchema from '@/components/seo/WebSiteSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
+import FAQSchema from '@/components/seo/FAQSchema';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import ClientsTicker from '@/components/home/ClientsTicker';
@@ -52,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/images/logo.png`,
+          url: `${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`,
           width: 1200,
           height: 630,
           alt: 'OptiVir Ads Growth Marketing Agency',
@@ -63,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: meta.title || 'OptiVir Ads | Growth Marketing Agency for Kerala & GCC',
       description: meta.description || 'We help businesses acquire more customers through paid advertising, local SEO, social media and conversion-focused digital experiences across Kerala and the GCC.',
-      images: [`${baseUrl}/images/logo.png`],
+      images: [`${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`],
     },
   };
 }
@@ -88,6 +89,7 @@ export default async function Home() {
       <LocalBusinessSchema />
       <WebSiteSchema />
       <ReviewSchema reviews={reviews} />
+      <FAQSchema faqs={accordionFaqs} />
 
       {/* Background Grid Pattern */}
       <div className="grid-overlay" />
