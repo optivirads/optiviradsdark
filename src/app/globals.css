@@ -1509,11 +1509,11 @@ button {
   animation: particleFloat 6s ease-in-out infinite;
 }
 
-.growth-particle.p-1 { width: 3px; height: 3px; top: 22%; left: 35%; box-shadow: 0 0 8px #B01F3A; animation-delay: 0s; }
-.growth-particle.p-2 { width: 4px; height: 4px; top: 60%; left: 20%; box-shadow: 0 0 10px #F8F6F3; animation-delay: 1.5s; }
-.growth-particle.p-3 { width: 3px; height: 3px; bottom: 25%; right: 28%; box-shadow: 0 0 8px #B01F3A; animation-delay: 3s; }
-.growth-particle.p-4 { width: 4px; height: 4px; top: 15%; right: 40%; box-shadow: 0 0 10px #3A4052; animation-delay: 4.2s; }
-.growth-particle.p-5 { width: 3px; height: 3px; bottom: 45%; right: 12%; box-shadow: 0 0 8px #B01F3A; animation-delay: 2.2s; }
+.growth-particle.p-1 { width: 6px; height: 6px; top: 22%; left: 35%; box-shadow: 0 0 10px #00F2FE; animation-delay: 0s; }
+.growth-particle.p-2 { width: 7px; height: 7px; top: 60%; left: 20%; box-shadow: 0 0 12px #00FF87; animation-delay: 1.5s; }
+.growth-particle.p-3 { width: 6px; height: 6px; bottom: 25%; right: 28%; box-shadow: 0 0 10px #B01F3A; animation-delay: 3s; }
+.growth-particle.p-4 { width: 7px; height: 7px; top: 15%; right: 40%; box-shadow: 0 0 12px #00F2FE; animation-delay: 4.2s; }
+.growth-particle.p-5 { width: 6px; height: 6px; bottom: 45%; right: 12%; box-shadow: 0 0 10px #00FF87; animation-delay: 2.2s; }
 
 @keyframes particleFloat {
   0%   { transform: translate3d(0, 0, 0); opacity: 0.2; }

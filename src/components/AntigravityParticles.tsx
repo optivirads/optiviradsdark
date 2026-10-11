@@ -10,6 +10,7 @@ interface Particle {
   radius: number;
   alpha: number;
   baseAlpha: number;
+  colorRgb: string;
 }
 
 export default function AntigravityParticles() {
@@ -17,10 +18,6 @@ export default function AntigravityParticles() {
   const mouseRef = useRef({ x: -1000, y: -1000, active: false });
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      return;
-    }
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -36,11 +33,19 @@ export default function AntigravityParticles() {
 
     const initParticles = (width: number, height: number) => {
       const isMobile = checkIsMobile();
-      const maxParticles = isMobile ? 18 : 45;
+      const maxParticles = isMobile ? 24 : 50;
+      const colorPalette = [
+        '0, 242, 254',    // Cyan glow
+        '0, 255, 135',    // Neon green glow
+        '225, 45, 75',    // Crimson glow
+        '248, 246, 243',  // Ivory pearl
+      ];
       particles = [];
       for (let i = 0; i < maxParticles; i++) {
-        const radius = Math.random() * (isMobile ? 1.2 : 1.5) + 1;
-        const baseAlpha = Math.random() * (isMobile ? 0.35 : 0.4) + 0.15;
+        // Grains sized ~2.4px to 5.0px radius (5px to 10px diameter) so they are clearly visible
+        const radius = Math.random() * (isMobile ? 1.8 : 2.4) + 2.4;
+        const baseAlpha = Math.random() * 0.3 + 0.45;
+        const colorRgb = colorPalette[i % colorPalette.length];
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -49,6 +54,7 @@ export default function AntigravityParticles() {
           radius,
           alpha: baseAlpha,
           baseAlpha,
+          colorRgb,
         });
       }
     };
@@ -57,10 +63,8 @@ export default function AntigravityParticles() {
       const newWidth = window.innerWidth;
       const newHeight = window.innerHeight;
 
-      // On mobile browsers, scrolling toggles toolbars, firing resize with small height diffs.
-      // Ignore small height changes to prevent resetting canvas bitmap during scroll.
       const widthChanged = Math.abs(newWidth - lastWidth) > 5;
-      const heightChanged = Math.abs(newHeight - lastHeight) > 120; // Orientation change or large resize
+      const heightChanged = Math.abs(newHeight - lastHeight) > 120;
 
       if (force || lastWidth === 0 || widthChanged || heightChanged) {
         lastWidth = newWidth;
@@ -68,7 +72,6 @@ export default function AntigravityParticles() {
         canvas.width = newWidth;
         canvas.height = newHeight;
 
-        // Only recreate particles if initial load or significant resize/orientation change
         if (particles.length === 0 || widthChanged || heightChanged) {
           initParticles(newWidth, newHeight);
         }
@@ -84,8 +87,8 @@ export default function AntigravityParticles() {
 
       const mouse = mouseRef.current;
       const isMobile = checkIsMobile();
-      const connectionDistance = isMobile ? 90 : 120;
-      const mouseRadius = isMobile ? 110 : 150;
+      const connectionDistance = isMobile ? 95 : 125;
+      const mouseRadius = isMobile ? 110 : 160;
 
       // Update and draw particles
       particles.forEach((p) => {
@@ -94,12 +97,12 @@ export default function AntigravityParticles() {
         p.y += p.vy;
 
         // Reset if floated off top
-        if (p.y < -10) {
-          p.y = height + 10;
+        if (p.y < -15) {
+          p.y = height + 15;
           p.x = Math.random() * width;
         }
-        if (p.x < -10) p.x = width + 10;
-        if (p.x > width + 10) p.x = -10;
+        if (p.x < -15) p.x = width + 15;
+        if (p.x > width + 15) p.x = -15;
 
         // Mouse/Touch interaction (repulsion field & glow effect)
         if (mouse.active) {
@@ -112,7 +115,7 @@ export default function AntigravityParticles() {
             const angle = Math.atan2(dy, dx);
             p.x += Math.cos(angle) * force * 1.5;
             p.y += Math.sin(angle) * force * 1.5;
-            p.alpha = Math.min(p.baseAlpha * 2.2, 0.85);
+            p.alpha = Math.min(p.baseAlpha * 1.8, 0.95);
           } else {
             p.alpha += (p.baseAlpha - p.alpha) * 0.05;
           }
@@ -120,10 +123,20 @@ export default function AntigravityParticles() {
           p.alpha += (p.baseAlpha - p.alpha) * 0.05;
         }
 
-        // Draw particle node
+        // Draw soft luminescent halo for visible grain presence
+        const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2.2);
+        halo.addColorStop(0, `rgba(${p.colorRgb}, ${p.alpha * 0.7})`);
+        halo.addColorStop(0.5, `rgba(${p.colorRgb}, ${p.alpha * 0.25})`);
+        halo.addColorStop(1, `rgba(${p.colorRgb}, 0)`);
+        ctx.fillStyle = halo;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 2.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw solid grain core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(176, 31, 58, ${p.alpha})`; // Brand crimson glow
+        ctx.fillStyle = `rgba(${p.colorRgb}, ${Math.min(p.alpha * 1.3, 0.95)})`;
         ctx.fill();
       });
 
@@ -137,17 +150,17 @@ export default function AntigravityParticles() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
-            const opacity = (1 - dist / connectionDistance) * 0.15;
+            const opacity = (1 - dist / connectionDistance) * 0.18;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
 
             const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-            gradient.addColorStop(0, `rgba(176, 31, 58, ${opacity})`); // Crimson
-            gradient.addColorStop(1, `rgba(248, 246, 243, ${opacity * 0.7})`); // Warm ivory
+            gradient.addColorStop(0, `rgba(${p1.colorRgb}, ${opacity})`);
+            gradient.addColorStop(1, `rgba(${p2.colorRgb}, ${opacity * 0.8})`);
 
             ctx.strokeStyle = gradient;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.7;
             ctx.stroke();
           }
         }
@@ -156,7 +169,7 @@ export default function AntigravityParticles() {
 
     let isPageVisible = true;
     const updateFrame = () => {
-      if (!isPageVisible || checkIsMobile()) return;
+      if (!isPageVisible) return;
       drawParticles();
       animationFrameId = requestAnimationFrame(updateFrame);
     };
@@ -215,12 +228,7 @@ export default function AntigravityParticles() {
       updateFrame();
     };
 
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-      (window as any).requestIdleCallback(startParticleEngine, { timeout: 3500 });
-    } else {
-      startTimeout = setTimeout(startParticleEngine, 2500);
-    }
+    startTimeout = setTimeout(startParticleEngine, 100);
 
     return () => {
       if (startTimeout) clearTimeout(startTimeout);
@@ -235,7 +243,6 @@ export default function AntigravityParticles() {
     };
   }, []);
 
-
   return (
     <canvas
       ref={canvasRef}
@@ -248,11 +255,9 @@ export default function AntigravityParticles() {
         height: '100vh',
         zIndex: 0,
         pointerEvents: 'none',
-        opacity: 0.7,
+        opacity: 0.88,
         display: 'block',
       }}
     />
   );
 }
-
-
