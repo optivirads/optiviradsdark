@@ -233,12 +233,12 @@ export default function RoasCalculator() {
           perspective: 1400px;
           transform-style: preserve-3d;
           will-change: transform, box-shadow, border-color;
-          transform: perspective(1400px) translate3d(0, 0, 0) rotateX(0deg);
+          transform: translate3d(0, 0, 0);
           transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
         }
 
         .roas-calc-card:hover {
-          transform: perspective(1400px) translate3d(0, -8px, 12px) rotateX(2.5deg);
+          transform: translateY(-8px);
           border-color: rgba(176, 31, 58, 0.5);
           box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 10px 25px rgba(176, 31, 58, 0.3);
         }

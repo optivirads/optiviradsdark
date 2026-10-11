@@ -14,9 +14,9 @@ interface ScrollRevealProps {
 export default function ScrollReveal({
   children,
   delay = 0,
-  duration = 650,
+  duration = 850,
   direction = 'up',
-  distance = 48,
+  distance = 50,
 }: ScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -50,22 +50,22 @@ export default function ScrollReveal({
     }
   }, [isVisible, delay, duration]);
 
-  // Calculate CSS transform based on direction with distinct 3D flip-and-rise physics
+  // Calculate CSS transform based on direction with 180-degree rotation (no 3D flip)
   const getTransform = () => {
     if (hasFinished) return 'none';
     if (isVisible) {
-      return 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0) scale3d(1, 1, 1)';
+      return 'rotate(0deg) translate3d(0, 0, 0) scale3d(1, 1, 1)';
     }
     switch (direction) {
       case 'up':
       case 'flip-up':
-        return `perspective(1000px) rotateX(26deg) translate3d(0, ${distance}px, 0) scale3d(0.95, 0.95, 0.95)`;
+        return `rotate(-180deg) translate3d(0, ${distance}px, 0) scale3d(0.9, 0.9, 0.9)`;
       case 'down':
-        return `perspective(1000px) rotateX(-26deg) translate3d(0, -${distance}px, 0) scale3d(0.95, 0.95, 0.95)`;
+        return `rotate(180deg) translate3d(0, -${distance}px, 0) scale3d(0.9, 0.9, 0.9)`;
       case 'left':
-        return `perspective(1000px) rotateY(-12deg) translate3d(${distance}px, 0, 0)`;
+        return `rotate(-180deg) translate3d(${distance}px, 0, 0) scale3d(0.9, 0.9, 0.9)`;
       case 'right':
-        return `perspective(1000px) rotateY(12deg) translate3d(-${distance}px, 0, 0)`;
+        return `rotate(180deg) translate3d(-${distance}px, 0, 0) scale3d(0.9, 0.9, 0.9)`;
       default:
         return 'translate3d(0, 0, 0)';
     }
@@ -77,7 +77,7 @@ export default function ScrollReveal({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: getTransform(),
-        transformOrigin: direction === 'up' || direction === 'flip-up' ? '50% 100%' : 'center center',
+        transformOrigin: 'center center',
         transition: hasFinished
           ? 'none'
           : `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
