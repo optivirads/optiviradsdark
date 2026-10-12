@@ -1,232 +1,77 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
-  Building2, 
-  MapPin, 
-  Globe, 
-  Target, 
-  DollarSign, 
-  User, 
   CheckCircle, 
   ArrowRight, 
-  ArrowLeft, 
-  Phone, 
-  Sparkles, 
   MessageCircle, 
-  Search,
-  Calendar,
-  Dumbbell,
-  Scissors,
-  Stethoscope,
-  Store,
-  ShieldCheck,
-  Zap,
-  TrendingUp
+  Globe, 
+  MapPin, 
+  Target, 
+  Star, 
+  Clock, 
+  ShieldCheck, 
+  TrendingUp,
+  AlertCircle,
+  HelpCircle,
+  Phone
 } from 'lucide-react';
-
-function InstagramIcon({ size = 15, className = "" }: { size?: number; className?: string }) {
-  return (
-    <svg 
-      width={size} 
-      height={size} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      className={className}
-    >
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-    </svg>
-  );
-}
-import { animate, stagger } from 'animejs';
-import TextReveal from '@/components/TextReveal';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
-import ReviewsSection from '@/components/reviews/ReviewsSection';
 import { CURATED_REVIEWS } from '@/lib/reviews';
 
-const BUSINESS_CATEGORIES = [
-  { id: 'salon', label: 'Salon, Spa & Beauty', icon: Scissors },
-  { id: 'gym', label: 'Gym & Fitness Center', icon: Dumbbell },
-  { id: 'clinic', label: 'Clinic & Healthcare', icon: Stethoscope },
-  { id: 'retail', label: 'Retail & Local Store', icon: Store },
-  { id: 'other', label: 'Other Small Business', icon: Building2 },
+const GOAL_OPTIONS = [
+  { id: 'calls', label: 'More calls and enquiries' },
+  { id: 'maps', label: 'Better Google Maps ranking' },
+  { id: 'cpl', label: 'Lower cost per lead from ads' },
+  { id: 'unsure', label: 'Not sure, tell me what\'s wrong' },
 ];
 
-const FOCUS_OPTIONS = [
-  { 
-    id: 'appointments', 
-    label: 'More Appointment Bookings & Visits', 
-    desc: 'Fill open slots and generate consistent appointments for salons, spas, and clinics.' 
-  },
-  { 
-    id: 'trials', 
-    label: 'Trial Enquiries & Memberships', 
-    desc: 'Attract qualified local people who want gym day passes, trials, and memberships.' 
-  },
-  { 
-    id: 'calls', 
-    label: 'Direct Phone Calls & WhatsApp Messages', 
-    desc: 'Connect interested customers straight to your phone or WhatsApp chat.' 
-  },
-  { 
-    id: 'local-seo', 
-    label: 'Rank #1 on Google Search & Maps (Local SEO)', 
-    desc: 'Get found when nearby customers search "near me" or your service in your city.' 
-  },
-  { 
-    id: 'meta-ads', 
-    label: 'Meta Ads (Instagram & Facebook)', 
-    desc: 'Targeted visual ad campaigns to reach relevant local buyers in Kerala or the GCC.' 
-  },
-  { 
-    id: 'google-ads', 
-    label: 'Google Search Ads (PPC)', 
-    desc: 'Capture active buyers searching for urgent services right now.' 
-  },
-];
-
-const BUDGET_OPTIONS = [
-  { id: 'starter', label: 'Under ₹15,000 / mo (Under AED 700)', sub: 'Just getting started with paid marketing' },
-  { id: 'growth', label: '₹15,000 – ₹40,000 / mo (AED 700 – AED 1,800)', sub: 'Growing local visibility & steady enquiries' },
-  { id: 'scale', label: '₹40,000 – ₹1,00,000 / mo (AED 1,800 – AED 4,500)', sub: 'Scaling appointments across multiple branches or city' },
-  { id: 'enterprise', label: '₹1,00,000+ / mo (AED 4,500+)', sub: 'Aggressive market expansion across Kerala / GCC' },
-  { id: 'guidance', label: 'Not sure yet — need recommendation', sub: 'Help me figure out the right budget to test with' },
-];
-
-export default function FreeMarketingAudit() {
-  const [step, setStep] = useState(1);
+export default function FreeMarketingAuditPage() {
   const [formData, setFormData] = useState({
-    company: '',
-    city: '',
-    category: 'salon',
-    presenceType: 'instagram' as 'instagram' | 'website' | 'maps' | 'fresh',
-    presenceValue: '',
-    focus: ['appointments'] as string[],
-    budget: 'growth',
     name: '',
+    websiteOrMaps: '',
     phone: '',
     email: '',
-    deliveryMethod: 'whatsapp' as 'whatsapp' | 'email',
+    goal: 'calls',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
-  useEffect(() => {
-    if (!isDone) {
-      animate('.step-content-item', {
-        translateY: [15, 0],
-        opacity: [0, 1],
-        delay: stagger(70, { start: 50 }),
-        duration: 500,
-        easing: 'easeOutExpo',
-      });
-    }
-  }, [step, isDone]);
-
-  const isStep1Valid = () => {
-    if (!formData.company.trim()) return false;
-    if (!formData.city.trim()) return false;
-    if (formData.presenceType !== 'fresh' && !formData.presenceValue.trim()) return false;
-    return true;
-  };
-
-  const isStep2Valid = () => formData.focus.length > 0;
-  const isStep3Valid = () => !!formData.budget;
-  const isStep4Valid = () => {
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
-    return formData.name.trim().length > 1 && formData.phone.trim().length >= 7 && emailValid;
-  };
-
-  const handleNext = () => {
-    if (step === 1 && !isStep1Valid()) return;
-    if (step === 2 && !isStep2Valid()) return;
-    if (step === 3 && !isStep3Valid()) return;
-
-    animate('.step-inner', {
-      translateX: -20,
-      opacity: 0,
-      duration: 220,
-      easing: 'easeInQuad',
-      complete: () => {
-        setStep(step + 1);
-        setTimeout(() => {
-          animate('.step-inner', {
-            translateX: [20, 0],
-            opacity: [0, 1],
-            duration: 350,
-            easing: 'easeOutExpo',
-          });
-        }, 20);
+  const scrollToForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const formElement = document.getElementById('get-audit');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const firstInput = document.getElementById('audit-name');
+      if (firstInput) {
+        setTimeout(() => firstInput.focus(), 350);
       }
-    });
-  };
-
-  const handleBack = () => {
-    if (step === 1) return;
-
-    animate('.step-inner', {
-      translateX: 20,
-      opacity: 0,
-      duration: 220,
-      easing: 'easeInQuad',
-      complete: () => {
-        setStep(step - 1);
-        setTimeout(() => {
-          animate('.step-inner', {
-            translateX: [-20, 0],
-            opacity: [0, 1],
-            duration: 350,
-            easing: 'easeOutExpo',
-          });
-        }, 20);
-      }
-    });
-  };
-
-  const toggleFocus = (value: string) => {
-    const active = [...formData.focus];
-    if (active.includes(value)) {
-      if (active.length > 1) {
-        setFormData({ ...formData, focus: active.filter((item) => item !== value) });
-      }
-    } else {
-      setFormData({ ...formData, focus: [...active, value] });
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isStep4Valid()) return;
+    if (!formData.name.trim() || !formData.websiteOrMaps.trim() || formData.phone.trim().length < 7) {
+      alert('Please fill in your name, website/Google Maps link, and WhatsApp number.');
+      return;
+    }
 
     setIsSubmitting(true);
 
-    const categoryLabel = BUSINESS_CATEGORIES.find(c => c.id === formData.category)?.label || formData.category;
-    const focusLabels = formData.focus.map(f => FOCUS_OPTIONS.find(o => o.id === f)?.label || f).join(', ');
-    const budgetLabel = BUDGET_OPTIONS.find(b => b.id === formData.budget)?.label || formData.budget;
-    const onlinePresenceText = formData.presenceType === 'fresh' 
-      ? 'Starting fresh (no profile yet)' 
-      : `${formData.presenceType.toUpperCase()}: ${formData.presenceValue}`;
+    const goalLabel = GOAL_OPTIONS.find((g) => g.id === formData.goal)?.label || formData.goal;
+    const cleanPhone = formData.phone.replace(/[^0-9]/g, '');
+    const submissionEmail = formData.email.trim() || `whatsapp-${cleanPhone || 'lead'}@optivirads-audit.com`;
 
-    const formattedMessage = `[FREE MARKETING AUDIT REQUEST - 3 PRACTICAL IMPROVEMENTS]
-Business Name: ${formData.company}
-Business Category: ${categoryLabel}
-Location / City: ${formData.city}
-Online Presence: ${onlinePresenceText}
-Priority Focus: ${focusLabels}
-Monthly Budget: ${budgetLabel}
-Contact Person: ${formData.name}
-WhatsApp / Phone: ${formData.phone}
-Email: ${formData.email}
-Delivery Preference: ${formData.deliveryMethod === 'whatsapp' ? 'WhatsApp (+ Email)' : 'Email'}
-Enquiry Keyword: GROW`;
+    const formattedMessage = `[OPTIVIR ADS FREE AUDIT REQUEST - 3 PRIORITY FIXES]
+Name: ${formData.name}
+Website / Google Maps Link: ${formData.websiteOrMaps}
+WhatsApp Number: ${formData.phone}
+Email: ${formData.email.trim() || 'Not specified (Requested via WhatsApp)'}
+Primary Goal: ${goalLabel}
+Delivery Format: Top 3 Actionable Fixes (Within 48h via WhatsApp)
+Enquiry Source: 2-Column Direct Response Landing Page`;
 
     try {
       const res = await fetch('/api/contact', {
@@ -236,9 +81,9 @@ Enquiry Keyword: GROW`;
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
-          company: `${formData.company} (${formData.city})`,
-          message: formattedMessage
+          email: submissionEmail,
+          company: formData.websiteOrMaps,
+          message: formattedMessage,
         }),
       });
 
@@ -246,540 +91,696 @@ Enquiry Keyword: GROW`;
         throw new Error('Submission failed');
       }
 
-      animate('.get-started-box', {
-        scale: 0.96,
-        opacity: 0,
-        duration: 350,
-        easing: 'easeInQuad',
-        complete: () => {
-          setIsSubmitting(false);
-          setIsDone(true);
-          setTimeout(() => {
-            animate('.success-banner-item', {
-              translateY: [20, 0],
-              opacity: [0, 1],
-              delay: stagger(90),
-              duration: 550,
-              easing: 'easeOutExpo',
-            });
-          }, 40);
-        }
-      });
+      setIsSubmitting(false);
+      setIsDone(true);
     } catch (err) {
       console.error(err);
       setIsSubmitting(false);
-      alert('Something went wrong submitting your request. Please try again or message us on WhatsApp.');
-    }
-  };
-
-  const progressPercent = ((step - 1) / 3) * 100;
-
-  const getPresencePlaceholder = () => {
-    switch (formData.presenceType) {
-      case 'instagram':
-        return '@yourbrand or instagram.com/yourbrand';
-      case 'website':
-        return 'https://yourbusiness.com';
-      case 'maps':
-        return 'Business Name as listed on Google Maps (e.g. Cut & Style Kannur)';
-      default:
-        return '';
-    }
-  };
-
-  const getPresenceLabel = () => {
-    switch (formData.presenceType) {
-      case 'instagram':
-        return 'Instagram Profile or Handle';
-      case 'website':
-        return 'Website Address (URL)';
-      case 'maps':
-        return 'Google Maps Business Listing Name or Link';
-      default:
-        return '';
+      alert('Something went wrong submitting your request. Please message us directly on WhatsApp at +91 99950 37109.');
     }
   };
 
   return (
-    <div className="get-started-page">
+    <div className="audit-landing-page">
       <BreadcrumbSchema items={[{ name: 'Free Marketing Audit', url: '/free-marketing-audit' }]} />
+      <ReviewSchema reviews={CURATED_REVIEWS} />
       <div className="grid-overlay" />
 
-      {/* Page Title & Brand Guide Hook */}
-      <section className="onboarding-hero">
-        <div className="container text-center">
-          <div className="hero-eyebrow-pill" style={{ margin: '0 auto 1.25rem' }}>
-            <span className="eyebrow-dot" /> 3 PRACTICAL IMPROVEMENTS · 100% FREE
-          </div>
-          <TextReveal 
-            text="Get a Free Marketing Audit for Your Business" 
-            className="onboarding-title" 
-            tag="h1" 
-            delay={100}
-            duration={800}
-          />
-          <p className="onboarding-subtitle" style={{ maxWidth: '680px', margin: '0 auto 1.5rem' }}>
-            Get three practical improvements for your ads or online presence. 
-            We review how local customers find you, why viewers aren&apos;t converting, and how to attract more relevant enquiries.
-          </p>
-
-          <div className="audit-trust-strip">
-            <span className="audit-trust-badge">
-              <CheckCircle size={15} /> No website required
-            </span>
-            <span className="audit-trust-badge">
-              <CheckCircle size={15} /> Delivered via WhatsApp within 24–48h
-            </span>
-            <span className="audit-trust-badge">
-              <CheckCircle size={15} /> Built for Kerala &amp; GCC businesses
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* 3 Practical Improvements Guarantee Section */}
-      <section className="audit-benefits-section">
-        <div className="container max-w-700">
-          <div className="audit-benefits-grid">
-            <div className="audit-benefit-card">
-              <span className="audit-benefit-num">
-                <Search size={14} /> Improvement 1
-              </span>
-              <h3 className="audit-benefit-title">Local Google Visibility</h3>
-              <p className="audit-benefit-desc">
-                We check whether nearby customers can find you on Google Search and Maps when looking for your services in your city.
-              </p>
+      {/* ── Section 1: Above-the-Fold 2-Column Split Hero ── */}
+      <section className="container" style={{ paddingTop: '1.5rem', paddingBottom: '3.5rem' }}>
+        <div className="audit-hero-grid">
+          {/* Left Column: Big Promise Headline, Benefits, and CTAs */}
+          <div className="audit-hero-pitch">
+            {/* Step 1: Eyebrow Copy (Target Avatar + Loud Social Proof) */}
+            <div className="hero-eyebrow-pill" style={{ alignSelf: 'flex-start' }}>
+              <span className="eyebrow-dot" /> RATED 5.0 ON GOOGLE · FOR KERALA &amp; GCC BUSINESS OWNERS
             </div>
 
-            <div className="audit-benefit-card">
-              <span className="audit-benefit-num">
-                <Target size={14} /> Improvement 2
-              </span>
-              <h3 className="audit-benefit-title">Ads &amp; Creative Hook</h3>
-              <p className="audit-benefit-desc">
-                We identify why your Instagram reels, posts, or ads get views but few actual messages, booking requests, or footfall.
-              </p>
+            {/* Step 2: Big Promise Headline (Clear beats clever) */}
+            <h1 className="audit-hero-headline" style={{ fontSize: '2.8rem', lineHeight: '1.15' }}>
+              Find out exactly where your website and ads are losing enquiries, free.
+            </h1>
+
+            {/* Step 3: Sub-headline */}
+            <p className="audit-hero-subtitle" style={{ fontSize: '1.05rem', lineHeight: '1.65' }}>
+              We personally audit your website, Google Maps listing and ad setup, then deliver the 3 priority fixes most likely to bring in more calls and leads within 48 hours. No agency jargon. No payment.
+            </p>
+
+            {/* Step 4: Immediate Action + Quiet WhatsApp Link */}
+            <div className="audit-hero-actions">
+              <a 
+                href="#get-audit" 
+                onClick={scrollToForm}
+                className="btn-primary audit-hero-btn"
+                style={{ fontSize: '1.025rem', padding: '0.9rem 1.85rem' }}
+              >
+                Get My 3 Fixes <ArrowRight size={16} />
+              </a>
+              <a 
+                href="https://wa.me/919995037109?text=AUDIT" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="audit-whatsapp-quiet-link"
+              >
+                <MessageCircle size={15} /> Prefer WhatsApp? Chat directly
+              </a>
             </div>
 
-            <div className="audit-benefit-card">
-              <span className="audit-benefit-num">
-                <TrendingUp size={14} /> Improvement 3
-              </span>
-              <h3 className="audit-benefit-title">Enquiry &amp; Booking Flow</h3>
-              <p className="audit-benefit-desc">
-                We inspect how easily an interested buyer can call, message on WhatsApp, or book an appointment with you.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Multi-Step Box */}
-      <section className="onboarding-form-section">
-        <div className="container max-w-700">
-          {!isDone ? (
-            <div className="glass-card get-started-box">
-              {/* Progress Tracker */}
-              <div className="onboarding-progress-bar-wrapper">
-                <div className="progress-bar-labels">
-                  <span>Free Audit Questionnaire</span>
-                  <span>Step {step} of 4</span>
+            {/* 3 Compact Benefit Rows (The 3 Fixes Scope) */}
+            <div className="audit-compact-benefits-list">
+              <div className="audit-compact-benefit-row">
+                <div className="benefit-row-icon-wrap">
+                  <Globe size={18} />
                 </div>
-                <div className="progress-bar-bg">
-                  <div 
-                    className="progress-bar-fill" 
-                    style={{ 
-                      width: `${progressPercent}%`, 
-                      transition: 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)' 
-                    }} 
-                  />
+                <div className="benefit-row-text">
+                  <h3 className="benefit-row-title">1. Website &amp; Mobile Speed Check</h3>
+                  <p className="benefit-row-desc">
+                    Is it fast on mobile? Does it make a visitor call or fill the form? So you stop paying for clicks that bounce.
+                  </p>
                 </div>
               </div>
 
-              {/* Form Content Steps */}
-              <div className="step-content-area">
-                {/* Step 1: Business Details & Online Presence */}
-                {step === 1 && (
-                  <div className="step-inner">
-                    <h3 className="step-heading step-content-item" style={{ opacity: 0 }}>
-                      <Building2 size={18} /> Tell us about your business
-                    </h3>
+              <div className="audit-compact-benefit-row">
+                <div className="benefit-row-icon-wrap">
+                  <MapPin size={18} />
+                </div>
+                <div className="benefit-row-text">
+                  <h3 className="benefit-row-title">2. Google Maps &amp; Local Search Check</h3>
+                  <p className="benefit-row-desc">
+                    Are nearby customers finding you before competitors when searching &ldquo;near me&rdquo; in your city? So you get more local calls.
+                  </p>
+                </div>
+              </div>
 
-                    {/* Business Category Chips */}
-                    <div className="input-group step-content-item" style={{ opacity: 0, marginBottom: '1.25rem' }}>
-                      <label className="input-label">Business Category</label>
-                      <div className="audit-chips-grid">
-                        {BUSINESS_CATEGORIES.map((cat) => {
-                          const Icon = cat.icon;
-                          const isSelected = formData.category === cat.id;
-                          return (
-                            <button
-                              key={cat.id}
-                              type="button"
-                              onClick={() => setFormData({ ...formData, category: cat.id })}
-                              className={`audit-chip-btn ${isSelected ? 'active' : ''}`}
-                            >
-                              <Icon size={14} />
-                              <span>{cat.label}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
+              <div className="audit-compact-benefit-row">
+                <div className="benefit-row-icon-wrap">
+                  <Target size={18} />
+                </div>
+                <div className="benefit-row-text">
+                  <h3 className="benefit-row-title">3. Ads, Creative Hook &amp; Tracking Check</h3>
+                  <p className="benefit-row-desc">
+                    Is your budget going to buyers, and is every enquiry being tracked? So you know your real cost per lead.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                    <div className="input-group step-content-item" style={{ opacity: 0 }}>
-                      <label className="input-label" htmlFor="company">Business / Brand Name</label>
-                      <input 
-                        type="text" 
-                        id="company" 
-                        required 
-                        placeholder="e.g. Luxe Unisex Salon, Apex Fitness Gym, City Dental"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="input-field" 
-                      />
-                    </div>
+            {/* Below-CTA Trust Strip */}
+            <div className="audit-micro-trust">
+              <span className="micro-trust-item">
+                <Star size={14} fill="#F59E0B" color="#F59E0B" /> Rated 5.0 on Google (5 verified reviews)
+              </span>
+              <span className="micro-trust-item">
+                <CheckCircle size={14} /> No payment, no obligation
+              </span>
+              <span className="micro-trust-item">
+                <Clock size={14} /> Delivered within 48 hours
+              </span>
+            </div>
+          </div>
 
-                    <div className="input-group step-content-item" style={{ opacity: 0 }}>
-                      <label className="input-label" htmlFor="city">City &amp; Region</label>
-                      <input 
-                        type="text" 
-                        id="city" 
-                        required 
-                        placeholder="e.g. Kannur, Kochi, Calicut, Dubai, Sharjah, Doha"
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        className="input-field" 
-                      />
-                    </div>
-
-                    {/* Online Presence Choice: Instagram / Website / Google Maps / Fresh */}
-                    <div className="input-group step-content-item" style={{ opacity: 0, marginTop: '0.5rem' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                        <label className="input-label">Where can we review your business?</label>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--accent-crimson)', fontWeight: 600 }}>No website needed</span>
-                      </div>
-                      
-                      <div className="audit-presence-tabs">
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, presenceType: 'instagram' })}
-                          className={`audit-tab-btn ${formData.presenceType === 'instagram' ? 'active' : ''}`}
-                        >
-                          <span className="audit-tab-dot" />
-                          <InstagramIcon size={15} />
-                          <span>Instagram Page</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, presenceType: 'website' })}
-                          className={`audit-tab-btn ${formData.presenceType === 'website' ? 'active' : ''}`}
-                        >
-                          <span className="audit-tab-dot" />
-                          <Globe size={15} />
-                          <span>Website</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, presenceType: 'maps' })}
-                          className={`audit-tab-btn ${formData.presenceType === 'maps' ? 'active' : ''}`}
-                        >
-                          <span className="audit-tab-dot" />
-                          <MapPin size={15} />
-                          <span>Google Maps Listing</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, presenceType: 'fresh', presenceValue: '' })}
-                          className={`audit-tab-btn ${formData.presenceType === 'fresh' ? 'active' : ''}`}
-                        >
-                          <span className="audit-tab-dot" />
-                          <Sparkles size={15} />
-                          <span>Starting Fresh (No profile yet)</span>
-                        </button>
-                      </div>
-
-                      {formData.presenceType !== 'fresh' ? (
-                        <div style={{ marginTop: '0.5rem' }}>
-                          <label className="input-label" htmlFor="presenceValue" style={{ fontSize: '0.8rem' }}>
-                            {getPresenceLabel()}
-                          </label>
-                          <input
-                            type="text"
-                            id="presenceValue"
-                            placeholder={getPresencePlaceholder()}
-                            value={formData.presenceValue}
-                            onChange={(e) => setFormData({ ...formData, presenceValue: e.target.value })}
-                            className="input-field"
-                            required
-                          />
-                        </div>
-                      ) : (
-                        <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.03)', padding: '0.85rem 1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)', marginTop: '0.5rem' }}>
-                          No problem! We will build a starter roadmap tailored for your city and niche to launch your local visibility.
-                        </p>
-                      )}
-                    </div>
+          {/* Right Column: Direct High-Converting Audit Form Card */}
+          <div className="audit-hero-form-col" id="get-audit">
+            {!isDone ? (
+              <div className="glass-card audit-form-card">
+                <div style={{ textAlign: 'center', marginBottom: '0.85rem' }}>
+                  <div className="hero-eyebrow-pill" style={{ margin: '0 auto 0.65rem' }}>
+                    <span className="eyebrow-dot" /> LIMITED TO 15 AUDITS / MONTH
                   </div>
-                )}
+                  <h2 style={{ fontSize: '1.65rem', color: '#ffffff', margin: '0 0 0.35rem', fontWeight: 700 }}>
+                    Get your free audit
+                  </h2>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', margin: '0 auto', lineHeight: '1.5' }}>
+                    Fill in the 3 fields below (under a minute). We review your site, listing and ads within 48 hours.
+                  </p>
+                </div>
 
-                {/* Step 2: What is your main priority? */}
-                {step === 2 && (
-                  <div className="step-inner">
-                    <h3 className="step-heading step-content-item" style={{ opacity: 0 }}>
-                      <Target size={18} /> What is your primary priority?
-                    </h3>
-                    <p className="step-instruction step-content-item" style={{ opacity: 0 }}>
-                      Select the outcomes that matter most to your business right now.
-                    </p>
-                    
-                    <div className="step-options-list step-content-item" style={{ opacity: 0 }}>
-                      {FOCUS_OPTIONS.map((opt) => {
-                        const isSelected = formData.focus.includes(opt.id);
+                {/* 4 Process Steps */}
+                <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '0.75rem 1rem', marginBottom: '0.85rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.45rem' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <CheckCircle size={13} style={{ color: 'var(--accent-crimson)', flexShrink: 0 }} />
+                      1. Fill 3 simple fields
+                    </span>
+                    <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <CheckCircle size={13} style={{ color: 'var(--accent-crimson)', flexShrink: 0 }} />
+                      2. We review in 48 hours
+                    </span>
+                    <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <CheckCircle size={13} style={{ color: 'var(--accent-crimson)', flexShrink: 0 }} />
+                      3. Get top 3 fixes
+                    </span>
+                    <span style={{ fontSize: '0.75rem', color: '#CBD5E1', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <CheckCircle size={13} style={{ color: 'var(--accent-crimson)', flexShrink: 0 }} />
+                      4. Yours to keep free
+                    </span>
+                  </div>
+                </div>
+
+                {/* Form Fields */}
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  {/* Field 1: Name */}
+                  <div className="input-group">
+                    <label className="input-label" htmlFor="audit-name">
+                      Your name <span style={{ color: 'var(--accent-crimson)' }}>*</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="audit-name" 
+                      required 
+                      placeholder="e.g. Rahul Nair, Sarah Al-Mansoor"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="input-field" 
+                    />
+                  </div>
+
+                  {/* Field 2: Website or Google Maps link */}
+                  <div className="input-group">
+                    <label className="input-label" htmlFor="audit-link">
+                      Website or Google Maps link <span style={{ color: 'var(--accent-crimson)' }}>*</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="audit-link" 
+                      required 
+                      placeholder="e.g. yourbusiness.com or Google Maps business name"
+                      value={formData.websiteOrMaps}
+                      onChange={(e) => setFormData({ ...formData, websiteOrMaps: e.target.value })}
+                      className="input-field" 
+                    />
+                    <span style={{ fontSize: '0.725rem', color: 'var(--text-muted)' }}>
+                      No website? You can enter your Instagram handle or Google Maps name.
+                    </span>
+                  </div>
+
+                  {/* Field 3: WhatsApp Number */}
+                  <div className="input-group">
+                    <label className="input-label" htmlFor="audit-phone">
+                      WhatsApp number <span style={{ color: 'var(--accent-crimson)' }}>*</span>
+                    </label>
+                    <input 
+                      type="tel" 
+                      id="audit-phone" 
+                      required 
+                      placeholder="e.g. +91 99950 37109 or +971 50 123 4567"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="input-field" 
+                    />
+                    <span style={{ fontSize: '0.725rem', color: 'var(--text-muted)' }}>
+                      We deliver your 3 fixes directly to your WhatsApp. Include country code.
+                    </span>
+                  </div>
+
+                  {/* Optional Email */}
+                  <div className="input-group">
+                    <label className="input-label" htmlFor="audit-email">
+                      Email address <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>(optional backup)</span>
+                    </label>
+                    <input 
+                      type="email" 
+                      id="audit-email" 
+                      placeholder="e.g. rahul@business.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="input-field" 
+                    />
+                  </div>
+
+                  {/* Field 4: What do you want most? */}
+                  <div className="input-group">
+                    <label className="input-label">What do you want most?</label>
+                    <div className="audit-goal-grid">
+                      {GOAL_OPTIONS.map((opt) => {
+                        const isSelected = formData.goal === opt.id;
                         return (
                           <button
                             key={opt.id}
                             type="button"
-                            onClick={() => toggleFocus(opt.id)}
-                            className={`onboarding-choice-btn ${isSelected ? 'active' : ''}`}
-                            style={{ alignItems: 'flex-start' }}
+                            onClick={() => setFormData({ ...formData, goal: opt.id })}
+                            className={`audit-goal-btn ${isSelected ? 'active' : ''}`}
+                            style={{ padding: '0.65rem 0.85rem', fontSize: '0.8rem' }}
                           >
-                            <span className="choice-checkbox" style={{ marginTop: '3px' }} />
-                            <div>
-                              <div style={{ fontWeight: 600, color: isSelected ? '#ffffff' : 'var(--text-primary)', marginBottom: '0.2rem' }}>
-                                {opt.label}
-                              </div>
-                              <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                                {opt.desc}
-                              </div>
-                            </div>
+                            <span className="choice-radio-dot" />
+                            <span>{opt.label}</span>
                           </button>
                         );
                       })}
                     </div>
                   </div>
-                )}
 
-                {/* Step 3: Estimated Monthly Ad Budget */}
-                {step === 3 && (
-                  <div className="step-inner">
-                    <h3 className="step-heading step-content-item" style={{ opacity: 0 }}>
-                      <DollarSign size={18} /> What is your estimated monthly marketing budget?
-                    </h3>
-                    <p className="step-instruction step-content-item" style={{ opacity: 0 }}>
-                      This helps us tailor practical suggestions that fit your realistic investment level.
-                    </p>
-                    
-                    <div className="step-options-list step-content-item" style={{ opacity: 0 }}>
-                      {BUDGET_OPTIONS.map((opt) => {
-                        const isSelected = formData.budget === opt.id;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, budget: opt.id })}
-                            className={`onboarding-choice-btn radio ${isSelected ? 'active' : ''}`}
-                            style={{ alignItems: 'flex-start' }}
-                          >
-                            <span className="choice-radio-dot" style={{ marginTop: '3px' }} />
-                            <div>
-                              <div style={{ fontWeight: 600, color: isSelected ? '#ffffff' : 'var(--text-primary)', marginBottom: '0.2rem' }}>
-                                {opt.label}
-                              </div>
-                              <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-                                {opt.sub}
-                              </div>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 4: Where to deliver results */}
-                {step === 4 && (
-                  <form onSubmit={handleSubmit} className="step-inner">
-                    <h3 className="step-heading step-content-item" style={{ opacity: 0 }}>
-                      <User size={18} /> Where should we send your 3 improvements?
-                    </h3>
-                    <p className="step-instruction step-content-item" style={{ opacity: 0 }}>
-                      We deliver your review in plain English (or Malayalam) with zero sales pressure.
-                    </p>
-                    
-                    <div className="input-group step-content-item" style={{ opacity: 0 }}>
-                      <label className="input-label" htmlFor="name">Your Name</label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        required 
-                        placeholder="e.g. Rahul Nair, Sarah Al-Mansoor"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="input-field" 
-                      />
-                    </div>
-
-                    <div className="input-group step-content-item" style={{ opacity: 0 }}>
-                      <label className="input-label" htmlFor="phone">
-                        WhatsApp / Phone Number <span style={{ color: 'var(--accent-crimson)' }}>*</span>
-                      </label>
-                      <input 
-                        type="tel" 
-                        id="phone" 
-                        required 
-                        placeholder="e.g. +91 99950 37109 or +971 50 123 4567"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="input-field" 
-                      />
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                        Include country code (+91 for India, +971 for UAE, +974 for Qatar).
+                  {/* No-pressure promise box */}
+                  <div className="audit-promise-box" style={{ margin: '0.5rem 0', padding: '0.85rem 1rem' }}>
+                    <div className="audit-promise-item" style={{ fontSize: '0.8rem' }}>
+                      <ShieldCheck size={16} style={{ color: 'var(--accent-crimson)', flexShrink: 0, marginTop: '1px' }} />
+                      <span>
+                        <strong>No-pressure promise:</strong> The audit is yours to keep, whether you hire us or not.
                       </span>
                     </div>
+                  </div>
 
-                    <div className="input-group step-content-item" style={{ opacity: 0 }}>
-                      <label className="input-label" htmlFor="email">Work or Personal Email</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        required 
-                        placeholder="e.g. rahul@business.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="input-field" 
-                      />
-                    </div>
-
-                    <div className="input-group step-content-item" style={{ opacity: 0 }}>
-                      <label className="input-label">Preferred Delivery Method</label>
-                      <div style={{ display: 'flex', gap: '1rem', marginTop: '0.25rem' }}>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, deliveryMethod: 'whatsapp' })}
-                          className={`audit-chip-btn ${formData.deliveryMethod === 'whatsapp' ? 'active' : ''}`}
-                        >
-                          <MessageCircle size={14} /> WhatsApp Message (Fastest)
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, deliveryMethod: 'email' })}
-                          className={`audit-chip-btn ${formData.deliveryMethod === 'email' ? 'active' : ''}`}
-                        >
-                          <Globe size={14} /> Email
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Hidden submit trigger */}
-                    <button id="hidden-submit" type="submit" style={{ display: 'none' }} />
-                  </form>
-                )}
-              </div>
-
-              {/* Navigation controls */}
-              <div className="onboarding-controls step-content-item" style={{ opacity: 0 }}>
-                {step > 1 ? (
-                  <button onClick={handleBack} className="btn-secondary">
-                    <ArrowLeft size={14} /> Back
-                  </button>
-                ) : (
-                  <div />
-                )}
-
-                {step < 4 ? (
+                  {/* Submit Button */}
                   <button 
-                    onClick={handleNext}
-                    disabled={
-                      (step === 1 && !isStep1Valid()) ||
-                      (step === 2 && !isStep2Valid()) ||
-                      (step === 3 && !isStep3Valid())
-                    }
-                    className="btn-primary disabled-fade"
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="btn-primary btn-audit-submit disabled-fade"
+                    style={{ padding: '0.95rem', fontSize: '1rem', marginTop: '0.25rem' }}
                   >
-                    Next Step <ArrowRight size={14} />
+                    {isSubmitting ? 'Preparing Your Audit...' : 'Send Me My Free Audit'} <ArrowRight size={15} />
                   </button>
-                ) : (
-                  <button 
-                    onClick={() => document.getElementById('hidden-submit')?.click()}
-                    disabled={!isStep4Valid() || isSubmitting}
-                    className="btn-primary disabled-fade"
-                  >
-                    {isSubmitting ? 'Submitting Details...' : 'Get My 3 Improvements'} <CheckCircle size={14} />
-                  </button>
-                )}
-              </div>
-            </div>
-          ) : (
-            /* Onboarding Completed Success panel */
-            <div className="glass-card success-banner-box text-center">
-              <div className="success-icon success-banner-item" style={{ opacity: 0, color: 'var(--accent-crimson)', marginBottom: '1.25rem' }}>
-                <CheckCircle size={58} />
-              </div>
-              <h2 className="success-title success-banner-item" style={{ opacity: 0, fontSize: '1.75rem', marginBottom: '0.75rem', color: '#ffffff' }}>
-                Free Marketing Audit Requested!
-              </h2>
-              <p className="success-desc success-banner-item" style={{ margin: '0 auto 1.5rem', maxWidth: '520px', opacity: 0, color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-                Thank you, <strong>{formData.name}</strong>. We&apos;ve received the details for <strong>{formData.company}</strong> ({formData.city}). 
-                Our team is reviewing your online presence and will deliver your <strong>3 practical improvements</strong> to <strong>{formData.phone}</strong> within 24–48 hours.
-              </p>
 
-              <div className="success-banner-item" style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', alignItems: 'center', opacity: 0 }}>
-                <a 
-                  href={`https://wa.me/919995037109?text=${encodeURIComponent(`Hi OptiVir Ads team, I just requested a free marketing audit for my business (${formData.company} in ${formData.city}). Keyword: GROW`)}`}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.85rem 1.75rem' }}
-                >
-                  <MessageCircle size={16} /> Chat on WhatsApp Now (Keyword: GROW)
-                </a>
-
-                <Link href="/" className="btn-secondary" style={{ marginTop: '0.5rem' }}>
-                  Return Home <ArrowRight size={14} />
-                </Link>
+                  <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', margin: 0 }}>
+                    We only use this to prepare your audit. No spam.
+                  </p>
+                </form>
               </div>
-            </div>
-          )}
-
-          {/* Instant DM / WhatsApp Alternative Card from Brand Guide Page 6 & 7 */}
-          {!isDone && (
-            <div className="audit-fasttrack-card">
-              <div>
-                <h4 style={{ color: '#ffffff', fontSize: '0.95rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <MessageCircle size={16} style={{ color: 'var(--accent-crimson)' }} /> Prefer an instant reply on WhatsApp or Instagram?
-                </h4>
-                <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: 0 }}>
-                  Send keyword <strong>&quot;GROW&quot;</strong> to get your marketing audit via quick voice note or chat.
+            ) : (
+              /* Success Panel */
+              <div className="glass-card success-banner-box text-center" style={{ padding: '3.5rem 2rem' }}>
+                <div style={{ color: 'var(--accent-crimson)', marginBottom: '1.25rem' }}>
+                  <CheckCircle size={54} />
+                </div>
+                <h2 style={{ fontSize: '1.75rem', color: '#ffffff', marginBottom: '0.65rem', fontWeight: 700 }}>
+                  Audit Request Received!
+                </h2>
+                <p style={{ fontSize: '0.925rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '460px', margin: '0 auto 1.5rem' }}>
+                  Thank you, <strong>{formData.name}</strong>. We&apos;ve received the details for <strong>{formData.websiteOrMaps}</strong>. 
+                  Our team is reviewing your site, listing and ads, and will deliver your <strong>3 top fixes</strong> to <strong>{formData.phone}</strong> within 48 hours.
                 </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center' }}>
+                  <a 
+                    href={`https://wa.me/919995037109?text=${encodeURIComponent(`Hi OptiVir Ads team, I just requested a free marketing audit for ${formData.name} (${formData.websiteOrMaps}). Keyword: AUDIT`)}`}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn-primary"
+                    style={{ padding: '0.85rem 1.65rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                  >
+                    <MessageCircle size={16} /> Fast-track on WhatsApp (Keyword: AUDIT)
+                  </a>
+
+                  <Link href="/" className="btn-secondary" style={{ marginTop: '0.25rem' }}>
+                    Return Home <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <a 
-                  href="https://wa.me/919995037109?text=GROW"
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  style={{ padding: '0.55rem 1.15rem', fontSize: '0.8125rem' }}
-                >
-                  WhatsApp &quot;GROW&quot;
-                </a>
-                <a 
-                  href="https://instagram.com/optivirads"
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  style={{ padding: '0.55rem 1.15rem', fontSize: '0.8125rem' }}
-                >
-                  Instagram DM &quot;GROW&quot;
-                </a>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
 
-      <ReviewSchema reviews={CURATED_REVIEWS} />
-      <ReviewsSection reviews={CURATED_REVIEWS} title="What Business Owners Say About Working With OptiVir Ads" />
+      {/* ── Section 2: Does this sound familiar? (Pain Points) ── */}
+      <section className="audit-pain-section">
+        <div className="container">
+          <div className="text-center" style={{ maxWidth: '680px', margin: '0 auto 1.5rem' }}>
+            <div className="hero-eyebrow-pill" style={{ margin: '0 auto 1rem' }}>
+              <span className="eyebrow-dot" /> THE REALITY FOR LOCAL BUSINESSES
+            </div>
+            <h2 className="section-title" style={{ fontSize: '2.35rem', marginBottom: '0.75rem' }}>
+              Does this sound familiar?
+            </h2>
+            <p className="section-subtitle" style={{ fontSize: '1.025rem', color: 'var(--text-secondary)' }}>
+              Most business owners in Kerala and the GCC experience the exact same marketing frustration before getting clarity.
+            </p>
+          </div>
+
+          <div className="audit-pain-grid">
+            <div className="audit-pain-card">
+              <div className="audit-pain-num">1</div>
+              <p className="audit-pain-text">
+                You&apos;re spending money on ads, SEO or social. Or you&apos;re about to. But the phone isn&apos;t ringing the way it should.
+              </p>
+            </div>
+
+            <div className="audit-pain-card">
+              <div className="audit-pain-num">2</div>
+              <p className="audit-pain-text">
+                Your agency sends reports full of clicks and impressions. You can&apos;t tell what&apos;s actually working or bringing in customers.
+              </p>
+            </div>
+
+            <div className="audit-pain-card">
+              <div className="audit-pain-num">3</div>
+              <p className="audit-pain-text">
+                You&apos;re not sure if the problem is the ads, the website, or your Google listing. So you keep paying and hoping.
+              </p>
+            </div>
+
+            <div className="audit-pain-card">
+              <div className="audit-pain-num">4</div>
+              <p className="audit-pain-text">
+                Competitors with worse services are ranking above you on Google Maps and winning local customers right in your neighborhood.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 3: What you get in your free audit (The 3 Fixes Scope) ── */}
+      <section className="audit-details-section">
+        <div className="container">
+          <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 2.5rem' }}>
+            <div className="hero-eyebrow-pill" style={{ margin: '0 auto 1rem' }}>
+              <span className="eyebrow-dot" /> ZERO FLUFF · PRACTICAL BREAKDOWN
+            </div>
+            <h2 className="section-title" style={{ fontSize: '2.35rem', marginBottom: '0.75rem' }}>
+              What you get in your free audit
+            </h2>
+            <p className="section-subtitle" style={{ fontSize: '1.075rem', color: '#ffffff', fontWeight: 500 }}>
+              You get a clear answer to one question: <em>where are my enquiries leaking, and what do I fix first?</em>
+            </p>
+          </div>
+
+          <div className="audit-details-grid">
+            {/* Pillar 1: Website */}
+            <div className="audit-detail-card">
+              <span className="audit-detail-pill">
+                <Globe size={14} /> Audit Area 1
+              </span>
+              <h3 className="audit-detail-title">Website check</h3>
+              <p className="audit-detail-desc">
+                Is it fast on mobile? Does it make a visitor call or fill the form? So you stop paying for clicks that bounce within three seconds.
+              </p>
+              <ul className="audit-detail-checklist">
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Mobile loading speed on 4G/5G Kerala &amp; GCC networks
+                </li>
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Above-the-fold tap-to-call &amp; WhatsApp click friction
+                </li>
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Copy clarity: Do visitors know why to choose you?
+                </li>
+              </ul>
+            </div>
+
+            {/* Pillar 2: Google Maps & Local Search */}
+            <div className="audit-detail-card">
+              <span className="audit-detail-pill">
+                <MapPin size={14} /> Audit Area 2
+              </span>
+              <h3 className="audit-detail-title">Google Maps &amp; local search check</h3>
+              <p className="audit-detail-desc">
+                Are nearby customers finding you before your competitors when searching &ldquo;near me&rdquo; or your service in your city? So you get more local calls.
+              </p>
+              <ul className="audit-detail-checklist">
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Google Business Profile categories &amp; primary keyword rank
+                </li>
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Customer review count, velocity and response health
+                </li>
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Competitor map-pack positioning in your local radius
+                </li>
+              </ul>
+            </div>
+
+            {/* Pillar 3: Ads & Tracking */}
+            <div className="audit-detail-card">
+              <span className="audit-detail-pill">
+                <Target size={14} /> Audit Area 3
+              </span>
+              <h3 className="audit-detail-title">Ads &amp; tracking check</h3>
+              <p className="audit-detail-desc">
+                Is your budget going to buyers, and is every enquiry being tracked? So you know your real cost per lead.
+              </p>
+              <ul className="audit-detail-checklist">
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Ad targeting waste: negative keywords &amp; audience overlap
+                </li>
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Creative hook retention: why viewers scroll past without DMing
+                </li>
+                <li className="audit-detail-check-item">
+                  <CheckCircle size={14} /> Full conversion tracking: GA4, Meta Pixel &amp; call logs
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Banner */}
+          <div style={{ marginTop: '2.5rem', padding: '1.75rem 2rem', background: 'rgba(176, 31, 58, 0.12)', border: '1px solid rgba(176, 31, 58, 0.35)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.25rem' }}>
+            <div>
+              <h4 style={{ color: '#ffffff', fontSize: '1.2rem', margin: '0 0 0.35rem', fontWeight: 600 }}>
+                Your top 3 fixes, in order.
+              </h4>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.925rem', margin: 0, maxWidth: '620px' }}>
+                Plain language, no jargon. Delivered within 48 hours. You can do them yourself or with us.
+              </p>
+            </div>
+            <a href="#get-audit" onClick={scrollToForm} className="btn-primary" style={{ padding: '0.85rem 1.75rem', whiteSpace: 'nowrap' }}>
+              Claim My Free Audit <ArrowRight size={15} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 4: Why most marketing reports don't help you (The OptiVir Lead-Leak Method) ── */}
+      <section className="lead-leak-section">
+        <div className="container">
+          <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto' }}>
+            <div className="hero-eyebrow-pill" style={{ margin: '0 auto 1rem' }}>
+              <span className="eyebrow-dot" /> THE OPTIVIR LEAD-LEAK AUDIT METHOD
+            </div>
+            <h2 className="section-title" style={{ fontSize: '2.35rem', marginBottom: '0.85rem' }}>
+              Why most marketing reports don&apos;t help you
+            </h2>
+            <p style={{ fontSize: '1.15rem', color: '#ffffff', lineHeight: '1.6', margin: '0 0 0.75rem' }}>
+              Most agencies show you clicks and impressions. <strong>Those don&apos;t pay your rent.</strong>
+            </p>
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+              We trace the full path: <em>search &rarr; click &rarr; visit &rarr; call or form &rarr; enquiry.</em> Wherever people drop off is where your money leaks.
+            </p>
+          </div>
+
+          {/* Visual Funnel */}
+          <div className="lead-leak-funnel">
+            <div className="lead-leak-step">
+              <span className="lead-leak-step-badge">Stage 1</span>
+              <h4 className="lead-leak-step-title">Google / Meta Search</h4>
+              <p style={{ fontSize: '0.775rem', color: 'var(--text-muted)', margin: 0 }}>Buyer actively looks for service</p>
+              <span className="lead-leak-warning">&times; Wrong keywords?</span>
+            </div>
+
+            <div className="lead-leak-step">
+              <span className="lead-leak-step-badge">Stage 2</span>
+              <h4 className="lead-leak-step-title">Ad or Map Click</h4>
+              <p style={{ fontSize: '0.775rem', color: 'var(--text-muted)', margin: 0 }}>Viewer clicks on your listing</p>
+              <span className="lead-leak-warning">&times; Weak hook?</span>
+            </div>
+
+            <div className="lead-leak-step">
+              <span className="lead-leak-step-badge">Stage 3</span>
+              <h4 className="lead-leak-step-title">Website / Profile Visit</h4>
+              <p style={{ fontSize: '0.775rem', color: 'var(--text-muted)', margin: 0 }}>Prospect arrives on your page</p>
+              <span className="lead-leak-warning">&times; Slow mobile bounce?</span>
+            </div>
+
+            <div className="lead-leak-step">
+              <span className="lead-leak-step-badge">Stage 4</span>
+              <h4 className="lead-leak-step-title">Call or WhatsApp Message</h4>
+              <p style={{ fontSize: '0.775rem', color: 'var(--text-muted)', margin: 0 }}>Customer takes action</p>
+              <span className="lead-leak-warning">&times; Hidden phone link?</span>
+            </div>
+
+            <div className="lead-leak-step" style={{ borderColor: 'rgba(176, 31, 58, 0.45)', background: 'rgba(176, 31, 58, 0.1)' }}>
+              <span className="lead-leak-step-badge" style={{ color: 'var(--accent-crimson)' }}>Final Stage</span>
+              <h4 className="lead-leak-step-title" style={{ color: '#ffffff' }}>Qualified Paying Client</h4>
+              <p style={{ fontSize: '0.775rem', color: 'var(--text-secondary)', margin: 0 }}>Confirmed booking or appointment</p>
+              <span style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 600, background: 'rgba(16, 185, 129, 0.12)', padding: '0.25rem 0.5rem', borderRadius: '6px', marginTop: '0.25rem' }}>✓ Revenue Earned</span>
+            </div>
+          </div>
+
+          <p style={{ textAlign: 'center', fontSize: '0.95rem', color: 'var(--text-secondary)', maxWidth: '640px', margin: '1.5rem auto 0' }}>
+            That&apos;s why the OptiVir Lead-Leak Audit looks at your website, listing and ads <strong>together</strong>, not one at a time.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Section 5: Who's doing your audit ── */}
+      <section className="audit-who-section">
+        <div className="container" style={{ maxWidth: '940px' }}>
+          <div className="audit-who-card">
+            <div className="hero-eyebrow-pill" style={{ margin: '0 0 1rem' }}>
+              <span className="eyebrow-dot" /> KANNUR &middot; KERALA &middot; GCC
+            </div>
+
+            <h2 style={{ fontSize: '2.2rem', color: '#ffffff', margin: '0 0 1rem', fontWeight: 700 }}>
+              Who&apos;s doing your audit
+            </h2>
+
+            <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: '1.7', margin: '0 0 1.25rem' }}>
+              <strong>OptiVir Ads</strong> is a Kannur-based team running SEO, Google Ads, Meta Ads and Google Maps marketing for businesses across Kerala and the GCC.
+            </p>
+
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+              Your audit is conducted personally by an experienced performance marketer who actively runs live ad campaigns in Kerala and the UAE. No automated generic scanner reports. You receive honest analysis of what is actually driving or hindering local sales.
+            </p>
+
+            {/* Proof Numbers */}
+            <div className="audit-who-stats-grid">
+              <div className="audit-who-stat-cell">
+                <div className="audit-who-stat-num">5.0 ★</div>
+                <div className="audit-who-stat-label">Google Rating</div>
+              </div>
+              <div className="audit-who-stat-cell">
+                <div className="audit-who-stat-num">48h</div>
+                <div className="audit-who-stat-label">Delivery Time</div>
+              </div>
+              <div className="audit-who-stat-cell">
+                <div className="audit-who-stat-num">100%</div>
+                <div className="audit-who-stat-label">Free &middot; No Obligation</div>
+              </div>
+              <div className="audit-who-stat-cell">
+                <div className="audit-who-stat-num">Kerala &amp; GCC</div>
+                <div className="audit-who-stat-label">Regional Expertise</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 6: What clients say (Verified Reviews) ── */}
+      <section className="audit-pain-section">
+        <div className="container">
+          <div className="text-center" style={{ maxWidth: '680px', margin: '0 auto 1.5rem' }}>
+            <div className="hero-eyebrow-pill" style={{ margin: '0 auto 1rem' }}>
+              <span className="eyebrow-dot" /> VERIFIED REVIEWS
+            </div>
+            <h2 className="section-title" style={{ fontSize: '2.25rem', marginBottom: '0.5rem' }}>
+              What clients say
+            </h2>
+            <p className="section-subtitle" style={{ fontSize: '0.975rem', color: 'var(--text-secondary)' }}>
+              Real feedback from business owners partnering with OptiVir Ads.
+            </p>
+          </div>
+
+          <div className="audit-reviews-grid">
+            <div className="audit-quote-card">
+              <p className="audit-quote-text">
+                &ldquo;Our Google Search campaigns now bring consistent, qualified local calls every week.&rdquo;
+              </p>
+              <div className="audit-quote-author">
+                <span className="audit-quote-name">Muhammed Fayiz</span>
+                <span className="audit-quote-source">Kannur &middot; Google review</span>
+              </div>
+            </div>
+
+            <div className="audit-quote-card">
+              <p className="audit-quote-text">
+                &ldquo;Fast loading landing pages and clear weekly reporting.&rdquo;
+              </p>
+              <div className="audit-quote-author">
+                <span className="audit-quote-name">Rashid Al Nuaimi</span>
+                <span className="audit-quote-source">Dubai &middot; Google review</span>
+              </div>
+            </div>
+
+            <div className="audit-quote-card">
+              <p className="audit-quote-text">
+                &ldquo;The local search and Google Maps optimization brought genuine enquiries for our services.&rdquo;
+              </p>
+              <div className="audit-quote-author">
+                <span className="audit-quote-name">Ananya Nair</span>
+                <span className="audit-quote-source">Kochi &middot; Google review</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 7: Buyer-Driven Questions (FAQ) ── */}
+      <section className="audit-landing-faq-section">
+        <div className="container" style={{ maxWidth: '960px' }}>
+          <div className="text-center" style={{ marginBottom: '2.5rem' }}>
+            <div className="hero-eyebrow-pill" style={{ margin: '0 auto 1rem' }}>
+              <span className="eyebrow-dot" /> STRAIGHTFORWARD ANSWERS
+            </div>
+            <h2 className="section-title" style={{ fontSize: '2.25rem', marginBottom: '0.5rem' }}>
+              Questions
+            </h2>
+            <p className="section-subtitle" style={{ fontSize: '0.975rem', color: 'var(--text-secondary)' }}>
+              Everything you need to know about our free audit.
+            </p>
+          </div>
+
+          <div className="audit-landing-faq-grid">
+            <div className="audit-faq-card">
+              <h4 className="audit-faq-q">Is it really free?</h4>
+              <p className="audit-faq-a">
+                Yes, 100% free. No card required, no surprise bill. You receive an honest diagnostic breakdown and top 3 fixes you can implement right away.
+              </p>
+            </div>
+
+            <div className="audit-faq-card">
+              <h4 className="audit-faq-q">Do I need to be an existing client?</h4>
+              <p className="audit-faq-a">
+                No. This audit is open to any business owner in Kerala or the GCC running (or about to run) Google, Maps, or Meta ads who wants to stop losing enquiries.
+              </p>
+            </div>
+
+            <div className="audit-faq-card">
+              <h4 className="audit-faq-q">Will you try to sell me something?</h4>
+              <p className="audit-faq-a">
+                No high-pressure sales pitch. We will clearly show you where your enquiries are leaking. If you would like our team to fix them and manage your campaigns, we can talk. If not, the audit and action plan are completely yours to keep.
+              </p>
+            </div>
+
+            <div className="audit-faq-card">
+              <h4 className="audit-faq-q">What do you need from me?</h4>
+              <p className="audit-faq-a">
+                Just your name, your website link or Google Maps listing name, and your WhatsApp number so we can deliver your breakdown. No passwords or backend access needed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 8: The Masterclass P.S. Closing Strategy ── */}
+      <section className="audit-landing-bottom-cta">
+        <div className="container" style={{ maxWidth: '820px' }}>
+          <div className="audit-ps-card">
+            <span className="hero-eyebrow-pill">
+              <span className="eyebrow-dot" /> THE BOTTOM LINE
+            </span>
+
+            <p style={{ fontSize: '1.15rem', color: '#ffffff', lineHeight: '1.65', margin: 0, fontWeight: 500 }}>
+              <strong>P.S.</strong> If your marketing isn&apos;t bringing in the enquiries you expected, here&apos;s the short version: we&apos;ll audit your website, Google listing and ads for free and show you the 3 fixes to make first within 48 hours. It&apos;s yours to keep.
+            </p>
+
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+              Every month you wait is another month of paying for traffic that doesn&apos;t turn into calls.
+            </p>
+
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.5rem' }}>
+              <a 
+                href="#get-audit" 
+                onClick={scrollToForm}
+                className="btn-primary audit-hero-btn"
+                style={{ fontSize: '1.05rem', padding: '0.95rem 2rem' }}
+              >
+                Get My Free Audit <ArrowRight size={16} />
+              </a>
+              <a 
+                href="https://wa.me/919995037109?text=AUDIT" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-secondary"
+                style={{ padding: '0.95rem 1.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <MessageCircle size={16} /> WhatsApp &ldquo;AUDIT&rdquo;
+              </a>
+            </div>
+          </div>
+
+          {/* Simple Bottom Legal Bar */}
+          <div style={{ textAlign: 'center', marginTop: '2.5rem', fontSize: '0.825rem', color: 'var(--text-muted)' }}>
+            &copy; OptiVir Ads &middot; Kannur, Kerala &middot; <a href="mailto:services@optivirads.com" style={{ color: 'var(--text-secondary)', textDecoration: 'underline' }}>services@optivirads.com</a> &middot; <Link href="/privacy-policy" style={{ color: 'var(--text-secondary)', textDecoration: 'underline' }}>Privacy Policy</Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

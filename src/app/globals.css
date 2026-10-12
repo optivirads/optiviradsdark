@@ -383,14 +383,17 @@ button {
 }
 
 .input-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .input-field {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
   background: rgba(248, 246, 243, 0.04);
   border: 1px solid rgba(248, 246, 243, 0.12);
   border-radius: 8px;
@@ -3492,85 +3495,266 @@ a.channel-value:hover {
   }
 }
 
-/* ── Free Marketing Audit Enhancement Styles ────────────────── */
-.audit-benefits-section {
-  padding: 1.5rem 0 2rem;
+/* ── Universal Form Input Elements ───────────────────────────── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.input-label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #E2E8F0 !important; /* High contrast light text for readable labels against dark navy */
+  letter-spacing: 0.02em;
+  display: block;
+}
+
+.input-field {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: block;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 0.925rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.input-field:focus {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-crimson);
+  box-shadow: 0 0 0 3px rgba(176, 31, 58, 0.2);
+}
+
+/* ── Free Marketing Audit Landing Page Styles ────────────────── */
+.audit-landing-page {
   position: relative;
   z-index: 2;
+  padding-top: 1.5rem;
 }
 
-.audit-benefits-grid {
+.audit-hero-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-top: 1.5rem;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 3.5rem;
+  align-items: start;
+  padding: 1.5rem 0 3.5rem;
 }
 
-@media (max-width: 860px) {
-  .audit-benefits-grid {
+@media (max-width: 992px) {
+  .audit-hero-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 2.25rem;
+    padding: 1rem 0 2.5rem;
   }
 }
 
-.audit-benefit-card {
-  padding: 1.5rem;
-  border-radius: 14px;
-  background: rgba(15, 27, 50, 0.7);
-  border: 1px solid rgba(248, 246, 243, 0.08);
+.audit-hero-pitch {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  gap: 1.25rem;
 }
 
-.audit-benefit-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(176, 31, 58, 0.35);
-}
-
-.audit-benefit-num {
-  font-size: 0.75rem;
+.audit-hero-headline {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-crimson);
+  line-height: 1.15;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .audit-hero-headline {
+    font-size: 2.05rem;
+  }
+}
+
+.audit-hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0;
+}
+
+.audit-hero-actions {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.audit-hero-btn {
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.audit-benefit-title {
-  font-size: 1.05rem;
+.audit-whatsapp-quiet-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.audit-whatsapp-quiet-link:hover {
+  color: #ffffff;
+}
+
+/* 3 Compact Benefit Rows (Replacing tall narrow cards) */
+.audit-compact-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.audit-compact-benefit-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.95rem 1.15rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.audit-compact-benefit-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(176, 31, 58, 0.35);
+}
+
+.benefit-row-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(176, 31, 58, 0.15);
+  border: 1px solid rgba(176, 31, 58, 0.35);
+  color: var(--accent-crimson);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefit-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.benefit-row-title {
+  font-size: 0.95rem;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
 }
 
-.audit-benefit-desc {
-  font-size: 0.85rem;
+.benefit-row-desc {
+  font-size: 0.8125rem;
   color: var(--text-secondary);
-  line-height: 1.55;
+  line-height: 1.45;
   margin: 0;
+}
+
+.audit-micro-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.micro-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.micro-trust-item svg {
+  color: var(--accent-crimson);
+}
+
+/* Right Column: Compact, High-Converting Form Card */
+.audit-hero-form-col {
+  width: 100%;
+}
+
+.audit-form-card {
+  padding: 2rem 2.25rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem !important;
+  background: rgba(15, 27, 50, 0.85) !important;
+  border: 1px solid rgba(248, 246, 243, 0.12) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.75) !important;
+}
+
+@media (max-width: 768px) {
+  .audit-form-card {
+    padding: 1.5rem 1.25rem !important;
+    gap: 1rem !important;
+  }
+}
+
+.audit-form-card .step-heading {
+  font-size: 1.2rem !important;
+  margin-bottom: 0.85rem !important;
+  gap: 0.5rem !important;
+}
+
+.audit-form-card .input-group {
+  margin-bottom: 0.85rem !important;
+  gap: 0.35rem !important;
+}
+
+.audit-form-card .input-group:last-child {
+  margin-bottom: 0 !important;
 }
 
 .audit-chips-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.625rem;
-  margin-bottom: 1.25rem;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
 }
 
 .audit-chip-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
   border-radius: 99px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -3591,8 +3775,8 @@ a.channel-value:hover {
 .audit-presence-tabs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.625rem;
-  margin-bottom: 1.25rem;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 @media (max-width: 520px) {
@@ -3604,13 +3788,13 @@ a.channel-value:hover {
 .audit-tab-btn {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.75rem 1rem;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
-  font-size: 0.8125rem;
+  font-size: 0.775rem;
   cursor: pointer;
   text-align: left;
   transition: all var(--transition-fast);
@@ -3628,8 +3812,8 @@ a.channel-value:hover {
 }
 
 .audit-tab-dot {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.3);
   flex-shrink: 0;
@@ -3646,50 +3830,609 @@ a.channel-value:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--accent-crimson);
 }
 
-.audit-trust-strip {
+/* Full-width Prominent Next Step controls */
+.audit-form-controls {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.25rem;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.audit-trust-badge {
+.btn-audit-submit {
+  width: 100% !important;
+  justify-content: center !important;
+  padding: 0.95rem 1.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  background: var(--accent-crimson) !important;
+  box-shadow: 0 4px 14px rgba(176, 31, 58, 0.4) !important;
+}
+
+.btn-audit-back {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.btn-audit-back:hover {
+  color: #ffffff;
+}
+
+/* Below the form: In-depth 3-point explanation section */
+.audit-details-section {
+  padding: 4.5rem 0 3.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.audit-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 860px) {
+  .audit-details-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.audit-detail-card {
+  padding: 2rem 1.75rem;
+  border-radius: 16px;
+  background: rgba(15, 27, 50, 0.7);
+  border: 1px solid rgba(248, 246, 243, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.audit-detail-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(176, 31, 58, 0.35);
+}
+
+.audit-detail-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-crimson);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.8125rem;
+}
+
+.audit-detail-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.audit-detail-desc {
+  font-size: 0.875rem;
   color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
-.audit-trust-badge svg {
-  color: var(--accent-crimson);
-}
-
-.audit-fasttrack-card {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: rgba(15, 27, 50, 0.4);
-  border: 1px solid rgba(248, 246, 243, 0.08);
+.audit-detail-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-@media (max-width: 680px) {
-  .audit-fasttrack-card {
-    flex-direction: column;
-    text-align: center;
+.audit-detail-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.audit-detail-check-item svg {
+  color: var(--accent-crimson);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Landing Page FAQ Section */
+.audit-landing-faq-section {
+  padding: 3.5rem 0 4.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.audit-landing-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .audit-landing-faq-grid {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
+}
+
+.audit-faq-card {
+  padding: 1.75rem;
+  background: rgba(15, 27, 50, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+}
+
+.audit-faq-q {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.audit-faq-a {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Bottom CTA section */
+.audit-landing-bottom-cta {
+  padding: 4rem 0 5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.audit-bottom-banner {
+  padding: 3rem 2.5rem;
+  background: rgba(15, 27, 50, 0.7);
+  border: 1px solid rgba(176, 31, 58, 0.3);
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .audit-bottom-banner {
+    padding: 2rem 1.25rem;
+  }
+}
+
+/* ── Model Landing Page Specific Components ────────────────── */
+.audit-video-card {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(15, 27, 50, 0.95), rgba(8, 15, 37, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(176, 31, 58, 0.15);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.audit-video-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(176, 31, 58, 0.45);
+}
+
+.audit-video-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(176, 31, 58, 0.25) 0%, rgba(8, 15, 37, 0.85) 70%);
+  padding: 2rem;
+  text-align: center;
+}
+
+.audit-video-play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent-crimson);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(176, 31, 58, 0.6);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.audit-video-card:hover .audit-video-play-btn {
+  transform: scale(1.08);
+  background: #c52342;
+}
+
+.audit-video-duration-pill {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.audit-video-caption-bar {
+  padding: 1.15rem 1.35rem;
+  background: rgba(8, 15, 37, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.audit-video-caption-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.audit-video-speaker-tag {
+  font-size: 0.75rem;
+  color: var(--accent-crimson);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Pain Points Section */
+.audit-pain-section {
+  padding: 4.5rem 0 3.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.audit-pain-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+@media (max-width: 768px) {
+  .audit-pain-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+}
+
+.audit-pain-card {
+  padding: 1.75rem 2rem;
+  background: rgba(15, 27, 50, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.audit-pain-card:hover {
+  border-color: rgba(176, 31, 58, 0.35);
+  transform: translateY(-2px);
+}
+
+.audit-pain-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(176, 31, 58, 0.15);
+  border: 1px solid rgba(176, 31, 58, 0.35);
+  color: var(--accent-crimson);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.audit-pain-text {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* The Lead-Leak Audit Section */
+.lead-leak-section {
+  padding: 4.5rem 0 3.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.lead-leak-funnel {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
+  margin: 2.5rem 0 1.5rem;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .lead-leak-funnel {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.lead-leak-step {
+  padding: 1.25rem 1rem;
+  background: rgba(15, 27, 50, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.lead-leak-step-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.lead-leak-step-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.lead-leak-warning {
+  font-size: 0.75rem;
+  color: var(--accent-crimson);
+  font-weight: 600;
+  background: rgba(176, 31, 58, 0.12);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  margin-top: 0.25rem;
+}
+
+/* Who's Doing Your Audit Card */
+.audit-who-section {
+  padding: 4rem 0 3.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 2;
+}
+
+.audit-who-card {
+  padding: 3rem;
+  background: rgba(15, 27, 50, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .audit-who-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.audit-who-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 768px) {
+  .audit-who-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.audit-who-stat-cell {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  background: rgba(8, 15, 37, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.audit-who-stat-num {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.audit-who-stat-label {
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* Client Quotes / Reviews */
+.audit-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+@media (max-width: 900px) {
+  .audit-reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.audit-quote-card {
+  padding: 2rem 1.75rem;
+  background: rgba(15, 27, 50, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.audit-quote-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-style: italic;
+  margin: 0;
+}
+
+.audit-quote-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.85rem;
+}
+
+.audit-quote-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.925rem;
+}
+
+.audit-quote-source {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+/* Direct Form Card Styling */
+.audit-direct-form-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.audit-goal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+@media (max-width: 580px) {
+  .audit-goal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.audit-goal-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audit-goal-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.audit-goal-btn.active {
+  background: rgba(176, 31, 58, 0.15);
+  border-color: var(--accent-crimson);
+  color: #ffffff;
+}
+
+.audit-promise-box {
+  background: rgba(176, 31, 58, 0.08);
+  border: 1px solid rgba(176, 31, 58, 0.25);
+  border-radius: 12px;
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+}
+
+.audit-promise-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #ffffff;
+  line-height: 1.45;
+}
+
+/* P.S. Box */
+.audit-ps-card {
+  padding: 2.5rem;
+  background: rgba(15, 27, 50, 0.75);
+  border: 1px solid rgba(176, 31, 58, 0.35);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
 }
 
 /* ── Services listing page ─────────────────────────────────── */
