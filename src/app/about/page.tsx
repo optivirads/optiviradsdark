@@ -6,6 +6,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
+import FAQSchema from '@/components/seo/FAQSchema';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import { FAQItemData } from '@/types/faq';
@@ -33,19 +34,6 @@ const aboutFaqs: FAQItemData[] = [
     answer: "You can reach OptiVir Ads through multiple channels: WhatsApp us directly at +91 9995037109 for an immediate response (fastest method), email us at services@optivirads.com, or fill in our Free Marketing Audit form on this website. Our Kannur office (Green Building, Talap) also welcomes in-person visits. We offer a comprehensive free digital marketing audit covering your SEO health, ad account performance, competitor gaps, and a prioritized 90-day growth roadmap — at zero cost or obligation."
   }
 ];
-
-const aboutFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": aboutFaqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-};
 
 export default function About() {
   const values = [
@@ -89,10 +77,39 @@ export default function About() {
     }
   ];
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${baseUrl}/about#webpage`,
+    "url": `${baseUrl}/about`,
+    "name": "About OptiVir Ads | Performance Digital Marketing Agency",
+    "description": "Learn about OptiVir Ads, our engineering methodology, data rigor, and digital marketing strategy led by Abhinand C, Digital Marketing Strategist.",
+    "mainEntity": {
+      "@id": `${baseUrl}/#organization`
+    },
+    "about": {
+      "@type": "Person",
+      "@id": `${baseUrl}/about#abhinand-c`,
+      "name": "Abhinand C",
+      "jobTitle": "Digital Marketing Strategist",
+      "url": `${baseUrl}/about`,
+      "worksFor": {
+        "@id": `${baseUrl}/#organization`
+      }
+    }
+  };
+
   return (
     <div className="about-page">
       {/* Dynamic SEO JSON-LD Schemas */}
       <BreadcrumbSchema items={[{ name: 'About Us', url: '/about' }]} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
+      <FAQSchema faqs={aboutFaqs} />
 
       <div className="grid-overlay" />
 
@@ -166,11 +183,7 @@ export default function About() {
       </section>
 
 
-      {/* FAQ Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutFaqSchema) }}
-      />
+
       <ReviewSchema reviews={CURATED_REVIEWS} />
 
       {/* Verified Google Business Reviews */}

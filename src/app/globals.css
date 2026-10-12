@@ -967,6 +967,17 @@ button {
   }
 }
 
+/* Individual Blog Page: Instant Static Rendering, No Entrance Animation */
+.blog-post-page,
+.blog-post-page .glass-card,
+.blog-post-page .post-featured-image-wrapper,
+.blog-post-page .post-content-card,
+.blog-post-page .article-content {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 .post-body-section {
   padding: 1rem 0 4rem;
   position: relative;

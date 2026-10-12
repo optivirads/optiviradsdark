@@ -33,7 +33,6 @@ export default function TermsOfServicePage() {
     <main className="loc-page" style={{ paddingBottom: '6rem' }}>
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: '/' },
           { name: 'Terms of Service', url: '/terms-of-service' },
         ]}
       />

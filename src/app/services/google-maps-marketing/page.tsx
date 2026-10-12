@@ -5,13 +5,10 @@ import {
   MapPin, 
   ArrowRight, 
   ArrowLeft,
-  Search,
   Star,
   CheckCircle2,
-  TrendingUp,
   PhoneCall,
   Navigation,
-  BarChart3,
   Building2,
   Sparkles,
   ShieldCheck

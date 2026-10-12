@@ -6,13 +6,11 @@ import {
   ArrowRight, 
   ArrowLeft,
   Globe,
-  Activity,
-  CheckCircle2
+  Activity
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 
-import { getServiceMetadata } from '@/lib/wordpress';
 import Faq from '@/components/faq/Faq';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 

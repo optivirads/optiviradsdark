@@ -13,7 +13,7 @@ export default function ReviewSchema({ reviews }: ReviewSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': `${baseUrl}/#organization`,
+    '@id': `${baseUrl}/#reviews`,
     'name': 'OptiVir Ads',
     'url': baseUrl,
     'image': `${baseUrl}/images/optivir-brand-logo.png`,

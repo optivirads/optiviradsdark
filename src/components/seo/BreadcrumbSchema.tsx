@@ -8,6 +8,11 @@ export interface BreadcrumbItem {
 export default function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] }) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
+  // Sanitize: strip out any redundant 'Home' entries passed by callers
+  const filteredItems = (items || []).filter(
+    (item) => item.url !== '/' && item.url !== '' && item.name.trim().toLowerCase() !== 'home'
+  );
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -18,11 +23,11 @@ export default function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] })
         "name": "Home",
         "item": baseUrl
       },
-      ...items.map((item, idx) => ({
+      ...filteredItems.map((item, idx) => ({
         "@type": "ListItem",
         "position": idx + 2,
         "name": item.name,
-        "item": item.url.startsWith('http') ? item.url : `${baseUrl}${item.url}`
+        "item": item.url.startsWith('http') ? item.url : `${baseUrl}${item.url.startsWith('/') ? item.url : `/${item.url}`}`
       }))
     ]
   };

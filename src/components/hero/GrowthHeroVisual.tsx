@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback, useSyncExternalStore } from 'react';
+import Image from 'next/image';
 
 // Pre-defined bar metrics in the 600 x 460 SVG coordinate space
 const BARS_DATA = [
@@ -206,13 +207,12 @@ export default function GrowthHeroVisual() {
         {/* Floating Google Ads 3D Glass Tab Icon */}
         <div className="growth-3d-glass-tab tab-google-3d">
           <div className="glass-icon-wrapper">
-            <img
+            <Image
               src="/images/google-ads-glass-3d.webp"
               alt="Google Ads"
               width={460}
               height={346}
-              loading="eager"
-              decoding="async"
+              priority
               className="glass-tab-3d-img"
               draggable={false}
             />
@@ -222,13 +222,12 @@ export default function GrowthHeroVisual() {
         {/* Floating Meta Ads 3D Glass Tab Icon */}
         <div className="growth-3d-glass-tab tab-meta-3d">
           <div className="glass-icon-wrapper">
-            <img
+            <Image
               src="/images/meta-ads-glass-3d.webp"
               alt="Meta Ads"
               width={446}
               height={397}
-              loading="eager"
-              decoding="async"
+              priority
               className="glass-tab-3d-img"
               draggable={false}
             />

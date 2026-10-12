@@ -5,7 +5,9 @@ export interface BlogPostingSchemaProps {
   description: string;
   slug: string;
   datePublished: string;
+  dateModified?: string;
   authorName?: string;
+  authorJobTitle?: string;
   imageUrl?: string;
 }
 
@@ -14,14 +16,33 @@ export default function BlogPostingSchema({
   description,
   slug,
   datePublished,
-  authorName = 'OptiVir Editorial Team',
+  dateModified,
+  authorName = 'Abhinand C',
+  authorJobTitle = 'Digital Marketing Strategist',
   imageUrl,
 }: BlogPostingSchemaProps) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
 
+  const formatIsoDate = (d: string) => {
+    try {
+      const parsed = new Date(d);
+      return isNaN(parsed.getTime()) ? new Date().toISOString() : parsed.toISOString();
+    } catch {
+      return new Date().toISOString();
+    }
+  };
+
+  const isoPublished = formatIsoDate(datePublished);
+  const isoModified = dateModified ? formatIsoDate(dateModified) : isoPublished;
+
+  const resolvedImage = imageUrl
+    ? (imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`)
+    : `${baseUrl}/images/og-share-1200x630.png`;
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${baseUrl}/blog/${slug}#article`,
     "headline": title,
     "description": description,
     "mainEntityOfPage": {
@@ -29,22 +50,33 @@ export default function BlogPostingSchema({
       "@id": `${baseUrl}/blog/${slug}`
     },
     "url": `${baseUrl}/blog/${slug}`,
-    "datePublished": datePublished,
+    "datePublished": isoPublished,
+    "dateModified": isoModified,
+    "inLanguage": "en-US",
     "author": {
-      "@type": "Organization",
+      "@type": "Person",
       "name": authorName,
-      "url": baseUrl
+      "jobTitle": authorJobTitle,
+      "url": `${baseUrl}/about`
     },
     "publisher": {
       "@type": "Organization",
       "@id": `${baseUrl}/#organization`,
       "name": "OptiVir Ads",
+      "url": baseUrl,
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/images/optivir-brand-logo.png`
+        "url": `${baseUrl}/images/brand/OptiVir-Ads-Original-Symbol-512.png`,
+        "width": 512,
+        "height": 512
       }
     },
-    "image": imageUrl || `${baseUrl}/images/optivir-brand-logo.png`
+    "image": {
+      "@type": "ImageObject",
+      "url": resolvedImage,
+      "width": 1200,
+      "height": 630
+    }
   };
 
   return (

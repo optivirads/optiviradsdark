@@ -26,7 +26,6 @@ import { getClientLogos, getPageFaqs, getPageMetadata } from '@/lib/wordpress';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import WebSiteSchema from '@/components/seo/WebSiteSchema';
-import ReviewSchema from '@/components/seo/ReviewSchema';
 import FAQSchema from '@/components/seo/FAQSchema';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
@@ -86,9 +85,8 @@ export default async function Home() {
     <div className="home-page">
       {/* Dynamic SEO JSON-LD Schemas */}
       <OrganizationSchema />
-      <LocalBusinessSchema />
+      <LocalBusinessSchema reviews={reviews} />
       <WebSiteSchema />
-      <ReviewSchema reviews={reviews} />
       <FAQSchema faqs={accordionFaqs} />
 
       {/* Background Grid Pattern */}
@@ -99,33 +97,32 @@ export default async function Home() {
         <div className="container hero-container-grid">
           <div className="hero-text-content">
             <div className="hero-eyebrow-pill">
-              <span className="eyebrow-dot" /> GROWTH MARKETING AGENCY
+              <span className="eyebrow-dot" /> GROWTH MARKETING FOR SMALL BUSINESSES
             </div>
             <h1 className="hero-headline">
-              More enquiries. More bookings. <span className="text-gradient-green">More reasons to choose your business.</span>
+              More enquiries. More customers. <span className="text-gradient-green">More reasons to choose your business.</span>
             </h1>
             <p className="hero-description animate-hero-desc">
-              We help salons, gyms and small businesses across Kerala and the GCC attract customers through Google, Instagram and Facebook. Starting from zero or already advertising? We’ll help you identify your next step.
+              We help small businesses across Kerala and the GCC attract customers through Google, Instagram and Facebook, snapchat and other social media . Whether you’re starting online or already advertising, we’ll help you choose your next step.
             </p>
-            <div className="hero-actions" style={{ flexWrap: 'wrap', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: '380px' }}>
-                <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
-                  Get a Free Marketing Audit <ArrowRight size={16} />
-                </Link>
-                <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.45' }}>
-                  Get three practical improvements for your ads or online presence. No website needed.
-                </p>
-              </div>
+            <div className="hero-actions" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
+                Get a Free Marketing Audit <ArrowRight size={16} />
+              </Link>
               <a
                 href={`https://wa.me/919995037109?text=${encodeURIComponent("Hi OptiVir Ads team, I'd like to get more enquiries and bookings for my business. Keyword: GROW")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary hero-cta-btn animate-hero-cta"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', alignSelf: 'flex-start' }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
               >
                 <MessageCircle size={16} style={{ color: 'var(--accent-crimson)' }} /> Chat on WhatsApp
               </a>
             </div>
+            <p style={{ fontSize: '0.9375rem', color: '#CBD5E1', margin: '0.75rem 0 0', lineHeight: '1.5', maxWidth: '460px' }}>
+              Get three practical improvements for your ads or online presence.{' '}
+              <span style={{ color: '#FFFFFF', fontWeight: 600 }}>No website needed.</span>
+            </p>
             <div className="hero-outcomes-grid">
               <div className="outcome-item">
                 <TrendingUp size={16} className="outcome-icon" />
@@ -370,8 +367,9 @@ export default async function Home() {
             >
               Get a Free Marketing Audit <ArrowRight size={18} />
             </Link>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginTop: '0.65rem' }}>
-              Three practical improvements for your ads or online presence. No website needed.
+            <p style={{ fontSize: '0.9375rem', color: '#CBD5E1', marginTop: '0.75rem', lineHeight: '1.5' }}>
+              Three practical improvements for your ads or online presence.{' '}
+              <span style={{ color: '#FFFFFF', fontWeight: 600 }}>No website needed.</span>
             </p>
           </div>
         </div>

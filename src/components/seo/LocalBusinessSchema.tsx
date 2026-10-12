@@ -43,8 +43,11 @@ export default function LocalBusinessSchema({
     "description": description || "Performance digital marketing, Google Ads, Meta Ads, and SEO agency in Kerala & GCC.",
     "image": image || `${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`,
     "logo": `${baseUrl}/images/brand/OptiVir-Ads-Original-Symbol-512.png`,
-    "@id": `${baseUrl}/#organization`,
+    "@id": url ? `${url}#localbusiness` : `${baseUrl}/#localbusiness`,
     "url": url || baseUrl,
+    "parentOrganization": {
+      "@id": `${baseUrl}/#organization`
+    },
     "telephone": telephone || "+919995037109",
     "email": "services@optivirads.com",
     "priceRange": "$$",

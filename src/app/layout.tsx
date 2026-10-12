@@ -94,6 +94,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || process.env.GOOGLE_SITE_VERIFICATION || undefined,
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
+      other: {
+        ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : {}),
+      },
     },
   };
 }
@@ -131,6 +135,7 @@ export default function RootLayout({
         {/* Meta Pixel Code (noscript fallback image) */}
         {pixelId && (
           <noscript>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               height="1"
               width="1"

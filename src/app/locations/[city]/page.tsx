@@ -146,7 +146,7 @@ export default async function LocationPage({ params }: Props) {
       />
       <BreadcrumbSchema
         items={[
-          { name: 'Services', url: '/services' },
+          { name: 'Locations', url: '/locations' },
           { name: location.city, url: `/locations/${location.slug}` },
         ]}
       />

@@ -87,11 +87,29 @@ export default function Contact() {
     }
   };
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${baseUrl}/contact#webpage`,
+    "url": `${baseUrl}/contact`,
+    "name": "Contact OptiVir Ads | Performance Marketing Agency Kannur & GCC",
+    "description": "Get in touch with OptiVir Ads for performance digital marketing, SEO, Google Ads, and Meta Ads enquiries in Kannur, Kerala, and the GCC.",
+    "mainEntity": {
+      "@id": `${baseUrl}/#localbusiness`
+    }
+  };
+
   return (
     <div className="contact-page">
       {/* Dynamic SEO JSON-LD Schemas */}
       <LocalBusinessSchema />
       <BreadcrumbSchema items={[{ name: 'Contact', url: '/contact' }]} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
 
       <div className="grid-overlay" />
 

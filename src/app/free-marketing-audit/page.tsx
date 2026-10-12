@@ -12,16 +12,32 @@ import {
   Star, 
   Clock, 
   ShieldCheck, 
-  AlertCircle,
-  HelpCircle,
-  Phone,
-  Check,
   XCircle,
   CheckCircle2
 } from 'lucide-react';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
+import FAQSchema from '@/components/seo/FAQSchema';
 import { CURATED_REVIEWS } from '@/lib/reviews';
+
+const AUDIT_FAQS = [
+  {
+    question: 'Is it really free?',
+    answer: 'Yes, 100% free. No card required, no surprise bill. You receive an honest diagnostic breakdown and top 3 fixes you can implement right away.',
+  },
+  {
+    question: 'Do I need to be an existing client?',
+    answer: 'No. This audit is open to any business owner in Kerala or the GCC running (or about to run) Google, Maps, or Meta ads who wants to stop losing enquiries.',
+  },
+  {
+    question: 'Will you try to sell me something?',
+    answer: 'No high-pressure sales pitch. We will clearly show you where your enquiries are leaking. If you would like our team to fix them and manage your campaigns, we can talk. If not, the audit and action plan are completely yours to keep.',
+  },
+  {
+    question: 'What do you need from me?',
+    answer: 'Just your name, your website link or Google Maps listing name, and your WhatsApp number so we can deliver your breakdown. No passwords or backend access needed.',
+  },
+];
 
 const GOAL_OPTIONS = [
   { id: 'calls', label: 'More calls and enquiries' },
@@ -107,6 +123,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
     <div className="audit-landing-page">
       <BreadcrumbSchema items={[{ name: 'Free Marketing Audit', url: '/free-marketing-audit' }]} />
       <ReviewSchema reviews={CURATED_REVIEWS} />
+      <FAQSchema faqs={AUDIT_FAQS} />
       <div className="grid-overlay" />
 
       {/* ── Section 1: Above-the-Fold 2-Column Split Hero ── */}

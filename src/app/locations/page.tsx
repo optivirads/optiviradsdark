@@ -68,7 +68,6 @@ export default function LocationsHubPage() {
       />
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: '/' },
           { name: 'Locations', url: '/locations' },
         ]}
       />

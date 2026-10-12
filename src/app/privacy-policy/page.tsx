@@ -33,7 +33,6 @@ export default function PrivacyPolicyPage() {
     <main className="loc-page" style={{ paddingBottom: '6rem' }}>
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: '/' },
           { name: 'Privacy Policy', url: '/privacy-policy' },
         ]}
       />

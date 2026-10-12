@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Calendar, User, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/wordpress';
-import ScrollReveal from '@/components/ScrollReveal';
 import BlogPostingSchema from '@/components/seo/BlogPostingSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
@@ -54,8 +53,9 @@ export async function generateMetadata({ params }: { params: Params }) {
       siteName: 'OptiVir Ads',
       locale: 'en_US',
       type: 'article',
-      publishedTime: post.date,
-      authors: [post.author || 'OptiVir Editorial Team'],
+      publishedTime: post.dateIso || post.date,
+      modifiedTime: post.dateModifiedIso || post.dateIso || post.date,
+      authors: [post.author || 'Abhinand C'],
       images: post.featuredImage ? [{ url: post.featuredImage }] : [],
     },
     twitter: {
@@ -84,14 +84,19 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     .filter((p) => p.slug !== slug)
     .slice(0, 2);
 
+  const authorName = post.author || 'Abhinand C';
+  const authorJobTitle = post.authorTitle || 'Digital Marketing Strategist';
+
   return (
     <article className="blog-post-page">
       <BlogPostingSchema
         title={post.title}
-        description={post.excerpt}
+        description={post.metaDescription || post.excerpt}
         slug={slug}
-        datePublished={post.date}
-        authorName={post.author}
+        datePublished={post.dateIso || post.date}
+        dateModified={post.dateModifiedIso || post.dateIso || post.date}
+        authorName={authorName}
+        authorJobTitle={authorJobTitle}
         imageUrl={post.featuredImage}
       />
       <BreadcrumbSchema
@@ -111,7 +116,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           
           <div className="post-meta-top">
             <span className="post-meta-item"><Calendar size={14} /> {post.date}</span>
-            <span className="post-meta-item"><User size={14} /> {post.author}</span>
+            <span className="post-meta-item"><User size={14} /> {authorName} · {authorJobTitle}</span>
           </div>
 
           <h1 className="post-title-main">{post.title}</h1>
@@ -134,14 +139,30 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               />
             </div>
           )}
-          <ScrollReveal direction="up" delay={200}>
-            <div className="glass-card post-content-card">
-              <div 
-                className="article-content"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+          <div className="glass-card post-content-card">
+            <div 
+              className="article-content"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+
+            {/* Author Byline / E-E-A-T Box */}
+            <div className="author-bio-box" style={{ marginTop: '2.5rem', paddingTop: '1.75rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+              <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(176,31,58,0.3), rgba(15,27,50,0.8))', border: '2px solid rgba(176,31,58,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 700, fontSize: '1.15rem', color: '#ffffff' }}>
+                AC
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff' }}>{authorName}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--accent-crimson)', fontWeight: 600, background: 'rgba(176,31,58,0.12)', padding: '0.2rem 0.6rem', borderRadius: '9999px', border: '1px solid rgba(176,31,58,0.3)' }}>
+                    {authorJobTitle}
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.55' }}>
+                  Founder &amp; Performance Marketer at OptiVir Ads. Engineering ROI-driven search architectures, high-intent Google PPC systems, and conversion funnels for businesses across Kerala and the GCC.
+                </p>
+              </div>
             </div>
-          </ScrollReveal>
+          </div>
 
           {/* Related Articles Footer */}
           {relatedPosts.length > 0 && (

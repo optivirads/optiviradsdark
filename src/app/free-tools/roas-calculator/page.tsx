@@ -61,7 +61,7 @@ export default function RoasCalculatorPage() {
       <WebApplicationSchema />
       <BreadcrumbSchema
         items={[
-          { name: 'Services', url: '/services' },
+          { name: 'Free Tools', url: '/free-tools/roas-calculator' },
           { name: 'ROAS Calculator', url: '/free-tools/roas-calculator' },
         ]}
       />

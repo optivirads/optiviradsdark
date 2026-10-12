@@ -6,11 +6,20 @@ export default function WebApplicationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+    "@id": `${baseUrl}/free-tools/roas-calculator#app`,
     "name": "ROAS & ROI Calculator for Ad Campaigns",
+    "description": "Calculate projected return on ad spend (ROAS), break-even thresholds, target CPA, and monthly profit pipelines across Google Ads and Meta Ads campaigns.",
     "url": `${baseUrl}/free-tools/roas-calculator`,
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript and HTML5 support",
+    "browserRequirements": "Requires JavaScript and modern web browser support",
+    "featureList": [
+      "ROAS Projection Calculator",
+      "Target Cost Per Acquisition (CPA) Estimator",
+      "Break-even Threshold Modeling",
+      "Multi-Currency Revenue Analysis (INR, AED, USD)",
+      "Dynamic Profit Velocity Projections"
+    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -18,6 +27,7 @@ export default function WebApplicationSchema() {
     },
     "provider": {
       "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
       "name": "OptiVir Ads",
       "url": baseUrl
     }

@@ -14,12 +14,7 @@ export default function WebSiteSchema() {
     "publisher": {
       "@id": `${baseUrl}/#organization`
     },
-    "inLanguage": ["en-US", "ml-IN"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": `${baseUrl}/blog?q={search_term_string}`,
-      "query-input": "required name=search_term_string"
-    }
+    "inLanguage": ["en-US", "ml-IN"]
   };
 
   return (

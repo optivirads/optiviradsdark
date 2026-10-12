@@ -212,13 +212,12 @@ export default function AntigravityParticles() {
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('touchend', handleTouchEnd);
 
-    let startTimeout: NodeJS.Timeout;
     const startParticleEngine = () => {
       resizeCanvas(true);
       updateFrame();
     };
 
-    startTimeout = setTimeout(startParticleEngine, 100);
+    const startTimeout = setTimeout(startParticleEngine, 100);
 
     return () => {
       if (startTimeout) clearTimeout(startTimeout);

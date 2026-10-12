@@ -8,7 +8,10 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   date: string;
+  dateIso?: string;
+  dateModifiedIso?: string;
   author: string;
+  authorTitle?: string;
   featuredImage?: string;
   metaTitle?: string;
   metaDescription?: string;
@@ -40,7 +43,7 @@ const MOCK_METADATA: Record<string, PageMetadata> = {
   },
   blog: {
     title: "Digital Marketing Blog: Growth Insights & Tactics | OptiVir Ads",
-    description: "Read the latest digital marketing advice, Google Ads guides, local SEO strategies, and ROI-centric advertising tips from our marketing engineers.",
+    description: "Practical digital marketing guides, Google Ads scaling frameworks, local SEO blueprints, and ROAS optimization strategies by Abhinand C and the OptiVir team.",
   },
   contact: {
     title: "Contact Us: Schedule Your Free Strategy Session | OptiVir Ads",
@@ -515,10 +518,13 @@ const MOCK_POSTS: BlogPost[] = [
     slug: "scale-google-ads-roi",
     excerpt: "Scaling PPC campaigns often leads to a drop in return on ad spend (ROAS). Learn our engineered framework for scaling spend while maintaining or improving lead quality.",
     date: "July 12, 2026",
-    author: "OptiVir Growth Team",
+    dateIso: "2026-07-12T09:00:00+05:30",
+    dateModifiedIso: "2026-07-12T09:00:00+05:30",
+    author: "Abhinand C",
+    authorTitle: "Digital Marketing Strategist",
     featuredImage: "/images/blog-google-ads.png",
     metaTitle: "Scaling Google Ads: Keep ROAS High | OptiVir Ads",
-    metaDescription: "Scaling Google Ads spend doesn't have to dilute your ROI. Discover how to scale budgets while filtering low-quality intent and driving high-converting leads.",
+    metaDescription: "Scaling Google Ads spend doesn't have to dilute your ROI. Discover how to scale budgets while filtering low-quality intent and driving high-converting leads by Abhinand C.",
     content: `
       <p>Every digital marketer faces a common hurdle: you've built a Google Ads campaign that generates a fantastic return on investment, but as soon as you increase the budget, your cost-per-acquisition (CPA) shoots up and your ROI plummets.</p>
       
@@ -544,10 +550,13 @@ const MOCK_POSTS: BlogPost[] = [
     slug: "local-seo-domination-blueprint",
     excerpt: "Dominating local search results requires more than just a basic Google Business Profile. Discover the five advanced strategies to capture local market share and drive foot traffic.",
     date: "July 05, 2026",
-    author: "OptiVir SEO Specialists",
+    dateIso: "2026-07-05T09:00:00+05:30",
+    dateModifiedIso: "2026-07-05T09:00:00+05:30",
+    author: "Abhinand C",
+    authorTitle: "Digital Marketing Strategist",
     featuredImage: "/images/blog-local-seo.png",
     metaTitle: "Local SEO Domination: 5 Advanced Tactics | OptiVir Ads",
-    metaDescription: "Tired of losing local customers to competitors? Here is our engineered blueprint to command organic local search authority and drive qualified store traffic.",
+    metaDescription: "Tired of losing local customers to competitors? Here is our engineered blueprint by Abhinand C to command organic local search authority and drive qualified store traffic.",
     content: `
       <p>For service businesses and brick-and-mortar brands, local search is the single most valuable acquisition channel. Over 46% of all Google searches have local intent. If you aren't visible at the top of the 'Map Pack', you're handing market share to your competitors.</p>
       
@@ -573,10 +582,13 @@ const MOCK_POSTS: BlogPost[] = [
     slug: "meta-ads-vs-google-ads",
     excerpt: "Should your business prioritize search intent or visual disruption? We break down the differences and help you allocate your ad spend for maximum growth.",
     date: "June 28, 2026",
-    author: "OptiVir Acquisition Team",
+    dateIso: "2026-06-28T09:00:00+05:30",
+    dateModifiedIso: "2026-06-28T09:00:00+05:30",
+    author: "Abhinand C",
+    authorTitle: "Digital Marketing Strategist",
     featuredImage: "/images/blog-meta-vs-google.png",
     metaTitle: "Meta Ads vs Google Ads: Which is Best? | OptiVir Ads",
-    metaDescription: "Struggling to allocate your digital marketing budget? Read our deep dive into the strengths of Meta Ads vs. Google Ads, and learn how to construct a balanced marketing engine.",
+    metaDescription: "Struggling to allocate your digital marketing budget? Read this deep dive by Abhinand C into Meta Ads vs. Google Ads, and learn how to construct a balanced marketing engine.",
     content: `
       <p>One of the most frequent questions we receive from ambitious founders is: <em>'Where should I invest my ad budget first—Google Ads or Meta Ads?'</em></p>
       <p>The answer depends entirely on your product, business model, and where your audience sits in the buying journey.</p>
@@ -828,11 +840,17 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       }
 
       // Find author name if embedded
-      let author = "OptiVir Team";
+      let author = "Abhinand C";
+      const authorTitle = "Digital Marketing Strategist";
       const embeddedAuthor = post._embedded?.["author"];
-      if (embeddedAuthor && embeddedAuthor.length > 0) {
+      if (embeddedAuthor && embeddedAuthor.length > 0 && embeddedAuthor[0].name) {
         author = embeddedAuthor[0].name;
       }
+
+      const postDateObj = post.date ? new Date(post.date) : new Date();
+      const isoPublished = isNaN(postDateObj.getTime()) ? new Date().toISOString() : postDateObj.toISOString();
+      const modDateObj = post.modified ? new Date(post.modified) : postDateObj;
+      const isoModified = isNaN(modDateObj.getTime()) ? isoPublished : modDateObj.toISOString();
 
       return {
         id: post.id,
@@ -840,12 +858,15 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         slug: post.slug,
         excerpt: post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim() || "",
         content: post.content?.rendered || "",
-        date: new Date(post.date).toLocaleDateString("en-US", {
+        date: postDateObj.toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric",
         }),
+        dateIso: isoPublished,
+        dateModifiedIso: isoModified,
         author,
+        authorTitle,
         featuredImage,
         metaTitle: cleanMetaTitle(post.yoast_head_json?.title || post.title?.rendered, `${post.title?.rendered || "Article"} | OptiVir Ads`),
         metaDescription: cleanMetaDescription(post.yoast_head_json?.description || post.excerpt?.rendered, post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim() || ""),
@@ -898,11 +919,17 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       }
     }
 
-    let author = "OptiVir Team";
+    let author = "Abhinand C";
+    const authorTitle = "Digital Marketing Strategist";
     const embeddedAuthor = post._embedded?.["author"];
-    if (embeddedAuthor && embeddedAuthor.length > 0) {
+    if (embeddedAuthor && embeddedAuthor.length > 0 && embeddedAuthor[0].name) {
       author = embeddedAuthor[0].name;
     }
+
+    const postDateObj = post.date ? new Date(post.date) : new Date();
+    const isoPublished = isNaN(postDateObj.getTime()) ? new Date().toISOString() : postDateObj.toISOString();
+    const modDateObj = post.modified ? new Date(post.modified) : postDateObj;
+    const isoModified = isNaN(modDateObj.getTime()) ? isoPublished : modDateObj.toISOString();
 
     return {
       id: post.id,
@@ -910,12 +937,15 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       slug: post.slug,
       excerpt: post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim() || "",
       content: post.content?.rendered || "",
-      date: new Date(post.date).toLocaleDateString("en-US", {
+      date: postDateObj.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       }),
+      dateIso: isoPublished,
+      dateModifiedIso: isoModified,
       author,
+      authorTitle,
       featuredImage,
       metaTitle: cleanMetaTitle(post.yoast_head_json?.title || post.title?.rendered, `${post.title?.rendered || "Article"} | OptiVir Ads`),
       metaDescription: cleanMetaDescription(post.yoast_head_json?.description || post.excerpt?.rendered, post.excerpt?.rendered?.replace(/<[^>]*>/g, "").trim() || ""),
