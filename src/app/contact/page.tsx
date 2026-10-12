@@ -115,7 +115,7 @@ export default function Contact() {
       <section className="contact-section">
         <div className="container contact-grid-layout">
           {/* Info Side */}
-          <ScrollReveal direction="left" delay={150}>
+          <ScrollReveal direction="left" delay={150} rotate={false}>
             <div className="contact-info-panel">
               <h2 className="info-title">Let&apos;s Discuss Your Pipeline</h2>
               <p className="info-desc">

@@ -120,7 +120,7 @@ export default function About() {
             <p className="section-subtitle">The guidelines that define our methodology and commitment to client success.</p>
           </div>
 
-          <ScrollReveal stagger={120} delay={100}>
+          <ScrollReveal stagger={120} delay={100} rotate={false}>
             <div className="values-grid">
               {values.map((val, idx) => (
                 <div key={idx} className="glass-card value-card">

@@ -3492,6 +3492,206 @@ a.channel-value:hover {
   }
 }
 
+/* ── Free Marketing Audit Enhancement Styles ────────────────── */
+.audit-benefits-section {
+  padding: 1.5rem 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.audit-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 860px) {
+  .audit-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.audit-benefit-card {
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: rgba(15, 27, 50, 0.7);
+  border: 1px solid rgba(248, 246, 243, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.audit-benefit-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(176, 31, 58, 0.35);
+}
+
+.audit-benefit-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-crimson);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.audit-benefit-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.audit-benefit-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.audit-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.audit-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audit-chip-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.audit-chip-btn.active {
+  background: rgba(176, 31, 58, 0.15);
+  border-color: var(--accent-crimson);
+  color: #ffffff;
+}
+
+.audit-presence-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 520px) {
+  .audit-presence-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.audit-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.audit-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.audit-tab-btn.active {
+  background: rgba(176, 31, 58, 0.12);
+  border-color: var(--accent-crimson);
+  color: #ffffff;
+}
+
+.audit-tab-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.audit-tab-btn.active .audit-tab-dot {
+  border-color: var(--accent-crimson);
+}
+
+.audit-tab-btn.active .audit-tab-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-crimson);
+}
+
+.audit-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.audit-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.audit-trust-badge svg {
+  color: var(--accent-crimson);
+}
+
+.audit-fasttrack-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: rgba(15, 27, 50, 0.4);
+  border: 1px solid rgba(248, 246, 243, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .audit-fasttrack-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
 /* ── Services listing page ─────────────────────────────────── */
 .services-hero {
   padding: 4rem 0 3rem;

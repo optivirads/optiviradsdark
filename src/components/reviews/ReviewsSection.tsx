@@ -24,7 +24,7 @@ export default function ReviewsSection({
   return (
     <section className="reviews-section" style={{ padding: '5rem 0', position: 'relative' }}>
       <div className="container">
-        <ScrollReveal direction="up" delay={150}>
+        <ScrollReveal direction="up" delay={150} rotate={false}>
           <div className="text-center" style={{ maxWidth: '800px', margin: '0 auto 3rem auto' }}>
             {/* Google Business Rating Badge Header */}
             <div
@@ -83,7 +83,7 @@ export default function ReviewsSection({
         {/* Reviews Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
           {safeReviews.map((rev, i) => (
-            <ScrollReveal key={rev.id} delay={i * 80} direction="up">
+            <ScrollReveal key={rev.id} delay={i * 80} direction="up" rotate={false}>
               <div
                 className="glass-card"
                 style={{

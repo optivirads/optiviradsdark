@@ -493,7 +493,7 @@ export default function Services() {
 
               <div className="calc-action-row">
                 <Link href="/free-marketing-audit" className="btn-primary w-full justify-center">
-                  Unlock this Pipeline <ArrowRight size={16} />
+                  Get a Free Marketing Audit <ArrowRight size={16} />
                 </Link>
               </div>
             </div>

@@ -47,8 +47,12 @@ const MOCK_METADATA: Record<string, PageMetadata> = {
     description: "Ready to scale? Connect with our dedicated account management team for a precision-engineered digital marketing audit.",
   },
   "get-started": {
-    title: "Free Audit & Strategy Session Onboarding | OptiVir Ads",
-    description: "Submit your details and get a precision marketing audit designed to uncover predictable, scalable revenue growth opportunities.",
+    title: "Free Marketing Audit — 3 Practical Improvements | OptiVir Ads",
+    description: "Get a free marketing audit with three practical improvements for your ads or online presence. No website needed.",
+  },
+  "free-marketing-audit": {
+    title: "Free Marketing Audit — 3 Practical Improvements | OptiVir Ads",
+    description: "Get a free marketing audit with three practical improvements for your ads or online presence. No website needed. Helping salons, gyms, and small businesses in Kerala & the GCC.",
   },
   "social-media-management": {
     title: "Professional Social Media Management (SMM) Services | OptiVir Ads",

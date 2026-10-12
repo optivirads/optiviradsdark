@@ -110,20 +110,20 @@ export default async function Home() {
             <div className="hero-actions" style={{ flexWrap: 'wrap', alignItems: 'flex-start' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: '380px' }}>
                 <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
-                  Get My Free Business Review <ArrowRight size={16} />
+                  Get a Free Marketing Audit <ArrowRight size={16} />
                 </Link>
                 <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.45' }}>
-                  Get three practical suggestions to help more customers find and contact you. No website needed.
+                  Get three practical improvements for your ads or online presence. No website needed.
                 </p>
               </div>
               <a
-                href={`https://wa.me/919995037109?text=${encodeURIComponent("Hi OptiVir Ads team, I'd like to get more enquiries and bookings for my business.")}`}
+                href={`https://wa.me/919995037109?text=${encodeURIComponent("Hi OptiVir Ads team, I'd like to get more enquiries and bookings for my business. Keyword: GROW")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary hero-cta-btn animate-hero-cta"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', alignSelf: 'flex-start' }}
               >
-                <MessageCircle size={16} style={{ color: 'var(--accent-green)' }} /> Chat on WhatsApp
+                <MessageCircle size={16} style={{ color: 'var(--accent-crimson)' }} /> Chat on WhatsApp
               </a>
             </div>
             <div className="hero-outcomes-grid">
@@ -164,7 +164,7 @@ export default async function Home() {
           </div>
 
           {/* Growth Process Pipeline Strip */}
-          <ScrollReveal direction="up" delay={50}>
+          <ScrollReveal direction="up" delay={50} rotate={false}>
             <div className="growth-pipeline-container">
               <nav aria-label="Growth engine steps" className="growth-pipeline-bar">
                 <a href="#step-reach-customers" className="pipeline-step">
@@ -368,8 +368,11 @@ export default async function Home() {
               className="btn-primary"
               style={{ padding: '0.95rem 2.25rem', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.02em', textTransform: 'none' }}
             >
-              Find Out What My Business Needs <ArrowRight size={18} />
+              Get a Free Marketing Audit <ArrowRight size={18} />
             </Link>
+            <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginTop: '0.65rem' }}>
+              Three practical improvements for your ads or online presence. No website needed.
+            </p>
           </div>
         </div>
       </section>
@@ -377,7 +380,7 @@ export default async function Home() {
       {/* Data-Driven Precision Section */}
       <section className="precision-section">
         <div className="container precision-container-grid">
-          <ScrollReveal direction="left" delay={100}>
+          <ScrollReveal direction="left" delay={100} rotate={false}>
             <div className="precision-content">
               <h2 className="precision-title">
                 Data-Driven Search Engine Optimization (SEO) & Paid Media Precision
@@ -407,7 +410,7 @@ export default async function Home() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal direction="right" delay={200}>
+          <ScrollReveal direction="right" delay={200} rotate={false}>
             <div className="precision-image-wrapper">
               <Image
                 src="/images/office_space.png"
@@ -620,7 +623,7 @@ export default async function Home() {
       {/* SEO Agency Authority Overview & Regional Footprint */}
       <section className="home-seo-authority-section" style={{ padding: '5rem 0', position: 'relative' }}>
         <div className="container">
-          <ScrollReveal direction="up" delay={150}>
+          <ScrollReveal direction="up" delay={150} rotate={false}>
             <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
               <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '1.25rem', color: '#ffffff' }}>
                 Leading Growth Marketing Agency for Kerala &amp; GCC Businesses

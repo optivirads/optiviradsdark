@@ -186,7 +186,7 @@ export default async function LocationPage({ params }: Props) {
             <p className="loc-hero-sub">{location.heroSubheading}</p>
             <div className="loc-hero-actions">
               <Link href="/free-marketing-audit" className="btn-primary">
-                Schedule Free Audit <ArrowRight size={16} />
+                Get a Free Marketing Audit <ArrowRight size={16} />
               </Link>
               <Link href="/services" className="btn-secondary">
                 Explore Services
@@ -369,7 +369,7 @@ export default async function LocationPage({ params }: Props) {
 
                 <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                   <Link href="/free-marketing-audit" className="btn-primary">
-                    Request Free Account Audit <ArrowRight size={16} />
+                    Get a Free Marketing Audit <ArrowRight size={16} />
                   </Link>
                   <a
                     href={`https://wa.me/919995037109?text=${encodeURIComponent(`Hi OptiVir Ads team, I would like to consult regarding digital marketing in ${location.city}.`)}`}
