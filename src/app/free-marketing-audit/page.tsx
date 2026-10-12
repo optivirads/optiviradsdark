@@ -12,10 +12,12 @@ import {
   Star, 
   Clock, 
   ShieldCheck, 
-  TrendingUp,
   AlertCircle,
   HelpCircle,
-  Phone
+  Phone,
+  Check,
+  XCircle,
+  CheckCircle2
 } from 'lucide-react';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import ReviewSchema from '@/components/seo/ReviewSchema';
@@ -70,6 +72,7 @@ Website / Google Maps Link: ${formData.websiteOrMaps}
 WhatsApp Number: ${formData.phone}
 Email: ${formData.email.trim() || 'Not specified (Requested via WhatsApp)'}
 Primary Goal: ${goalLabel}
+Capacity: 5 Free Audits / Month Slot
 Delivery Format: Top 3 Actionable Fixes (Within 48h via WhatsApp)
 Enquiry Source: 2-Column Direct Response Landing Page`;
 
@@ -111,12 +114,17 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
         <div className="audit-hero-grid">
           {/* Left Column: Big Promise Headline, Benefits, and CTAs */}
           <div className="audit-hero-pitch">
-            {/* Step 1: Eyebrow Copy (Target Avatar + Loud Social Proof) */}
-            <div className="hero-eyebrow-pill" style={{ alignSelf: 'flex-start' }}>
-              <span className="eyebrow-dot" /> RATED 5.0 ON GOOGLE · FOR KERALA &amp; GCC BUSINESS OWNERS
+            {/* Step 1: Eyebrow Copy (Target Avatar + Verified Social Proof) */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div className="hero-eyebrow-pill" style={{ margin: 0 }}>
+                <span className="eyebrow-dot" /> RATED 5.0 ON GOOGLE · FOR KERALA &amp; GCC BUSINESSES
+              </div>
+              <span className="audit-slots-badge">
+                <span className="audit-pulse-dot" /> 2 of 5 Free Audit Slots Open This Month
+              </span>
             </div>
 
-            {/* Step 2: Big Promise Headline (Clear beats clever) */}
+            {/* Step 2: Honest Promise Headline */}
             <h1 className="audit-hero-headline" style={{ fontSize: '2.8rem', lineHeight: '1.15' }}>
               Find out exactly where your website and ads are losing enquiries, free.
             </h1>
@@ -191,7 +199,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                 <Star size={14} fill="#F59E0B" color="#F59E0B" /> Rated 5.0 on Google (5 verified reviews)
               </span>
               <span className="micro-trust-item">
-                <CheckCircle size={14} /> No payment, no obligation
+                <CheckCircle size={14} /> 100% Free · No sales pitch
               </span>
               <span className="micro-trust-item">
                 <Clock size={14} /> Delivered within 48 hours
@@ -205,7 +213,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
               <div className="glass-card audit-form-card">
                 <div style={{ textAlign: 'center', marginBottom: '0.85rem' }}>
                   <div className="hero-eyebrow-pill" style={{ margin: '0 auto 0.65rem' }}>
-                    <span className="eyebrow-dot" /> LIMITED TO 15 AUDITS / MONTH
+                    <span className="eyebrow-dot" /> LIMITED TO 5 FREE AUDITS / MONTH
                   </div>
                   <h2 style={{ fontSize: '1.65rem', color: '#ffffff', margin: '0 0 0.35rem', fontWeight: 700 }}>
                     Get your free audit
@@ -322,7 +330,9 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                             className={`audit-goal-btn ${isSelected ? 'active' : ''}`}
                             style={{ padding: '0.65rem 0.85rem', fontSize: '0.8rem' }}
                           >
-                            <span className="choice-radio-dot" />
+                            <span className={`choice-radio-dot ${isSelected ? 'checked' : ''}`}>
+                              {isSelected && <span className="choice-radio-inner" />}
+                            </span>
                             <span>{opt.label}</span>
                           </button>
                         );
@@ -335,7 +345,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                     <div className="audit-promise-item" style={{ fontSize: '0.8rem' }}>
                       <ShieldCheck size={16} style={{ color: 'var(--accent-crimson)', flexShrink: 0, marginTop: '1px' }} />
                       <span>
-                        <strong>No-pressure promise:</strong> The audit is yours to keep, whether you hire us or not.
+                        <strong>No-pressure promise:</strong> The audit is yours to keep, whether you hire us or not. Capped at 5 free audits/month for deep manual review.
                       </span>
                     </div>
                   </div>
@@ -350,9 +360,20 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                     {isSubmitting ? 'Preparing Your Audit...' : 'Send Me My Free Audit'} <ArrowRight size={15} />
                   </button>
 
-                  <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', margin: 0 }}>
-                    We only use this to prepare your audit. No spam.
-                  </p>
+                  {/* Alternative Direct WhatsApp Link */}
+                  <div style={{ textAlign: 'center', marginTop: '0.65rem', paddingTop: '0.65rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                    <p style={{ fontSize: '0.775rem', color: 'var(--text-muted)', margin: '0 0 0.25rem' }}>
+                      Prefer to skip the form? Send your link directly:
+                    </p>
+                    <a 
+                      href="https://wa.me/919995037109?text=AUDIT" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', textDecoration: 'underline' }}
+                    >
+                      <MessageCircle size={13} color="#10B981" /> WhatsApp keyword &ldquo;AUDIT&rdquo; to +91 99950 37109
+                    </a>
+                  </div>
                 </form>
               </div>
             ) : (
@@ -366,7 +387,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                 </h2>
                 <p style={{ fontSize: '0.925rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '460px', margin: '0 auto 1.5rem' }}>
                   Thank you, <strong>{formData.name}</strong>. We&apos;ve received the details for <strong>{formData.websiteOrMaps}</strong>. 
-                  Our team is reviewing your site, listing and ads, and will deliver your <strong>3 top fixes</strong> to <strong>{formData.phone}</strong> within 48 hours.
+                  Our team is manually reviewing your assets, and will deliver your <strong>3 top fixes</strong> to <strong>{formData.phone}</strong> within 48 hours.
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center' }}>
@@ -482,7 +503,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
               </span>
               <h3 className="audit-detail-title">Google Maps &amp; local search check</h3>
               <p className="audit-detail-desc">
-                Are nearby customers finding you before your competitors when searching &ldquo;near me&rdquo; or your service in your city? So you get more local calls.
+                Are nearby customers finding you before your competitors when searching &ldquo;near me&rdquo; in your city? So you get more local calls.
               </p>
               <ul className="audit-detail-checklist">
                 <li className="audit-detail-check-item">
@@ -517,6 +538,51 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                   <CheckCircle size={14} /> Full conversion tracking: GA4, Meta Pixel &amp; call logs
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* Real-World Diagnostic Examples */}
+          <div style={{ marginTop: '3.5rem', textAlign: 'center' }}>
+            <span className="hero-eyebrow-pill" style={{ margin: '0 auto 0.75rem' }}>
+              <span className="eyebrow-dot" /> REALISTIC DIAGNOSTICS
+            </span>
+            <h3 style={{ fontSize: '1.75rem', color: '#ffffff', margin: '0 0 0.5rem', fontWeight: 700 }}>
+              Real Examples of What We Find in Audits
+            </h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', maxWidth: '620px', margin: '0 auto' }}>
+              We don&apos;t generate generic software scores. Here are 3 actual, specific leaks we recently diagnosed for local business owners:
+            </p>
+
+            <div className="audit-sample-grid">
+              <div className="audit-sample-card">
+                <span className="audit-sample-tag">Diagnostic Example: Website</span>
+                <p className="audit-sample-found">
+                  <strong>The Leak:</strong> Mobile phone number on hero banner was plain text instead of a tap-to-call link, causing mobile searchers to leave without dialing.
+                </p>
+                <p className="audit-sample-fix">
+                  <strong>The Fix:</strong> Added a high-contrast sticky WhatsApp / call bar, instantly removing customer friction.
+                </p>
+              </div>
+
+              <div className="audit-sample-card">
+                <span className="audit-sample-tag">Diagnostic Example: Google Maps</span>
+                <p className="audit-sample-found">
+                  <strong>The Leak:</strong> Listed under generic secondary category &ldquo;Consultant&rdquo; instead of specific primary category for their city, invisible in the top 3 map pack.
+                </p>
+                <p className="audit-sample-fix">
+                  <strong>The Fix:</strong> Adjusted primary category and service attributes, pulling them directly into nearby local search results.
+                </p>
+              </div>
+
+              <div className="audit-sample-card">
+                <span className="audit-sample-tag">Diagnostic Example: Meta Ads</span>
+                <p className="audit-sample-found">
+                  <strong>The Leak:</strong> Ad campaigns targeting broad statewide radius with no local radius boundaries, spending 35% of ad budget on users 150km away.
+                </p>
+                <p className="audit-sample-fix">
+                  <strong>The Fix:</strong> Geofenced ad delivery strictly to active buyers within their realistic client travel radius.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -587,9 +653,9 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
 
             <div className="lead-leak-step" style={{ borderColor: 'rgba(176, 31, 58, 0.45)', background: 'rgba(176, 31, 58, 0.1)' }}>
               <span className="lead-leak-step-badge" style={{ color: 'var(--accent-crimson)' }}>Final Stage</span>
-              <h4 className="lead-leak-step-title" style={{ color: '#ffffff' }}>Qualified Paying Client</h4>
-              <p style={{ fontSize: '0.775rem', color: 'var(--text-secondary)', margin: 0 }}>Confirmed booking or appointment</p>
-              <span style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 600, background: 'rgba(16, 185, 129, 0.12)', padding: '0.25rem 0.5rem', borderRadius: '6px', marginTop: '0.25rem' }}>✓ Revenue Earned</span>
+              <h4 className="lead-leak-step-title" style={{ color: '#ffffff' }}>Qualified Local Enquiries</h4>
+              <p style={{ fontSize: '0.775rem', color: 'var(--text-secondary)', margin: 0 }}>Direct phone calls &amp; WhatsApp chats</p>
+              <span style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 600, background: 'rgba(16, 185, 129, 0.12)', padding: '0.25rem 0.5rem', borderRadius: '6px', marginTop: '0.25rem' }}>✓ Actual Enquiries</span>
             </div>
           </div>
 
@@ -599,7 +665,40 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
         </div>
       </section>
 
-      {/* ── Section 5: Who's doing your audit ── */}
+      {/* ── Section 5: Radical Honesty Box (Zero Fake Promises) ── */}
+      <section className="container">
+        <div className="audit-honest-promise-box">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
+            <ShieldCheck size={22} style={{ color: 'var(--accent-crimson)' }} />
+            <h3 style={{ fontSize: '1.25rem', color: '#ffffff', margin: 0, fontWeight: 700 }}>
+              Radical Honesty: What We Promise (And What We Don&apos;t)
+            </h3>
+          </div>
+          <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 1rem' }}>
+            Too many digital agencies sell fantasy figures like &ldquo;10x revenue overnight&rdquo; or &ldquo;1,000 guaranteed clients next week.&rdquo; We don&apos;t operate like that.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+            <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <span style={{ color: '#EF4444', fontWeight: 600, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '0.35rem' }}>
+                <XCircle size={15} /> What We DON&apos;T Promise:
+              </span>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.5' }}>
+                No magical overnight riches, no automated generic software scores, and no high-pressure sales calls trying to push long contracts.
+              </p>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <span style={{ color: '#10B981', fontWeight: 600, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '0.35rem' }}>
+                <CheckCircle2 size={15} /> What We DO Promise:
+              </span>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.5' }}>
+                A manual, honest review of your online assets. We pinpoint exactly where real people are dropping off, and hand you the top 3 practical steps to fix it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 6: Who's doing your audit ── */}
       <section className="audit-who-section">
         <div className="container" style={{ maxWidth: '940px' }}>
           <div className="audit-who-card">
@@ -630,8 +729,8 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
                 <div className="audit-who-stat-label">Delivery Time</div>
               </div>
               <div className="audit-who-stat-cell">
-                <div className="audit-who-stat-num">100%</div>
-                <div className="audit-who-stat-label">Free &middot; No Obligation</div>
+                <div className="audit-who-stat-num">5 / mo</div>
+                <div className="audit-who-stat-label">Capped Free Audits</div>
               </div>
               <div className="audit-who-stat-cell">
                 <div className="audit-who-stat-num">Kerala &amp; GCC</div>
@@ -642,7 +741,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
         </div>
       </section>
 
-      {/* ── Section 6: What clients say (Verified Reviews) ── */}
+      {/* ── Section 7: What clients say (Verified Reviews) ── */}
       <section className="audit-pain-section">
         <div className="container">
           <div className="text-center" style={{ maxWidth: '680px', margin: '0 auto 1.5rem' }}>
@@ -691,7 +790,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
         </div>
       </section>
 
-      {/* ── Section 7: Buyer-Driven Questions (FAQ) ── */}
+      {/* ── Section 8: Buyer-Driven Questions (FAQ) ── */}
       <section className="audit-landing-faq-section">
         <div className="container" style={{ maxWidth: '960px' }}>
           <div className="text-center" style={{ marginBottom: '2.5rem' }}>
@@ -738,7 +837,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
         </div>
       </section>
 
-      {/* ── Section 8: The Masterclass P.S. Closing Strategy ── */}
+      {/* ── Section 9: The Masterclass P.S. Closing Strategy ── */}
       <section className="audit-landing-bottom-cta">
         <div className="container" style={{ maxWidth: '820px' }}>
           <div className="audit-ps-card">
@@ -747,7 +846,7 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
             </span>
 
             <p style={{ fontSize: '1.15rem', color: '#ffffff', lineHeight: '1.65', margin: 0, fontWeight: 500 }}>
-              <strong>P.S.</strong> If your marketing isn&apos;t bringing in the enquiries you expected, here&apos;s the short version: we&apos;ll audit your website, Google listing and ads for free and show you the 3 fixes to make first within 48 hours. It&apos;s yours to keep.
+              <strong>P.S.</strong> If your marketing isn&apos;t bringing in the enquiries you expected, here&apos;s the short version: we&apos;ll audit your website, Google listing and ads for free and show you the 3 fixes to make first within 48 hours. Strictly capped at 5 per month to ensure quality. It&apos;s yours to keep.
             </p>
 
             <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>

@@ -4402,6 +4402,41 @@ a.channel-value:hover {
   color: #ffffff;
 }
 
+.audit-goal-btn .choice-radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.audit-goal-btn:hover .choice-radio-dot {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.audit-goal-btn.active .choice-radio-dot,
+.choice-radio-dot.checked {
+  border-color: var(--accent-crimson) !important;
+  background: rgba(176, 31, 58, 0.2) !important;
+}
+
+.audit-goal-btn.active .choice-radio-dot::after,
+.choice-radio-dot.checked::after,
+.choice-radio-inner {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-crimson);
+  box-shadow: 0 0 8px rgba(176, 31, 58, 0.8);
+}
+
 .audit-promise-box {
   background: rgba(176, 31, 58, 0.08);
   border: 1px solid rgba(176, 31, 58, 0.25);
@@ -4433,6 +4468,94 @@ a.channel-value:hover {
   align-items: center;
   text-align: center;
   gap: 1.25rem;
+}
+
+/* Authentic Scarcity & Sample Fixes */
+.audit-slots-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #10B981;
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 99px;
+  letter-spacing: 0.02em;
+}
+
+.audit-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.audit-sample-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+@media (max-width: 860px) {
+  .audit-sample-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.audit-sample-card {
+  padding: 1.5rem;
+  background: rgba(15, 27, 50, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.audit-sample-tag {
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-crimson);
+}
+
+.audit-sample-found {
+  font-size: 0.875rem;
+  color: #ffffff;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 0;
+}
+
+.audit-sample-fix {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.65rem;
+}
+
+.audit-honest-promise-box {
+  background: rgba(8, 15, 37, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  margin: 2.5rem auto 0;
+  max-width: 860px;
 }
 
 /* ── Services listing page ─────────────────────────────────── */
