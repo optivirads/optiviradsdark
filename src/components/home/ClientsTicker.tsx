@@ -70,6 +70,7 @@ export default function ClientsTicker({ clients }: ClientsTickerProps) {
                   alt={`${client.name} logo`} 
                   width={160} 
                   height={56} 
+                  loading="lazy"
                   unoptimized
                   draggable={false}
                   style={{ objectFit: 'contain', width: 'auto', maxHeight: '48px' }}

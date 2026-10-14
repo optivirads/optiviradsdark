@@ -212,7 +212,7 @@ export default function GrowthHeroVisual() {
               alt="Google Ads"
               width={460}
               height={346}
-              priority
+              loading="lazy"
               sizes="(max-width: 768px) 180px, 255px"
               className="glass-tab-3d-img"
               draggable={false}
@@ -228,7 +228,7 @@ export default function GrowthHeroVisual() {
               alt="Meta Ads"
               width={446}
               height={397}
-              priority
+              loading="lazy"
               sizes="(max-width: 768px) 180px, 215px"
               className="glass-tab-3d-img"
               draggable={false}

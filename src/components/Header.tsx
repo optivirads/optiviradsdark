@@ -49,8 +49,9 @@ export default function Header() {
             alt="OptiVir Ads" 
             width={160} 
             height={48} 
+            sizes="(max-width: 768px) 140px, 160px"
             style={{ objectFit: 'contain', height: '34px', width: 'auto' }}
-            priority 
+            priority
           />
         </Link>
 
@@ -62,6 +63,7 @@ export default function Header() {
               <Link 
                 key={link.path} 
                 href={link.path} 
+                prefetch={false}
                 className={`nav-link ${isActive ? 'active' : ''}`}
               >
                 {link.label}
@@ -71,7 +73,7 @@ export default function Header() {
         </nav>
 
         <div className="desktop-actions">
-          <Link href="/free-marketing-audit" className="btn-white">
+          <Link href="/free-marketing-audit" prefetch={false} className="btn-white">
             Free Audit
           </Link>
         </div>

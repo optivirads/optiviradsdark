@@ -45,12 +45,12 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4 className="footer-title">Services</h4>
           <ul className="footer-links-list">
-            <li><Link href="/services/google-maps-marketing" className="footer-link">Google Maps Marketing</Link></li>
-            <li><Link href="/services/search-engine-optimization" className="footer-link">SEO Services</Link></li>
-            <li><Link href="/services/google-advertising" className="footer-link">Google Ads</Link></li>
-            <li><Link href="/services/meta-advertising" className="footer-link">Meta Ads</Link></li>
-            <li><Link href="/services/web-development" className="footer-link">Web Development</Link></li>
-            <li><Link href="/services/social-media-management" className="footer-link">Social Media Marketing</Link></li>
+            <li><Link href="/services/google-maps-marketing" prefetch={false} className="footer-link">Google Maps Marketing</Link></li>
+            <li><Link href="/services/search-engine-optimization" prefetch={false} className="footer-link">SEO Services</Link></li>
+            <li><Link href="/services/google-advertising" prefetch={false} className="footer-link">Google Ads</Link></li>
+            <li><Link href="/services/meta-advertising" prefetch={false} className="footer-link">Meta Ads</Link></li>
+            <li><Link href="/services/web-development" prefetch={false} className="footer-link">Web Development</Link></li>
+            <li><Link href="/services/social-media-management" prefetch={false} className="footer-link">Social Media Marketing</Link></li>
           </ul>
         </div>
 
@@ -58,10 +58,10 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4 className="footer-title">Company & Resources</h4>
           <ul className="footer-links-list">
-            <li><Link href="/about" className="footer-link">About OptiVir Ads</Link></li>
-            <li><Link href="/blog" className="footer-link">Digital Marketing Blog</Link></li>
-            <li><Link href="/contact" className="footer-link">Contact Us</Link></li>
-            <li><Link href="/free-tools/roas-calculator" className="footer-link">Free ROAS Calculator</Link></li>
+            <li><Link href="/about" prefetch={false} className="footer-link">About OptiVir Ads</Link></li>
+            <li><Link href="/blog" prefetch={false} className="footer-link">Digital Marketing Blog</Link></li>
+            <li><Link href="/contact" prefetch={false} className="footer-link">Contact Us</Link></li>
+            <li><Link href="/free-tools/roas-calculator" prefetch={false} className="footer-link">Free ROAS Calculator</Link></li>
           </ul>
         </div>
 
@@ -69,12 +69,12 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4 className="footer-title">Locations</h4>
           <ul className="footer-links-list">
-            <li><Link href="/locations/kannur" className="footer-link">Kannur (HQ)</Link></li>
-            <li><Link href="/locations/calicut" className="footer-link">Calicut</Link></li>
-            <li><Link href="/locations/kochi" className="footer-link">Kochi</Link></li>
-            <li><Link href="/locations/dubai" className="footer-link">Dubai</Link></li>
-            <li><Link href="/locations/ras-al-khaimah" className="footer-link">Ras Al Khaimah</Link></li>
-            <li><Link href="/locations/qatar" className="footer-link">Qatar</Link></li>
+            <li><Link href="/locations/kannur" prefetch={false} className="footer-link">Kannur (HQ)</Link></li>
+            <li><Link href="/locations/calicut" prefetch={false} className="footer-link">Calicut</Link></li>
+            <li><Link href="/locations/kochi" prefetch={false} className="footer-link">Kochi</Link></li>
+            <li><Link href="/locations/dubai" prefetch={false} className="footer-link">Dubai</Link></li>
+            <li><Link href="/locations/ras-al-khaimah" prefetch={false} className="footer-link">Ras Al Khaimah</Link></li>
+            <li><Link href="/locations/qatar" prefetch={false} className="footer-link">Qatar</Link></li>
           </ul>
         </div>
 

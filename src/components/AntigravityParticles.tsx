@@ -161,14 +161,14 @@ export default function AntigravityParticles() {
 
     let isPageVisible = true;
     const updateFrame = () => {
-      if (!isPageVisible) return;
+      if (!isPageVisible || checkIsMobile()) return;
       drawParticles();
       animationFrameId = requestAnimationFrame(updateFrame);
     };
 
     const handleVisibilityChange = () => {
       isPageVisible = !document.hidden;
-      if (isPageVisible) {
+      if (isPageVisible && !checkIsMobile()) {
         cancelAnimationFrame(animationFrameId);
         animationFrameId = requestAnimationFrame(updateFrame);
       }
@@ -228,13 +228,30 @@ export default function AntigravityParticles() {
 
     const startParticleEngine = () => {
       resizeCanvas(true);
-      updateFrame();
+      drawParticles();
+      if (!checkIsMobile()) {
+        updateFrame();
+      }
     };
 
-    const startTimeout = setTimeout(startParticleEngine, 100);
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    let idleHandlerId: any;
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+      idleHandlerId = (window as any).requestIdleCallback(startParticleEngine, { timeout: 3500 });
+    } else {
+      idleHandlerId = setTimeout(startParticleEngine, 2500);
+    }
 
     return () => {
-      if (startTimeout) clearTimeout(startTimeout);
+      if (idleHandlerId) {
+        if (typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+          /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+          (window as any).cancelIdleCallback(idleHandlerId);
+        } else {
+          clearTimeout(idleHandlerId);
+        }
+      }
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);

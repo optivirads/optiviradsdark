@@ -106,7 +106,7 @@ export default async function Home() {
               We help small businesses across Kerala and the GCC attract customers through Google, Instagram and Facebook, snapchat and other social media . Whether you’re starting online or already advertising, we’ll help you choose your next step.
             </p>
             <div className="hero-actions" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link href="/free-marketing-audit" className="btn-primary hero-cta-btn animate-hero-cta">
+              <Link href="/free-marketing-audit" prefetch={false} className="btn-primary hero-cta-btn animate-hero-cta">
                 Get a Free Marketing Audit <ArrowRight size={16} />
               </Link>
               <a
@@ -223,7 +223,7 @@ export default async function Home() {
                   Reach potential customers through ads on Google, Instagram and Facebook.
                 </p>
                 <div className="pillar-services-list">
-                  <Link href="/services/google-advertising" className="pillar-service-item">
+                  <Link href="/services/google-advertising" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Google Ads</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -232,7 +232,7 @@ export default async function Home() {
                       Target buyers actively searching for your services with search and map campaigns.
                     </p>
                   </Link>
-                  <Link href="/services/meta-advertising" className="pillar-service-item">
+                  <Link href="/services/meta-advertising" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Instagram &amp; Facebook Ads</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -260,7 +260,7 @@ export default async function Home() {
                   Help nearby customers find your business when they search for services like yours.
                 </p>
                 <div className="pillar-services-list">
-                  <Link href="/services/search-engine-optimization" className="pillar-service-item">
+                  <Link href="/services/search-engine-optimization" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Google Maps &amp; Search</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -269,7 +269,7 @@ export default async function Home() {
                       Optimize your Google Business Profile and local search visibility for nearby customers.
                     </p>
                   </Link>
-                  <Link href="/services/content-marketing" className="pillar-service-item">
+                  <Link href="/services/content-marketing" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Helpful Website Content</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -297,7 +297,7 @@ export default async function Home() {
                   Make it easy for interested customers to call, message or book—and follow up with those who haven’t booked yet.
                 </p>
                 <div className="pillar-services-list">
-                  <Link href="/services/web-development" className="pillar-service-item">
+                  <Link href="/services/web-development" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Pages That Generate Enquiries</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -306,7 +306,7 @@ export default async function Home() {
                       Mobile-ready pages and business websites that make it simple for visitors to reach out.
                     </p>
                   </Link>
-                  <Link href="/contact" className="pillar-service-item">
+                  <Link href="/contact" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Enquiry Follow-Up</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -334,7 +334,7 @@ export default async function Home() {
                   Encourage repeat visits with timely reminders, useful updates and relevant offers.
                 </p>
                 <div className="pillar-services-list">
-                  <Link href="/services/social-media-management" className="pillar-service-item">
+                  <Link href="/services/social-media-management" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Social Media</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -343,7 +343,7 @@ export default async function Home() {
                       Consistent posts, reels and updates to keep your brand top-of-mind with customers.
                     </p>
                   </Link>
-                  <Link href="/services/email-marketing" className="pillar-service-item">
+                  <Link href="/services/email-marketing" prefetch={false} className="pillar-service-item">
                     <div className="pillar-service-top">
                       <span className="pillar-service-name">Customer Emails &amp; Reminders</span>
                       <ArrowRight size={15} className="pillar-service-arrow" />
@@ -362,6 +362,7 @@ export default async function Home() {
           <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
             <Link
               href="/free-marketing-audit"
+              prefetch={false}
               className="btn-primary"
               style={{ padding: '0.95rem 2.25rem', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.02em', textTransform: 'none' }}
             >

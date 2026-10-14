@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import AntigravityParticles from '@/components/AntigravityParticles';
-import { GoogleTagManager } from '@next/third-parties/google';
+import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
 import { getPageMetadata } from '@/lib/wordpress';
 import './globals.css';
 
@@ -12,13 +12,15 @@ import './globals.css';
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
-  display: 'swap',
+  display: 'optional',
+  preload: true,
 });
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-jakarta',
-  display: 'swap',
+  display: 'optional',
+  preload: true,
 });
 
 export const viewport: Viewport = {
@@ -112,10 +114,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${outfit.variable} ${jakarta.variable}`} suppressHydrationWarning>
-      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <head>
-        <link rel="preconnect" href="https://cms.optivirads.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cms.optivirads.com" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/brand/OptiVir-Ads-Original-Symbol-32.png?v=3" />
         <link rel="icon" type="image/png" sizes="192x192" href="/images/brand/OptiVir-Ads-Original-Symbol-192.png?v=3" />
         <link rel="apple-touch-icon" sizes="180x180" href="/images/brand/apple-touch-icon.png?v=3" />
@@ -135,6 +134,7 @@ export default function RootLayout({
           </noscript>
         )}
 
+        <ThirdPartyScripts />
         <AntigravityParticles />
         <Header />
         <main style={{ flex: 1, paddingTop: '80px', position: 'relative', zIndex: 1 }}>
