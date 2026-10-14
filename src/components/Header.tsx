@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <header className={`header-nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-container">
-        <Link href="/" className="logo-container logo-pill" onClick={closeMenu}>
+        <Link href="/" prefetch={false} className="logo-container logo-pill" onClick={closeMenu}>
           <Image 
             src="/images/optivir-brand-logo.png" 
             alt="OptiVir Ads" 
@@ -88,7 +88,7 @@ export default function Header() {
       {isOpen && (
         <div className="mobile-nav-overlay">
           <div className="mobile-links-container">
-            <Link href="/" className="logo-pill" onClick={closeMenu} style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>
+            <Link href="/" prefetch={false} className="logo-pill" onClick={closeMenu} style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>
               <Image 
                 src="/images/optivir-brand-logo.png" 
                 alt="OptiVir Ads" 
@@ -103,6 +103,7 @@ export default function Header() {
                 <Link 
                   key={link.path} 
                   href={link.path} 
+                  prefetch={false}
                   className={`mobile-nav-link ${isActive ? 'active' : ''}`}
                   onClick={closeMenu}
                 >
@@ -112,6 +113,7 @@ export default function Header() {
             })}
             <Link 
               href="/free-marketing-audit" 
+              prefetch={false}
               className="btn-primary mobile-btn-cta"
               onClick={closeMenu}
             >

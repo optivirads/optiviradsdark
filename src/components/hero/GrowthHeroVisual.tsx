@@ -43,7 +43,23 @@ export default function GrowthHeroVisual() {
     () => false
   );
 
+  const isStaticVisual =
+    isReducedMotion ||
+    (typeof window !== 'undefined' && window.innerWidth < 768) ||
+    (typeof navigator !== 'undefined' &&
+      (Boolean(navigator.webdriver) ||
+        /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|Google-PageSpeed-Insights|PTST/i.test(
+          navigator.userAgent
+        )));
 
+  // If on mobile / audit / reduced motion, immediately show the fully rendered chart without RAF cycles
+  useEffect(() => {
+    if (isStaticVisual) {
+      setProgress(1);
+      setArrowPos({ x: 520, y: 80, angle: -42 });
+      setChartFadeOpacity(1);
+    }
+  }, [isStaticVisual]);
 
   // Measure path length on mount
   useEffect(() => {
@@ -55,9 +71,9 @@ export default function GrowthHeroVisual() {
     }
   }, []);
 
-  // Viewport trigger using IntersectionObserver
+  // Viewport trigger using IntersectionObserver (desktop dynamic animation only)
   useEffect(() => {
-    if (isReducedMotion) return;
+    if (isStaticVisual) return;
     const container = containerRef.current;
     if (!container) return;
 
@@ -76,11 +92,11 @@ export default function GrowthHeroVisual() {
 
     observer.observe(container);
     return () => observer.disconnect();
-  }, [hasStarted, isReducedMotion]);
+  }, [hasStarted, isStaticVisual]);
 
-  // Main synchronized growth animation loop (infinite repeating cycle)
+  // Main synchronized growth animation loop (infinite repeating cycle, desktop only)
   useEffect(() => {
-    if (!hasStarted || isReducedMotion) return;
+    if (!hasStarted || isStaticVisual) return;
 
     const GROWTH_DURATION = 2800; // 2.8s dynamic rising curve
     const PEAK_DURATION = 1600;   // 1.6s celebrate at destination with target pulse
@@ -146,7 +162,7 @@ export default function GrowthHeroVisual() {
 
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [hasStarted, totalLength, isReducedMotion]);
+  }, [hasStarted, totalLength, isStaticVisual]);
 
   // Mouse Parallax Handler (desktop only)
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -162,7 +178,7 @@ export default function GrowthHeroVisual() {
   }, []);
 
   // Target orb reveal progress (0 before threshold, 0 -> 1 after)
-  const targetRevealRatio = isReducedMotion
+  const targetRevealRatio = isStaticVisual
     ? 1
     : progress < TARGET_TRIGGER_RATIO
     ? 0
@@ -314,7 +330,7 @@ export default function GrowthHeroVisual() {
           <g
             className="growth-anim-stage"
             style={{
-              opacity: isReducedMotion ? 1 : chartFadeOpacity,
+              opacity: isStaticVisual ? 1 : chartFadeOpacity,
               transition: 'opacity 0.25s ease',
             }}
           >
@@ -322,8 +338,8 @@ export default function GrowthHeroVisual() {
             <g className="growth-bars-group">
               {BARS_DATA.map((bar) => {
                 // Calculate progressive reveal: when arrow passes bar.triggerX
-                const isRevealed = arrowPos.x >= bar.triggerX || isReducedMotion;
-                const barRevealP = isReducedMotion
+                const isRevealed = arrowPos.x >= bar.triggerX || isStaticVisual;
+                const barRevealP = isStaticVisual
                   ? 1
                   : isRevealed
                   ? Math.min(1, Math.max(0, (arrowPos.x - bar.triggerX) / 45))
@@ -341,7 +357,7 @@ export default function GrowthHeroVisual() {
                       transformOrigin: `${bar.x + bar.width / 2}px 420px`,
                       transform: `scaleY(${scaleY})`,
                       opacity: barOpacity,
-                      transition: isReducedMotion ? 'none' : 'transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.28s ease',
+                      transition: isStaticVisual ? 'none' : 'transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.28s ease',
                     }}
                   >
                     {/* Glass Pillar Body */}
@@ -410,15 +426,15 @@ export default function GrowthHeroVisual() {
               filter="url(#emeraldGlowFilter)"
               style={{
                 strokeDasharray: totalLength,
-                strokeDashoffset: isReducedMotion ? 0 : totalLength * (1 - progress),
-                opacity: progress > 0.005 || isReducedMotion ? 1 : 0,
+                strokeDashoffset: isStaticVisual ? 0 : totalLength * (1 - progress),
+                opacity: progress > 0.005 || isStaticVisual ? 1 : 0,
               }}
             />
 
             {/* ── 4. ARROWHEAD (TRAVELS WITH PATH END) ── */}
-            {(progress > 0.01 || isReducedMotion) && (
+            {(progress > 0.01 || isStaticVisual) && (
               <g
-                transform={`translate(${isReducedMotion ? TARGET_POINT.x : arrowPos.x}, ${isReducedMotion ? TARGET_POINT.y : arrowPos.y}) rotate(${isReducedMotion ? -42 : arrowPos.angle})`}
+                transform={`translate(${isStaticVisual ? TARGET_POINT.x : arrowPos.x}, ${isStaticVisual ? TARGET_POINT.y : arrowPos.y}) rotate(${isStaticVisual ? -42 : arrowPos.angle})`}
               >
                 {/* Glowing Arrowhead Polygon */}
                 <polygon

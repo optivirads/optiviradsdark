@@ -27,7 +27,7 @@ export default function Footer() {
       <div className="container footer-grid">
         {/* Column 1: Brand */}
         <div className="footer-brand">
-          <Link href="/" className="logo-pill" style={{ display: 'inline-flex' }}>
+          <Link href="/" prefetch={false} className="logo-pill" style={{ display: 'inline-flex' }}>
             <Image
               src="/images/optivir-brand-logo.png"
               alt="OptiVir Ads"
