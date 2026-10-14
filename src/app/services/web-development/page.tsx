@@ -23,15 +23,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function WebDevelopmentPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/web-development#service`,
+    "url": `${baseUrl}/services/web-development`,
     "name": "Web Development & CRO",
     "serviceType": "Next.js & Custom Web Development Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Custom Next.js and React website development optimized for Core Web Vitals, speed, and conversion flow velocity."

@@ -16,9 +16,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import ReviewSchema from '@/components/seo/ReviewSchema';
 import FAQSchema from '@/components/seo/FAQSchema';
-import { CURATED_REVIEWS } from '@/lib/reviews';
 
 const AUDIT_FAQS = [
   {
@@ -122,7 +120,6 @@ Enquiry Source: 2-Column Direct Response Landing Page`;
   return (
     <div className="audit-landing-page">
       <BreadcrumbSchema items={[{ name: 'Free Marketing Audit', url: '/free-marketing-audit' }]} />
-      <ReviewSchema reviews={CURATED_REVIEWS} />
       <FAQSchema faqs={AUDIT_FAQS} />
       <div className="grid-overlay" />
 

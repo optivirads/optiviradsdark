@@ -71,6 +71,7 @@ export default function Footer() {
           <ul className="footer-links-list">
             <li><Link href="/locations/kannur" className="footer-link">Kannur (HQ)</Link></li>
             <li><Link href="/locations/calicut" className="footer-link">Calicut</Link></li>
+            <li><Link href="/locations/kochi" className="footer-link">Kochi</Link></li>
             <li><Link href="/locations/dubai" className="footer-link">Dubai</Link></li>
             <li><Link href="/locations/ras-al-khaimah" className="footer-link">Ras Al Khaimah</Link></li>
             <li><Link href="/locations/qatar" className="footer-link">Qatar</Link></li>
@@ -108,7 +109,15 @@ export default function Footer() {
             </a>
           </div>
           <p className="footer-location-text">
-            Kannur, Kerala, India
+            <a
+              href="https://www.google.com/maps?cid=16994082006733929099"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+              title="View OptiVir Ads on Google Business Profile"
+            >
+              Talap, Kannur, Kerala &middot; Google Maps ↗
+            </a>
           </p>
         </div>
       </div>

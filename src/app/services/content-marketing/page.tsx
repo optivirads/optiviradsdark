@@ -20,15 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ContentMarketingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/content-marketing#service`,
+    "url": `${baseUrl}/services/content-marketing`,
     "name": "Content Marketing & Copywriting",
     "serviceType": "Content Marketing & Copywriting Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Establish brand trust and capture conversions. High-performing copy templates, search authority blog clusters, and scriptwriting."

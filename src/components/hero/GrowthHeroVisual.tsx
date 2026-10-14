@@ -213,6 +213,7 @@ export default function GrowthHeroVisual() {
               width={460}
               height={346}
               priority
+              sizes="(max-width: 768px) 180px, 255px"
               className="glass-tab-3d-img"
               draggable={false}
             />
@@ -228,6 +229,7 @@ export default function GrowthHeroVisual() {
               width={446}
               height={397}
               priority
+              sizes="(max-width: 768px) 180px, 215px"
               className="glass-tab-3d-img"
               draggable={false}
             />

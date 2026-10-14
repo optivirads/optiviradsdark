@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { sendGTMEvent } from '@next/third-parties/google';
 import FaqItem from './FaqItem';
 import { FAQItemData } from '@/types/faq';
 
@@ -23,16 +24,14 @@ export default function FaqAccordion({
     const isOpening = openIndex !== index;
     setOpenIndex(isOpening ? index : null);
 
-    // GA4 event tracking for engagement analytics
+    // GTM event tracking for engagement analytics
     if (isOpening) {
-      const anyWindow = window as unknown as { gtag?: (command: string, action: string, params: Record<string, unknown>) => void };
-      if (typeof anyWindow.gtag === 'function') {
-        anyWindow.gtag('event', 'faq_open', {
-          event_category: 'Engagement',
-          event_label: question,
-          page_path: window.location.pathname,
-        });
-      }
+      sendGTMEvent({
+        event: 'faq_open',
+        event_category: 'Engagement',
+        event_label: question,
+        page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+      });
     }
   };
 

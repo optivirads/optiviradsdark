@@ -24,6 +24,10 @@ export default function AntigravityParticles() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Honor user accessibility settings and avoid animation overhead
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     let animationFrameId: number;
     let particles: Particle[] = [];
     let lastWidth = 0;
@@ -33,7 +37,7 @@ export default function AntigravityParticles() {
 
     const initParticles = (width: number, height: number) => {
       const isMobile = checkIsMobile();
-      const maxParticles = isMobile ? 24 : 45;
+      const maxParticles = isMobile ? 20 : 38;
       const colorPalette = [
         '176, 31, 58',    // Brand Crimson (#B01F3A)
         '248, 246, 243',  // Brand Ivory (#F8F6F3)
@@ -49,8 +53,8 @@ export default function AntigravityParticles() {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.4),
-          vy: -Math.random() * (isMobile ? 0.35 : 0.5) - 0.15, // Floating upwards defying gravity
+          vx: (Math.random() - 0.5) * (isMobile ? 0.25 : 0.35),
+          vy: -Math.random() * (isMobile ? 0.3 : 0.45) - 0.12, // Floating upwards defying gravity
           radius,
           alpha: baseAlpha,
           baseAlpha,
@@ -87,8 +91,9 @@ export default function AntigravityParticles() {
 
       const mouse = mouseRef.current;
       const isMobile = checkIsMobile();
-      const connectionDistance = isMobile ? 95 : 125;
-      const mouseRadius = isMobile ? 110 : 160;
+      const connectionDistance = isMobile ? 85 : 110;
+      const connectionDistSq = connectionDistance * connectionDistance;
+      const mouseRadius = isMobile ? 100 : 140;
 
       // Update and draw particles
       particles.forEach((p) => {
@@ -130,31 +135,28 @@ export default function AntigravityParticles() {
         ctx.fill();
       });
 
-      // Draw connecting mesh lines
+      // Batch-draw connecting mesh lines in a single path (avoids hundreds of per-frame gradient allocations)
+      ctx.beginPath();
       for (let i = 0; i < particles.length; i++) {
+        let connectedCount = 0;
         for (let j = i + 1; j < particles.length; j++) {
+          if (connectedCount >= (isMobile ? 2 : 3)) break;
           const p1 = particles[i];
           const p2 = particles[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < connectionDistance) {
-            const opacity = (1 - dist / connectionDistance) * 0.18;
-            ctx.beginPath();
+          if (distSq < connectionDistSq) {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-
-            const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-            gradient.addColorStop(0, `rgba(${p1.colorRgb}, ${opacity})`);
-            gradient.addColorStop(1, `rgba(${p2.colorRgb}, ${opacity * 0.8})`);
-
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 0.7;
-            ctx.stroke();
+            connectedCount++;
           }
         }
       }
+      ctx.strokeStyle = 'rgba(176, 31, 58, 0.12)';
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
     };
 
     let isPageVisible = true;
@@ -172,10 +174,22 @@ export default function AntigravityParticles() {
       }
     };
 
+    let pendingMouseX = -1000;
+    let pendingMouseY = -1000;
+    let mouseTicking = false;
+
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX;
-      mouseRef.current.y = e.clientY;
-      mouseRef.current.active = true;
+      pendingMouseX = e.clientX;
+      pendingMouseY = e.clientY;
+      if (!mouseTicking) {
+        mouseTicking = true;
+        requestAnimationFrame(() => {
+          mouseRef.current.x = pendingMouseX;
+          mouseRef.current.y = pendingMouseY;
+          mouseRef.current.active = true;
+          mouseTicking = false;
+        });
+      }
     };
 
     const handleMouseLeave = () => {
@@ -204,13 +218,13 @@ export default function AntigravityParticles() {
 
     const handleResize = () => resizeCanvas(false);
 
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     const startParticleEngine = () => {
       resizeCanvas(true);

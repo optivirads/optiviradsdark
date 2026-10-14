@@ -14,7 +14,15 @@ export default function WebSiteSchema() {
     "publisher": {
       "@id": `${baseUrl}/#organization`
     },
-    "inLanguage": ["en-US", "ml-IN"]
+    "inLanguage": ["en-US", "ml-IN"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/blog?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
   };
 
   return (

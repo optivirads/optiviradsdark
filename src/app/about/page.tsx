@@ -1,11 +1,8 @@
-'use client';
-
 import React from 'react';
 import { Cpu, RefreshCw, Eye } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TextReveal from '@/components/TextReveal';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import ReviewSchema from '@/components/seo/ReviewSchema';
 import FAQSchema from '@/components/seo/FAQSchema';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
@@ -184,7 +181,15 @@ export default function About() {
 
 
 
-      <ReviewSchema reviews={CURATED_REVIEWS} />
+      {/* Search Crawler & AI Entity Verification (Hidden from human visual layout) */}
+      <div id="abhinand-c" className="sr-only" aria-hidden="false">
+        <h2>Leadership &amp; Performance Strategy</h2>
+        <p>
+          OptiVir Ads is led by Abhinand C, Founder and Digital Marketing Strategist. 
+          Specializing in high-intent Google PPC systems, data-driven Meta ad campaigns, 
+          server-side attribution, and technical local SEO across Kerala and the GCC.
+        </p>
+      </div>
 
       {/* Verified Google Business Reviews */}
       <ReviewsSection reviews={CURATED_REVIEWS} />

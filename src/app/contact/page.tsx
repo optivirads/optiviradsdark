@@ -170,7 +170,19 @@ export default function Contact() {
                   </div>
                   <div className="channel-text">
                     <span className="channel-label">Location</span>
-                    <span className="channel-value">Kannur, Kerala, India</span>
+                    <a
+                      href="https://www.google.com/maps?cid=16994082006733929099"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="channel-value"
+                      style={{ textDecoration: 'none' }}
+                      title="View OptiVir Ads on Google Maps"
+                    >
+                      Green Building, Talap, Kannur, Kerala
+                      <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--accent-cyan)', marginTop: '0.2rem' }}>
+                        View on Google Maps ↗
+                      </span>
+                    </a>
                   </div>
                 </div>
               </div>

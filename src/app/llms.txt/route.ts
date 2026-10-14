@@ -37,13 +37,38 @@ OptiVir Ads is a premium, ROI-first digital marketing agency specializing in hig
 | Custom Web Development | Next.js & React architecture, sub-1.2s page loads, 100/100 Core Web Vitals | Enterprise & Growth Startups | 2.8× landing page conversion velocity |
 | Analytics & Operations | Server-side Tag Manager containers, Looker Studio automated dashboards | Multi-channel brands | Pixel-perfect revenue attribution |
 
-## Quick Links
+## Quick Links & Core Resources
 - [Homepage](${baseUrl}/)
 - [About Us](${baseUrl}/about)
-- [Services & Capabilities](${baseUrl}/services)
+- [Services Hub](${baseUrl}/services)
+- [Locations Coverage](${baseUrl}/locations)
 - [Insights & Blog](${baseUrl}/blog)
 - [Free Marketing Audit Strategy](${baseUrl}/free-marketing-audit)
 - [Contact Consultation](${baseUrl}/contact)
+
+### Specialized Services
+- [Search Engine Optimization (SEO)](${baseUrl}/services/search-engine-optimization)
+- [Google Advertising (PPC)](${baseUrl}/services/google-advertising)
+- [Meta (Facebook & Instagram) Ads](${baseUrl}/services/meta-advertising)
+- [Google Maps Marketing & GBP Optimization](${baseUrl}/services/google-maps-marketing)
+- [Social Media Management](${baseUrl}/services/social-media-management)
+- [Custom Web Development & CRO](${baseUrl}/services/web-development)
+- [Analytics & Server-Side Tagging](${baseUrl}/services/analytics-operations)
+- [Branding & Corporate Identity](${baseUrl}/services/branding)
+- [Content Marketing & Copywriting](${baseUrl}/services/content-marketing)
+- [Email Marketing & Automation](${baseUrl}/services/email-marketing)
+- [Niche Platform Ads (LinkedIn, Pinterest, Reddit)](${baseUrl}/services/niche-platform-advertising)
+
+### Regional Locations & Operating Areas
+- [Kannur HQ & Kerala Office](${baseUrl}/locations/kannur)
+- [Calicut / Kozhikode](${baseUrl}/locations/calicut)
+- [Kochi / Ernakulam](${baseUrl}/locations/kochi)
+- [Dubai & UAE Enterprise](${baseUrl}/locations/dubai)
+- [Ras Al Khaimah (RAK)](${baseUrl}/locations/ras-al-khaimah)
+- [Qatar & Doha](${baseUrl}/locations/qatar)
+
+### Interactive Growth Tools
+- [Free ROAS & ROI Calculator](${baseUrl}/free-tools/roas-calculator)
 ${blogSectionsMarkdown}
 `;
 

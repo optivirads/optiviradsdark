@@ -24,7 +24,9 @@ export default function OrganizationSchema() {
     "sameAs": [
       "https://facebook.com/optivirads",
       "https://www.instagram.com/optivirads",
-      "https://www.linkedin.com/company/optivirads"
+      "https://www.linkedin.com/company/optivirads",
+      "https://www.google.com/maps?cid=16994082006733929099",
+      "https://www.google.com/search?kgmid=/g/11z85cd8tn"
     ],
     "address": {
       "@type": "PostalAddress",

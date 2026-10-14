@@ -6,24 +6,35 @@ import WebApplicationSchema from '@/components/seo/WebApplicationSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { BarChart3, TrendingUp, ShieldCheck, Zap, Target, Users, ChevronRight } from 'lucide-react';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
 export const metadata: Metadata = {
   title: 'Free ROAS & ROI Calculator for Ad Campaigns | OptiVir Ads',
   description: 'Calculate your Return on Ad Spend (ROAS) instantly. A free marketing tool by OptiVir Ads to forecast campaign profitability, leads, and revenue.',
   alternates: {
-    canonical: 'https://www.optivirads.com/free-tools/roas-calculator',
+    canonical: `${baseUrl}/free-tools/roas-calculator`,
   },
   openGraph: {
     title: 'Free ROAS & ROI Calculator | OptiVir Ads',
     description: 'Calculate your Return on Ad Spend (ROAS) instantly. Forecast campaign profitability, leads, and revenue.',
-    url: 'https://www.optivirads.com/free-tools/roas-calculator',
+    url: `${baseUrl}/free-tools/roas-calculator`,
     siteName: 'OptiVir Ads',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: `${baseUrl}/images/og-share-1200x630.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Free ROAS & ROI Calculator by OptiVir Ads',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free ROAS & ROI Calculator | OptiVir Ads',
     description: 'Calculate your Return on Ad Spend (ROAS) instantly. Forecast campaign profitability, leads, and revenue.',
+    images: [`${baseUrl}/images/og-share-1200x630.png`],
   },
   robots: {
     index: true,

@@ -354,6 +354,24 @@ const MOCK_FAQS: Record<string, FaqItem[]> = {
       answer: "We research and target a comprehensive cluster of localized commercial intent keywords for Kannur and North Kerala businesses: 'digital marketing agency in Kannur', 'SEO services Kannur', 'Google Ads management Kerala', 'best marketing company in North Kerala', 'social media marketing Kannur', 'website development Kannur', and related district-level terms for Kasaragod, Kozhikode, and Wayanad. We also target Malayalam-language search variations to capture vernacular search volume."
     }
   ],
+  kochi: [
+    {
+      question: "Why should businesses in Kochi & Ernakulam invest in performance digital marketing?",
+      answer: "Kochi is Kerala's commercial and tech center. With thousands of competing companies across Kakkanad, Infopark, MG Road, and Edappally, standard marketing is not enough. High-intent Google Search Ads, technical SEO, and Google Business Profile optimization ensure your business appears at the exact moment qualified buyers search for your products or services."
+    },
+    {
+      question: "How does OptiVir Ads manage digital marketing campaigns for Kochi-based businesses?",
+      answer: "We manage high-performing Google Ads, Meta advertising, and local SEO campaigns for Kochi businesses from our Kerala headquarters. We build custom landing pages, configure server-side conversion tracking, and optimize ad spend weekly to ensure lower cost-per-lead and transparent ROI reporting."
+    },
+    {
+      question: "Can Kochi startups and B2B tech companies in Infopark benefit from OptiVir Ads?",
+      answer: "Yes. We build specialized lead generation funnels for Kochi technology firms, SaaS startups, and professional services. This includes high-intent Google Search campaigns targeting decision-makers, LinkedIn B2B funnels, and organic search optimization for industry-specific service terms."
+    },
+    {
+      question: "What is the expected timeline to see organic search improvements in Kochi?",
+      answer: "Local SEO and Google Business Profile optimizations typically produce measurable increases in Map Pack impressions and inquiries within 30 to 60 days. Organic keyword rankings for competitive terms in Kochi and Ernakulam compound over 3 to 6 months as domain authority builds."
+    }
+  ],
   dubai: [
     {
       question: "How does OptiVir Ads manage digital marketing campaigns for Dubai and GCC brands?",
@@ -839,12 +857,17 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         }
       }
 
-      // Find author name if embedded
+      // Find author name if embedded (sanitize to prevent emails like optivirads@gmail.com)
       let author = "Abhinand C";
       const authorTitle = "Digital Marketing Strategist";
       const embeddedAuthor = post._embedded?.["author"];
       if (embeddedAuthor && embeddedAuthor.length > 0 && embeddedAuthor[0].name) {
-        author = embeddedAuthor[0].name;
+        const rawName = embeddedAuthor[0].name.trim();
+        if (!rawName.includes('@') && rawName.toLowerCase() !== 'admin') {
+          author = rawName;
+        } else {
+          author = "Abhinand C";
+        }
       }
 
       const postDateObj = post.date ? new Date(post.date) : new Date();
@@ -923,7 +946,12 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     const authorTitle = "Digital Marketing Strategist";
     const embeddedAuthor = post._embedded?.["author"];
     if (embeddedAuthor && embeddedAuthor.length > 0 && embeddedAuthor[0].name) {
-      author = embeddedAuthor[0].name;
+      const rawName = embeddedAuthor[0].name.trim();
+      if (!rawName.includes('@') && rawName.toLowerCase() !== 'admin') {
+        author = rawName;
+      } else {
+        author = "Abhinand C";
+      }
     }
 
     const postDateObj = post.date ? new Date(post.date) : new Date();

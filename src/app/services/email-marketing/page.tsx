@@ -20,15 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function EmailMarketingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/email-marketing#service`,
+    "url": `${baseUrl}/services/email-marketing`,
     "name": "Email Marketing & Automation",
     "serviceType": "Email & CRM Automation Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Automated email newsletters, cart abandonment setups, and CRM list segmentation filters to maximize customer retention."

@@ -24,15 +24,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function GoogleMapsMarketingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/google-maps-marketing#service`,
+    "url": `${baseUrl}/services/google-maps-marketing`,
     "name": "Google Maps Marketing & Business Profile Optimization",
     "serviceType": "Local SEO & Google Maps Optimization",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Dominate Google Map Pack rankings in Kannur, Kerala, and the GCC. Complete Google Business Profile setup, local citation building, review generation, and local call reporting."
@@ -275,6 +280,17 @@ export default function GoogleMapsMarketingPage() {
             <Link href="/services/search-engine-optimization" style={{ color: 'var(--brand-ivory)', border: '1px solid rgba(248, 246, 243, 0.15)', padding: '0.5rem 1rem', borderRadius: '9999px', fontSize: '0.85rem' }}>
               Organic Website SEO Services →
             </Link>
+          </div>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>
+            Google Maps marketing actively managed for businesses across:
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.6rem' }}>
+            <Link href="/locations/kannur" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Kannur (HQ) ·</Link>
+            <Link href="/locations/calicut" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Calicut ·</Link>
+            <Link href="/locations/kochi" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Kochi ·</Link>
+            <Link href="/locations/dubai" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Dubai ·</Link>
+            <Link href="/locations/ras-al-khaimah" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Ras Al Khaimah ·</Link>
+            <Link href="/locations/qatar" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Qatar</Link>
           </div>
         </div>
       </section>

@@ -28,10 +28,12 @@ Complete system context, documentation, services, and blog archive for OptiVir A
 - **High-Conversion Paid Traffic**: Structured ad campaign parameters, negative keywords filters, conversion-driven bidding.
 - **Custom React/Next.js Dev**: Fast loading speeds, dynamic layouts, fully responsive systems.
 
-## Contact Information
+## Contact & Operating Locations
 - **Phone**: +91 9995037109
 - **Email**: services@optivirads.com
-- **Locations**: Point of presence in Kannur, Kerala, India (serving UAE, Qatar, GCC and worldwide).
+- **Headquarters**: Green Building, Talap, Kannur, Kerala, India (670002)
+- **Regional Service Markets**: Kannur, Calicut (Kozhikode), Kochi (Ernakulam), Dubai (UAE), Ras Al Khaimah (UAE), and Doha (Qatar).
+- **Interactive Tools**: [ROAS & ROI Calculator](${baseUrl}/free-tools/roas-calculator)
 ${blogContentsMarkdown}
 `;
 

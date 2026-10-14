@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import AntigravityParticles from '@/components/AntigravityParticles';
-import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { getPageMetadata } from '@/lib/wordpress';
 import './globals.css';
 
@@ -24,6 +24,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: '#0F1B32',
 };
 
 
@@ -108,11 +109,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
   return (
     <html lang="en" className={`${outfit.variable} ${jakarta.variable}`} suppressHydrationWarning>
+      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <head>
+        <link rel="preconnect" href="https://cms.optivirads.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cms.optivirads.com" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/brand/OptiVir-Ads-Original-Symbol-32.png?v=3" />
         <link rel="icon" type="image/png" sizes="192x192" href="/images/brand/OptiVir-Ads-Original-Symbol-192.png?v=3" />
         <link rel="apple-touch-icon" sizes="180x180" href="/images/brand/apple-touch-icon.png?v=3" />
@@ -132,21 +135,6 @@ export default function RootLayout({
           </noscript>
         )}
 
-        {/* Meta Pixel Code (noscript fallback image) */}
-        {pixelId && (
-          <noscript>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              height="1"
-              width="1"
-              style={{ display: 'none' }}
-              src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-              alt=""
-            />
-          </noscript>
-        )}
-
-        <ThirdPartyScripts />
         <AntigravityParticles />
         <Header />
         <main style={{ flex: 1, paddingTop: '80px', position: 'relative', zIndex: 1 }}>

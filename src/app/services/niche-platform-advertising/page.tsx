@@ -20,15 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function NichePlatformAdvertisingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/niche-platform-advertising#service`,
+    "url": `${baseUrl}/services/niche-platform-advertising`,
     "name": "Niche Platform Advertising",
     "serviceType": "B2B & Niche Social Advertising Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Custom campaigns on LinkedIn, Snapchat, and Twitter/X utilizing B2B firmographics and native vertical layouts."

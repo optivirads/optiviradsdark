@@ -56,15 +56,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function SearchEngineOptimizationPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/search-engine-optimization#service`,
+    "url": `${baseUrl}/services/search-engine-optimization`,
     "name": "Search Engine Optimization",
     "serviceType": "SEO Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Organic search domination. Schema mapping, core web vitals speed adjustments, and competitor intent conquest."
@@ -263,7 +268,11 @@ export default function SearchEngineOptimizationPage() {
               </h2>
               <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <p>
-                  Recognized as a leading <strong>SEO company in Kerala</strong> and trusted search optimization partner in Kannur, Calicut, and Kochi, OptiVir Ads engineers sustainable organic ranking engines. We look beyond vanity keyword rankings to focus strictly on commercial and transactional queries that generate verified customer sales.
+                  Recognized as a leading <strong>SEO company in Kerala</strong> and trusted search optimization partner across{' '}
+                  <Link href="/locations/kannur" style={{ color: 'var(--brand-crimson)', textDecoration: 'underline' }}>Kannur</Link>,{' '}
+                  <Link href="/locations/calicut" style={{ color: 'var(--brand-crimson)', textDecoration: 'underline' }}>Calicut</Link>,{' '}
+                  <Link href="/locations/kochi" style={{ color: 'var(--brand-crimson)', textDecoration: 'underline' }}>Kochi</Link>, and the GCC ({' '}
+                  <Link href="/locations/dubai" style={{ color: 'var(--brand-crimson)', textDecoration: 'underline' }}>Dubai</Link>), OptiVir Ads engineers sustainable organic ranking engines. We look beyond vanity keyword rankings to focus strictly on commercial and transactional queries that generate verified customer sales.
                 </p>
                 <p>
                   Need local Map Pack visibility in your immediate neighborhood? Explore our dedicated{' '}
@@ -278,8 +287,8 @@ export default function SearchEngineOptimizationPage() {
                 <div style={{ padding: '1.25rem', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)', borderRadius: '10px', marginTop: '0.5rem' }}>
                   <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1rem' }}>Read Our Organic Search Strategy Blueprint</h4>
                   <p style={{ fontSize: '0.875rem', marginBottom: '0.75rem' }}>Discover our complete framework for capturing regional search volume and outranking local competitors.</p>
-                  <Link href="/blog/the-ultimate-guide-to-local-seo-for-kerala-businesses-in-2026" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
-                    Read the Local SEO Guide for Kerala Businesses →
+                  <Link href="/blog/local-seo-domination-blueprint" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
+                    Read the Local SEO Domination Blueprint →
                   </Link>
                 </div>
               </div>

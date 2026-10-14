@@ -2,6 +2,7 @@ import React from 'react';
 import { ReviewItem, getAggregateRating, CURATED_REVIEWS } from '@/lib/reviews';
 
 export interface LocalBusinessSchemaProps {
+  id?: string;
   name?: string;
   description?: string;
   url?: string;
@@ -22,6 +23,7 @@ export interface LocalBusinessSchemaProps {
 }
 
 export default function LocalBusinessSchema({
+  id,
   name,
   description,
   url,
@@ -36,6 +38,8 @@ export default function LocalBusinessSchema({
   const reviewList = reviews && reviews.length > 0 ? reviews : CURATED_REVIEWS;
   const metrics = getAggregateRating(reviewList);
 
+  const businessId = id || `${baseUrl}/#localbusiness`;
+
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": ["ProfessionalService", "LocalBusiness"],
@@ -43,7 +47,7 @@ export default function LocalBusinessSchema({
     "description": description || "Performance digital marketing, Google Ads, Meta Ads, and SEO agency in Kerala & GCC.",
     "image": image || `${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`,
     "logo": `${baseUrl}/images/brand/OptiVir-Ads-Original-Symbol-512.png`,
-    "@id": url ? `${url}#localbusiness` : `${baseUrl}/#localbusiness`,
+    "@id": businessId,
     "url": url || baseUrl,
     "parentOrganization": {
       "@id": `${baseUrl}/#organization`
@@ -82,7 +86,9 @@ export default function LocalBusinessSchema({
     "sameAs": [
       "https://facebook.com/optivirads",
       "https://www.instagram.com/optivirads",
-      "https://www.linkedin.com/company/optivirads"
+      "https://www.linkedin.com/company/optivirads",
+      "https://www.google.com/maps?cid=16994082006733929099",
+      "https://www.google.com/search?kgmid=/g/11z85cd8tn"
     ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -97,9 +103,10 @@ export default function LocalBusinessSchema({
       "opens": "09:00",
       "closes": "18:00"
     },
-    "hasMap": "https://www.google.com/maps/search/?api=1&query=OptiVir+Ads+Talap+Kannur",
+    "hasMap": "https://www.google.com/maps?cid=16994082006733929099",
     "areaServed": [
       { "@type": "City", "name": "Kannur" },
+      { "@type": "City", "name": "Kochi" },
       { "@type": "City", "name": "Calicut" },
       { "@type": "AdministrativeArea", "name": "Kerala" },
       { "@type": "City", "name": "Dubai" },

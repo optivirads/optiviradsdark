@@ -23,15 +23,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function MetaAdvertisingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/meta-advertising#service`,
+    "url": `${baseUrl}/services/meta-advertising`,
     "name": "Meta Advertising",
     "serviceType": "Facebook & Instagram Advertising Agency",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Disrupt scroll behavior with visual ad creative testing and programmatic value-based bidding filters across Facebook and Instagram channels."

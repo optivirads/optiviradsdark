@@ -58,6 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: location.metaTitle,
       description: location.metaDescription,
+      images: [`${baseUrl}/images/office_space.png`],
     },
     robots: {
       index: true,
@@ -132,18 +133,68 @@ export default async function LocationPage({ params }: Props) {
     { label: "Cadence", val: "Weekly" },
   ];
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
+  const remoteServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${baseUrl}/locations/${location.slug}#service`,
+    "name": `${location.primaryServiceFocus} - OptiVir Ads ${location.city}`,
+    "serviceType": "Digital Marketing & Performance Advertising",
+    "description": location.metaDescription,
+    "url": `${baseUrl}/locations/${location.slug}`,
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
+      "name": "OptiVir Ads",
+      "url": baseUrl,
+      "telephone": "+919995037109",
+      "hasMap": "https://www.google.com/maps?cid=16994082006733929099",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Green Building, Talap",
+        "addressLocality": "Kannur",
+        "addressRegion": "Kerala",
+        "postalCode": "670002",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": location.city
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": location.region
+      },
+      {
+        "@type": "Country",
+        "name": location.country
+      }
+    ]
+  };
+
   return (
     <main className="loc-page">
       {/* Schema */}
-      <LocalBusinessSchema
-        name={`OptiVir Ads - ${location.city}`}
-        description={location.metaDescription}
-        url={`https://www.optivirads.com/locations/${location.slug}`}
-        telephone={location.telephone}
-        address={location.address}
-        geo={location.geo}
-        image="https://www.optivirads.com/images/optivir-brand-logo.png"
-      />
+      {location.isRemote ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(remoteServiceSchema) }}
+        />
+      ) : (
+        <LocalBusinessSchema
+          id={`${baseUrl}/#localbusiness`}
+          name="OptiVir Ads"
+          description={location.metaDescription}
+          url={`${baseUrl}/locations/${location.slug}`}
+          telephone={location.telephone}
+          address={location.address}
+          geo={location.geo}
+          image={`${baseUrl}/images/brand/OptiVir-Ads-Original-Horizontal-Colour-1200.png`}
+        />
+      )}
       <BreadcrumbSchema
         items={[
           { name: 'Locations', url: '/locations' },

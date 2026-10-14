@@ -67,11 +67,15 @@ export default function ServiceSchema({ services }: { services?: ServiceItemProp
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services#service`,
+    "url": `${baseUrl}/services`,
+    "name": "Digital Marketing & Performance Growth Services",
     "provider": {
       "@type": "LocalBusiness",
-      "@id": `${baseUrl}/#organization`,
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
       "url": baseUrl,
+      "hasMap": "https://www.google.com/maps?cid=16994082006733929099",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Green Building, Talap",
@@ -96,9 +100,14 @@ export default function ServiceSchema({ services }: { services?: ServiceItemProp
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
+          "@id": srv.urlPath ? `${baseUrl}${srv.urlPath}#service` : undefined,
           "name": srv.name,
           "description": srv.description,
-          "url": srv.urlPath ? `${baseUrl}${srv.urlPath}` : undefined
+          "url": srv.urlPath ? `${baseUrl}${srv.urlPath}` : undefined,
+          "provider": {
+            "@type": "LocalBusiness",
+            "@id": `${baseUrl}/#localbusiness`
+          }
         }
       }))
     }

@@ -20,15 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function AnalyticsOperationsPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/analytics-operations#service`,
+    "url": `${baseUrl}/services/analytics-operations`,
     "name": "Analytics & Marketing Operations",
     "serviceType": "Marketing Analytics & Tracking Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Server-side tag manager tracking, iOS 14 attribution mapping, and Looker Studio data consolidation."

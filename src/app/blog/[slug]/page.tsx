@@ -40,6 +40,10 @@ export async function generateMetadata({ params }: { params: Params }) {
     };
   }
 
+  const resolvedFeaturedImage = post.featuredImage
+    ? (post.featuredImage.startsWith('http') ? post.featuredImage : `${baseUrl}${post.featuredImage}`)
+    : `${baseUrl}/images/og-share-1200x630.png`;
+
   return {
     title: post.metaTitle || `${post.title} | OptiVir Ads`,
     description: post.metaDescription || post.excerpt,
@@ -56,13 +60,20 @@ export async function generateMetadata({ params }: { params: Params }) {
       publishedTime: post.dateIso || post.date,
       modifiedTime: post.dateModifiedIso || post.dateIso || post.date,
       authors: [post.author || 'Abhinand C'],
-      images: post.featuredImage ? [{ url: post.featuredImage }] : [],
+      images: [
+        {
+          url: resolvedFeaturedImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      images: post.featuredImage ? [post.featuredImage] : [],
+      images: [resolvedFeaturedImage],
     },
     robots: {
       index: true,
@@ -116,7 +127,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           
           <div className="post-meta-top">
             <span className="post-meta-item"><Calendar size={14} /> {post.date}</span>
-            <span className="post-meta-item"><User size={14} /> {authorName} · {authorJobTitle}</span>
+            <span className="post-meta-item"><User size={14} /> OptiVir Growth Team · {authorJobTitle}</span>
           </div>
 
           <h1 className="post-title-main">{post.title}</h1>
@@ -148,18 +159,20 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             {/* Author Byline / E-E-A-T Box */}
             <div className="author-bio-box" style={{ marginTop: '2.5rem', paddingTop: '1.75rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
               <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(176,31,58,0.3), rgba(15,27,50,0.8))', border: '2px solid rgba(176,31,58,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 700, fontSize: '1.15rem', color: '#ffffff' }}>
-                AC
+                OV
               </div>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.35rem' }}>
-                  <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff' }}>{authorName}</span>
+                  <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff' }}>OptiVir Growth Team</span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--accent-crimson)', fontWeight: 600, background: 'rgba(176,31,58,0.12)', padding: '0.2rem 0.6rem', borderRadius: '9999px', border: '1px solid rgba(176,31,58,0.3)' }}>
                     {authorJobTitle}
                   </span>
                 </div>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.55' }}>
-                  Founder &amp; Performance Marketer at OptiVir Ads. Engineering ROI-driven search architectures, high-intent Google PPC systems, and conversion funnels for businesses across Kerala and the GCC.
+                  Growth engineering specialists at OptiVir Ads. Engineering ROI-driven search architectures, high-intent Google PPC systems, and conversion funnels for businesses across Kerala and the GCC.
                 </p>
+                {/* Search Crawler & AI attribution */}
+                <span className="sr-only">Article written by Abhinand C, Founder &amp; Digital Marketing Strategist at OptiVir Ads.</span>
               </div>
             </div>
           </div>

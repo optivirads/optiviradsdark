@@ -27,7 +27,11 @@ export default function ReviewsSection({
         <ScrollReveal direction="up" delay={150} rotate={false}>
           <div className="text-center" style={{ maxWidth: '800px', margin: '0 auto 3rem auto' }}>
             {/* Google Business Rating Badge Header */}
-            <div
+            <a
+              href="https://www.google.com/maps?cid=16994082006733929099"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View OptiVir Ads on Google Business Profile"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -36,7 +40,10 @@ export default function ReviewsSection({
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '50px',
-                marginBottom: '1.25rem'
+                marginBottom: '1.25rem',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'border-color 0.2s ease, background 0.2s ease'
               }}
             >
               {/* Google G Logo SVG */}
@@ -69,7 +76,7 @@ export default function ReviewsSection({
               <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                 ({metrics.reviewCount} Verified Reviews)
               </span>
-            </div>
+            </a>
 
             <h2 className="section-title" style={{ fontSize: '2.2rem', color: '#ffffff', marginBottom: '1rem' }}>
               {title}

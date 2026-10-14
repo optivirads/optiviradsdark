@@ -55,9 +55,10 @@ export default function BlogPostingSchema({
     "inLanguage": "en-US",
     "author": {
       "@type": "Person",
-      "name": authorName,
-      "jobTitle": authorJobTitle,
-      "url": `${baseUrl}/about`
+      "@id": `${baseUrl}/about#abhinand-c`,
+      "name": (!authorName || authorName.includes('@') || authorName.toLowerCase() === 'admin') ? 'Abhinand C' : authorName,
+      "jobTitle": authorJobTitle || 'Digital Marketing Strategist',
+      "url": `${baseUrl}/about#abhinand-c`
     },
     "publisher": {
       "@type": "Organization",

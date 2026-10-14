@@ -21,15 +21,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function SocialMediaManagementPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/social-media-management#service`,
+    "url": `${baseUrl}/services/social-media-management`,
     "name": "Social Media Management",
     "serviceType": "Social Media Marketing Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Transform your social profiles into high-engagement brand equity. Custom calendars, reply playbooks, and community cultivation."

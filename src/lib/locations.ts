@@ -73,6 +73,23 @@ export const LOCATIONS: Record<string, LocationData> = {
     primaryServiceFocus: "Google Maps SEO & Local Lead Generation",
     serviceDescription: "Kozhikode is Malabar's trade and commercial epicentre. We manage high-intent Google Search campaigns and localized Google Maps optimization from our Kerala office to help Calicut businesses capture nearby customers looking for their services."
   },
+  kochi: {
+    city: "Kochi",
+    slug: "kochi",
+    region: "Kerala",
+    country: "India",
+    heroHeading: "Digital Marketing & Performance SEO Agency for Kochi Businesses",
+    heroSubheading: "Empowering startups, B2B companies, and retail brands across Kochi and Ernakulam with ROI-driven Google Ads management, local SEO Map Pack domination, and high-converting Meta funnels engineered from Kerala.",
+    metaTitle: "Digital Marketing Agency in Kochi | Google Ads & SEO | OptiVir Ads",
+    metaDescription: "OptiVir Ads provides performance digital marketing for Kochi and Ernakulam businesses. High-intent Google PPC, technical SEO, Map Pack rankings, and social media campaigns.",
+    isRemote: true,
+    servingModel: "Serving businesses in Kochi & Ernakulam from our Kerala headquarters",
+    address: HEADQUARTERS_ADDRESS,
+    geo: HEADQUARTERS_GEO,
+    telephone: "+91 9995037109",
+    primaryServiceFocus: "Performance Google Ads & Enterprise Local SEO",
+    serviceDescription: "Kochi is Kerala's commercial and technology epicenter, spanning Infopark, Kakkanad, and bustling retail corridors across Ernakulam. We engineer search-dominant Google Ads campaigns, technical Next.js websites, and localized Google Maps ranking systems to help Kochi businesses capture high-value customer inquiries and scale predictable revenue pipelines."
+  },
   dubai: {
     city: "Dubai",
     slug: "dubai",

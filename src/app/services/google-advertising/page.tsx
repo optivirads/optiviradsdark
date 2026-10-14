@@ -20,15 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function GoogleAdvertisingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/google-advertising#service`,
+    "url": `${baseUrl}/services/google-advertising`,
     "name": "Google Advertising",
     "serviceType": "Google PPC Agency Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Target bottom-of-funnel buyers. High-intent keyword architectures, value-based Smart Bidding, and ad waste reduction loops."

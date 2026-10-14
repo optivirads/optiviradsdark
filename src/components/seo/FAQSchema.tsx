@@ -20,7 +20,7 @@ export default function FAQSchema({ faqs }: FAQSchemaProps) {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer,
+        "text": (faq.answer || '').replace(/<[^>]*>/g, '').trim(),
       },
     })),
   };

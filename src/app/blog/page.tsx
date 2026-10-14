@@ -103,7 +103,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
             duration={1000}
           />
           <p className="blog-subtitle">
-            Engineered acquisition advice, scaling strategies, and actionable performance marketing insights by Abhinand C, Digital Marketing Strategist.
+            Engineered acquisition advice, scaling strategies, and actionable performance marketing insights by our Digital Marketing Strategists.<span className="sr-only"> Insights and frameworks curated by Abhinand C.</span>
           </p>
         </div>
       </section>

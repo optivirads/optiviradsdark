@@ -20,15 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function BrandingPage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.optivirads.com';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${baseUrl}/services/branding#service`,
+    "url": `${baseUrl}/services/branding`,
     "name": "Branding & Corporate Identity",
     "serviceType": "Brand Strategy & Logo Design Services",
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#localbusiness`,
       "name": "OptiVir Ads",
-      "url": "https://www.optivirads.com"
+      "url": baseUrl
     },
     "areaServed": ["IN", "AE", "QA"],
     "description": "Establish a cohesive, memorable corporate brand. Custom logos, typographic layouts, brand guidelines books, and message frameworks that command trust."
