@@ -45,10 +45,11 @@ export async function POST(request: Request) {
     const smtpPass = process.env.SMTP_PASS;
 
     if (smtpHost && smtpUser && smtpPass) {
+      const smtpPort = parseInt(process.env.SMTP_PORT || '587');
       const transporter = nodemailer.createTransport({
         host: smtpHost,
-        port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: false, // true for 465, false for other ports
+        port: smtpPort,
+        secure: smtpPort === 465,
         auth: {
           user: smtpUser,
           pass: smtpPass,
