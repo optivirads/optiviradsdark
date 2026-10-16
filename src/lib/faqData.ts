@@ -35,7 +35,7 @@ export const seoFaqs: FAQItemData[] = [
   {
     question: "How long does SEO take to show results for a Kerala business?",
     answer: "Sustainable <strong>organic SEO results for Kerala businesses</strong> typically begin to appear within <strong>3 to 4 months</strong> for lower-competition local keywords, with more competitive phrases taking 5 to 9 months. Our approach accelerates early results by simultaneously targeting <strong>low-competition long-tail keywords</strong> while building topical authority for broader terms. We also implement <strong>local citation building</strong> and GBP optimization that can produce Map Pack visibility gains within 4 to 6 weeks of campaign start.",
-    link: { text: "Read our Local SEO guide for Kerala businesses", url: "/blog/local-seo-domination-blueprint" }
+    link: { text: "Read our Local SEO guide for Kerala businesses", url: "/blog/the-ultimate-guide-to-local-seo-for-kerala-businesses-in-2026" }
   },
   {
     question: "What is Local SEO and how does OptiVir Ads dominate Google Map Pack results?",
@@ -80,8 +80,7 @@ export const googleAdsFaqs: FAQItemData[] = [
 export const metaAdsFaqs: FAQItemData[] = [
   {
     question: "How do Meta Ads (Facebook & Instagram) differ from Google Search Ads in generating leads?",
-    answer: "<strong>Google Search Ads</strong> capture <em>existing demand</em> — your ad shows when someone actively searches for a solution. <strong>Meta Ads on Facebook and Instagram</strong> create demand — your ad disrupts a user's social feed before they actively seek a solution. This makes Meta ideal for <strong>visual products, brand awareness, event promotions, and re-engagement campaigns</strong>. Both channels work best together: Google captures high-intent buyers at the bottom of the funnel, while Meta nurtures and retargets them through the awareness and consideration stages.",
-    link: { text: "Read our Meta vs Google comparison", url: "/blog/meta-ads-vs-google-ads" }
+    answer: "<strong>Google Search Ads</strong> capture <em>existing demand</em> — your ad shows when someone actively searches for a solution. <strong>Meta Ads on Facebook and Instagram</strong> create demand — your ad disrupts a user's social feed before they actively seek a solution. This makes Meta ideal for <strong>visual products, brand awareness, event promotions, and re-engagement campaigns</strong>. Both channels work best together: Google captures high-intent buyers at the bottom of the funnel, while Meta nurtures and retargets them through the awareness and consideration stages."
   },
   {
     question: "What creative formats does OptiVir Ads use for high-performing Facebook and Instagram Ads?",

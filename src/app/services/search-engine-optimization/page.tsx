@@ -287,7 +287,7 @@ export default function SearchEngineOptimizationPage() {
                 <div style={{ padding: '1.25rem', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)', borderRadius: '10px', marginTop: '0.5rem' }}>
                   <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1rem' }}>Read Our Organic Search Strategy Blueprint</h4>
                   <p style={{ fontSize: '0.875rem', marginBottom: '0.75rem' }}>Discover our complete framework for capturing regional search volume and outranking local competitors.</p>
-                  <Link href="/blog/local-seo-domination-blueprint" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
+                  <Link href="/blog/the-ultimate-guide-to-local-seo-for-kerala-businesses-in-2026" style={{ color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.875rem', textDecoration: 'underline' }}>
                     Read the Local SEO Domination Blueprint →
                   </Link>
                 </div>

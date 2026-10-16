@@ -416,7 +416,7 @@ const MOCK_FAQS: Record<string, FaqItem[]> = {
       answer: "Offline conversion tracking maps actual closed sales (from CRM data) back to the Google Ads keywords and campaigns that generated those sales. Without it, Google's algorithm optimizes toward form submissions — many of which may be unqualified leads or no-shows. With offline data, the algorithm learns to bid more aggressively on the search queries that produce revenue-generating customers, dramatically improving lead quality and ROAS as budgets scale."
     }
   ],
-  "local-seo-domination-blueprint": [
+  "the-ultimate-guide-to-local-seo-for-kerala-businesses-in-2026": [
     {
       question: "What is the most common Local SEO mistake made by Kerala businesses?",
       answer: "The most common Local SEO mistake for Kerala businesses is setting up a basic Google Business Profile (GBP) but neglecting the technical and content signals that determine Map Pack rankings. This includes: failing to embed LocalBusiness JSON-LD schema on the website, not regularly posting GBP updates and photos, ignoring NAP (Name, Address, Phone) consistency across directories, and not actively soliciting customer reviews. These missing signals prevent businesses from breaking into the top 3 Local Pack positions — where 75% of map search clicks are concentrated."
@@ -565,7 +565,7 @@ const MOCK_POSTS: BlogPost[] = [
   {
     id: 2,
     title: "The Blueprint for Local SEO Domination: 5 Tactics for Local Supremacy",
-    slug: "local-seo-domination-blueprint",
+    slug: "the-ultimate-guide-to-local-seo-for-kerala-businesses-in-2026",
     excerpt: "Dominating local search results requires more than just a basic Google Business Profile. Discover the five advanced strategies to capture local market share and drive foot traffic.",
     date: "July 05, 2026",
     dateIso: "2026-07-05T09:00:00+05:30",
@@ -914,6 +914,12 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   try {
     const wpPosts = await wpFetch<any[]>(`wp/v2/posts?slug=${slug}&_embed`, []);
     if (!wpPosts || wpPosts.length === 0) {
+      // If WordPress is reachable and has posts, an unknown slug is a real 404.
+      // Mock posts are only a fallback for when the CMS is down or empty.
+      const wpProbe = await wpFetch<any[]>("wp/v2/posts?per_page=1", []);
+      if (wpProbe && wpProbe.length > 0) {
+        return null;
+      }
       const mockPost = MOCK_POSTS.find((p) => p.slug === slug);
       if (mockPost) {
         if (mockPost.featuredImage && !localImageExists(mockPost.featuredImage)) {
