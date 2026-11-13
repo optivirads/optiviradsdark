@@ -55,9 +55,12 @@ export default function GrowthHeroVisual() {
   // If on mobile / audit / reduced motion, immediately show the fully rendered chart without RAF cycles
   useEffect(() => {
     if (isStaticVisual) {
-      setProgress(1);
-      setArrowPos({ x: 520, y: 80, angle: -42 });
-      setChartFadeOpacity(1);
+      const id = requestAnimationFrame(() => {
+        setProgress(1);
+        setArrowPos({ x: 520, y: 80, angle: -42 });
+        setChartFadeOpacity(1);
+      });
+      return () => cancelAnimationFrame(id);
     }
   }, [isStaticVisual]);
 

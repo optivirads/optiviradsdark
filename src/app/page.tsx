@@ -31,6 +31,8 @@ import ReviewsSection from '@/components/reviews/ReviewsSection';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import ClientsTicker from '@/components/home/ClientsTicker';
 import GrowthHeroVisual from '@/components/hero/GrowthHeroVisual';
+import ProblemSolutions from '@/components/home/ProblemSolutions';
+import SocialMediaSpotlight from '@/components/home/SocialMediaSpotlight';
 import { getReviews } from '@/lib/reviews';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -92,18 +94,30 @@ export default async function Home() {
       {/* Background Grid Pattern */}
       <div className="grid-overlay" />
 
+      {/* Top Value Strip (CRO Announcement Strip) */}
+      <div className="home-top-strip">
+        <div className="container strip-inner">
+          <span className="strip-text">
+            Free marketing audit for Kerala &amp; GCC businesses<span className="strip-more">: we review your Instagram, Google Maps &amp; ads</span>.
+          </span>
+          <Link href="/free-marketing-audit" prefetch={false} className="strip-link">
+            Get yours &rarr;
+          </Link>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container hero-container-grid">
           <div className="hero-text-content">
             <div className="hero-eyebrow-pill">
-              <span className="eyebrow-dot" /> GROWTH MARKETING FOR SMALL BUSINESSES
+              <span className="eyebrow-dot" /> GROWTH MARKETING FOR KERALA &amp; GCC BUSINESSES
             </div>
             <h1 className="hero-headline">
               More enquiries. More customers. <span className="text-gradient-green">More reasons to choose your business.</span>
             </h1>
             <p className="hero-description animate-hero-desc">
-              We help small businesses across Kerala and the GCC attract customers through Google, Instagram and Facebook, snapchat and other social media . Whether you’re starting online or already advertising, we’ll help you choose your next step.
+              We help businesses across Kerala and the GCC attract customers through Instagram Reels, Google Maps, Facebook &amp; Google Ads. Whether you’re starting online or scaling ad campaigns, we’ll help you choose your next step.
             </p>
             <div className="hero-actions" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
               <Link href="/free-marketing-audit" prefetch={false} className="btn-primary hero-cta-btn animate-hero-cta">
@@ -123,6 +137,14 @@ export default async function Home() {
               Get three practical improvements for your ads or online presence.{' '}
               <span style={{ color: '#FFFFFF', fontWeight: 600 }}>No website needed.</span>
             </p>
+
+            {/* Reassurance Ticks */}
+            <ul className="hero-ticks-list">
+              <li><CheckCircle2 size={15} className="tick-icon" /> Nothing posted without your approval</li>
+              <li><CheckCircle2 size={15} className="tick-icon" /> You own 100% of your accounts &amp; data</li>
+              <li><CheckCircle2 size={15} className="tick-icon" /> Malayalam &amp; English creative team</li>
+            </ul>
+
             <div className="hero-outcomes-grid">
               <div className="outcome-item">
                 <TrendingUp size={16} className="outcome-icon" />
@@ -149,6 +171,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Sound familiar? Problem vs Solution Section */}
+      <ProblemSolutions />
 
       {/* What We Do Section */}
       <section className="what-we-do-section" id="what-we-do">
@@ -375,6 +400,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Social Media & Instagram Reels Spotlight */}
+      <SocialMediaSpotlight />
 
       {/* Data-Driven Precision Section */}
       <section className="precision-section">

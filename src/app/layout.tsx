@@ -3,6 +3,8 @@ import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import MobileStickyBar from '@/components/MobileStickyBar';
 import AntigravityParticles from '@/components/AntigravityParticles';
 import ThirdPartyScripts from '@/components/seo/ThirdPartyScripts';
 import { getPageMetadata } from '@/lib/wordpress';
@@ -135,6 +137,8 @@ export default function RootLayout({
         </main>
         <Footer />
         <ScrollToTop />
+        <WhatsAppButton />
+        <MobileStickyBar />
       </body>
     </html>
   );

@@ -10,6 +10,7 @@ interface ScrollRevealProps {
   distance?: number;
   stagger?: number;
   rotate?: boolean;
+  repeat?: boolean;
 }
 
 export default function ScrollReveal({
@@ -19,6 +20,7 @@ export default function ScrollReveal({
   direction = 'up',
   distance = 50,
   rotate = true,
+  repeat = false,
 }: ScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -29,10 +31,15 @@ export default function ScrollReveal({
     const element = containerRef.current;
     if (!element) return;
 
-    // Trigger when element actually enters the visible viewport
+    // Trigger when element enters or exits the visible viewport
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (repeat) {
+          setIsVisible(entry.isIntersecting);
+          if (!entry.isIntersecting) {
+            setHasFinished(false);
+          }
+        } else if (entry.isIntersecting) {
           setIsVisible(true);
           observer.unobserve(entry.target);
         }
@@ -42,15 +49,17 @@ export default function ScrollReveal({
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [repeat]);
 
   useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setHasFinished(true);
-      }, delay + duration + 60);
-      return () => clearTimeout(timer);
-    }
+    if (!isVisible) return;
+    const timer = setTimeout(() => {
+      setHasFinished(true);
+    }, delay + duration + 60);
+    return () => {
+      clearTimeout(timer);
+      setHasFinished(false);
+    };
   }, [isVisible, delay, duration]);
 
   // Handle tap-to-flip only on mobile screens (<= 768px) for cards with rotate enabled

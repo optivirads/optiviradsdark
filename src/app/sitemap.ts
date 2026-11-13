@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/about',
     '/contact',
     '/services',
+    '/pricing',
     '/locations',
     '/blog',
     '/free-marketing-audit',
@@ -38,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const getPriority = (route: string): number => {
     if (route === '') return 1.0;
-    if (route === '/services' || route === '/locations' || route === '/free-marketing-audit') return 0.9;
+    if (route === '/services' || route === '/pricing' || route === '/locations' || route === '/free-marketing-audit') return 0.9;
     if (route.startsWith('/services/') || route.startsWith('/locations/')) return 0.8;
     if (route === '/free-tools/roas-calculator') return 0.8;
     if (route === '/about' || route === '/contact' || route === '/blog') return 0.7;

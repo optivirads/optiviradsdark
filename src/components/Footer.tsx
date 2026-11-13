@@ -59,6 +59,7 @@ export default function Footer() {
           <h4 className="footer-title">Company & Resources</h4>
           <ul className="footer-links-list">
             <li><Link href="/about" prefetch={false} className="footer-link">About OptiVir Ads</Link></li>
+            <li><Link href="/pricing" prefetch={false} className="footer-link">Pricing &amp; Packages</Link></li>
             <li><Link href="/blog" prefetch={false} className="footer-link">Digital Marketing Blog</Link></li>
             <li><Link href="/contact" prefetch={false} className="footer-link">Contact Us</Link></li>
             <li><Link href="/free-tools/roas-calculator" prefetch={false} className="footer-link">Free ROAS Calculator</Link></li>
