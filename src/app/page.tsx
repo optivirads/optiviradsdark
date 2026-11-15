@@ -234,7 +234,7 @@ export default async function Home() {
           <div className="growth-pillars-grid">
             
             {/* Card 1: Reach New Customers */}
-            <ScrollReveal delay={100} direction="up">
+            <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={60} duration={580}>
               <div className="glass-card pillar-card cyan" id="step-reach-customers">
                 <div className="pillar-header">
                   <div>
@@ -271,7 +271,7 @@ export default async function Home() {
             </ScrollReveal>
 
             {/* Card 2: Get Found on Google */}
-            <ScrollReveal delay={200} direction="up">
+            <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={160} duration={580}>
               <div className="glass-card pillar-card green" id="step-get-found">
                 <div className="pillar-header">
                   <div>
@@ -308,7 +308,7 @@ export default async function Home() {
             </ScrollReveal>
 
             {/* Card 3: Turn Enquiries into Bookings */}
-            <ScrollReveal delay={300} direction="up">
+            <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={260} duration={580}>
               <div className="glass-card pillar-card purple" id="step-turn-enquiries">
                 <div className="pillar-header">
                   <div>
@@ -345,7 +345,7 @@ export default async function Home() {
             </ScrollReveal>
 
             {/* Card 4: Bring Customers Back */}
-            <ScrollReveal delay={400} direction="up">
+            <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={360} duration={580}>
               <div className="glass-card pillar-card emerald" id="step-bring-back">
                 <div className="pillar-header">
                   <div>
@@ -410,28 +410,28 @@ export default async function Home() {
           <ScrollReveal direction="left" delay={100} rotate={false}>
             <div className="precision-content">
               <h2 className="precision-title">
-                Data-Driven Search Engine Optimization (SEO) & Paid Media Precision
+                Clear Marketing That Brings In Real, Paying Customers
               </h2>
               <p className="precision-desc">
-                At OptiVir Ads, we do not rely on guesswork or vanity metrics. We construct robust digital marketing growth engines that deliver clear, measurable bottom-line revenue. By pairing deep technical analytics with strategic creative execution, we scale your business predictably across all major digital customer acquisition channels.
+                You don&apos;t need vanity metrics like random &ldquo;likes&rdquo; or confusing reports. You need a steady flow of calls, WhatsApp enquiries, and walk-ins that grow your business. We set up ads and search rankings that show you exactly where your money goes and how many real customers come through your door.
               </p>
 
               <ul className="precision-list">
                 <li className="precision-list-item">
                   <CheckCircle2 className="list-checkmark" size={18} />
-                  <span>Real-time custom performance dashboards and transparent conversion tracking.</span>
+                  <span>Simple monthly reports showing your exact spend, leads, and cost per enquiry.</span>
                 </li>
                 <li className="precision-list-item">
                   <CheckCircle2 className="list-checkmark" size={18} />
-                  <span>Dedicated senior account strategist overseeing every aspect of your growth campaigns.</span>
+                  <span>A dedicated campaign manager who coordinates directly with you on WhatsApp.</span>
                 </li>
                 <li className="precision-list-item">
                   <CheckCircle2 className="list-checkmark" size={18} />
-                  <span>Agile optimization sprints designed to outpace evolving search algorithms and market shifts.</span>
+                  <span>Weekly tuning of your ads to lower your costs and focus on what brings results.</span>
                 </li>
                 <li className="precision-list-item">
                   <CheckCircle2 className="list-checkmark" size={18} />
-                  <span>Server-side Tag Manager containers and Meta Conversion API (CAPI) data integration.</span>
+                  <span>Accurate lead tracking so you never waste money on ads that don&apos;t work.</span>
                 </li>
               </ul>
             </div>
@@ -453,58 +453,58 @@ export default async function Home() {
       </section>
 
       {/* Strategic Growth Framework Deep Dive */}
-      <section className="framework-section" style={{ padding: '4rem 0', position: 'relative' }}>
+      <section className="framework-section" style={{ padding: '4rem 0', position: 'relative', overflow: 'hidden' }}>
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">Comprehensive Digital Marketing Strategy & Execution Framework</h2>
-            <p className="section-subtitle">Four systematic pillars that transform casual website visitors into loyal, paying clients for your business.</p>
+            <h2 className="section-title">A Simple 4-Step Plan to Grow Your Business Online</h2>
+            <p className="section-subtitle">How we guide local customers from finding you on Google or Instagram to calling and visiting your business.</p>
           </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
-              <ScrollReveal direction="up" delay={80}>
+              <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={60} duration={580}>
                 <div className="glass-card" style={{ padding: '2rem' }}>
                   <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
                     <Target size={20} />
                   </div>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>1. Market Audit & Intent Mapping</h3>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>1. Learn Your Market &amp; Customers</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                    We analyze search queries, target audience purchase behavior, competitor ad strategies, and funnel friction points to build a tailored digital marketing growth blueprint.
+                    We study what nearby customers in your city are actually searching for, review your competitors, and find the fastest way to get you calls and bookings.
                   </p>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="up" delay={160}>
+              <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={160} duration={580}>
                 <div className="glass-card" style={{ padding: '2rem' }}>
                   <div className="icon-badge cyan" style={{ marginBottom: '1rem' }}>
                     <Cpu size={20} />
                   </div>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>2. High-Speed Conversion Web Build</h3>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>2. Fast, Easy-to-Use Web Pages</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                    Developing fast, mobile-responsive Next.js custom web applications and landing pages optimized for speed, performance, and high conversion velocity.
+                    We build fast, clean mobile pages where visitors can easily tap to call you, send a WhatsApp message, or book an appointment in seconds.
                   </p>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="up" delay={240}>
+              <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={260} duration={580}>
                 <div className="glass-card" style={{ padding: '2rem' }}>
                   <div className="icon-badge purple" style={{ marginBottom: '1rem' }}>
                     <Layers size={20} />
                   </div>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>3. Multi-Channel Campaign Scaling</h3>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>3. Targeted Ads &amp; Social Media</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                    Executing synchronized Google Search & Shopping ads, Meta retargeting campaigns, authoritative SEO content creation, and active social media management.
+                    We run focused ads on Google and Instagram directly to people in your city, paired with engaging Reels and posts that keep your business top of mind.
                   </p>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="up" delay={320}>
+              <ScrollReveal direction="left" distance={45} rotate={true} repeat={true} delay={360} duration={580}>
                 <div className="glass-card" style={{ padding: '2rem' }}>
                   <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
                     <BarChart3 size={20} />
                   </div>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>4. First-Party Analytics Optimization</h3>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff' }}>4. Weekly Improvements &amp; Reporting</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                    Continuous A/B ad copy testing, server-side conversion tracking, smart bidding adjustments, and customer lifetime value (LTV) expansion strategies.
+                    We review your results every week, stop what isn&apos;t working, double down on ads that bring paying customers, and keep your ad costs low.
                   </p>
                 </div>
               </ScrollReveal>
@@ -516,8 +516,8 @@ export default async function Home() {
       <section style={{ padding: '4rem 0', position: 'relative' }}>
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">Why Partner with OptiVir Ads as Your Digital Marketing Agency?</h2>
-            <p className="section-subtitle">Delivering measurable competitive advantages through technical innovation and performance transparency.</p>
+            <h2 className="section-title">Why Business Owners in Kerala &amp; the GCC Choose Us</h2>
+            <p className="section-subtitle">Practical marketing, transparent costs, and a team that treats your budget like our own.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
@@ -526,9 +526,9 @@ export default async function Home() {
                 <div className="icon-badge cyan" style={{ marginBottom: '1rem' }}>
                   <Award size={22} />
                 </div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#ffffff' }}>Proven ROAS Performance</h3>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#ffffff' }}>Focus on Real Returns</h3>
                 <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: '1.7' }}>
-                  Our performance marketing strategies focus entirely on profit margins and return on ad spend. By optimizing your Google Ads and Meta Ads campaigns for conversion quality, we reduce overall customer acquisition costs while scaling lead volume.
+                  We don&apos;t celebrate &ldquo;impressions&rdquo; or &ldquo;reach&rdquo; if your phone isn&apos;t ringing. Every campaign is built to bring you qualified enquiries, store visits, and measurable business growth.
                 </p>
               </div>
             </ScrollReveal>
@@ -538,9 +538,9 @@ export default async function Home() {
                 <div className="icon-badge green" style={{ marginBottom: '1rem' }}>
                   <Globe size={22} />
                 </div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#ffffff' }}>End-to-End Technical Mastery</h3>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#ffffff' }}>Modern, Reliable Setup</h3>
                 <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: '1.7' }}>
-                  From advanced schema structured data and Next.js full-stack web development to server-side Google Tag Manager containers, we deploy cutting-edge engineering techniques that give your site a distinct competitive edge in Google search rankings.
+                  From fast websites that load instantly on mobile to properly optimized Google Maps profiles, we make sure your online presence works smoothly and ranks ahead of competitors.
                 </p>
               </div>
             </ScrollReveal>
@@ -550,9 +550,9 @@ export default async function Home() {
                 <div className="icon-badge purple" style={{ marginBottom: '1rem' }}>
                   <LineChart size={22} />
                 </div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#ffffff' }}>Unmatched Accountability</h3>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#ffffff' }}>100% Plain English Reports</h3>
                 <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: '1.7' }}>
-                  No complex marketing jargon or inflated vanity metrics. We provide clear, transparent reporting that details exact spend, impression share, conversion volume, cost per acquisition, and net profit contribution across all marketing channels.
+                  No confusing technical terms or vanity charts. Every month, you get a straightforward summary showing what you spent, how many calls and leads came in, and what we&apos;re improving next.
                 </p>
               </div>
             </ScrollReveal>
@@ -567,8 +567,8 @@ export default async function Home() {
       <section className="advantage-section">
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">The OptiVir Advantage: ROAS-First Marketing Systems</h2>
-            <p className="section-subtitle">Uncompromising performance marketing standards, financial accountability, and operational clarity.</p>
+            <h2 className="section-title">The OptiVir Difference: Built Around Your Bottom Line</h2>
+            <p className="section-subtitle">Honest advice, zero budget waste, and clear communication every step of the way.</p>
           </div>
 
           <div className="advantage-grid-layout">
@@ -579,9 +579,9 @@ export default async function Home() {
                   <div className="icon-badge purple">
                     <TrendingUp size={22} />
                   </div>
-                  <h3 className="capability-card-title">ROI-First Paid Media Methodology</h3>
+                  <h3 className="capability-card-title">Every Rupee Counted</h3>
                   <p className="capability-card-desc">
-                    We treat every advertising dollar with strict fiscal responsibility. Every campaign is continuously tracked, audited, and optimized to eliminate wasteful click spend and deliver maximum net profitability for your business.
+                    We treat your advertising budget with great care. Every campaign is monitored and adjusted weekly to eliminate wasted clicks and direct your budget to people ready to buy.
                   </p>
                 </div>
               </ScrollReveal>
@@ -589,8 +589,8 @@ export default async function Home() {
               <ScrollReveal direction="up" delay={200}>
                 <div className="advantage-sub-card">
                   <div className="sub-card-left">
-                    <span className="sub-card-label">Procedures Framework:</span>
-                    <span className="sub-card-value">Agile sprint cycles and weekly performance tuning.</span>
+                    <span className="sub-card-label">Weekly Hands-On Tuning:</span>
+                    <span className="sub-card-value">We check your campaigns every week and adjust bids so your costs stay down.</span>
                   </div>
                   <div className="sub-card-icon">
                     <GitBranch size={20} />
@@ -607,10 +607,10 @@ export default async function Home() {
                     <div className="icon-badge green">
                       <Handshake size={22} />
                     </div>
-                    <h3 className="advantage-cell-title">Strategic Growth Partnerships</h3>
+                    <h3 className="advantage-cell-title">Like Having Your Own In-House Team</h3>
                   </div>
                   <p className="advantage-cell-desc">
-                    We operate as an extended internal growth team for your enterprise, providing proactive strategy, rapid iteration, and direct access to senior digital marketing engineers.
+                    We work closely alongside you as your dedicated marketing partner, responding quickly on WhatsApp and handling everything from copywriting to video editing.
                   </p>
                 </div>
               </ScrollReveal>
@@ -621,10 +621,10 @@ export default async function Home() {
                     <div className="icon-badge cyan">
                       <Zap size={22} />
                     </div>
-                    <h3 className="advantage-cell-title">Agile Execution Speed</h3>
+                    <h3 className="advantage-cell-title">Fast Turnaround</h3>
                   </div>
                   <p className="advantage-cell-desc">
-                    Rapid ad campaign deployment and swift strategy adjustments that keep your business steps ahead of market competition.
+                    From approved scripts to live ads and social posts, we move quickly so your offers reach customers without unnecessary delays.
                   </p>
                 </div>
               </ScrollReveal>
@@ -635,10 +635,10 @@ export default async function Home() {
                     <div className="icon-badge purple">
                       <BarChart3 size={22} />
                     </div>
-                    <h3 className="advantage-cell-title">Transparent Performance Analytics</h3>
+                    <h3 className="advantage-cell-title">Clear, Honest Numbers</h3>
                   </div>
                   <p className="advantage-cell-desc">
-                    Unfiltered data dashboards revealing exact Cost Per Lead (CPL), Customer Acquisition Cost (CAC), and verified Return on Investment (ROI).
+                    Direct monthly reporting showing exactly what each customer enquiry cost, how many leads came in, and where to invest next.
                   </p>
                 </div>
               </ScrollReveal>
@@ -653,27 +653,27 @@ export default async function Home() {
           <ScrollReveal direction="up" delay={150} rotate={false}>
             <div className="glass-card" style={{ padding: '3rem 2.5rem', borderRadius: '16px' }}>
               <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '1.25rem', color: '#ffffff' }}>
-                Leading Growth Marketing Agency for Kerala &amp; GCC Businesses
+                A Digital Marketing Partner for Kerala &amp; GCC Businesses
               </h2>
               <div style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '0.95rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <p>
-                  OptiVir Ads is a premier <strong>growth marketing agency in Kerala</strong> engineering predictable revenue growth pipelines for ambitious local and international brands. Recognized as a top <strong>SEO and digital marketing company in Kannur and Calicut</strong> and a trusted <strong>performance advertising partner for GCC enterprises across Dubai, Ras Al Khaimah, and Qatar</strong>, we combine data-driven search architecture with server-side analytics to turn digital web traffic into verified corporate profit.
+                  OptiVir Ads is a <strong>digital marketing agency in Kerala</strong> that helps local and regional businesses get found by the right customers and turn online interest into real sales. Based in Kannur, we work with clinics, showrooms, restaurants, and growing companies across Kerala (including Calicut, Kochi, and Trivandrum) as well as business owners across Dubai and the wider GCC.
                 </p>
                 <p>
-                  Whether you require hyper-targeted <strong>Google Maps Local Pack SEO in Kannur and Calicut</strong>, high-ROI <strong>Meta &amp; Google advertising campaigns across Kerala and the GCC</strong>, or custom <strong>Next.js web development agency services</strong> engineered for exceptional mobile page speed and responsiveness, our specialist team executes with surgical precision. We eliminate ad budget wastage through server-side Tag Manager containers, advanced Meta CAPI implementations, and value-focused Google Smart Bidding strategies.
+                  Whether you need your business to rank #1 on <strong>Google Maps in Kannur or Calicut</strong>, high-performing <strong>Google and Instagram ads across Kerala and the GCC</strong> that bring regular phone calls, or a fast, modern website that makes messaging you effortless—our team handles the technical work so you can focus on running your business.
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginTop: '1rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <div>
-                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Local Organic Search Authority</h4>
-                    <p style={{ fontSize: '0.85rem' }}>Structured LocalBusiness schema graphs, Google Business Profile management, and geographic citation building to maximize local search visibility and customer inquiries.</p>
+                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Local Google Maps &amp; Search</h4>
+                    <p style={{ fontSize: '0.85rem' }}>Complete Google Business Profile setup, customer review collection, and local search optimization so nearby customers call you first.</p>
                   </div>
                   <div>
-                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>High-Performance Paid Advertising</h4>
-                    <p style={{ fontSize: '0.85rem' }}>Google Search, Shopping, and Meta campaigns optimized ruthlessly for Target CPA and maximum Return on Ad Spend (ROAS).</p>
+                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Targeted Google &amp; Instagram Ads</h4>
+                    <p style={{ fontSize: '0.85rem' }}>Local ads that show directly to people interested in your services, managed weekly so you get more customer enquiries for your budget.</p>
                   </div>
                   <div>
-                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Custom Web Application Development</h4>
-                    <p style={{ fontSize: '0.85rem' }}>Next.js and React web applications engineered for optimal Core Web Vitals, maximum mobile speed, and conversion efficiency.</p>
+                    <h4 style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Fast Mobile Websites</h4>
+                    <p style={{ fontSize: '0.85rem' }}>Clean, modern websites that load instantly on any smartphone and make calling or messaging on WhatsApp as simple as one tap.</p>
                   </div>
                 </div>
               </div>

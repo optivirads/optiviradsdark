@@ -77,7 +77,7 @@ const PRICING_FAQS = [
   },
   {
     question: 'Do you manage campaigns for businesses in Dubai and the GCC?',
-    answer: 'Yes. We engineer bilingual growth campaigns for commercial enterprises across Dubai, Ras Al Khaimah, Abu Dhabi, and Qatar. Our team deploys server-side Meta Conversions API (CAPI), high-intent Google Search campaigns, and Next.js web applications from our Kerala headquarters, giving GCC brands elite technical execution at 50% lower agency overheads.',
+    answer: 'Yes. We run bilingual marketing campaigns in Arabic, English, and Malayalam for businesses across Dubai, Abu Dhabi, Ras Al Khaimah, and Qatar. From our Kerala headquarters, we deliver high-performing Google Ads, Meta campaigns, and fast modern websites at roughly half the cost of local GCC agencies—with the exact same or better quality.',
   },
   {
     question: 'Are there any long-term lock-in contracts?',
@@ -113,7 +113,7 @@ export default function PricingPage() {
         },
         {
           label: 'Google Business Profile (Maps)',
-          detail: 'Google Maps 3-Pack optimization, category audits & weekly updates',
+          detail: 'Google Maps ranking & profile setup so nearby customers find you easily',
           included: true,
         },
         {
@@ -166,17 +166,17 @@ export default function PricingPage() {
         },
         {
           label: 'Google Search or Meta Ads',
-          detail: 'Campaign setup, audience segmentation & weekly bid optimization',
+          detail: 'Targeted ads set up and managed weekly to bring in customer enquiries',
           included: true,
         },
         {
           label: 'Google Business Profile Management',
-          detail: 'Weekly photo updates, service highlights & local search ranking checks',
+          detail: 'Weekly photo updates, offer highlights, and local search monitoring',
           included: true,
         },
         {
           label: 'Monthly Growth Analytics',
-          detail: 'Detailed inquiry reporting, cost-per-lead (CPL) and channel performance',
+          detail: 'Simple monthly report detailing phone calls, enquiries, and cost per lead',
           included: true,
         },
         {
@@ -190,8 +190,8 @@ export default function PricingPage() {
           included: false,
         },
         {
-          label: 'Advanced Server-Side CAPI',
-          detail: 'First-party data infrastructure for enterprise ad accounts',
+          label: 'Advanced Ad Tracking',
+          detail: 'Ad-blocker proof tracking setup to prevent lost leads',
           included: false,
         },
       ],
@@ -208,8 +208,8 @@ export default function PricingPage() {
       whatsappMsg: "Hi OptiVir Ads, I'm interested in the Growth Engine Plan (₹45,000/month). Let's discuss onboarding.",
       features: [
         {
-          label: 'Full Social Media Dominance',
-          detail: '10 custom designed brand creatives across Instagram, Facebook & Google',
+          label: 'Full Social Media Presence',
+          detail: '10 custom designed brand posts across Instagram, Facebook & Google',
           included: true,
         },
         {
@@ -219,32 +219,32 @@ export default function PricingPage() {
         },
         {
           label: 'Meta & Google Ads Management',
-          detail: 'Active optimization for Target CPA, negative keywords & retargeting funnels',
+          detail: 'Both Google and Instagram/Facebook ads actively managed and optimized weekly',
           included: true,
         },
         {
-          label: 'Google Maps 3-Pack Authority',
-          detail: 'Keyword-optimized posts, local citation building & systematic review plan',
+          label: 'Google Maps Top-3 Ranking',
+          detail: 'Regular updates, local directory listings, and a system to collect positive reviews',
           included: true,
         },
         {
           label: 'Daily Inquiry & DM Handling',
-          detail: 'Swift responses to comments and Instagram DMs so leads never cool down',
+          detail: 'Prompt replies to Instagram comments and messages so interested buyers never wait',
           included: true,
         },
         {
-          label: 'Accurate Conversion Tracking',
-          detail: 'Server-side Meta CAPI & Google Tag Manager tracking to prevent data loss',
+          label: 'Accurate Lead Tracking',
+          detail: 'Complete tracking set up so you know exactly which ads generate calls and WhatsApp bookings',
           included: true,
         },
         {
-          label: 'Dedicated Senior Strategist',
-          detail: 'Direct access to your dedicated media buyer via private VIP WhatsApp group',
+          label: 'Dedicated Campaign Manager',
+          detail: 'Direct access to your dedicated marketing manager via private WhatsApp group',
           included: true,
         },
         {
-          label: 'Weekly Sprint Tuning',
-          detail: 'Agile budget re-allocation and weekly ROAS performance updates',
+          label: 'Weekly Campaign Tuning',
+          detail: 'Weekly budget reviews and adjustments to get you the most enquiries for your spend',
           included: true,
         },
       ],
@@ -269,31 +269,31 @@ export default function PricingPage() {
       aspect: 'Targeted Local Paid Ads',
       diy: 'Usually "Boost Post" button (wasting money on broad reach)',
       inHouse: 'Basic in-platform manager knowledge, rarely split-tested',
-      optivir: '✅ Managed weekly by certified media buyers with negative keywords & CPL tuning',
+      optivir: '✅ Managed weekly by ad specialists who target buyers in your city and stop wasted spend',
     },
     {
       aspect: 'Google Maps 3-Pack Rankings',
       diy: 'Often left dormant or outdated',
       inHouse: 'Treated as an afterthought chore',
-      optivir: '✅ Systematic geographic citations, photo geotagging & review acceleration',
+      optivir: '✅ Regular photo updates, local listings, and a simple review system that helps you rank higher',
     },
     {
       aspect: 'Technical Tracking & Analytics',
       diy: '❌ Guesswork based on social "likes"',
       inHouse: 'Basic vanity metrics (impressions, follower counts)',
-      optivir: '✅ Server-side Google Tag Manager & Meta CAPI for precise bottom-line tracking',
+      optivir: '✅ Accurate tracking set up so you see exact customer enquiries and know what works',
     },
     {
       aspect: 'Staff Leave, Vacations & Illness',
       diy: '❌ Marketing pauses completely when you get busy',
       inHouse: '❌ Work halts when your staff member takes leave',
-      optivir: '✅ Dedicated agency team with 100% operational continuity',
+      optivir: '✅ A full agency team working for you with zero sick leaves or interruptions',
     },
     {
       aspect: 'Strategic Performance Reporting',
       diy: '❌ No actionable data',
       inHouse: 'Unstructured subjective reports',
-      optivir: '✅ Transparent monthly report detailing cost per inquiry & net business return',
+      optivir: '✅ A clear, plain-English monthly report showing your exact enquiries, calls, and spend',
     },
   ];
 
@@ -368,10 +368,10 @@ export default function PricingPage() {
                   <Building2 size={15} /> ENTERPRISE &amp; GCC CLIENTS
                 </div>
                 <h3 className="enterprise-custom-title">
-                  Need Custom Next.js Web Apps, Multi-Location Domination, or GCC Advertising?
+                  Need a Custom Web App, Multi-Branch Marketing, or GCC Advertising?
                 </h3>
                 <p className="enterprise-custom-desc">
-                  We engineer bespoke performance growth retainers for multi-unit retail brands, medical centers, and enterprise organizations in Dubai, Qatar, and Kerala requiring dedicated server-side tracking, custom web application development, and substantial monthly ad budgets.
+                  We create custom marketing packages for multi-location businesses, medical centers, and larger brands in Kerala and the GCC that need custom web design, advanced lead tracking, and multi-city advertising campaigns.
                 </p>
               </div>
               <div className="enterprise-custom-action">

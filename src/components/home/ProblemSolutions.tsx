@@ -45,20 +45,20 @@ export default function ProblemSolutions() {
           </div>
         </ScrollReveal>
 
-        {/* Problems Grid - each card fades in separately with staggered delay (no rotation) */}
+        {/* Problems Grid - each card enters separately with 180-degree right-to-left rotation */}
         <div className="problems-grid">
           {problems.map((item, idx) => {
             const Icon = item.icon;
-            const cardDelay = 150 + idx * 220; // Staggered: 150ms, 370ms, 590ms
+            const cardDelay = 60 + idx * 110; // Staggered: 60ms, 170ms, 280ms
             return (
               <ScrollReveal 
                 key={idx} 
-                direction="up" 
-                distance={24} 
-                rotate={false} 
+                direction="left" 
+                distance={45} 
+                rotate={true} 
                 repeat={true} 
                 delay={cardDelay} 
-                duration={650}
+                duration={580}
               >
                 <div className={`problem-card ${item.color}`}>
                   <div className="problem-quote-wrap">

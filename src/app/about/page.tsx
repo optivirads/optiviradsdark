@@ -12,7 +12,7 @@ import { CURATED_REVIEWS } from '@/lib/reviews';
 const aboutFaqs: FAQItemData[] = [
   {
     question: "What makes OptiVir Ads different from other digital marketing agencies in Kerala?",
-    answer: "OptiVir Ads is built on performance accountability, technical depth, and radical transparency. Unlike agencies that show vanity metrics, we build server-side attribution systems that track revenue. We handle everything from GA4 configuration to Meta CAPI setup and value-based Google Smart Bidding, treating your marketing budget as our own capital and making only data-justified decisions."
+    answer: "OptiVir Ads is built on real business results and complete transparency. Unlike agencies that focus on vanity metrics like &ldquo;likes&rdquo; or &ldquo;impressions&rdquo;, we focus on what really matters to a business owner: phone calls, WhatsApp bookings, and paying customers. We treat your advertising budget with the same care as our own and keep you informed with straightforward, plain-English reports."
   },
   {
     question: "What types of businesses does OptiVir Ads serve in Kerala and internationally?",
@@ -36,41 +36,41 @@ export default function About() {
   const values = [
     {
       icon: <Cpu size={22} />,
-      title: "Data Rigor",
-      desc: "We make no decisions based on gut feel. Every budget allocation, bid adjustment, and keyword focus is backed by structural search numbers and conversion data."
+      title: "Decisions Based on Real Numbers",
+      desc: "We don't guess what might work. Every ad budget, keyword choice, and campaign decision is guided by actual customer enquiries and search data."
     },
     {
       icon: <Eye size={22} />,
-      title: "Radical Transparency",
-      desc: "Our clients see exactly what we see. We configure raw analytics integrations so you see actual revenue, ROAS, and customer values with no reports filtration."
+      title: "Complete Transparency",
+      desc: "You always see what we see. We provide plain-English reports showing where every rupee is spent and how many genuine calls and leads come in."
     },
     {
       icon: <RefreshCw size={22} />,
-      title: "Iteration Velocity",
-      desc: "Digital markets shift daily. We apply agile principles to marketing, running rapid testing loops on creatives and landing pages to stay ahead of the competition."
+      title: "Continuous Weekly Improvement",
+      desc: "Online marketing changes constantly. We test and refine your ad creatives, headlines, and pages every week so your business stays ahead of competitors."
     }
   ];
 
   const methodologySteps = [
     {
       number: "01",
-      title: "Deep-Dive Audit",
-      desc: "We analyze your historic ad accounts performance, search consoles, competitor keyword gaps, and user interaction maps to isolate immediate leaks."
+      title: "Deep Review",
+      desc: "We review your existing ads, website, Google Maps profile, and local competitors to identify what is working and where enquiries are being lost."
     },
     {
       number: "02",
-      title: "Precision Setup",
-      desc: "We install pixel trackers, value-based conversion scripts, clean landing templates, and establish structured campaigns to capture existing commercial intent."
+      title: "Clean Setup",
+      desc: "We fix your tracking, update your Google Maps listing, design your content, and set up your ads so every dollar is spent on real local buyers."
     },
     {
       number: "03",
-      title: "Staged Scaling",
-      desc: "Once a profitable cost-per-lead baseline is verified, we run micro-budget budget increases to scale acquisition without trigger algorithm reset."
+      title: "Smart Scaling",
+      desc: "Once we see which ads bring in the most calls at the lowest cost, we safely increase budget on the winners to bring you more customers."
     },
     {
       number: "04",
-      title: "Continuous CRO",
-      desc: "We continuously A/B test ad copy hooks, form structures, and page speed parameters to squeeze maximum conversion value out of incoming clicks."
+      title: "Ongoing Optimization",
+      desc: "We continually test new video hooks, headlines, and call-to-action buttons to ensure you get the maximum number of enquiries from your traffic."
     }
   ];
 
@@ -114,14 +114,14 @@ export default function About() {
       <section className="about-hero">
         <div className="container text-center">
           <TextReveal 
-            text="The Science of Scaling Brands" 
+            text="Helping Businesses Grow and Attract Customers" 
             className="about-title" 
             tag="h1" 
             delay={150}
             duration={1000}
           />
           <p className="about-subtitle">
-            We are a team of performance marketing engineers dedicated to building predictable, scalable customer acquisition systems.
+            We are a digital marketing team in Kerala dedicated to helping local businesses and GCC brands attract more customers through honest, results-driven marketing.
           </p>
         </div>
       </section>
@@ -154,8 +154,8 @@ export default function About() {
       <section className="timeline-section">
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">The Engineering Loop</h2>
-            <p className="section-subtitle">How we take a chaotic market presence and transform it into a predictable growth machine.</p>
+            <h2 className="section-title">Our 4-Step Process</h2>
+            <p className="section-subtitle">How we turn online traffic into steady customer enquiries for your business.</p>
           </div>
 
           <div className="timeline-container">

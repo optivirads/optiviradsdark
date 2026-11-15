@@ -22,11 +22,11 @@ export default function GrowthHeroVisual() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
 
-  // Animation states
+  // Animation states - initialized to fully rendered state for instant Speed Index and LCP visual completeness
   const [hasStarted, setHasStarted] = useState(false);
-  const [progress, setProgress] = useState(0); // 0 to 1
+  const [progress, setProgress] = useState(1); // 0 to 1, default 1 for instant SSR paint
   const [totalLength, setTotalLength] = useState(650);
-  const [arrowPos, setArrowPos] = useState({ x: 45, y: 405, angle: -15 });
+  const [arrowPos, setArrowPos] = useState({ x: 520, y: 80, angle: -42 });
   const [targetPulse, setTargetPulse] = useState(false);
   const [chartFadeOpacity, setChartFadeOpacity] = useState(1);
 
@@ -83,10 +83,10 @@ export default function GrowthHeroVisual() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted) {
-          // Calm initial state: brief rest pause before growth begins
+          // Allow initial visual state to settle and register before starting repeating loop
           const timer = setTimeout(() => {
             setHasStarted(true);
-          }, 350);
+          }, 1500);
           return () => clearTimeout(timer);
         }
       },
@@ -231,7 +231,7 @@ export default function GrowthHeroVisual() {
               alt="Google Ads"
               width={460}
               height={346}
-              loading="lazy"
+              priority
               sizes="(max-width: 768px) 180px, 255px"
               className="glass-tab-3d-img"
               draggable={false}
@@ -247,7 +247,7 @@ export default function GrowthHeroVisual() {
               alt="Meta Ads"
               width={446}
               height={397}
-              loading="lazy"
+              priority
               sizes="(max-width: 768px) 180px, 215px"
               className="glass-tab-3d-img"
               draggable={false}

@@ -67,11 +67,11 @@ const servicesData = [
     slug: 'social-media-management',
     icon: <Users size={24} />,
     badgeClass: 'cyan',
-    desc: 'Transform your social channels into high-engagement brand equity. We design creative calendars, construct community engagement playbooks, and manage active customer conversations.',
+    desc: 'Turn your social media pages into a steady source of customer interest and enquiries. We plan monthly content calendars, script and edit engaging Reels, and handle daily follower conversations.',
     bullets: [
-      'Content Calendar & Creation: Multi-channel graphic design, layout, and scheduling.',
-      'Community Cultivation: Direct reply sequencing to turn followers into brand advocates.',
-      'Profile Architecture: Optimization of channel bios, link-in-bios, and visual grids.'
+      'Content Planning & Design: Custom branded graphics, carousels, and videos scheduled regularly.',
+      'Active Customer Replies: Prompt responses to comments and DMs so interested buyers get help right away.',
+      'Profile Optimization: Clear bio, highlight covers, and direct links that make contacting you effortless.'
     ],
     metric: 'Engagement Rate Boost',
     metricValue: '+78%'
@@ -82,11 +82,11 @@ const servicesData = [
     slug: 'meta-advertising',
     icon: <Megaphone size={24} />,
     badgeClass: 'purple',
-    desc: 'Disrupt scrolling behavior with high-performance video and visual ad hooks. We optimize ad accounts using advanced custom audiences, Lookalikes, and creative matrix testing.',
+    desc: 'Reach interested local customers across Instagram and Facebook. We design thumb-stopping video ads, write compelling Malayalam and English copy, and target people ready to buy.',
     bullets: [
-      'Creative Matrix Testing: Systematic auditing of copy hooks, videos, and layouts.',
-      'Conversion API Setup: Precision pixel mapping to match offline sale values.',
-      'Retargeting funnels: Dedicated lead-nurturing setups to close warm traffic.'
+      'Creative Testing: We test different video hooks, headlines, and offers to keep your cost per lead low.',
+      'Accurate Lead Tracking: Tracking every phone call, form, and WhatsApp message so you know what works.',
+      'Customer Follow-Up Ads: Showing targeted reminders to people who viewed your profile or website.'
     ],
     metric: 'Average Target ROAS',
     metricValue: '4.2x'
@@ -97,11 +97,11 @@ const servicesData = [
     slug: 'google-advertising',
     icon: <Target size={24} />,
     badgeClass: 'green',
-    desc: 'Intercept active buyers search queries. We construct highly optimized Search structures, configure automated bidding models, and design conversion-first landing pages.',
+    desc: 'Appear at the top of Google when local customers search for your exact services. You only pay when an interested customer clicks.',
     bullets: [
-      'Intent Keyword Dominance: Bidding on high-revenue commercial and search intent queries.',
-      'Value-Based Bidding: Integrating Google Smart Bidding to target high-tier buyers.',
-      'Negative Keyword Exclusion: Preventing ad spend leak on generic and low-intent searches.'
+      'High-Intent Searches: Showing your business to people searching with ready-to-buy intent.',
+      'Negative Keyword Filtering: Blocking wasted budget on irrelevant or free searches.',
+      'Fast Landing Pages: Mobile-friendly pages designed to turn clicks into phone calls.'
     ],
     metric: 'Average Cost-Per-Lead',
     metricValue: '-35%'
@@ -112,11 +112,11 @@ const servicesData = [
     slug: 'niche-platform-advertising',
     icon: <Compass size={24} />,
     badgeClass: 'cyan',
-    desc: 'Capture B2B decision makers and target demographic niches. We deploy structured lead generation and brand awareness campaigns on LinkedIn, Snapchat, and Twitter/X.',
+    desc: 'Reach specific audiences and professionals on LinkedIn, Snapchat, and X/Twitter. Ideal for B2B contracts, youth marketing, or targeted demographic campaigns.',
     bullets: [
-      'B2B LinkedIn Campaigns: Hyper-targeted to job titles, industries, and firmographics.',
-      'Snapchat Vertical Video Ads: Dynamic vertical creatives capturing Gen Z and millennial buyers.',
-      'Twitter/X Topic Targeting: Display ads aligned with live industry conversations and interests.'
+      'B2B LinkedIn Campaigns: Reach company decision makers, business owners, and professionals.',
+      'Snapchat Vertical Video Ads: Dynamic vertical video ads that reach younger local shoppers and students.',
+      'Twitter/X Topic Campaigns: Focused ads placed alongside trending local and industry discussions.'
     ],
     metric: 'Niche B2B Pipeline Value',
     metricValue: '2.8x'
@@ -127,11 +127,11 @@ const servicesData = [
     slug: 'search-engine-optimization',
     icon: <Search size={24} />,
     badgeClass: 'green',
-    desc: 'Acquire high-intent traffic without ongoing ad spend. We implement advanced schema, capture regional search intent, and resolve core technical issues that limit ranking.',
+    desc: 'Help nearby customers find your website organically on Google without ongoing ad spend. We optimize your website structure, create helpful content, and fix ranking issues.',
     bullets: [
-      'Semantic Search Optimization: Structuring data and schema to maximize Google snippet views.',
-      'Content Conquest: In-depth competitor content gap research to target high-volume phrases.',
-      'Technical Core Auditing: Speeding up site loading and layout to satisfy Web Vitals.'
+      'Google Ranking Optimization: Helping your service pages appear in top search results and snippets.',
+      'Helpful Content: Answering the questions your local customers are actively searching for.',
+      'Website Speed & Health: Fixing site speed and mobile layout so visitors stay and search engines trust you.'
     ],
     metric: 'Organic Traffic Growth',
     metricValue: '+140%'
@@ -142,11 +142,11 @@ const servicesData = [
     slug: 'google-maps-marketing',
     icon: <MapPin size={24} />,
     badgeClass: 'cyan',
-    desc: 'Dominate the Google Map 3-Pack in Kannur, Kerala, and the GCC. Complete Google Business Profile setup, local citations, review collection workflows, and monthly call tracking.',
+    desc: 'Get into the Google Maps Top 3 in your city so nearby customers call you before your competitors. Complete Google Business Profile setup, photo updates, and review collection.',
     bullets: [
-      'Map 3-Pack Optimization: Category mapping, geo-tagged photos, and service menus.',
-      'Review Velocity System: Front-desk QR code stands & automated WhatsApp review requests.',
-      'Local Geo-Citations: NAP directory consistency & LocalBusiness schema implementation.'
+      'Top 3 Map Optimization: Proper categories, service menus, city geotagging, and weekly photo updates.',
+      'Review Collection System: Simple WhatsApp workflows and QR codes to help happy clients leave 5-star reviews.',
+      'Local Directory Consistency: Ensuring your business name, address, and phone number match across all online directories.'
     ],
     metric: 'Local Call Discovery',
     metricValue: '+180%'
@@ -157,11 +157,11 @@ const servicesData = [
     slug: 'content-marketing',
     icon: <PenTool size={24} />,
     badgeClass: 'purple',
-    desc: 'Nurture customer trust through value-first narrative assets. From educational blog clusters and email sequence setups to compelling video scripts and copy scripts.',
+    desc: 'Build customer trust with helpful, well-written content. From educational blog posts and video scripts to persuasive website copy that turns visitors into enquiries.',
     bullets: [
-      'Conversion Landing Copy: Bulletproof, action-oriented copy focused on removing friction.',
-      'Automated Email Sequences: Content setups to nurture leads and re-engage cold lists.',
-      'Rich Media Assets: Custom infographics, guides, and downloadables to capture emails.'
+      'Action-Oriented Website Copy: Clear, straightforward wording that encourages visitors to call or message.',
+      'Customer Email Updates: Simple email updates that keep your past clients coming back.',
+      'Helpful Visual Guides: Informative graphics and guides that answer common customer questions.'
     ],
     metric: 'Lead-to-Sale Conversion',
     metricValue: '45%'
@@ -172,11 +172,11 @@ const servicesData = [
     slug: 'web-development',
     icon: <Code size={24} />,
     badgeClass: 'cyan',
-    desc: 'We engineer blazingly fast custom web applications and conversion pages utilizing React and Next.js, optimized for search engines, speed, and responsive design.',
+    desc: 'Fast, modern websites and landing pages built to turn visitors into phone calls and WhatsApp messages. Loads instantly on any smartphone.',
     bullets: [
-      'Next.js Framework: Speed, SEO compatibility, and static page generation.',
-      'Frictionless UX/UI Layouts: Streamlined navigation designs built to maximize conversion rates.',
-      'Mobile-Responsive Engineering: Cross-device visual styling and speed tuning.'
+      'Sub-2-Second Mobile Speed: Modern code that loads smoothly even on slower mobile data connections.',
+      'One-Tap Contact Buttons: Prominent WhatsApp and direct call buttons placed within easy thumb reach.',
+      'Search Engine Ready: Built with clean code so Google can easily index and rank your pages.'
     ],
     metric: 'Core Web Vitals Speed',
     metricValue: '<1.2s'
@@ -187,11 +187,11 @@ const servicesData = [
     slug: 'email-marketing',
     icon: <Mail size={24} />,
     badgeClass: 'purple',
-    desc: 'Maximize customer lifetime value and retention. We design high-converting email newsletters, automated customer sequence flows, and personalized SMS marketing.',
+    desc: 'Stay in touch with your existing customer base and bring them back. We set up automated welcome messages, appointment reminders, and seasonal promotional emails.',
     bullets: [
-      'Automated Workflows: Cart abandonment, welcome series, and post-purchase nurture flows.',
-      'Audience Segmentation: Targeting subscriber lists based on purchase history and interaction behavior.',
-      'Campaign Broadcasts: Beautiful newsletter designs and seasonal promotional copywriting.'
+      'Automated Follow-Ups: Automated messages for new inquiries, bookings, and customer check-ins.',
+      'Customer Groups: Sending the right message to the right customers based on what they bought.',
+      'Promotional Newsletters: Clean, attractive announcements for festive offers and seasonal sales.'
     ],
     metric: 'Avg. Email Contribution',
     metricValue: '+28%'
@@ -202,11 +202,11 @@ const servicesData = [
     slug: 'branding',
     icon: <Palette size={24} />,
     badgeClass: 'purple',
-    desc: 'Build a distinctive, cohesive corporate brand that commands market share. We design premium logos, curate color and typography systems, build visual style guide books, and frame corporate positioning statements.',
+    desc: 'Give your business a clean, professional, and trustworthy visual identity. We design memorable logos, select cohesive colors and fonts, and create branded business materials.',
     bullets: [
-      'Corporate Logo & Style Guides: Unique visual logo design, sub-branding layout rules, and complete asset usage guides.',
-      'Corporate Identity Assets: Brand color systems, corporate typography matrices, letterheads, and business card collateral.',
-      'Brand Positioning Maps: Audience message tailoring, tone-of-voice frameworks, and competitive positioning statements.'
+      'Logo & Brand Guidelines: A clean, modern logo design with complete usage guidelines.',
+      'Business Materials: Cohesive colors, fonts, letterheads, business cards, and social media templates.',
+      'Clear Brand Message: A simple, compelling value proposition that explains why customers should choose you.'
     ],
     metric: 'Brand Recognition Lift',
     metricValue: '+65%'
@@ -217,11 +217,11 @@ const servicesData = [
     slug: 'analytics-operations',
     icon: <BarChart3 size={24} />,
     badgeClass: 'green',
-    desc: 'Eliminate attribution tracking blind spots. We deploy server-side tracking, configure GA4 dashboards, and clean up pixel mapping to give you exact ROI reports.',
+    desc: 'Know exactly which ads, posts, and search terms bring paying customers. Clear, simple monthly reports with zero confusing marketing jargon.',
     bullets: [
-      'GA4 & Tag Manager Setup: Clean event tracking, custom user values, and funnel tracking.',
-      'Server-Side Tracking: Bypassing browser ad-blockers to preserve attribution data accuracy.',
-      'Consolidated Dashboards: Real-time Looker Studio reports detailing spend and returns.'
+      'Accurate Enquiry Tracking: Tracking every phone call, form submission, and WhatsApp booking.',
+      "Ad-Blocker Proof Tracking: Setting up direct tracking so data isn't lost and budgets aren't wasted.",
+      'Simple Visual Dashboard: A clean, easy-to-read summary showing your leads, costs, and returns.'
     ],
     metric: 'Data Tracking Accuracy',
     metricValue: '99.8%'
@@ -260,7 +260,15 @@ export default function Services() {
             {servicesData.map((service, index) => {
               const isLast = index === servicesData.length - 1;
               return (
-                <ScrollReveal key={service.id} delay={index * 50} direction="up" stagger={0}>
+                <ScrollReveal 
+                  key={service.id} 
+                  delay={index * 60} 
+                  direction="up" 
+                  distance={35}
+                  rotate={false}
+                  repeat={true}
+                  duration={500}
+                >
                   <div className={`glass-card service-card ${isLast ? 'featured-card' : ''}`}>
                     <div className="service-card-main-content">
                       <div className="service-card-header">

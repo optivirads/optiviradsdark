@@ -2063,45 +2063,11 @@ button {
   }
 }
 
-/* On mobile, hero description and cards render immediately for fast LCP.
-   On desktop (≥769px), they start hidden and animate in. */
-@media (min-width: 769px) {
-  .hero-description {
-    opacity: 0;
-  }
-
-  .hero-cta-btn {
-    opacity: 0;
-  }
-
-  .hero-card-item {
-    opacity: 0;
-  }
-
-  .animate-hero-desc {
-    animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 350ms;
-  }
-
-  .animate-hero-cta {
-    animation: heroScaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 450ms;
-  }
-
-  .animate-hero-card-0 {
-    animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 550ms;
-  }
-
-  .animate-hero-card-1 {
-    animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 650ms;
-  }
-
-  .animate-hero-card-2 {
-    animation: heroSlideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 750ms;
-  }
+/* Hero description, CTA buttons and cards render immediately for optimal Speed Index and LCP */
+.hero-description,
+.hero-cta-btn,
+.hero-card-item {
+  opacity: 1;
 }
 
 /* Mobile hero animations are intentionally omitted to preserve
@@ -2166,6 +2132,7 @@ button {
   padding: 2rem 0 5rem;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 .what-we-do-section .section-header {
@@ -5988,6 +5955,7 @@ a.channel-value:hover {
 .problem-solutions-section {
   padding: 4.5rem 0;
   position: relative;
+  overflow: hidden;
 }
 .problems-grid {
   display: grid;
